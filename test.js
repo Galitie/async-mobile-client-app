@@ -1,3 +1,5 @@
+console.log("This is working!")
+
 document.querySelector("button").addEventListener("click", postIt)
 
 function postIt(){
