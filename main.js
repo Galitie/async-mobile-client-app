@@ -4,7 +4,7 @@ document.querySelector('button').addEventListener('click', postIt)
 
 function postIt(){
 console.log("You pressed it!")
-fetch("https://https://galitie.github.io/tyler/", {
+fetch("https://galitie.github.io/tyler/", {
   method: "POST",
   body: JSON.stringify({
     userId: 1,
