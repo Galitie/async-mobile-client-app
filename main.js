@@ -6,7 +6,7 @@ document.querySelector('button').addEventListener('click', collectInput)
 function collectInput(){
   let userInputValue = input.value
   console.log("You pressed the submit button!")
-  console.log(userInputValue)
+  console.log(`The input from the user was: ${userInputValue}`)
   
 }
 
