@@ -1,20 +1,10 @@
 console.log("This code is linked to the html")
 
-document.querySelector('button').addEventListener('click', postIt)
+let input = document.querySelector('input').value
+document.querySelector('button').addEventListener('click', test)
 
-function postIt(){
-console.log("You pressed the submit button!")
-fetch("https://galitie.github.io/tyler/", {
-  method: "POST",
-  body: JSON.stringify({
-    userId: 1,
-    title: "Fix my bugs",
-    completed: false
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8"
-  }
-})
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+function test(){
+  console.log("You pressed the submit button!")
+  console.log(input)
+
 }
