@@ -1,8 +1,17 @@
-function proceed () {
-    var form = document.createElement('form');
-    form.setAttribute('method', 'post');
-    form.setAttribute('action', 'http://google.com');
-    form.style.display = 'hidden';
-    document.body.appendChild(form)
-    form.submit();
+document.querySelector("button").addEventListener("click", postIt)
+
+function postIt(){
+fetch("https://https://galitie.github.io/tyler/", {
+  method: "POST",
+  body: JSON.stringify({
+    userId: 1,
+    title: "Fix my bugs",
+    completed: false
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
 }
