@@ -11,7 +11,7 @@ function collectInput(){
 }
 
 // **************** Web Socket stuff ****************** //
-console.log("Hopefully trying to connect to the secure public IP... please wait about 15 seconds, you should see a message when it is successful!")
+console.log("Hopefully trying to connect to the secure public IP... please wait about 30 seconds, you should see a message when it is successful!")
 const socket = new WebSocket('wss://50.4.187.55:9999'); 
 
 
