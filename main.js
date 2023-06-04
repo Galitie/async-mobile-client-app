@@ -36,8 +36,6 @@ socket.addEventListener('close', () => {
   console.log('Connection closed.');
 });
 
-// test message to the server
-socket.send('Hello, server!');
 
 
 
