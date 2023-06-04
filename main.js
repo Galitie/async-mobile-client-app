@@ -11,8 +11,8 @@ function collectInput(){
 }
 
 // **************** Web Socket stuff ****************** //
-console.log("Hopefully trying to connect...you should see a message when it is successful!")
-const socket = new WebSocket('ws://192.168.0.77:9999'); // input these later
+console.log("Hopefully trying to connect to the public IP...you should see a message when it is successful!")
+const socket = new WebSocket('ws://50.4.187.55:9999'); // input these later
 
 // fired when the server is connected
 socket.addEventListener('open', () => {
