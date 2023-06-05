@@ -18,12 +18,20 @@
     font-size: 4vw;
 }
 
-html, body{
+body{
+    height: 90vh;
+    overflow-y: hidden;
+}
+
+#stats{
+    padding: 0;
+    margin: 0;
+}
+#game {
     display:flex;
     flex-direction: column;
-    height: 90vh;
+    height:100%;
     justify-content: space-around;
-    overflow: hidden;
 }
 
 button, textarea {
@@ -35,6 +43,10 @@ button, textarea {
 textarea{
     border: 1px solid black;
     text-align: left;
+}
+
+h1{
+    margin: 0;
 }
 
   

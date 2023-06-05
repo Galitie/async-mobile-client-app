@@ -18,18 +18,15 @@ function collectInput(){
   submitButton.innerText = "Submitted!"
   submitButton.disabled = true
 
-  // User feedback below button on what to do next
-  let confirmationText = document.createElement('p')
-  const node = document.createTextNode("Please wait for next prompt!");
-  confirmationText.appendChild(node)
-  document.querySelector('body').appendChild(confirmationText)
-
   
 }
 //
 
 
 // **************** Web Socket stuff ****************** //
+let playerServerStatus = document.querySelector('h4')
+
+
 
 // Create a WebSocket connection
 const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/stage/';
@@ -38,6 +35,8 @@ const socket = new WebSocket(websocketUrl);
 // Connection opened event
 socket.onopen = function (event) {
   console.log('WebSocket connection established.');
+  playerServerStatus.innerText = "Connected to server"
+  playerServerStatus.style.color = "green"
 };
 
 // Message received event
@@ -54,6 +53,8 @@ socket.onerror = function (error) {
 // Connection closed event
 socket.onclose = function (event) {
   console.log('WebSocket connection closed:', event.code, event.reason);
+  playerServerStatus.innerText = "Disconnected from server"
+  playerServerStatus.style.color = "red"
 };
 
 // Send a message to the WebSocket API
