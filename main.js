@@ -1,9 +1,9 @@
 // **************** Submit Button Functionality ****************** //
 
 // Make submit button clickable
-document.querySelector('button').addEventListener('click', collectInput)
+document.querySelector('button').addEventListener('click', onClick)
 
-function collectInput(){
+function onClick(){
   // Update this to actually send the message to the server
   let input = document.querySelector('textarea')
   let userInputValue = input.value
@@ -21,6 +21,11 @@ function collectInput(){
   submitButton.innerText = "Submitted!"
   submitButton.disabled = true
 
+  const packet = {
+    "action": "message",
+    "msg": userInputValue
+    }
+  sendMessage(JSON.stringify(packet))
   
 }
 //
