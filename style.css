@@ -52,11 +52,8 @@ p{
     color: black;
 }
 
-.submit:hover {
-    background-color:lightgray;
-    transition: 0.9s;
-}
 
 .submit:disabled{
     background-color:lightgray;
+    transition: 0.9s;
 }
