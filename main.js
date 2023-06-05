@@ -3,14 +3,22 @@ console.log("This code is linked to the html")
 let input = document.querySelector('input')
 document.querySelector('button').addEventListener('click', collectInput)
 
+// toggle if element is displayed or not
+function toggle(element){
+  element.style.display = "unset" ? element.style.display = "none" : element.style.display = "unset"
+}
+
 function collectInput(){
   let submitButton = document.querySelector('button')
   submitButton.innerText = "Submitted!"
-  
+  let confirmationText = document.querySelector('p')
+  confirmationText.innerText = "Please wait for next prompt!"
+
   let userInputValue = input.value
   console.log("You pressed the submit button!")
   console.log(`The input from the user was: ${userInputValue}`)
-  
+  sendMessage(userInputValue)
+  toggle(input)
 }
 
 // **************** Web Socket stuff ****************** //

@@ -20,8 +20,12 @@
 
 button, input {
     width:100%;
-    min-height: 100px;
+    min-height: 150px;
+    font-size: 5vw;
+    display:unset;
 }
+
+
 
 .submit {
     border: none;
