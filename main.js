@@ -12,18 +12,13 @@ function collectInput(){
 
 // **************** Web Socket stuff ****************** //
 console.log("Hopefully trying to connect to the secure public IP... please wait about 30 seconds, you should see a message when it is successful!")
-const socket = new WebSocket('wss://50.4.187.55:9999'); 
+const socket = new WebSocket('wss://13z2e6ro4l.execute-api.us-west-2amazonaws.com/stage/'); 
 
 
 
 // fired when the server is connected
 socket.addEventListener('open', () => {
   console.log('Connected to the server.');
-  if (socket.protocol === 'wss') {
-    console.log('WebSocket connection is secure.');
-} else {
-    console.log('WebSocket connection is not secure.');
-}
 });
 
 // fires when a message is recieved from the server
@@ -41,11 +36,7 @@ socket.addEventListener('message', (event) => {
 // fires when the connection to the server closes
 socket.addEventListener('close', () => {
   console.log('Connection closed.');
-  // Check if socket was secure
-  if (socket.protocol === 'wss') {
-    console.log('WebSocket connection was secure.');
-} else {
-    console.log('WebSocket connection was not secure.');
+
 }
 });
 
