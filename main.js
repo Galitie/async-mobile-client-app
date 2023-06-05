@@ -36,8 +36,6 @@ socket.addEventListener('message', (event) => {
 // fires when the connection to the server closes
 socket.addEventListener('close', () => {
   console.log('Connection closed.');
-
-}
 });
 
 
