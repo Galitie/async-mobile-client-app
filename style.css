@@ -14,13 +14,13 @@
 * {
     text-align: center;
     font-family: monospace;
-    margin: 0% 10%;
+    margin: 0% 5%;
     font-size: 4vw;
 }
 
 body{
     height: 90vh;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 #stats{
