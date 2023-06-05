@@ -49,6 +49,7 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
+  document.querySelector('h1').innerText = "This worked!"
 };
 
 // Error event
