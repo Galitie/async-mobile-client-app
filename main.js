@@ -19,6 +19,11 @@ const socket = new WebSocket('wss://13z2e6ro4l.execute-api.us-west-2amazonaws.co
 // fired when the server is connected
 socket.addEventListener('open', () => {
   console.log('Connected to the server.');
+  if (socket.protocol === 'wss') {
+    console.log('WebSocket connection is secure.');
+} else {
+    console.log('WebSocket connection is not secure.');
+}
 });
 
 // fires when a message is recieved from the server
@@ -36,7 +41,17 @@ socket.addEventListener('message', (event) => {
 // fires when the connection to the server closes
 socket.addEventListener('close', () => {
   console.log('Connection closed.');
+  // Check if socket was secure
+  if (socket.protocol === 'wss') {
+    console.log('WebSocket connection was secure.');
+} else {
+    console.log('WebSocket connection was not secure.');
+}
 });
+
+
+
+
 
 
 
