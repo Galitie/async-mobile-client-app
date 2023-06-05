@@ -4,6 +4,9 @@ let input = document.querySelector('input')
 document.querySelector('button').addEventListener('click', collectInput)
 
 function collectInput(){
+  let submitButton = document.querySelector('button')
+  submitButton.innerText = "Submitted!"
+  
   let userInputValue = input.value
   console.log("You pressed the submit button!")
   console.log(`The input from the user was: ${userInputValue}`)

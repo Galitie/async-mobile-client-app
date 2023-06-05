@@ -14,8 +14,8 @@
 * {
     text-align: center;
     font-family: monospace;
-    font-size: x-large ;
     margin: 10%;
+    font-size: 4vw;
 }
 
 button, input {
@@ -33,6 +33,8 @@ button, input {
     background-color:green;
     transition: 0.9s;
 }
+
+
   
   
   /******************************************
