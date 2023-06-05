@@ -14,28 +14,26 @@
 * {
     text-align: center;
     font-family: monospace;
-    margin: 10%;
+    margin: 10% 10%;
     font-size: 4vw;
 }
 
-button, input {
+body{
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+button, textarea {
     width:100%;
     min-height: 150px;
     font-size: 5vw;
-    display:unset;
 }
 
-
-
-.submit {
-    border: none;
-    background-color: greenyellow;
-    color: black;
-}
-
-.submit:hover {
-    background-color:green;
-    transition: 0.9s;
+textarea{
+    border: 1px solid black;
+    text-align: left;
 }
 
 
@@ -45,3 +43,13 @@ button, input {
   /* ADDITIONAL STYLES
   /*******************************************/
   
+.submit {
+    border: none;
+    background-color: greenyellow;
+    color: black;
+}
+
+.submit:hover {
+    background-color:lightgray;
+    transition: 0.9s;
+}

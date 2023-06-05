@@ -1,33 +1,35 @@
-console.log("This code is linked to the html")
 
-let input = document.querySelector('input')
+// Make submit button clickable
 document.querySelector('button').addEventListener('click', collectInput)
 
-// toggle if element is displayed or not
-function toggle(element){
-  element.style.display = "unset" ? element.style.display = "none" : element.style.display = "unset"
-}
-
 function collectInput(){
-  let submitButton = document.querySelector('button')
-  submitButton.innerText = "Submitted!"
-  let confirmationText = document.querySelector('p')
-  confirmationText.innerText = "Please wait for next prompt!"
-
+  // Update this to actually send the message to the server
+  let input = document.querySelector('textarea')
   let userInputValue = input.value
   console.log("You pressed the submit button!")
   console.log(`The input from the user was: ${userInputValue}`)
-  sendMessage(userInputValue)
-  toggle(input)
+  input.value = ""
+  input.placeholder = "no takebacksies"
+  input.readOnly = true
+  input.style.background = "lightgray"
+
+  // User feedback on button that their text was submitted
+  let submitButton = document.querySelector('button')
+  submitButton.innerText = "Submitted!"
+  submitButton.disabled = true
+
+  // User feedback below button on what to do next
+  let confirmationText = document.querySelector('p')
+  confirmationText.innerText = "Please wait for next prompt!"
+  
 }
+//
+
 
 // **************** Web Socket stuff ****************** //
-console.log("Hopefully trying to connect to the secure public IP... please wait about 30 seconds, you should see a message when it is successful!")
-
-// AWS
-const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/stage/';
 
 // Create a WebSocket connection
+const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/stage/';
 const socket = new WebSocket(websocketUrl);
 
 // Connection opened event
