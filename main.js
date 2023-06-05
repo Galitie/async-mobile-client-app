@@ -1,3 +1,4 @@
+// **************** Submit Button Functionality ****************** //
 
 // Make submit button clickable
 document.querySelector('button').addEventListener('click', collectInput)
@@ -8,12 +9,14 @@ function collectInput(){
   let userInputValue = input.value
   console.log("You pressed the submit button!")
   console.log(`The input from the user was: ${userInputValue}`)
+
+  // Make the input readonly and gray so user can't use it again during this time
   input.value = ""
   input.placeholder = "no takebacksies"
   input.readOnly = true
   input.style.background = "lightgray"
 
-  // User feedback on button that their text was submitted
+  // Disable button and user feedback on button that their text was submitted
   let submitButton = document.querySelector('button')
   submitButton.innerText = "Submitted!"
   submitButton.disabled = true
@@ -26,10 +29,8 @@ function collectInput(){
 // **************** Web Socket stuff ****************** //
 let playerServerStatus = document.querySelector('h4')
 
-
-
 // Create a WebSocket connection
-const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/stage/';
+const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod';
 const socket = new WebSocket(websocketUrl);
 
 // Connection opened event
