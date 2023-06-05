@@ -19,8 +19,11 @@ function collectInput(){
   submitButton.disabled = true
 
   // User feedback below button on what to do next
-  let confirmationText = document.querySelector('p')
-  confirmationText.innerText = "Please wait for next prompt!"
+  let confirmationText = document.createElement('p')
+  const node = document.createTextNode("Please wait for next prompt!");
+  confirmationText.appendChild(node)
+  document.querySelector('body').appendChild(confirmationText)
+
   
 }
 //
