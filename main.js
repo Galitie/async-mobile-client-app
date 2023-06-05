@@ -35,7 +35,7 @@ const socket = new WebSocket(websocketUrl);
 // Connection opened event
 socket.onopen = function (event) {
   console.log('WebSocket connection established.');
-  playerServerStatus.innerText = "Connected to server"
+  playerServerStatus.innerText = "\u2705 Connected to server"
   playerServerStatus.style.color = "green"
 };
 
@@ -53,7 +53,7 @@ socket.onerror = function (error) {
 // Connection closed event
 socket.onclose = function (event) {
   console.log('WebSocket connection closed:', event.code, event.reason);
-  playerServerStatus.innerText = "Disconnected from server"
+  playerServerStatus.innerText = "\u2717 Disconnected from server"
   playerServerStatus.style.color = "red"
 };
 
