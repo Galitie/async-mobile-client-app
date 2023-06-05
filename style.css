@@ -56,3 +56,8 @@ p{
     background-color:lightgray;
     transition: 0.9s;
 }
+
+.submit:active{
+    background-color:lightgray;
+    transition: 0.9s;
+}
