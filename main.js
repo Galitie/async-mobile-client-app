@@ -14,7 +14,7 @@ function collectInput(){
 console.log("Hopefully trying to connect to the secure public IP... please wait about 30 seconds, you should see a message when it is successful!")
 
 // Replace 'YOUR_WEBSOCKET_URL' with the actual WebSocket URL provided by AWS
-const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2amazonaws.com/stage/';
+const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/stage/';
 
 // Create a WebSocket connection
 const socket = new WebSocket(websocketUrl);
