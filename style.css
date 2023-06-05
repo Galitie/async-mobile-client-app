@@ -3,23 +3,39 @@
 /*******************************************/
 
 /* Box Model Hack */
-*{
+* {
     box-sizing: border-box;
   }
   
   /******************************************
   /* LAYOUT
   /*******************************************/
-  img{
-    display: block;
-    margin: 0 auto;
-  }
+
+* {
+    text-align: center;
+    font-family: monospace;
+    font-size: x-large ;
+    margin: 10%;
+}
+
+button, input {
+    width:100%;
+    min-height: 100px;
+}
+
+.submit {
+    border: none;
+    background-color: greenyellow;
+    color: black;
+}
+
+.submit:hover {
+    background-color:green;
+    transition: 0.9s;
+}
   
   
   /******************************************
   /* ADDITIONAL STYLES
   /*******************************************/
   
-  h1{
-    color:red;
-  }
