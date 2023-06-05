@@ -14,7 +14,7 @@
 * {
     text-align: center;
     font-family: monospace;
-    margin: 0 10%;
+    margin: 0% 10%;
     font-size: 4vw;
 }
 
@@ -22,7 +22,8 @@ body{
     display:flex;
     flex-direction: column;
     height: 100vh;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    overflow: hidden;
 }
 
 button, textarea {
@@ -36,7 +37,9 @@ textarea{
     text-align: left;
 }
 
-
+p{
+    padding: 20% 0;
+}
   
   
   /******************************************
