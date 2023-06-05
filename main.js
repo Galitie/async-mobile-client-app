@@ -12,31 +12,40 @@ function collectInput(){
 
 // **************** Web Socket stuff ****************** //
 console.log("Hopefully trying to connect to the secure public IP... please wait about 30 seconds, you should see a message when it is successful!")
-const socket = new WebSocket('wss://13z2e6ro4l.execute-api.us-west-2amazonaws.com/stage/'); 
 
+// Replace 'YOUR_WEBSOCKET_URL' with the actual WebSocket URL provided by AWS
+const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2amazonaws.com/stage/';
 
+// Create a WebSocket connection
+const socket = new WebSocket(websocketUrl);
 
-// fired when the server is connected
-socket.addEventListener('open', () => {
-  console.log('Connected to the server.');
-});
+// Connection opened event
+socket.onopen = function (event) {
+  console.log('WebSocket connection established.');
+};
 
-// fires when a message is recieved from the server
-socket.addEventListener('message', (event) => {
+// Message received event
+socket.onmessage = function (event) {
   const message = event.data;
-  console.log('Received message from the server:', message);
-});
+  console.log('Received message:', message);
+};
 
-// Receiving data from the server
-socket.addEventListener('message', (event) => {
-  const message = event.data;
-  console.log('Received message from the server:', message);
-});
+// Error event
+socket.onerror = function (error) {
+  console.error('WebSocket error:', error);
+};
 
-// fires when the connection to the server closes
-socket.addEventListener('close', () => {
-  console.log('Connection closed.');
-});
+// Connection closed event
+socket.onclose = function (event) {
+  console.log('WebSocket connection closed:', event.code, event.reason);
+};
+
+// Send a message to the WebSocket API
+function sendMessage(message) {
+  socket.send(message);
+}
+
+
 
 
 
