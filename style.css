@@ -43,6 +43,11 @@ button, textarea, input {
 textarea, input {
     border: 1px solid black;
     text-align: left;
+    padding: 0 1em;
+}
+
+textarea {
+    padding-top: 1em;
 }
 
 h1{
@@ -66,3 +71,4 @@ h1{
     background-color:lightgray;
     transition: 0.9s;
 }
+

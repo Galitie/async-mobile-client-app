@@ -26,7 +26,7 @@ function onClick() {
   const packet = {
     "action": "join",
     "name": userNameInputValue,
-    "message": userInputValue
+    "msg": userInputValue // dunno if this works
   }
   sendMessage(JSON.stringify(packet))
 }
