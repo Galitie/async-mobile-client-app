@@ -2,25 +2,26 @@
 // **************** Submit Button Functionality ****************** //
 
 // Make submit button clickable
-document.querySelector('button').addEventListener('click', onClick)
+let submitButton = document.querySelector('button')
+submitButton.addEventListener('click', onClick)
 
 function onClick() {
-  // Update this to actually send the message to the server
-  let input = document.querySelector('textarea')
-  let userInputValue = input.value
+  // Get name input value
   let nameInput = document.querySelector('input')
   let userNameInputValue = nameInput.value
+
+  // Get textarea value
+  let input = document.querySelector('textarea')
+  let userInputValue = input.value
+
+  // Log actions
   console.log("You pressed the submit button!")
   console.log(`The input from the user was: '${userNameInputValue}' and '${userInputValue}'`)
 
   // Make the input readonly and gray so user can't use it again during this time
   makeElementReadOnly(nameInput)
   makeElementReadOnly(input)
-
-  // Disable button and user feedback on button that their text was submitted
-  let submitButton = document.querySelector('button')
-  submitButton.innerText = "Submitted!"
-  submitButton.disabled = true
+  makeElementReadOnly(submitButton)
 
   // Send packet
   const packet = {
@@ -32,10 +33,9 @@ function onClick() {
 }
 
 function makeElementReadOnly(element){
-  element.value = ""
-  element.placeholder = "no takebacksies"
   element.readOnly = true
   element.style.background = "lightgray"
+  element.innerText = "Submitted"
 }
 
 
@@ -57,13 +57,17 @@ socket.onopen = function (event) {
   playerServerStatus.innerText = "\u2705 Connected to server"
   playerServerStatus.style.color = "green"
 
+  const packet = {
+    "action": "checkForHost"
+  }
+  sendMessage(JSON.stringify(packet))
+
 };
 
 // Message received event
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
-  document.querySelector('h1').innerText = "Login Success!"
 };
 
 // Error event
@@ -81,9 +85,8 @@ socket.onclose = function (event) {
 // Send a message to the WebSocket API
 function sendMessage(message) {
   socket.send(message);
+  console.log('Sent message:', message)
 }
-
-
 
 
 

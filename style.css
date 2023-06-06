@@ -20,6 +20,7 @@
 
 body{
     height: 80vh;
+    /* overflow: hidden; */
 }
 
 #stats{
