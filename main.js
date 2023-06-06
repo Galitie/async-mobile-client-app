@@ -68,6 +68,9 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
+  if (message[1] == true){
+    document.querySelector('h3').innerText = 'Host online!'
+  } 
 };
 
 // Error event
