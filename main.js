@@ -3,7 +3,7 @@
 // Make submit button clickable
 document.querySelector('button').addEventListener('click', onClick)
 
-function onClick(){
+function onClick() {
   // Update this to actually send the message to the server
   let input = document.querySelector('textarea')
   let userInputValue = input.value
@@ -24,10 +24,9 @@ function onClick(){
   // Send packet
   const packet = {
     "action": "join",
-    "msg": userInputValue, userNameInput
-    }
+    "name": userNameInput
+  }
   sendMessage(JSON.stringify(packet))
-  
 }
 
 function makeElementReadOnly(element){
@@ -60,7 +59,7 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
-  document.querySelector('h1').innerText = "This worked!"
+  document.querySelector('h1').innerText = "Login Success!"
 };
 
 // Error event
