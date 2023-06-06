@@ -3,7 +3,7 @@
 // Make submit button clickable
 document.querySelector('button').addEventListener('click', onClick)
 
-function onClick(){
+function onClick() {
   // Update this to actually send the message to the server
   let input = document.querySelector('textarea')
   let userInputValue = input.value
@@ -22,14 +22,11 @@ function onClick(){
   submitButton.disabled = true
 
   const packet = {
-    "action": "message",
-    "msg": userInputValue
-    }
+    "action": "join",
+    "name": userInputValue
+  }
   sendMessage(JSON.stringify(packet))
-  
 }
-//
-
 
 // **************** Web Socket stuff ****************** //
 let playerServerStatus = document.querySelector('h4')
