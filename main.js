@@ -27,7 +27,7 @@ function onClick() {
   const packet = {
     "action": "join",
     "name": userNameInputValue,
-    "msg": userInputValue // dunno if this works
+    "role": "user" // dunno if this works
   }
   sendMessage(JSON.stringify(packet))
 }
@@ -51,7 +51,7 @@ let playerServerStatus = document.querySelector('h4')
 const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod';
 const socket = new WebSocket(websocketUrl);
 
-// Connection opened event
+// Connection opened event and check for host
 socket.onopen = function (event) {
   console.log('WebSocket connection established.');
   playerServerStatus.innerText = "\u2705 Connected to server"
@@ -68,6 +68,7 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
+
 };
 
 // Error event
