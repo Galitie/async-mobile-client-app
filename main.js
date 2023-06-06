@@ -6,38 +6,39 @@ let submitButton = document.querySelector('button')
 submitButton.addEventListener('click', onClick)
 
 function onClick() {
-  // Get name input value
-  let nameInput = document.querySelector('input')
-  let userNameInputValue = nameInput.value
+  // Get name inputs element and value
+  let [nameInput, nameInputValue] = getInput('input')
+  let [textInput, textInputValue] = getInput('textarea')
 
-  // Get textarea value
-  let input = document.querySelector('textarea')
-  let userInputValue = input.value
-
-  // Log actions
-  console.log("You pressed the submit button!")
-  console.log(`The input from the user was: '${userNameInputValue}' and '${userInputValue}'`)
+  // console.log("You pressed the submit button!")
+  // console.log(`The input from the user was: '${nameInputValue}' and '${textInputValue}'`)
 
   // Make the input readonly and gray so user can't use it again during this time
-  makeElementReadOnly(nameInput)
-  makeElementReadOnly(input)
-  makeElementReadOnly(submitButton)
+  makeElementsReadOnly([nameInput, textInput, submitButton])
 
   // Send packet
   const packet = {
     "action": "join",
-    "name": userNameInputValue,
+    "name": nameInputValue,
     "role": "user" // dunno if this works
   }
   sendMessage(JSON.stringify(packet))
 }
 
-function makeElementReadOnly(element){
-  element.readOnly = true
-  element.style.background = "lightgray"
-  element.innerText = "Submitted"
+function makeElementsReadOnly(elements){
+  elements.forEach(element => {
+    element.readOnly = true
+    element.style.background = "lightgray"
+    element.innerText = "Submitted"
+  })
 }
 
+function getInput(elementName){
+  let input = document.querySelector(`${elementName}`)
+  let inputValue = input.value
+  return [input, inputValue]
+ 
+}
 
 
 
@@ -91,8 +92,17 @@ function sendMessage(message) {
 
 
 
+// make a class for packets
+// class Packet
+// class JoinPacket extends Packet
+// class InputPacket extends Packet
+// class ExitPacket extends Packet
 
+// var as nouns
+// methods as verbs
+// share behaviours: ex: send a packet
 
+// enableElements(elements)
+// or toggle
 
-
-
+// maybe client has persistent states?
