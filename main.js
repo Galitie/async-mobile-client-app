@@ -1,3 +1,4 @@
+
 // **************** Submit Button Functionality ****************** //
 
 // Make submit button clickable
@@ -8,9 +9,9 @@ function onClick() {
   let input = document.querySelector('textarea')
   let userInputValue = input.value
   let nameInput = document.querySelector('input')
-  let userNameInput = nameInput.value
+  let userNameInputValue = nameInput.value
   console.log("You pressed the submit button!")
-  console.log(`The input from the user was: '${userNameInput}' and '${userInputValue}'`)
+  console.log(`The input from the user was: '${userNameInputValue}' and '${userInputValue}'`)
 
   // Make the input readonly and gray so user can't use it again during this time
   makeElementReadOnly(nameInput)
@@ -24,17 +25,19 @@ function onClick() {
   // Send packet
   const packet = {
     "action": "join",
-    "name": userNameInput
+    "name": userNameInputValue,
+    "message": userInputValue
   }
   sendMessage(JSON.stringify(packet))
 }
 
 function makeElementReadOnly(element){
   element.value = ""
-  element.placeholder = "donezo"
+  element.placeholder = "no takebacksies"
   element.readOnly = true
   element.style.background = "lightgray"
 }
+
 
 
 
@@ -53,6 +56,7 @@ socket.onopen = function (event) {
   console.log('WebSocket connection established.');
   playerServerStatus.innerText = "\u2705 Connected to server"
   playerServerStatus.style.color = "green"
+
 };
 
 // Message received event

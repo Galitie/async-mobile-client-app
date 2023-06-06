@@ -40,7 +40,7 @@ button, textarea, input {
     font-size: 5vw;
 }
 
-textarea{
+textarea, input {
     border: 1px solid black;
     text-align: left;
 }
