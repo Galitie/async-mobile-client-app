@@ -7,27 +7,38 @@ function onClick(){
   // Update this to actually send the message to the server
   let input = document.querySelector('textarea')
   let userInputValue = input.value
+  let nameInput = document.querySelector('input')
+  let userNameInput = nameInput.value
   console.log("You pressed the submit button!")
-  console.log(`The input from the user was: ${userInputValue}`)
+  console.log(`The input from the user was: '${userNameInput}' and '${userInputValue}'`)
 
   // Make the input readonly and gray so user can't use it again during this time
-  input.value = ""
-  input.placeholder = "no takebacksies"
-  input.readOnly = true
-  input.style.background = "lightgray"
+  makeElementReadOnly(nameInput)
+  makeElementReadOnly(input)
 
   // Disable button and user feedback on button that their text was submitted
   let submitButton = document.querySelector('button')
   submitButton.innerText = "Submitted!"
   submitButton.disabled = true
 
+  // Send packet
   const packet = {
-    "action": "message",
-    "msg": userInputValue
+    "action": "join",
+    "msg": userInputValue, userNameInput
     }
   sendMessage(JSON.stringify(packet))
   
 }
+
+function makeElementReadOnly(element){
+  element.value = ""
+  element.placeholder = "donezo"
+  element.readOnly = true
+  element.style.background = "lightgray"
+}
+
+
+
 //
 
 

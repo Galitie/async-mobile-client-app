@@ -34,7 +34,7 @@ body{
     justify-content: space-around;
 }
 
-button, textarea {
+button, textarea, input {
     width:100%;
     min-height: 150px;
     font-size: 5vw;
