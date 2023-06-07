@@ -1,5 +1,4 @@
-# Async Multiplayer Game like Jackbox
-A birthday present for a friend! I wanted to create a jackbox-like RPG that uses the player's phone for input.
+# Async Multiplayer Jackbox-like game
 
 
 ## How It's Made:
@@ -13,6 +12,7 @@ I worked on a small team to code the mobile web-app portion of this game using H
 
 - Working on a team while using GIT and GITHUB
 - How to connect to a server via websocket
+- Responsive layouts for different mobile browsers
 
 
 
