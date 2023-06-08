@@ -35,8 +35,7 @@ func _ready():
 	connect("disconnect", _userDisconnected)
 	connect("chat", _userChatted)
 	connect("createCharacter", _characterCreated)
-	# {"action": "messageHost", "message": "createCharacter", "name": "Raam", "catchphrase": "Bazinga"}
-		
+	
 func _process(delta):
 	socket.poll()
 	var state = socket.get_ready_state()
@@ -72,14 +71,14 @@ func ProcessPacket(packet):
 
 func _addedToDB(packet):
 	$World.ready_for_players = true
-	#SendPacket({"action": "messageHost", "message": "createCharacter", "name": "Raam", "catchphrase": "Bazinga"})
 	pass
 
+# { "action: messageHost", "message: attemptJoin" }
 func _userAttemptedToJoin(packet):
 	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
 	if users.has(packet["userIP"]):
 		var user = users[packet["userIP"]]
-		user.connection_id = packet["userID"]
+		user.connection_id = packet["connectionID"]
 		user.connection_status = CONNECTION_STATUS.ONLINE
 		$World.UpdateUserData(user)
 		print(user.name + " has reconnected")
@@ -91,17 +90,19 @@ func _userAttemptedToJoin(packet):
 			response["message"] = "refuseJoin"
 	SendPacket(response)
 
+# { "action": "messageHost", "message": "createCharacter", "name": "S", "catchphrase": "S" }
 func _characterCreated(packet):
 	var user_data = UserData.new()
 	user_data.ip = packet["userIP"]
 	user_data.name = packet["name"]
-	#user_data.role = packet["userRole"]
+	user_data.role = "user"
 	user_data.connection_id = packet["connectionID"]
 	user_data.catchphrase = packet["catchphrase"]
 	user_data.connection_status = CONNECTION_STATUS.ONLINE
 	users[user_data.ip] = user_data
 	$World.CreateCharacter(user_data)
 	print(user_data.name + " has joined the game")
+	SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": packet["userIP"], "connectionID": packet["connectionID"]})
 	
 func _userDisconnected(packet):
 	if users.has(packet["userIP"]):

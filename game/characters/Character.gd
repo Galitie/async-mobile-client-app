@@ -15,7 +15,7 @@ var step_index = 0
 
 var follower = null
 
-func Init(_world, character_data, _user_data, _is_player):
+func Init(_world, character_data, _user_data, _is_player, _cell_position):
 	world = _world
 	user_data = _user_data
 	is_player = _is_player
@@ -39,7 +39,7 @@ func Init(_world, character_data, _user_data, _is_player):
 	$StepTimer.connect("timeout", _onStep)
 	
 	cell_size = world.current_map.cell_quadrant_size
-	SetCellPosition(Vector2i(-1, 0))
+	SetCellPosition(_cell_position)
 
 func SetCellPosition(cell_pos):
 	cell_position = cell_pos

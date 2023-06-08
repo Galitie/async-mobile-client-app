@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://j4arlkmxuayy"]
+[gd_scene load_steps=3 format=3 uid="uid://j4arlkmxuayy"]
 
+[ext_resource type="SpriteFrames" uid="uid://c81t0hygr6kml" path="res://characters/tyler_frames.tres" id="1_6goj8"]
 [ext_resource type="Script" path="res://characters/Character.gd" id="2_n136m"]
 
 [node name="Character" type="AnimatedSprite2D"]
-animation = &""
+sprite_frames = ExtResource("1_6goj8")
+animation = &"walk_south"
 offset = Vector2(8.5, 1)
 script = ExtResource("2_n136m")
 
