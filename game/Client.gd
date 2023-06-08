@@ -12,6 +12,16 @@ var socket = WebSocketPeer.new()
 var initial_connection = true
 var users = {}
 
+enum CONNECTION_STATUS {ONLINE, OFFLINE}
+
+class UserData:
+	var ip
+	var name
+	var role
+	var connection_id
+	var catchphrase
+	var connection_status
+
 func _ready():
 	var err = socket.connect_to_url(websocket_url)
 	if err != OK:
@@ -61,7 +71,8 @@ func ProcessPacket(packet):
 ################### Signals ###################
 
 func _addedToDB(packet):
-	# Tell World to start game, load lobby, create host "Tyler" character, etc.
+	$World.ready_for_players = true
+	#SendPacket({"action": "messageHost", "message": "createCharacter", "name": "Raam", "catchphrase": "Bazinga"})
 	pass
 
 func _userAttemptedToJoin(packet):
@@ -69,6 +80,8 @@ func _userAttemptedToJoin(packet):
 	if users.has(packet["userIP"]):
 		var user = users[packet["userIP"]]
 		user.connection_id = packet["userID"]
+		user.connection_status = CONNECTION_STATUS.ONLINE
+		$World.UpdateUserData(user)
 		print(user.name + " has reconnected")
 		response["message"] = "reconnect"
 	else:
@@ -79,19 +92,21 @@ func _userAttemptedToJoin(packet):
 	SendPacket(response)
 
 func _characterCreated(packet):
-	# Create character in world -- what's below is most likely not how it will be done
-	var user = User.UserItem.new()
-	user.ip = packet["userIP"]
-	user.name = packet["name"]
-	user.connection_id = packet["userID"]
-	user.role = packet["userRole"]
-	user.connection_status = User.CONNECTION_STATUS.ONLINE
-	users[user.ip] = user
-	print(packet["name"] + " has joined the game")
+	var user_data = UserData.new()
+	user_data.ip = packet["userIP"]
+	user_data.name = packet["name"]
+	#user_data.role = packet["userRole"]
+	user_data.connection_id = packet["connectionID"]
+	user_data.catchphrase = packet["catchphrase"]
+	user_data.connection_status = CONNECTION_STATUS.ONLINE
+	users[user_data.ip] = user_data
+	$World.CreateCharacter(user_data)
+	print(user_data.name + " has joined the game")
 	
 func _userDisconnected(packet):
 	if users.has(packet["userIP"]):
-		users[packet["userIP"]].connection_status = User.CONNECTION_STATUS.OFFLINE
+		users[packet["userIP"]].connection_status = CONNECTION_STATUS.OFFLINE
+		$World.UpdateUserData(users[packet["userIP"]])
 		print(users[packet["userIP"]].name + " has left the game")
 
 func _userChatted(packet):

@@ -2,6 +2,9 @@ class_name Character
 extends AnimatedSprite2D
 
 var world
+var user_data
+
+var is_player
 var cell_size
 var cell_position = Vector2(0, 0)
 var cell_destination = Vector2i.ZERO
@@ -10,10 +13,15 @@ var direction = "south"
 var speed = 0.2
 var step_index = 0
 
-@export var is_player : bool
-@export_node_path("Character") var follower
+var follower = null
 
-func _ready():
+func Init(_world, character_data, _user_data, _is_player):
+	world = _world
+	user_data = _user_data
+	is_player = _is_player
+	sprite_frames = character_data.sprite_frames
+	offset = character_data.sprite_offset
+	
 	# TTS voices need to be installed from either the Windows speech package downloader in settings or from the
 	# runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
 	# Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
@@ -30,8 +38,7 @@ func _ready():
 	$StepTimer.wait_time = speed / 2.0
 	$StepTimer.connect("timeout", _onStep)
 	
-	world = get_parent().get_parent()
-	cell_size = world.get_node("TileMap").cell_quadrant_size
+	cell_size = world.current_map.cell_quadrant_size
 	SetCellPosition(Vector2i(-1, 0))
 
 func SetCellPosition(cell_pos):
@@ -45,14 +52,14 @@ func SetCellDestination(cell_pos, _direction):
 	animation = "walk_" + _direction
 	frame = current_frame
 	
-	var tile_data = world.get_node("TileMap").get_cell_tile_data(3, cell_destination)
+	var tile_data = world.current_map.get_cell_tile_data(3, cell_destination)
 	if tile_data:
 		cell_destination = Vector2i.ZERO
 		can_move = true
 		return
 	
 	if follower:
-		get_node(follower).SetCellDestination(cell_position, direction)
+		follower.SetCellDestination(cell_position, direction)
 	direction = _direction
 	
 	$StepTimer.start()
@@ -62,13 +69,13 @@ func SetCellDestination(cell_pos, _direction):
 
 func _process(delta):
 	if is_player:
-		if can_move && Input.is_action_pressed("ui_right"):
+		if can_move && Input.is_action_pressed("move_right"):
 			SetCellDestination(cell_position + Vector2i(1, 0), "east")
-		elif can_move && Input.is_action_pressed("ui_left"):
+		elif can_move && Input.is_action_pressed("move_left"):
 			SetCellDestination(cell_position + Vector2i(-1, 0), "west")
-		elif can_move && Input.is_action_pressed("ui_up"):
+		elif can_move && Input.is_action_pressed("move_up"):
 			SetCellDestination(cell_position + Vector2i(0, -1), "north")
-		elif can_move && Input.is_action_pressed("ui_down"):
+		elif can_move && Input.is_action_pressed("move_down"):
 			SetCellDestination(cell_position + Vector2i(0, 1), "south")
 
 func _onStep():
