@@ -10,17 +10,18 @@ function onJoinRequest(packet) {
 
 // **************** Submit Button Functionality ****************** //
 
-function onClick() {
+function onClick(button) {
   // let [smallInput, smallInputValue] = getInput('smallInput')
   // let [bigInput, bigInputValue] = getInput('bigInput')
  
-  // Send packet
-  // const packet = {
-  //   "action": "join",
-  //   "name": smallInputValue,
-  //   "role": "user"
-  // }
-  // sendMessage(JSON.stringify(packet))
+  if (button = 'catchphrase'){
+  console.log("This is a catchphrase!")
+    const packet = {
+    "action": "messageHost",
+    "message": "sayCatchphrase"
+    }
+  sendMessage(JSON.stringify(packet))
+  }
 }
 
 
@@ -153,10 +154,11 @@ function addAndStartCountdown(duration) {
 
 
 const DOMElements = []
+
 addPrompt("Eat bees Raam")
 addAndStartCountdown(30)
 addInput(['smallInput', 'bigInput'])
-addButtons(['catchphrase', 'submit'])
+addButtons(['catchphrase'])
 
 console.log(DOMElements)
 
@@ -199,14 +201,13 @@ function addButtons(buttonClasses){
     newButton.classList.add(`${button}`)
     let gameSection = document.querySelector('#game')
     gameSection.appendChild(newButton)
-    document.querySelector(`.${button}`).addEventListener('click', onClick())
+    document.querySelector(`.${button}`).addEventListener('click', onClick)
     DOMElements.push(button)
   })
 }
 
 function capitalize(word){
-  return word.charAt(0).toUpperCase()
-  + word.slice(1)}
+  return word.charAt(0).toUpperCase() + word.slice(1)}
 
 
 // Add in elements that I want for each screen
