@@ -5,13 +5,12 @@
 let submitButton = document.querySelector('button')
 submitButton.addEventListener('click', onClick)
 
+// addButtons(['Catchphrase'], 'catchphrase')
+
 function onClick() {
   // Get name inputs element and value
   let [nameInput, nameInputValue] = getInput('input')
   let [textInput, textInputValue] = getInput('textarea')
-
-  // console.log("You pressed the submit button!")
-  // console.log(`The input from the user was: '${nameInputValue}' and '${textInputValue}'`)
 
   // Make the input readonly and gray so user can't use it again during this time
   makeElementsReadOnly([nameInput, textInput, submitButton])
@@ -25,10 +24,28 @@ function onClick() {
   sendMessage(JSON.stringify(packet))
 }
 
+// function addButtons(buttonNames, addClass){
+//   buttonNames.forEach(button => {
+//     let x = document.createElement("BUTTON");
+//     let text = document.createTextNode(`${button}`);
+//     x.appendChild(text);
+//     x.classList.add(`${addClass}`)
+//     document.body.appendChild(x);
+//   })
+// }
+
+function enableElements(elements){
+  elements.forEach(element => {
+    element.disabled = false
+    element.classList.remove("disabled")
+    element.innerText = ""
+  })
+}
+
 function makeElementsReadOnly(elements){
   elements.forEach(element => {
-    element.readOnly = true
-    element.style.background = "lightgray"
+    element.disabled = true
+    element.classList.add("disabled")
     element.innerText = "Submitted"
   })
 }

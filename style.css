@@ -67,11 +67,16 @@ h1{
     color: black;
 }
 
+.catchphrase {
+    border: none;
+    background-color:aqua;
+    color: black;
+}
 
-.submit:disabled{
+
+.disabled{
     background-color:lightgray;
     transition: 0.9s;
 }
-
 
 
