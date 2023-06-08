@@ -2,6 +2,7 @@ extends Node2D
 
 var characters = [
 	"res://characters/tyler.tres",
+	"res://characters/mario.tres",
 	"res://characters/tyler.tres"
 ]
 
@@ -33,9 +34,11 @@ func CreateCharacter(user_data):
 	var is_player = true if !party_members.size() else false
 	party_members.append(character)
 	var behind_character = null
+	var cell_position = Vector2i(-1, 0)
 	if !is_player:
 		party_members[party_members.size() - 2].follower = character
-	character.Init(self, character_data, user_data, is_player)
+		cell_position = party_members.front().cell_position
+	character.Init(self, character_data, user_data, is_player, cell_position)
 	
 func UpdateUserData(user_data):
 	for member in party_members:
