@@ -1,11 +1,10 @@
 
-// **************** Submit Button Functionality ****************** //
 
+// **************** Submit Button Functionality ****************** //
 // Make submit button clickable
 let submitButton = document.querySelector('button')
 submitButton.addEventListener('click', onClick)
 
-// addButtons(['Catchphrase'], 'catchphrase')
 
 function onClick() {
   // Get name inputs element and value
@@ -14,24 +13,33 @@ function onClick() {
 
   // Make the input readonly and gray so user can't use it again during this time
   makeElementsReadOnly([nameInput, textInput, submitButton])
-
+ 
   // Send packet
   const packet = {
     "action": "join",
     "name": nameInputValue,
-    "role": "user" // dunno if this works
+    "role": "user"
   }
   sendMessage(JSON.stringify(packet))
 }
 
-// function addButtons(buttonNames, addClass){
-//   buttonNames.forEach(button => {
+// addButtons(['Catchphrase'], ['catchphrase'])
+
+// function addButtons(buttonNamesText, addClass){
+//   buttonNamesText.forEach((button, i) => {
 //     let x = document.createElement("BUTTON");
 //     let text = document.createTextNode(`${button}`);
 //     x.appendChild(text);
 //     x.classList.add(`${addClass}`)
-//     document.body.appendChild(x);
+//     let parent = document.querySelector('.submit').parentNode
+//     parent.insertBefore(x, document.querySelector('.submit'))
+//     document.querySelector(`.${addClass}`).addEventListener('click', test)
+//     console.log(document.querySelector('button'))
 //   })
+// }
+
+// function test(){
+//   console.log("you pressed a button cool")
 // }
 
 function enableElements(elements){
@@ -76,10 +84,10 @@ socket.onopen = function (event) {
   playerServerStatus.style.color = "green"
 
   const packet = {
-    "action": "checkForHost"
+    "action": "messageHost",
+    "message": "attemptJoin"
   }
   sendMessage(JSON.stringify(packet))
-
 };
 
 // Message received event
