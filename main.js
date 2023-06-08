@@ -5,6 +5,13 @@
 let submitButton = document.querySelector('button')
 submitButton.addEventListener('click', onClick)
 
+// Add event listeners
+elem.AddEventListener("requestJoin", onJoinRequest(packet))
+//elem.AddEventListener("refuseJoin", onJoinRefuse(packet))
+
+function onJoinRequest(packet) {
+  
+}
 
 function onClick() {
   // Get name inputs element and value
@@ -94,7 +101,7 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
-
+  elem.dispatchEvent(event.data["message"], event.data)
 };
 
 // Error event
