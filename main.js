@@ -116,11 +116,17 @@ function sendMessage(message) {
 
 
 // *************** Timer ****************//
-let timer = document.getElementById("timer-display")
 
-function startCountdown(duration, displayElement) {
+function addAndStartCountdown(duration) {
   let timer = duration, minutes, seconds;
+
+  let displayElement = document.createElement("h3")
+  let displayElementText = document.createTextNode("");
+  displayElement.appendChild(displayElementText);
+  let gameSection = document.querySelector('#game')
+  gameSection.appendChild(displayElement)
   
+
   let countdown = setInterval(function() {
     minutes = parseInt(timer / 60, 10);
     seconds = parseInt(timer % 60, 10);
@@ -130,7 +136,7 @@ function startCountdown(duration, displayElement) {
 
     displayElement.textContent = minutes + ":" + seconds;
 
-    if (timer > 0 && timer < 10){
+    if (timer > 0 && timer < 11){
       --timer
       displayElement.classList.add("pulsate")
     }
@@ -141,12 +147,17 @@ function startCountdown(duration, displayElement) {
       displayElement.textContent = "Time's up!";
     }
   }, 1000);
+
+  DOMElements.push(`countdown-${duration}`)
 }
 
 
 const DOMElements = []
+addPrompt("Eat bees Raam")
+addAndStartCountdown(30)
 addInput(['smallInput', 'bigInput'])
 addButtons(['catchphrase', 'submit'])
+
 console.log(DOMElements)
 
 function clearDOM() {
@@ -155,6 +166,15 @@ function clearDOM() {
   while (rootElement.firstChild) {
     rootElement.removeChild(rootElement.firstChild);
   }
+}
+
+function addPrompt(packetData){
+  let newPrompt = document.createElement("h1")
+  let newPromptText = document.createTextNode(packetData);
+  newPrompt.appendChild(newPromptText);
+  let gameSection = document.querySelector('#game')
+  gameSection.appendChild(newPrompt)
+  DOMElements.push("prompt")
 }
 
 function addInput(inputClasses){
@@ -184,13 +204,11 @@ function addButtons(buttonClasses){
   })
 }
 
-
-
 function capitalize(word){
   return word.charAt(0).toUpperCase()
   + word.slice(1)}
 
-// Remove all elements from the DOM
+
 // Add in elements that I want for each screen
 // Elements: Prompt, small input, large input, timer, emoteButtons, submitButton
 // Elements need to be customizable (innerText, color, placeholder)
