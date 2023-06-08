@@ -72,14 +72,15 @@ socket.onopen = function (event) {
 // Message received event
 socket.onmessage = function (event) {
   const message = event.data;
-  console.log('Received message:', message);
-  if (event.data["message"] == "requestJoin"){
+  console.log('Received message:', message)
+  let parsedMessage = JSON.parse(message)
+  if (parsedMessage['message'] == "requestJoin"){
     const packet = {
     "action": "messageHost",
     "message": "createCharacter",
     "name": "Galit",
     "catchphrase": "Cowabunga Dude, pepepeepe doo doo eat gobblygook"
-  }
+    }
   sendMessage(JSON.stringify(packet))
   }
 };
