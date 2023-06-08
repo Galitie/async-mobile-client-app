@@ -60,6 +60,8 @@ h1{
     font-size: 5vw;
     border: 1px solid black;
     text-align: left;
+    padding: 0 1em;
+    padding-top: 1em;
 }
 
 .bigInput {
