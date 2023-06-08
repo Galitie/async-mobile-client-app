@@ -2,9 +2,10 @@ extends Node2D
 
 signal addedToDB
 signal attemptJoin
+signal createCharacter
 signal disconnect
 signal chat
-signal createCharacter
+signal sayCatchphrase
 
 var websocket_url = "wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod/"
 var socket = WebSocketPeer.new()
@@ -35,6 +36,7 @@ func _ready():
 	connect("disconnect", _userDisconnected)
 	connect("chat", _userChatted)
 	connect("createCharacter", _characterCreated)
+	connect("sayCatchphrase", _userSaidCatchphrase)
 	
 func _process(delta):
 	socket.poll()
@@ -103,6 +105,7 @@ func _characterCreated(packet):
 	$World.CreateCharacter(user_data)
 	print(user_data.name + " has joined the game")
 	SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": packet["userIP"], "connectionID": packet["connectionID"]})
+	SendPacket({"action": "messageHost", "message": "chat", "content": "Mammia mia Tylor"})
 	
 func _userDisconnected(packet):
 	if users.has(packet["userIP"]):
@@ -112,4 +115,8 @@ func _userDisconnected(packet):
 
 func _userChatted(packet):
 	if users.has(packet["userIP"]):
-		users[packet["userIP"]].character.speak(packet["chat"])
+		$World.Speak(packet["userIP"], packet["content"])
+
+func _userSaidCatchphrase(packet):
+	if users.has(packet["userIP"]):
+		$World.Speak(packet["userIP"], users[packet["userIP"]].catchphrase)

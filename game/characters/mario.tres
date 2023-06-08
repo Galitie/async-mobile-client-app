@@ -7,3 +7,4 @@
 script = ExtResource("1_tgts4")
 sprite_frames = ExtResource("2_ja462")
 sprite_offset = Vector2(8.5, 7)
+tts_name = "MSTTS_V110_itIT_CosimoM"

@@ -14,11 +14,13 @@ var speed = 0.2
 var step_index = 0
 
 var follower = null
+var character_data
 
-func Init(_world, character_data, _user_data, _is_player, _cell_position):
+func Init(_world, _character_data, _user_data, _is_player, _cell_position):
 	world = _world
 	user_data = _user_data
 	is_player = _is_player
+	character_data = _character_data
 	sprite_frames = character_data.sprite_frames
 	offset = character_data.sprite_offset
 	

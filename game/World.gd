@@ -6,17 +6,20 @@ var characters = [
 	"res://characters/tyler.tres"
 ]
 
+var voices
+
 var client
 var ready_for_players = false
 var current_map
 var party_members = []
 
 func _ready():
-	client = get_parent()
+	voices = DisplayServer.tts_get_voices()
 	var lobby_map = preload("res://Lobby.tscn") as PackedScene
 	current_map = lobby_map.instantiate()
 	add_child(current_map)
 	
+	client = get_parent()
 	var host_data = client.UserData.new()
 	host_data.ip = "0.0.0.0"
 	host_data.name = "Tyler"
@@ -48,3 +51,13 @@ func UpdateUserData(user_data):
 				member.modulate = Color.WHITE
 			elif member.user_data.connection_status == client.CONNECTION_STATUS.OFFLINE:
 				member.modulate = Color.DIM_GRAY
+
+func Speak(ip, chat_content):
+	var character
+	for member in party_members:
+		if member.user_data.ip == ip:
+			character = member
+	if character:
+		for voice in voices:
+			if voice["name"] == character.character_data.tts_name:
+				DisplayServer.tts_speak(chat_content, voice["id"])

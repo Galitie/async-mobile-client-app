@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://qsvubdhkr7i3"]
 
-[ext_resource type="Script" path="res://characters/CharacterData.gd" id="1_f6mtb"]
+[ext_resource type="Script" path="res://characters/CharacterData.gd" id="1_8erwt"]
 [ext_resource type="SpriteFrames" uid="uid://c81t0hygr6kml" path="res://characters/tyler_frames.tres" id="2_vhpig"]
 
 [resource]
-script = ExtResource("1_f6mtb")
+script = ExtResource("1_8erwt")
 sprite_frames = ExtResource("2_vhpig")
 sprite_offset = Vector2(8.5, 1)
+tts_name = ""
