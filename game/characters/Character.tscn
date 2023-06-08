@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://j4arlkmxuayy"]
+
+[ext_resource type="Script" path="res://characters/Character.gd" id="2_n136m"]
+
+[node name="Character" type="AnimatedSprite2D"]
+animation = &""
+offset = Vector2(8.5, 1)
+script = ExtResource("2_n136m")
+
+[node name="StepTimer" type="Timer" parent="."]
+one_shot = true
