@@ -1,17 +1,17 @@
 
+// Add event listeners
+document.body.addEventListener("requestJoin", onJoinRequest)
+//elem.AddEventListener("refuseJoin", onJoinRefuse(packet))
+
+
+function onJoinRequest(packet) {
+  console.log("I got your join request")
+}
 
 // **************** Submit Button Functionality ****************** //
 // Make submit button clickable
 let submitButton = document.querySelector('button')
 submitButton.addEventListener('click', onClick)
-
-// Add event listeners
-elem.AddEventListener("requestJoin", onJoinRequest(packet))
-//elem.AddEventListener("refuseJoin", onJoinRefuse(packet))
-
-function onJoinRequest(packet) {
-  
-}
 
 function onClick() {
   // Get name inputs element and value
@@ -101,7 +101,7 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
-  elem.dispatchEvent(event.data["message"], event.data)
+  document.body.dispatchEvent(message["message"], message)
 };
 
 // Error event
@@ -138,3 +138,39 @@ function sendMessage(message) {
 // or toggle
 
 // maybe client has persistent states?
+
+
+// *************** Timer ****************//
+let timer = document.getElementById("timer-display")
+
+function startCountdown(duration, displayElement) {
+  let timer = duration, minutes, seconds;
+  
+  let countdown = setInterval(function() {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    displayElement.textContent = minutes + ":" + seconds;
+
+    if (timer > 0 && timer < 10){
+      --timer
+      displayElement.classList.add("pulsate")
+    }
+
+    else if(--timer < 0) {
+      clearInterval(countdown);
+      displayElement.classList.remove("pulsate")
+      displayElement.textContent = "Time's up!";
+    }
+  }, 1000);
+}
+
+
+// Remove all elements from the DOM
+// Add in elements that I want for each screen
+// Elements: Prompt, small input, large input, timer, emoteButtons, submitButton
+// Elements need to be customizable (innerText, color, placeholder)
+// Elements need to be within certain sections?

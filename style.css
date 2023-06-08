@@ -84,3 +84,23 @@ h1{
 .test{
     font-size: x-large;
 }
+
+.pulsate{
+    color:red;
+    font-size: 5vw;
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: infinite; 
+    opacity: 0.5;
+}
+
+@keyframes pulsate {
+    0% { 
+        opacity: 0.5;
+    }
+    50% { 
+        opacity: 1.0;
+    }
+    100% { 
+        opacity: 0.5;
+    }
+}
