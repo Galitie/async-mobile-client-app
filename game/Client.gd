@@ -1,13 +1,15 @@
 extends Node2D
 
-signal userJoined
-signal userLeft
-signal askToJoin
+signal addedToDB
+signal attemptJoin
+signal disconnect
+signal chat
+signal createCharacter
 
 var websocket_url = "wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod/"
 var socket = WebSocketPeer.new()
 
-var connected = false
+var initial_connection = true
 var users = {}
 
 func _ready():
@@ -17,18 +19,21 @@ func _ready():
 		set_process(false)
 	else:
 		print('Websocket is connected')
-		
-	connect("userJoined", Callable(self, "_onUserJoined"))
-	connect("userLeft", Callable(self, "_onUserLeaves"))
-	connect("askToJoin", Callable(self, "_onAskedToJoin"))
+	
+	connect("addedToDB", _addedToDB)
+	connect("attemptJoin",  _userAttemptedToJoin)
+	connect("disconnect", _userDisconnected)
+	connect("chat", _userChatted)
+	connect("createCharacter", _characterCreated)
+	# {"action": "messageHost", "message": "createCharacter", "name": "Raam", "catchphrase": "Bazinga"}
 		
 func _process(delta):
 	socket.poll()
 	var state = socket.get_ready_state()
 	if state == WebSocketPeer.STATE_OPEN:
-		if !connected:
-			SendPacket({"action": "join", "name": "Raam", "role": "host"})
-			connected = true
+		if initial_connection:
+			SendPacket({"action": "addUserToDB", "role": "host"})
+			initial_connection = false
 			
 		while socket.get_available_packet_count():
 			ProcessPacket(socket.get_packet())
@@ -55,28 +60,40 @@ func ProcessPacket(packet):
 
 ################### Signals ###################
 
-func _onUserJoined(packet):
-	# Update connection ID if user is rejoining the game
+func _addedToDB(packet):
+	# Tell World to start game, load lobby, create host "Tyler" character, etc.
+	pass
+
+func _userAttemptedToJoin(packet):
+	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
 	if users.has(packet["userIP"]):
-		users[packet["userIP"]].connection_id = packet["userID"]
-		print(packet["userName"] + " has reconnected")
-	else:
-		var user = User.UserItem.new()
-		user.ip = packet["userIP"]
-		user.name = packet["userName"]
+		var user = users[packet["userIP"]]
 		user.connection_id = packet["userID"]
-		user.role = packet["userRole"]
-		user.connection_status = User.CONNECTION_STATUS.ONLINE
-		users[user.ip] = user
-		print(packet["userName"] + " has joined the game")
-	print(users)
+		print(user.name + " has reconnected")
+		response["message"] = "reconnect"
+	else:
+		if true: # Insert game check for lobby state here
+			response["message"] = "requestJoin"
+		else:
+			response["message"] = "refuseJoin"
+	SendPacket(response)
+
+func _characterCreated(packet):
+	# Create character in world -- what's below is most likely not how it will be done
+	var user = User.UserItem.new()
+	user.ip = packet["userIP"]
+	user.name = packet["name"]
+	user.connection_id = packet["userID"]
+	user.role = packet["userRole"]
+	user.connection_status = User.CONNECTION_STATUS.ONLINE
+	users[user.ip] = user
+	print(packet["name"] + " has joined the game")
 	
-func _onUserLeaves(packet):
+func _userDisconnected(packet):
 	if users.has(packet["userIP"]):
 		users[packet["userIP"]].connection_status = User.CONNECTION_STATUS.OFFLINE
-		print(packet["userName"] + " has left the game")
+		print(users[packet["userIP"]].name + " has left the game")
 
-# Responds whether the game is in a state for connecting IPs to join as a user (such as a lobby)
-func _onAskedToJoin(packet):
-	var permission = true
-	SendPacket({"action": "sendJoinPermission", "permission": permission, "connectionID": packet["connectionID"]})
+func _userChatted(packet):
+	if users.has(packet["userIP"]):
+		users[packet["userIP"]].character.speak(packet["chat"])

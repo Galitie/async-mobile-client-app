@@ -25,7 +25,7 @@ func _ready():
 	var voice_id = voices[1]["id"]
 	for voice in voices:
 		pass
-	DisplayServer.tts_speak("Mamma mia Tyler! This is a no good!", voice_id, 80, 2.0, 1.0, 0)
+	#DisplayServer.tts_speak("Mamma mia Tyler! This is a no good!", voice_id, 80, 2.0, 1.0, 0)
 	
 	$StepTimer.wait_time = speed / 2.0
 	$StepTimer.connect("timeout", _onStep)

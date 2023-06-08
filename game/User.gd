@@ -8,3 +8,4 @@ class UserItem:
 	var name
 	var connection_id
 	var connection_status
+	var character
