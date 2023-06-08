@@ -11,9 +11,8 @@ function onJoinRequest(packet) {
 // **************** Submit Button Functionality ****************** //
 
 function onClick() {
-  // Get name inputs element and value
   // let [smallInput, smallInputValue] = getInput('smallInput')
-  // let [BigInput, BigInputValue] = getInput('bigInput')
+  // let [bigInput, bigInputValue] = getInput('bigInput')
  
   // Send packet
   // const packet = {
@@ -67,13 +66,22 @@ socket.onopen = function (event) {
     "message": "attemptJoin"
   }
   sendMessage(JSON.stringify(packet))
+
 };
 
 // Message received event
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
-  // document.body.dispatchEvent(message["message"], message)
+  if (event.data["message"] == "requestJoin"){
+    const packet = {
+    "action": "messageHost",
+    "message": "createCharacter",
+    "name": "Galit",
+    "catchphrase": "Cowabunga Dude, pepepeepe doo doo eat gobblygook"
+  }
+  sendMessage(JSON.stringify(packet))
+  }
 };
 
 // Error event
@@ -96,20 +104,14 @@ function sendMessage(message) {
 
 
 
-// make a class for packets
+// make a class for packets?
 // class Packet
 // class JoinPacket extends Packet
 // class InputPacket extends Packet
 // class ExitPacket extends Packet
 
-// var as nouns
-// methods as verbs
-// share behaviours: ex: send a packet
-
 // enableElements(elements)
 // or toggle
-
-// maybe client has persistent states?
 
 
 // *************** Timer ****************//
@@ -141,6 +143,11 @@ function startCountdown(duration, displayElement) {
 }
 
 
+const DOMElements = []
+addInput(['smallInput', 'bigInput'])
+addButtons(['catchphrase', 'submit'])
+console.log(DOMElements)
+
 function clearDOM() {
   let rootElement = document.body;
 
@@ -153,8 +160,13 @@ function addInput(inputClasses){
   inputClasses.forEach(input => {
     let newInput = document.createElement("TEXTAREA")
     newInput.classList.add(`${input}`)
+    if(input === "bigInput"){
+      newInput.setAttribute("rows", "8")
+      newInput.setAttribute("cols", "50")
+    }
     let gameSection = document.querySelector('#game')
     gameSection.appendChild(newInput)
+    DOMElements.push(input)
   })
 }
 
@@ -166,18 +178,12 @@ function addButtons(buttonClasses){
     newButton.classList.add(`${button}`)
     let gameSection = document.querySelector('#game')
     gameSection.appendChild(newButton)
-    document.querySelector(`.${button}`).addEventListener('click', onClick)
+    document.querySelector(`.${button}`).addEventListener('click', onClick())
+    DOMElements.push(button)
   })
 }
 
 
-addInput(['smallInput', 'bigInput'])
-addButtons(['submit'])
-
-
-function test(){
-  console.log("you pressed a button cool")
-}
 
 function capitalize(word){
   return word.charAt(0).toUpperCase()
