@@ -9,45 +9,21 @@ function onJoinRequest(packet) {
 }
 
 // **************** Submit Button Functionality ****************** //
-// Make submit button clickable
-let submitButton = document.querySelector('button')
-submitButton.addEventListener('click', onClick)
 
 function onClick() {
   // Get name inputs element and value
-  let [nameInput, nameInputValue] = getInput('input')
-  let [textInput, textInputValue] = getInput('textarea')
-
-  // Make the input readonly and gray so user can't use it again during this time
-  makeElementsReadOnly([nameInput, textInput, submitButton])
+  // let [smallInput, smallInputValue] = getInput('smallInput')
+  // let [BigInput, BigInputValue] = getInput('bigInput')
  
   // Send packet
-  const packet = {
-    "action": "join",
-    "name": nameInputValue,
-    "role": "user"
-  }
-  sendMessage(JSON.stringify(packet))
+  // const packet = {
+  //   "action": "join",
+  //   "name": smallInputValue,
+  //   "role": "user"
+  // }
+  // sendMessage(JSON.stringify(packet))
 }
 
-// addButtons(['Catchphrase'], ['catchphrase'])
-
-// function addButtons(buttonNamesText, addClass){
-//   buttonNamesText.forEach((button, i) => {
-//     let x = document.createElement("BUTTON");
-//     let text = document.createTextNode(`${button}`);
-//     x.appendChild(text);
-//     x.classList.add(`${addClass}`)
-//     let parent = document.querySelector('.submit').parentNode
-//     parent.insertBefore(x, document.querySelector('.submit'))
-//     document.querySelector(`.${addClass}`).addEventListener('click', test)
-//     console.log(document.querySelector('button'))
-//   })
-// }
-
-// function test(){
-//   console.log("you pressed a button cool")
-// }
 
 function enableElements(elements){
   elements.forEach(element => {
@@ -65,16 +41,12 @@ function makeElementsReadOnly(elements){
   })
 }
 
-function getInput(elementName){
-  let input = document.querySelector(`${elementName}`)
+function getInput(elementClass){
+  let input = document.querySelector(`.${elementClass}`)
   let inputValue = input.value
   return [input, inputValue]
  
 }
-
-
-
-//
 
 
 // **************** Web Socket stuff ****************** //
@@ -101,7 +73,7 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = event.data;
   console.log('Received message:', message);
-  document.body.dispatchEvent(message["message"], message)
+  // document.body.dispatchEvent(message["message"], message)
 };
 
 // Error event
@@ -168,6 +140,48 @@ function startCountdown(duration, displayElement) {
   }, 1000);
 }
 
+
+function clearDOM() {
+  let rootElement = document.body;
+
+  while (rootElement.firstChild) {
+    rootElement.removeChild(rootElement.firstChild);
+  }
+}
+
+function addInput(inputClasses){
+  inputClasses.forEach(input => {
+    let newInput = document.createElement("TEXTAREA")
+    newInput.classList.add(`${input}`)
+    let gameSection = document.querySelector('#game')
+    gameSection.appendChild(newInput)
+  })
+}
+
+function addButtons(buttonClasses){
+  buttonClasses.forEach((button) => {
+    let newButton = document.createElement("BUTTON");
+    let newButtonText = document.createTextNode(capitalize(button));
+    newButton.appendChild(newButtonText);
+    newButton.classList.add(`${button}`)
+    let gameSection = document.querySelector('#game')
+    gameSection.appendChild(newButton)
+    document.querySelector(`.${button}`).addEventListener('click', onClick)
+  })
+}
+
+
+addInput(['smallInput', 'bigInput'])
+addButtons(['submit'])
+
+
+function test(){
+  console.log("you pressed a button cool")
+}
+
+function capitalize(word){
+  return word.charAt(0).toUpperCase()
+  + word.slice(1)}
 
 // Remove all elements from the DOM
 // Add in elements that I want for each screen

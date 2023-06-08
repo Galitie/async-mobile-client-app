@@ -36,21 +36,13 @@ body{
     justify-content: space-around;
 }
 
-button, textarea, input {
+button {
     width:100%;
     min-height: 150px;
     font-size: 5vw;
 }
 
-textarea, input {
-    border: 1px solid black;
-    text-align: left;
-    padding: 0 1em;
-}
 
-textarea {
-    padding-top: 1em;
-}
 
 h1{
     margin: 0;
@@ -62,6 +54,25 @@ h1{
   /* ADDITIONAL STYLES
   /*******************************************/
   
+.smallInput {
+    width:100%;
+    min-height: 150px;
+    font-size: 5vw;
+    border: 1px solid black;
+    text-align: left;
+}
+
+.bigInput {
+    width:100%;
+    min-height: 150px;
+    font-size: 5vw;
+    border: 1px solid black;
+    text-align: left;
+    padding: 0 1em;
+    padding-top: 1em;
+
+}
+
 .submit {
     border: none;
     background-color: greenyellow;
@@ -80,10 +91,6 @@ h1{
     transition: 0.9s;
 }
 
-
-.test{
-    font-size: x-large;
-}
 
 .pulsate{
     color:red;
