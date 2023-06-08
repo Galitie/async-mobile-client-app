@@ -57,4 +57,7 @@ func Speak(ip, chat_content):
 	for member in party_members:
 		if member.user_data.ip == ip:
 			character = member
-	DisplayServer.tts_speak(chat_content, voices[0]["id"])
+	if character:
+		for voice in voices:
+			if voice["name"] == character.character_data.tts_name:
+				DisplayServer.tts_speak(chat_content, voice["id"])
