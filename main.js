@@ -1,24 +1,14 @@
 const DOMElements = []
 
-addPrompt("Eat bees Raam")
-addAndStartCountdown(30)
-addInput(['smallInput', 'bigInput'])
-addButtons(['catchphrase'])
-
-console.log(DOMElements)
-
 
 // *********************** Screens *************************** //
 function onJoinRequest() {
   console.log("I got your join request")
-  
-  const packet = {
-    "action": "messageHost",
-    "message": "createCharacter",
-    "name": pass,
-    "catchphrase": "Get out of my swamp, ya ha!"
-    }
-  sendMessage(JSON.stringify(packet))
+
+  addPrompt("Create a new Character:")
+  addInput(['smallInput', 'bigInput'])
+  addButtons(['create'])
+
 }
 
 // ****************** Button Functionality ******************** //
@@ -41,7 +31,18 @@ sendMessage(JSON.stringify(packet))
 }
 
 function onClickCharacterCreation(){
+  let [smallInput, smallInputValue] = getInput('smallInput')
+  let [bigInput, bigInputValue] = getInput('bigInput')
+  
+  const packet = {
+    "action": "messageHost",
+    "message": "createCharacter",
+    "name": smallInputValue,
+    "catchphrase": bigInputValue
+    }
+  sendMessage(JSON.stringify(packet))
 
+  makeElementsReadOnly(["button", "textarea"])
 }
 
 // ******************** Web Socket Stuff ********************** //
