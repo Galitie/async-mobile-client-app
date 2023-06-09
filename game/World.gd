@@ -2,10 +2,10 @@ extends Node2D
 
 var character_manifest = [
 	"res://characters/tyler.tres",
-	"res://characters/snake.tres",
-	"res://characters/shrek.tres",
+	"res://characters/mario.tres",
 	"res://characters/kermit.tres",
-	"res://characters/mario.tres"
+	"res://characters/snake.tres",
+	"res://characters/shrek.tres"
 ]
 var voices
 
@@ -80,3 +80,9 @@ func UpdateUserData(user_data):
 
 func Speak(ip, chat_content):
 	DisplayServer.tts_speak(chat_content, players[ip].voice_id, 50, players[ip].character.character_data.voice_pitch)
+	$CanvasLayer/TextBox/Dialogue.text = chat_content
+	$CanvasLayer/TextBox/AnimationPlayer.play("appear")
+	
+func _process(delta):
+	if !DisplayServer.tts_is_speaking() && $CanvasLayer/TextBox.visible:
+		$CanvasLayer/TextBox/AnimationPlayer.play("disappear")
