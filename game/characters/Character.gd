@@ -2,9 +2,8 @@ class_name Character
 extends AnimatedSprite2D
 
 var world
-var user_data
+var controllable
 
-var is_player
 var cell_size
 var cell_position = Vector2(0, 0)
 var cell_destination = Vector2i.ZERO
@@ -16,32 +15,16 @@ var step_index = 0
 var follower = null
 var character_data
 
-func Init(_world, _character_data, _user_data, _is_player, _cell_position):
+func Init(_world, _character_data):
 	world = _world
-	user_data = _user_data
-	is_player = _is_player
 	character_data = _character_data
 	sprite_frames = character_data.sprite_frames
 	offset = character_data.sprite_offset
-	
-	# TTS voices need to be installed from either the Windows speech package downloader in settings or from the
-	# runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
-	# Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
-	# Speech to be recognized by Godot
-	# Snake is MSTTS_V110_jaJP_IchiroM
-	# Shrek is MSTTS_V110_enIE_SeanM 
-	# Mario is MSTTS_V110_itIT_CosimoM
-	var voices = DisplayServer.tts_get_voices()
-	var voice_id = voices[1]["id"]
-	for voice in voices:
-		pass
-	#DisplayServer.tts_speak("Mamma mia Tyler! This is a no good!", voice_id, 80, 2.0, 1.0, 0)
 	
 	$StepTimer.wait_time = speed / 2.0
 	$StepTimer.connect("timeout", _onStep)
 	
 	cell_size = world.current_map.cell_quadrant_size
-	SetCellPosition(_cell_position)
 
 func SetCellPosition(cell_pos):
 	cell_position = cell_pos
@@ -70,7 +53,7 @@ func SetCellDestination(cell_pos, _direction):
 	tween.tween_callback(_finishedMoving)
 
 func _process(delta):
-	if is_player:
+	if controllable:
 		if can_move && Input.is_action_pressed("move_right"):
 			SetCellDestination(cell_position + Vector2i(1, 0), "east")
 		elif can_move && Input.is_action_pressed("move_left"):
