@@ -11,11 +11,18 @@ function onJoinRequest() {
 
 }
 
+function overWorldMenu(){
+  console.log("switched to overworld menu")
+  clearDOM()
+  addPrompt("Say some stuff to tyler or press catchphrase!")
+  addInput(['bigInput'])
+  addButtons(['catchphrase', 'submit'])
+}
+
 // ****************** Button Functionality ******************** //
 
 function onClickSubmit() {
-  // let [smallInput, smallInputValue] = getInput('smallInput')
-  // let [bigInput, bigInputValue] = getInput('bigInput')
+  console.log("This is the pass error")
 
 }
 
@@ -42,7 +49,9 @@ function onClickCharacterCreation(){
     }
   sendMessage(JSON.stringify(packet))
 
-  makeElementsReadOnly(["button", "textarea"])
+  overWorldMenu()
+
+
 }
 
 // ******************** Web Socket Stuff ********************** //
@@ -201,9 +210,9 @@ function enableElements(elements){
 
 function makeElementsReadOnly(elements){
   elements.forEach(element => {
-    element.disabled = true
-    element.classList.add("disabled")
-    element.innerText = "Submitted"
+    document.querySelectorAll(`${element}`).disabled = true
+    document.querySelectorAll(`${element}`).classList.add("disabled")
+    document.querySelectorAll(`${element}`).innerText = "Submitted"
   })
 }
 
