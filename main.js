@@ -18,7 +18,7 @@ function overWorldMenu(){
   console.log("Switched to overworld menu")
 
   clearDOM()
-  addPrompt("Say some stuff to tyler or press catchphrase!")
+  addPrompt("Say some stuff to Tyler or press the catchphrase button!")
   addInput(['bigInput'])
   addButtons(['catchphrase', 'submit'])
 }
@@ -34,6 +34,8 @@ function onClickSubmit() {
     "content": bigInputValue
     }
   sendMessage(JSON.stringify(packet))
+  addAndStartCountdown(15, 'submit')
+  bigInput.innerText = ""
 
 }
 
@@ -45,8 +47,11 @@ function onClickCatchphrase(){
   "action": "messageHost",
   "message": "sayCatchphrase"
   }
-sendMessage(JSON.stringify(packet))
+  sendMessage(JSON.stringify(packet))
+  addAndStartCountdown(15, 'catchphrase')
+
 }
+
 
 function onClickCharacterCreation(){
   let [smallInput, smallInputValue] = getInput('smallInput')
@@ -93,6 +98,8 @@ socket.onmessage = function (event) {
   // Character Creation Screen
   if (message['message'] == "requestJoin"){
     onJoinRequest()
+  } else if (message['message'] == 'reconnect'){
+    overWorldMenu()
   }
 };
 
@@ -126,14 +133,15 @@ function clearDOM() {
 
 }
 
-function addAndStartCountdown(duration) {
+function addAndStartCountdown(duration, parentClass) {
   let timer = duration, minutes, seconds;
 
   let displayElement = document.createElement("h3")
   let displayElementText = document.createTextNode("");
   displayElement.appendChild(displayElementText);
-  let gameSection = document.querySelector('#game')
-  gameSection.appendChild(displayElement)
+  makeElementsReadOnly([`${parentClass}`])
+  let parent = document.querySelector(`.${parentClass}`)
+  parent.appendChild(displayElement)
   
 
   let countdown = setInterval(function() {
@@ -143,7 +151,8 @@ function addAndStartCountdown(duration) {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    displayElement.textContent = minutes + ":" + seconds;
+    displayElement.textContent = "Cooldown: " + minutes + ":" + seconds;
+    
 
     if (timer > 0 && timer < 11){
       --timer
@@ -153,7 +162,8 @@ function addAndStartCountdown(duration) {
     else if(--timer < 0) {
       clearInterval(countdown);
       displayElement.classList.remove("pulsate")
-      displayElement.textContent = "Time's up!";
+      parent.removeChild(displayElement)
+      enableElements([`${parentClass}`])
     }
   }, 1000);
 
@@ -175,7 +185,7 @@ function addInput(inputClasses){
     let newInput = document.createElement("TEXTAREA")
     newInput.classList.add(`${input}`)
     if(input === "bigInput"){
-      newInput.setAttribute("rows", "8")
+      newInput.setAttribute("rows", "4")
       newInput.setAttribute("cols", "50")
       newInput.setAttribute("placeholder", "Type something and press submit!")
       newInput.setAttribute("maxlength", "50")
@@ -219,19 +229,19 @@ function addButtons(buttonClasses){
 function capitalize(word){return word.charAt(0).toUpperCase() + word.slice(1)}
 
 
-function enableElements(elements){
-  elements.forEach(element => {
-    element.disabled = false
-    element.classList.remove("disabled")
-    element.innerText = ""
+function enableElements(elementClasses){
+  elementClasses.forEach(element => {
+    document.querySelector(`.${element}`).disabled = false
+    document.querySelector(`.${element}`).classList.remove("disabled")
+    document.querySelector(`.${element}`).innerText = capitalize(`${elementClasses}`)
   })
 }
 
 function makeElementsReadOnly(elementClasses){
   elementClasses.forEach(element => {
-    document.querySelectorAll(`${element}`).disabled = true
-    document.querySelectorAll(`${element}`).classList.add("disabled")
-    document.querySelectorAll(`${element}`).innerText = "Submitted"
+    document.querySelector(`.${element}`).disabled = true
+    document.querySelector(`.${element}`).classList.add("disabled")
+    document.querySelector(`.${element}`).innerText = "Submitted"
   })
 }
 
