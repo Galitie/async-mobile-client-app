@@ -103,10 +103,9 @@ func _characterCreated(packet):
 	user_data.connection_status = CONNECTION_STATUS.ONLINE
 	users[user_data.ip] = user_data
 	$World.AddPlayer(user_data, $World.players.size())
-	$World.SpawnCharacter($World.players[user_data.ip], false, $World.players["0.0.0.0"].character, $World.players["0.0.0.0"].character.cell_position)
+	$World.SpawnCharacter($World.players[user_data.ip], false, $World.players[$World.last_ip].character, $World.players["0.0.0.0"].character.cell_position)
 	print(user_data.name + " has joined the game")
 	SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": packet["userIP"], "connectionID": packet["connectionID"]})
-	SendPacket({"action": "messageHost", "message": "chat", "content": "Mammia mia Tylor"})
 	
 func _userDisconnected(packet):
 	if users.has(packet["userIP"]):

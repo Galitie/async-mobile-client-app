@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://48geqgj1cnib"]
+
+[ext_resource type="Script" path="res://characters/CharacterData.gd" id="1_710pw"]
+[ext_resource type="SpriteFrames" uid="uid://bg8rjyk5nckoy" path="res://characters/shrek_frames.tres" id="2_0khfa"]
+
+[resource]
+script = ExtResource("1_710pw")
+sprite_frames = ExtResource("2_0khfa")
+sprite_offset = Vector2(8.5, 4)
+tts_name = "MSTTS_V110_enIE_SeanM"
+voice_pitch = 1.0

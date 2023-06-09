@@ -2,14 +2,17 @@ extends Node2D
 
 var character_manifest = [
 	"res://characters/tyler.tres",
-	"res://characters/mario.tres",
-	"res://characters/tyler.tres"
+	"res://characters/snake.tres",
+	"res://characters/shrek.tres",
+	"res://characters/kermit.tres",
+	"res://characters/mario.tres"
 ]
 var voices
 
 var client
 var ready_for_players = false
 var current_map
+var last_ip
 
 class Player:
 	var user_data
@@ -22,9 +25,7 @@ func _ready():
 	# TTS voices need to be installed from either the Windows speech package downloader in settings or from the
 	# runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
 	# Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
-	# Speech to be recognized by Godot
-	# Snake is MSTTS_V110_jaJP_IchiroM
-	# Shrek is MSTTS_V110_enIE_SeanM 
+	# Speech and reimported in order to be recognized by Godot
 	voices = DisplayServer.tts_get_voices()
 	
 	var lobby_map = preload("res://Lobby.tscn") as PackedScene
@@ -48,6 +49,7 @@ func SpawnCharacter(player, controllable, character_to_follow, cell_position):
 	player.character.SetCellPosition(cell_position)
 	if character_to_follow:
 		character_to_follow.follower = player.character
+	last_ip = player.user_data.ip
 	player.character.visible = true
 	
 func AddPlayer(user_data, character_index):
