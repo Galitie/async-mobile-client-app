@@ -10,8 +10,10 @@ function onJoinRequest() {
   addPrompt("Create a new Character:")
   addInput(['smallInput', 'bigInput'])
   addButtons(['create'])
-
+  document.querySelector(".smallInput").setAttribute("placeholder", "Your name")
+  document.querySelector(".bigInput").setAttribute("placeholder", "Type in a catchphrase you'd like to use often!")
 }
+
 
 // Overworld Screen
 function overWorldMenu(){
@@ -26,8 +28,9 @@ function overWorldMenu(){
 // ****************** Button Functionality ******************** //
 
 function onClickSubmit() {
+  //Currently hardcoded to find biginput check for big or small input, or both, or other  
   let [bigInput, bigInputValue] = getInput('bigInput')
-  //let [smallInput, smallInputValue] = getInput('smallInput')
+
 
   const packet = {
     "action": "messageHost",
@@ -55,6 +58,7 @@ function onClickSubmit() {
 
 }
 
+
 function onClickCatchphrase(){
   // add cool-down timer for catchphrase
 
@@ -80,7 +84,7 @@ function onClickCharacterCreation(){
     "catchphrase": bigInputValue
     }
   sendMessage(JSON.stringify(packet))
-  
+  document.querySelector('h2').innerText = smallInputValue
   overWorldMenu()
   
 
@@ -196,17 +200,17 @@ function addPrompt(str){
   DOMElements.push("prompt")
 }
 
+
 function addInput(inputClasses){
   inputClasses.forEach(input => {
     let newInput = document.createElement("TEXTAREA")
     newInput.classList.add(`${input}`)
     if(input === "bigInput"){
-      newInput.setAttribute("rows", "4")
-      newInput.setAttribute("cols", "50")
+      newInput.setAttribute("rows", "3")
       newInput.setAttribute("placeholder", "Type something and press submit!")
       newInput.setAttribute("maxlength", "50")
     } else if (input === "smallInput"){
-      newInput.setAttribute("placeholder", "Type something and press submit!")
+      newInput.setAttribute("placeholder", "Type something!")
       newInput.setAttribute("maxlength", "15")
     }
     let gameSection = document.querySelector('#game')
