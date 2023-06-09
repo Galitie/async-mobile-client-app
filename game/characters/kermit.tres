@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://d4jdxogste80e"]
+
+[ext_resource type="Script" path="res://characters/CharacterData.gd" id="1_sn7px"]
+[ext_resource type="SpriteFrames" uid="uid://bi6q8j335ixdu" path="res://characters/kermit_frames.tres" id="2_r1cp7"]
+
+[resource]
+script = ExtResource("1_sn7px")
+sprite_frames = ExtResource("2_r1cp7")
+sprite_offset = Vector2(8.5, 3)
+tts_name = "MSTTS_V110_enCA_RichardM"
+voice_pitch = 0.0
