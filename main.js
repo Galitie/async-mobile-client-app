@@ -27,15 +27,31 @@ function overWorldMenu(){
 
 function onClickSubmit() {
   let [bigInput, bigInputValue] = getInput('bigInput')
+  let [smallInput, smallInputValue] = getInput('smallInput')
 
   const packet = {
     "action": "messageHost",
     "message": "chat",
     "content": bigInputValue
     }
+
+  // const packet2 = {
+  //   "action": "messageHost",
+  //   "message": "",
+  //   "content": smallInputValue
+  // }
+  
   sendMessage(JSON.stringify(packet))
   addAndStartCountdown(15, 'submit')
-  bigInput.innerText = ""
+  
+  if (document.querySelector(".bigInput") && document.querySelector(".smallInput")){
+    document.querySelector(".bigInput").value = ""
+    document.querySelector(".smallInput").value = ""
+  } else if (document.querySelector(".bigInput")) {
+    document.querySelector(".bigInput").value = ""
+  } else {
+    document.querySelector(".smallInput").value = ""
+  }
 
 }
 
