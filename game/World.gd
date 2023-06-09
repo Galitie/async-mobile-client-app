@@ -79,7 +79,7 @@ func UpdateUserData(user_data):
 		player.character.modulate = Color.DIM_GRAY
 
 func Speak(ip, chat_content):
-	DisplayServer.tts_speak(chat_content, players[ip].voice_id, 50, players[ip].character.character_data.voice_pitch)
+	#DisplayServer.tts_speak(chat_content, players[ip].voice_id, 50, players[ip].character.character_data.voice_pitch)
 	$CanvasLayer/TextBox/Dialogue.text = chat_content
 	$CanvasLayer/TextBox/AnimationPlayer.play("appear")
 	

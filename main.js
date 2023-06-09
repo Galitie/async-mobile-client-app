@@ -22,11 +22,12 @@ function overWorldMenu(){
   clearDOM()
   addPrompt("Say some stuff to Tyler or press the catchphrase button!")
   addInput(['bigInput'])
-  addButtons(['catchphrase', 'submit'])
+  addButtons(['catchphrase', 'submit', 'emoji', 'emoji', 'emoji', 'emoji'])
+  console.log(DOMElements)
 }
 
-// ****************** Button Functionality ******************** //
 
+// ****************** Button Functionality ******************** //
 function onClickSubmit() {
   //Currently hardcoded to find biginput check for big or small input, or both, or other  
   let [bigInput, bigInputValue] = getInput('bigInput')
@@ -60,8 +61,6 @@ function onClickSubmit() {
 
 
 function onClickCatchphrase(){
-  // add cool-down timer for catchphrase
-
   console.log("You said your catchphrase!")
   const packet = {
   "action": "messageHost",
@@ -72,7 +71,7 @@ function onClickCatchphrase(){
 
 }
 
-
+// add error handling for not inputing text in any box
 function onClickCharacterCreation(){
   let [smallInput, smallInputValue] = getInput('smallInput')
   let [bigInput, bigInputValue] = getInput('bigInput')
@@ -88,6 +87,19 @@ function onClickCharacterCreation(){
   overWorldMenu()
   
 
+
+}
+
+function onClickEmoji(){
+  console.log("You pressed an emoji")
+
+  // console.log("You said your catchphrase!")
+  // const packet = {
+  // "action": "messageHost",
+  // "message": "sayCatchphrase"
+  // }
+  // sendMessage(JSON.stringify(packet))
+  // addAndStartCountdown(15, 'catchphrase')
 
 }
 
@@ -222,24 +234,42 @@ function addInput(inputClasses){
 // add emoji buttons
 function addButtons(buttonClasses){
   buttonClasses.forEach((button) => {
-    //Create new button with text
-    let newButton = document.createElement("BUTTON");
-    let newButtonText = document.createTextNode(capitalize(button));
-    newButton.appendChild(newButtonText);
-    newButton.classList.add(`${button}`)
 
-    //Append it to the "game" section of the screen
-    let gameSection = document.querySelector('#game')
-    gameSection.appendChild(newButton)
-
-    //Attach the correct function to it
     if (button == "submit"){
+      let newButton = document.createElement("BUTTON");
+      let newButtonText = document.createTextNode(capitalize(button));
+      newButton.appendChild(newButtonText);
+      newButton.classList.add(`${button}`)
+      let gameSection = document.querySelector('#game')
+      gameSection.appendChild(newButton)
       document.querySelector(`.${button}`).addEventListener('click', onClickSubmit)
-    } else if (button == "create") {
+    } 
+    else if (button == "create") {
+      let newButton = document.createElement("BUTTON");
+      let newButtonText = document.createTextNode(capitalize(button));
+      newButton.appendChild(newButtonText);
+      newButton.classList.add(`${button}`)
+      let gameSection = document.querySelector('#game')
+      gameSection.appendChild(newButton)
       document.querySelector(`.${button}`).addEventListener('click', onClickCharacterCreation)
     }
     else if (button == "catchphrase"){
+      let newButton = document.createElement("BUTTON");
+      let newButtonText = document.createTextNode(capitalize(button));
+      newButton.appendChild(newButtonText);
+      newButton.classList.add(`${button}`)
+      let gameSection = document.querySelector('#game')
+      gameSection.appendChild(newButton)
       document.querySelector(`.${button}`).addEventListener('click', onClickCatchphrase)
+    } 
+    else if (button == "emoji"){
+      let newButton = document.createElement("BUTTON");
+      let newButtonText = document.createTextNode(capitalize(button));
+      newButton.appendChild(newButtonText);
+      newButton.classList.add(`${button}`)
+      let emojiSection = document.querySelector('#emojiContainer')
+      emojiSection.appendChild(newButton)
+      document.querySelector(`.${button}`).addEventListener('click', onClickEmoji)
     }
 
     DOMElements.push(button)

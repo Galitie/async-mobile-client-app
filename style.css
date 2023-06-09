@@ -36,6 +36,13 @@ body{
     justify-content: space-around;
 }
 
+#emojiContainer {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
 button {
     width:100%;
     min-height: 150px;
@@ -53,7 +60,7 @@ h1{
   /******************************************
   /* ADDITIONAL STYLES
   /*******************************************/
-  
+
 .smallInput {
     width:100%;
     min-height: 150px;
@@ -93,6 +100,15 @@ h1{
     color: black;
 }
 
+
+
+.emoji {
+    width: 20%;
+    min-height: 150px;
+    font-size: 5vw;
+    border: 1px solid black;
+    background-color: white;
+}
 
 .disabled{
     background-color:lightgray;
