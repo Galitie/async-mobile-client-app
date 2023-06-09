@@ -35,7 +35,6 @@ function onClickSubmit() {
     }
   sendMessage(JSON.stringify(packet))
 
-  bigInputValue = ""
 }
 
 function onClickCatchphrase(){
@@ -179,8 +178,10 @@ function addInput(inputClasses){
       newInput.setAttribute("rows", "8")
       newInput.setAttribute("cols", "50")
       newInput.setAttribute("placeholder", "Type something and press submit!")
+      newInput.setAttribute("maxlength", "50")
     } else if (input === "smallInput"){
       newInput.setAttribute("placeholder", "Type something and press submit!")
+      newInput.setAttribute("maxlength", "15")
     }
     let gameSection = document.querySelector('#game')
     gameSection.appendChild(newInput)
