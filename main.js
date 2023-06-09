@@ -1,58 +1,51 @@
+const DOMElements = []
 
-// Add event listeners
-document.body.addEventListener("requestJoin", onJoinRequest)
-//elem.AddEventListener("refuseJoin", onJoinRefuse(packet))
+addPrompt("Eat bees Raam")
+addAndStartCountdown(30)
+addInput(['smallInput', 'bigInput'])
+addButtons(['catchphrase'])
+
+console.log(DOMElements)
 
 
-function onJoinRequest(packet) {
+// *********************** Screens *************************** //
+function onJoinRequest() {
   console.log("I got your join request")
-}
-
-// **************** Submit Button Functionality ****************** //
-
-function onClick(button) {
-  // let [smallInput, smallInputValue] = getInput('smallInput')
-  // let [bigInput, bigInputValue] = getInput('bigInput')
- 
-  if (button = 'catchphrase'){
-  console.log("This is a catchphrase!")
-    const packet = {
+  
+  const packet = {
     "action": "messageHost",
-    "message": "sayCatchphrase"
+    "message": "createCharacter",
+    "name": pass,
+    "catchphrase": "Get out of my swamp, ya ha!"
     }
   sendMessage(JSON.stringify(packet))
+}
+
+// ****************** Button Functionality ******************** //
+
+function onClickSubmit() {
+  // let [smallInput, smallInputValue] = getInput('smallInput')
+  // let [bigInput, bigInputValue] = getInput('bigInput')
+
+}
+
+function onClickCatchphrase(){
+  // add cool-down timer for catchphrase
+
+  console.log("You said your catchphrase!")
+  const packet = {
+  "action": "messageHost",
+  "message": "sayCatchphrase"
   }
+sendMessage(JSON.stringify(packet))
 }
 
+function onClickCharacterCreation(){
 
-function enableElements(elements){
-  elements.forEach(element => {
-    element.disabled = false
-    element.classList.remove("disabled")
-    element.innerText = ""
-  })
 }
 
-function makeElementsReadOnly(elements){
-  elements.forEach(element => {
-    element.disabled = true
-    element.classList.add("disabled")
-    element.innerText = "Submitted"
-  })
-}
-
-function getInput(elementClass){
-  let input = document.querySelector(`.${elementClass}`)
-  let inputValue = input.value
-  return [input, inputValue]
- 
-}
-
-
-// **************** Web Socket stuff ****************** //
+// ******************** Web Socket Stuff ********************** //
 let playerServerStatus = document.querySelector('h4')
-
-// Create a WebSocket connection
 const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod';
 const socket = new WebSocket(websocketUrl);
 
@@ -72,17 +65,12 @@ socket.onopen = function (event) {
 
 // Message received event
 socket.onmessage = function (event) {
-  const message = event.data;
+  const message = JSON.parse(event.data);
   console.log('Received message:', message)
-  let parsedMessage = JSON.parse(message)
-  if (parsedMessage['message'] == "requestJoin"){
-    const packet = {
-    "action": "messageHost",
-    "message": "createCharacter",
-    "name": "Galit",
-    "catchphrase": "Cowabunga Dude, pepepeepe doo doo eat gobblygook"
-    }
-  sendMessage(JSON.stringify(packet))
+
+  // Character Creation Screen
+  if (message['message'] == "requestJoin"){
+    onJoinRequest()
   }
 };
 
@@ -105,18 +93,15 @@ function sendMessage(message) {
 }
 
 
+//********************* Screen Pieces ************************//
 
-// make a class for packets?
-// class Packet
-// class JoinPacket extends Packet
-// class InputPacket extends Packet
-// class ExitPacket extends Packet
+function clearDOM() {
+  let rootElement = document.body;
 
-// enableElements(elements)
-// or toggle
-
-
-// *************** Timer ****************//
+  while (rootElement.firstChild) {
+    rootElement.removeChild(rootElement.firstChild);
+  }
+}
 
 function addAndStartCountdown(duration) {
   let timer = duration, minutes, seconds;
@@ -152,24 +137,6 @@ function addAndStartCountdown(duration) {
   DOMElements.push(`countdown-${duration}`)
 }
 
-
-const DOMElements = []
-
-addPrompt("Eat bees Raam")
-addAndStartCountdown(30)
-addInput(['smallInput', 'bigInput'])
-addButtons(['catchphrase'])
-
-console.log(DOMElements)
-
-function clearDOM() {
-  let rootElement = document.body;
-
-  while (rootElement.firstChild) {
-    rootElement.removeChild(rootElement.firstChild);
-  }
-}
-
 function addPrompt(packetData){
   let newPrompt = document.createElement("h1")
   let newPromptText = document.createTextNode(packetData);
@@ -193,24 +160,59 @@ function addInput(inputClasses){
   })
 }
 
+// add emoji buttons
 function addButtons(buttonClasses){
   buttonClasses.forEach((button) => {
+    //Create new button with text
     let newButton = document.createElement("BUTTON");
     let newButtonText = document.createTextNode(capitalize(button));
     newButton.appendChild(newButtonText);
     newButton.classList.add(`${button}`)
+
+    //Append it to the "game" section of the screen
     let gameSection = document.querySelector('#game')
     gameSection.appendChild(newButton)
-    document.querySelector(`.${button}`).addEventListener('click', onClick)
+
+    //Attach the correct function to it
+    if (button == "submit"){
+      document.querySelector(`.${button}`).addEventListener('click', onClickSubmit)
+    } else if (button == "create") {
+      document.querySelector(`.${button}`).addEventListener('click', onClickCharacterCreation)
+    }
+    else if (button == "catchphrase"){
+      document.querySelector(`.${button}`).addEventListener('click', onClickCatchphrase)
+    }
+
     DOMElements.push(button)
   })
 }
 
-function capitalize(word){
-  return word.charAt(0).toUpperCase() + word.slice(1)}
+function capitalize(word){return word.charAt(0).toUpperCase() + word.slice(1)}
 
+
+function enableElements(elements){
+  elements.forEach(element => {
+    element.disabled = false
+    element.classList.remove("disabled")
+    element.innerText = ""
+  })
+}
+
+function makeElementsReadOnly(elements){
+  elements.forEach(element => {
+    element.disabled = true
+    element.classList.add("disabled")
+    element.innerText = "Submitted"
+  })
+}
+
+function getInput(elementClass){
+  let input = document.querySelector(`.${elementClass}`)
+  let inputValue = input.value
+  return [input, inputValue]
+ 
+}
 
 // Add in elements that I want for each screen
 // Elements: Prompt, small input, large input, timer, emoteButtons, submitButton
 // Elements need to be customizable (innerText, color, placeholder)
-// Elements need to be within certain sections?
