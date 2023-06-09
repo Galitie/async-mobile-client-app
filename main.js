@@ -27,7 +27,7 @@ function overWorldMenu(){
 
 function onClickSubmit() {
   let [bigInput, bigInputValue] = getInput('bigInput')
-  let [smallInput, smallInputValue] = getInput('smallInput')
+  //let [smallInput, smallInputValue] = getInput('smallInput')
 
   const packet = {
     "action": "messageHost",
@@ -40,7 +40,7 @@ function onClickSubmit() {
   //   "message": "",
   //   "content": smallInputValue
   // }
-  
+
   sendMessage(JSON.stringify(packet))
   addAndStartCountdown(15, 'submit')
   
