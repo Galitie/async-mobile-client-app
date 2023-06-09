@@ -2,17 +2,21 @@ const DOMElements = []
 
 
 // *********************** Screens *************************** //
+// Character Screen
 function onJoinRequest() {
   console.log("I got your join request")
 
+  clearDOM()
   addPrompt("Create a new Character:")
   addInput(['smallInput', 'bigInput'])
   addButtons(['create'])
 
 }
 
+// Overworld Screen
 function overWorldMenu(){
-  console.log("switched to overworld menu")
+  console.log("Switched to overworld menu")
+
   clearDOM()
   addPrompt("Say some stuff to tyler or press catchphrase!")
   addInput(['bigInput'])
@@ -22,8 +26,16 @@ function overWorldMenu(){
 // ****************** Button Functionality ******************** //
 
 function onClickSubmit() {
-  console.log("This is the pass error")
+  let [bigInput, bigInputValue] = getInput('bigInput')
 
+  const packet = {
+    "action": "messageHost",
+    "message": "chat",
+    "content": bigInputValue
+    }
+  sendMessage(JSON.stringify(packet))
+
+  bigInputValue = ""
 }
 
 function onClickCatchphrase(){
@@ -48,8 +60,9 @@ function onClickCharacterCreation(){
     "catchphrase": bigInputValue
     }
   sendMessage(JSON.stringify(packet))
-
+  
   overWorldMenu()
+  
 
 
 }
@@ -106,11 +119,12 @@ function sendMessage(message) {
 //********************* Screen Pieces ************************//
 
 function clearDOM() {
-  let rootElement = document.body;
+  let rootElement = document.querySelector('#game');
 
   while (rootElement.firstChild) {
     rootElement.removeChild(rootElement.firstChild);
   }
+
 }
 
 function addAndStartCountdown(duration) {
@@ -147,9 +161,10 @@ function addAndStartCountdown(duration) {
   DOMElements.push(`countdown-${duration}`)
 }
 
-function addPrompt(packetData){
+function addPrompt(str){
+  console.log(str)
   let newPrompt = document.createElement("h1")
-  let newPromptText = document.createTextNode(packetData);
+  let newPromptText = document.createTextNode(str);
   newPrompt.appendChild(newPromptText);
   let gameSection = document.querySelector('#game')
   gameSection.appendChild(newPrompt)
@@ -163,6 +178,9 @@ function addInput(inputClasses){
     if(input === "bigInput"){
       newInput.setAttribute("rows", "8")
       newInput.setAttribute("cols", "50")
+      newInput.setAttribute("placeholder", "Type something and press submit!")
+    } else if (input === "smallInput"){
+      newInput.setAttribute("placeholder", "Type something and press submit!")
     }
     let gameSection = document.querySelector('#game')
     gameSection.appendChild(newInput)
@@ -208,8 +226,8 @@ function enableElements(elements){
   })
 }
 
-function makeElementsReadOnly(elements){
-  elements.forEach(element => {
+function makeElementsReadOnly(elementClasses){
+  elementClasses.forEach(element => {
     document.querySelectorAll(`${element}`).disabled = true
     document.querySelectorAll(`${element}`).classList.add("disabled")
     document.querySelectorAll(`${element}`).innerText = "Submitted"
