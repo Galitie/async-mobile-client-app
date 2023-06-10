@@ -2,6 +2,14 @@
 
 
 // ************************* Screens *************************** //
+//Splash Screen when host is not connected
+function hostNotConnected(){
+  console.log("Host not connected")
+
+  clearIDGameInDOM()
+  addPrompt(`TYLERPG`)
+}
+
 // Character Screen
 function onJoinRequest() {
   console.log("I got your join request")
@@ -25,6 +33,7 @@ function overWorldMenu() {
   addButtons(['submit', 'catchphrase'])
   addEmojiTray()
 }
+
 
 
 // ****************** Button Functionality ******************** //
@@ -127,8 +136,10 @@ function onClickCharacterCreation() {
     smallInput.classList.add("missedInput")
   } else if (bigInputValue == "") {
     bigInput.classList.add("missedInput")
+    smallInput.classList.remove("missedInput")
   } else {
     smallInput.classList.add("missedInput")
+    bigInput.classList.remove("missedInput")
   }
   
 
@@ -149,13 +160,14 @@ function onClickEmoji(emojiClass) {
 
 // ******************** Web Socket Stuff ********************** //
 let playerServerStatus = document.querySelector('h4')
+let hostServerStatus = document.querySelector('h3')
 const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod';
 const socket = new WebSocket(websocketUrl);
 
 // Connection opened event and check for host
 socket.onopen = function (event) {
   console.log('WebSocket connection established.');
-  playerServerStatus.innerText = "\u2705 Connected to server"
+  playerServerStatus.innerText = "\u2705 Connected to Server"
   playerServerStatus.style.color = "green"
 
   const packet = {
@@ -172,11 +184,17 @@ socket.onmessage = function (event) {
   console.log('Received message:', message)
 
   // Character Creation Screen - hardcoded until we figure out a different way
-  if (message['message'] == "requestJoin"){
+  if (message['message'] == "requestJoin" && message['action'] == "respondToUser"){
+    hostServerStatus.innerText = "\u2705 Connected to Host"
+    hostServerStatus.style.color = "green"
     onJoinRequest()
   } else if (message['message'] == 'reconnect'){
     overWorldMenu()
-  }
+  } else if (message['message'] == 'Internal server error'){
+    hostServerStatus.innerText = "\u2717 Disconnected from Host"
+    hostServerStatus.style.color = "red"
+    hostNotConnected()
+  } 
 };
 
 // Error event
@@ -187,7 +205,7 @@ socket.onerror = function (error) {
 // Connection closed event
 socket.onclose = function (event) {
   console.log('WebSocket connection closed:', event.code, event.reason);
-  playerServerStatus.innerText = "\u2717 Disconnected from server"
+  playerServerStatus.innerText = "\u2717 Disconnected from Server"
   playerServerStatus.style.color = "red"
 };
 
