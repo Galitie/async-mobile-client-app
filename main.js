@@ -1,7 +1,7 @@
 
 
 
-// *********************** Screens *************************** //
+// ************************* Screens *************************** //
 // Character Screen
 function onJoinRequest() {
   console.log("I got your join request")
@@ -29,32 +29,67 @@ function overWorldMenu() {
 
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
-  //Currently hardcoded to find biginput check for big or small input, or both, or other  
-  let bigInputValue = getInputValue('bigInput')
 
+  if (document.querySelector('.bigInput') && document.querySelector('.smallInput')){
+    let [smallInput, smallInputValue] = getInputAndValue('smallInput')
+    let [bigInput, bigInputValue] = getInputAndValue('bigInput')
 
-  const packet = {
-    "action": "messageHost",
-    "message": "chat",
-    "content": bigInputValue
+    if (smallInputValue !== "" && bigInputValue !== ""){
+      const packet = {
+        "action": "messageHost",
+        "message": "chat",
+        "content": smallInputValue, bigInputValue
+        }
+        sendMessage(JSON.stringify(packet))
+        addAndStartCountdown(15, 'submit')
+
+        bigInput.value = ""
+        smallInput.value = ""
+        bigInput.classList.remove("missedInput")
+        smallInput.classList.remove("missedInput")
+    } else if (smallInputValue == "" && bigInputValue == ""){
+      smallInput.classList.add("missedInput")
+      bigInput.classList.add("missedInput")
+    } else if (smallInput == ""){
+      smallInput.classList.add("missedInput")
+    } else {
+      bigInput.classList.add("missedInput")
+    }
+  }
+  else if (document.querySelector('.bigInput'))  {
+    let [bigInput, bigInputValue] = getInputAndValue('bigInput')
+
+    if (bigInputValue !== ""){
+      const packet = {
+        "action": "messageHost",
+        "message": "chat",
+        "content": bigInputValue
+        }
+        sendMessage(JSON.stringify(packet))
+        addAndStartCountdown(15, 'submit')
+        bigInput.value = ""
+        bigInput.classList.remove("missedInput")
+      } else {
+        bigInput.classList.add("missedInput")
     }
 
-  // const packet2 = {
-  //   "action": "messageHost",
-  //   "message": "",
-  //   "content": smallInputValue
-  // }
-
-  sendMessage(JSON.stringify(packet))
-  addAndStartCountdown(15, 'submit')
-  
-  if (document.querySelector(".bigInput") && document.querySelector(".smallInput")){
-    document.querySelector(".bigInput").value = ""
-    document.querySelector(".smallInput").value = ""
-  } else if (document.querySelector(".bigInput")) {
-    document.querySelector(".bigInput").value = ""
   } else {
-    document.querySelector(".smallInput").value = ""
+    let [smallInput, smallInputValue] = getInputAndValue('smallInput')
+
+    if (smallInput !== ""){
+    const packet = {
+      "action": "messageHost",
+      "message": "chat",
+      "content": smallInputValue
+      }
+      sendMessage(JSON.stringify(packet))
+      addAndStartCountdown(15, 'submit')
+
+      smallInput.value = ""
+      smallInput.classList.remove("missedInput")
+    } else {
+      smallInput.classList.add("missedInput")
+    }
   }
 
 }
@@ -72,21 +107,30 @@ function onClickCatchphrase() {
 }
 
 
-// add error handling for not inputing text in any box
 function onClickCharacterCreation() {
-  let smallInputValue = getInputValue('smallInput')
-  let bigInputValue = getInputValue('bigInput')
-  
-  const packet = {
-    "action": "messageHost",
-    "message": "createCharacter",
-    "name": smallInputValue,
-    "catchphrase": bigInputValue
-    }
-  sendMessage(JSON.stringify(packet))
-  overWorldMenu()
-  
+  let [smallInput, smallInputValue] = getInputAndValue('smallInput')
+  let [bigInput, bigInputValue] = getInputAndValue('bigInput')
 
+  if (smallInputValue !== "" && bigInputValue !== ""){
+    const packet = {
+      "action": "messageHost",
+      "message": "createCharacter",
+      "name": smallInputValue,
+      "catchphrase": bigInputValue
+      }
+    sendMessage(JSON.stringify(packet))
+    overWorldMenu()
+    bigInput.classList.remove("missedInput")
+    smallInput.classList.remove("missedInput")
+  } else if (bigInputValue == "" && smallInputValue == "") {
+    bigInput.classList.add("missedInput")
+    smallInput.classList.add("missedInput")
+  } else if (bigInputValue == "") {
+    bigInput.classList.add("missedInput")
+  } else {
+    smallInput.classList.add("missedInput")
+  }
+  
 
 }
 
@@ -294,9 +338,9 @@ function makeElementsReadOnly(elementClasses) {
 }
 
 
-function getInputValue(elementClass) {
+function getInputAndValue(elementClass) {
   let input = document.querySelector(`.${elementClass}`)
   let inputValue = input.value
-  return inputValue
+  return [input, inputValue]
  
 }

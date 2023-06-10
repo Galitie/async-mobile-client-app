@@ -165,3 +165,7 @@ h1{
         opacity: 0.5;
     }
 }
+
+.missedInput{
+    border: 5px solid red;
+}
