@@ -50,6 +50,7 @@ button {
     width:100%;
     min-height: 150px;
     font-size: 5vw;
+    text-align: center;
 }
 
 button:active {
@@ -120,6 +121,7 @@ h1{
     border: none;
     background-color: white;
     text-align: center;
+    margin:unset;
 }
 
 .emoji1 {
@@ -128,6 +130,8 @@ h1{
     font-size: 8vw;
     border: none;
     background-color: white;
+    text-align: center;
+    margin:unset;
 }
 
 .emoji2 {
@@ -136,6 +140,8 @@ h1{
     font-size: 8vw;
     border: none;
     background-color: white;
+    text-align: center;
+    margin:unset;
 }
 
 .emoji3 {
@@ -144,6 +150,8 @@ h1{
     font-size: 8vw;
     border: none;
     background-color: white;
+    text-align: center;
+    margin:unset;
 }
 
 .disabled{
