@@ -1,3 +1,6 @@
+// make emoji buttons work
+
+
 const DOMElements = []
 
 
@@ -22,7 +25,8 @@ function overWorldMenu(){
   clearDOM()
   addPrompt("Say some stuff to Tyler or press the catchphrase button!")
   addInput(['bigInput'])
-  addButtons(['catchphrase', 'submit', 'emoji', 'emoji', 'emoji', 'emoji'])
+  addButtons(['submit', 'catchphrase'])
+  addEmojiTray()
   console.log(DOMElements)
 }
 
@@ -30,7 +34,7 @@ function overWorldMenu(){
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
   //Currently hardcoded to find biginput check for big or small input, or both, or other  
-  let [bigInput, bigInputValue] = getInput('bigInput')
+  let bigInputValue = getInputValue('bigInput')
 
 
   const packet = {
@@ -83,7 +87,6 @@ function onClickCharacterCreation(){
     "catchphrase": bigInputValue
     }
   sendMessage(JSON.stringify(packet))
-  document.querySelector('h2').innerText = smallInputValue
   overWorldMenu()
   
 
@@ -231,49 +234,48 @@ function addInput(inputClasses){
   })
 }
 
-// add emoji buttons
+
 function addButtons(buttonClasses){
   buttonClasses.forEach((button) => {
+    let newButton = document.createElement("BUTTON");
+    let newButtonText = document.createTextNode(capitalize(button));
+    newButton.appendChild(newButtonText);
+    newButton.classList.add(`${button}`)
+    let gameSection = document.querySelector('#game')
+    gameSection.appendChild(newButton)
 
     if (button == "submit"){
-      let newButton = document.createElement("BUTTON");
-      let newButtonText = document.createTextNode(capitalize(button));
-      newButton.appendChild(newButtonText);
-      newButton.classList.add(`${button}`)
-      let gameSection = document.querySelector('#game')
-      gameSection.appendChild(newButton)
       document.querySelector(`.${button}`).addEventListener('click', onClickSubmit)
     } 
     else if (button == "create") {
-      let newButton = document.createElement("BUTTON");
-      let newButtonText = document.createTextNode(capitalize(button));
-      newButton.appendChild(newButtonText);
-      newButton.classList.add(`${button}`)
-      let gameSection = document.querySelector('#game')
-      gameSection.appendChild(newButton)
       document.querySelector(`.${button}`).addEventListener('click', onClickCharacterCreation)
     }
     else if (button == "catchphrase"){
-      let newButton = document.createElement("BUTTON");
-      let newButtonText = document.createTextNode(capitalize(button));
-      newButton.appendChild(newButtonText);
-      newButton.classList.add(`${button}`)
-      let gameSection = document.querySelector('#game')
-      gameSection.appendChild(newButton)
       document.querySelector(`.${button}`).addEventListener('click', onClickCatchphrase)
     } 
-    else if (button == "emoji"){
-      let newButton = document.createElement("BUTTON");
-      let newButtonText = document.createTextNode(capitalize(button));
-      newButton.appendChild(newButtonText);
-      newButton.classList.add(`${button}`)
-      let emojiSection = document.querySelector('#emojiContainer')
-      emojiSection.appendChild(newButton)
-      document.querySelector(`.${button}`).addEventListener('click', onClickEmoji)
-    }
 
     DOMElements.push(button)
   })
+}
+
+function addEmojiTray(){
+  let emojiCollection = ['❤️', '😭', '🐝', '❗']
+
+  let newSection = document.createElement("SECTION")
+  newSection.setAttribute('id', 'emojiContainer')
+
+  let gameSection = document.querySelector('#game')
+  gameSection.appendChild(newSection)
+
+  for(let i=0; i < emojiCollection.length; i++){
+    let newButton = document.createElement("BUTTON");
+    let newButtonText = document.createTextNode(emojiCollection[i])
+    newButton.appendChild(newButtonText);
+    newButton.classList.add(`emoji${i}`)
+    newSection.appendChild(newButton)
+    document.querySelector(`.emoji${i}`).addEventListener('click', onClickEmoji)
+  }
+
 }
 
 function capitalize(word){return word.charAt(0).toUpperCase() + word.slice(1)}
@@ -295,10 +297,10 @@ function makeElementsReadOnly(elementClasses){
   })
 }
 
-function getInput(elementClass){
+function getInputValue(elementClass){
   let input = document.querySelector(`.${elementClass}`)
   let inputValue = input.value
-  return [input, inputValue]
+  return inputValue
  
 }
 
