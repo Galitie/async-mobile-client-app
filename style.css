@@ -19,7 +19,7 @@
 }
 
 body{
-    height: 85vh; 
+    height: 80vh; 
     /* pixel phone using chrome, keyboard squashes smooshes the UI */
     /* figure out how to not smoosh*/
 }
