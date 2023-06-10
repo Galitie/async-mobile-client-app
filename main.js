@@ -198,7 +198,7 @@ socket.onmessage = function (event) {
   if (message['message'] == "requestJoin" && message['action'] == "respondToUser"){
     hostServerStatus.innerText = "\u2705 Connected to Host"
     hostServerStatus.style.color = "green"
-    onJoinRequest()
+    onJoinRequestScreen()
   } else if (message['message'] == 'reconnect'){
     overWorldMenuScreen()
   } else if (message['message'] == 'Internal server error'){
