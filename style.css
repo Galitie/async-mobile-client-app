@@ -19,7 +19,7 @@
 }
 
 body{
-    height: 80vh; 
+    height: 81vh; 
     /* pixel phone using chrome, keyboard squashes smooshes the UI */
     /* figure out how to not smoosh*/
 }
@@ -51,6 +51,8 @@ button {
     min-height: 150px;
     font-size: 5vw;
     text-align: center;
+    padding: unset;
+    margin: unset;
 }
 
 button:active {
@@ -120,8 +122,6 @@ h1{
     font-size: 8vw;
     border: none;
     background-color: white;
-    text-align: center;
-    margin:unset;
 }
 
 .emoji1 {
@@ -130,8 +130,6 @@ h1{
     font-size: 8vw;
     border: none;
     background-color: white;
-    text-align: center;
-    margin:unset;
 }
 
 .emoji2 {
@@ -140,8 +138,6 @@ h1{
     font-size: 8vw;
     border: none;
     background-color: white;
-    text-align: center;
-    margin:unset;
 }
 
 .emoji3 {
@@ -150,8 +146,6 @@ h1{
     font-size: 8vw;
     border: none;
     background-color: white;
-    text-align: center;
-    margin:unset;
 }
 
 .disabled{
