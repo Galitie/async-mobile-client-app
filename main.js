@@ -77,8 +77,8 @@ function onClickCatchphrase(){
 
 // add error handling for not inputing text in any box
 function onClickCharacterCreation(){
-  let [smallInput, smallInputValue] = getInput('smallInput')
-  let [bigInput, bigInputValue] = getInput('bigInput')
+  let smallInputValue = getInputValue('smallInput')
+  let bigInputValue = getInputValue('bigInput')
   
   const packet = {
     "action": "messageHost",
@@ -95,15 +95,14 @@ function onClickCharacterCreation(){
 
 function onClickEmoji(){
   console.log("You pressed an emoji")
+  let emojiValue = getInputValue('emoji')
 
-  // console.log("You said your catchphrase!")
-  // const packet = {
-  // "action": "messageHost",
-  // "message": "sayCatchphrase"
-  // }
-  // sendMessage(JSON.stringify(packet))
-  // addAndStartCountdown(15, 'catchphrase')
-
+  const packet = {
+    "action": "messageHost",
+    "message": "chat",
+    "content": emojiValue
+    }
+    sendMessage(JSON.stringify(packet))
 }
 
 // ******************** Web Socket Stuff ********************** //
