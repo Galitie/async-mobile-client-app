@@ -146,13 +146,13 @@ function onClickCharacterCreation() {
 }
 
 
-function onClickEmoji(emojiClass) {
+function onClickEmoji(emojiClass, emoji) {
   console.log(`You pressed an ${emojiClass}`)
 
   const packet = {
     "action": "messageHost",
     "message": "chat",
-    "content": `${emojiClass}`
+    "content": `${emoji}`
     }
     sendMessage(JSON.stringify(packet))
 }
@@ -330,7 +330,7 @@ function addEmojiTray() {
     newButton.classList.add(`emoji${i}`)
     newSection.appendChild(newButton)
     document.querySelector(`.emoji${i}`).addEventListener("click", function () {
-      onClickEmoji(`emoji${i}`);
+      onClickEmoji(`emoji${i}`, `${newButton.innerText}`);
     })}
 }
 
