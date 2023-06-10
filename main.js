@@ -1,7 +1,4 @@
-// make emoji buttons work
 
-
-const DOMElements = []
 
 
 // *********************** Screens *************************** //
@@ -9,7 +6,7 @@ const DOMElements = []
 function onJoinRequest() {
   console.log("I got your join request")
 
-  clearDOM()
+  clearIDGameInDOM()
   addPrompt("Create a new Character:")
   addInput(['smallInput', 'bigInput'])
   addButtons(['create'])
@@ -19,15 +16,14 @@ function onJoinRequest() {
 
 
 // Overworld Screen
-function overWorldMenu(){
+function overWorldMenu() {
   console.log("Switched to overworld menu")
 
-  clearDOM()
+  clearIDGameInDOM()
   addPrompt("Say some stuff to Tyler or press the catchphrase button!")
   addInput(['bigInput'])
   addButtons(['submit', 'catchphrase'])
   addEmojiTray()
-  console.log(DOMElements)
 }
 
 
@@ -64,7 +60,7 @@ function onClickSubmit() {
 }
 
 
-function onClickCatchphrase(){
+function onClickCatchphrase() {
   console.log("You said your catchphrase!")
   const packet = {
   "action": "messageHost",
@@ -75,8 +71,9 @@ function onClickCatchphrase(){
 
 }
 
+
 // add error handling for not inputing text in any box
-function onClickCharacterCreation(){
+function onClickCharacterCreation() {
   let smallInputValue = getInputValue('smallInput')
   let bigInputValue = getInputValue('bigInput')
   
@@ -93,16 +90,18 @@ function onClickCharacterCreation(){
 
 }
 
-function onClickEmoji(){
-  console.log("You pressed an emoji")
+
+function onClickEmoji(emojiClass) {
+  console.log(`You pressed an ${emojiClass}`)
 
   const packet = {
     "action": "messageHost",
     "message": "chat",
-    "content": '❤️'
+    "content": `${emojiClass}`
     }
     sendMessage(JSON.stringify(packet))
 }
+
 
 // ******************** Web Socket Stuff ********************** //
 let playerServerStatus = document.querySelector('h4')
@@ -128,7 +127,7 @@ socket.onmessage = function (event) {
   const message = JSON.parse(event.data);
   console.log('Received message:', message)
 
-  // Character Creation Screen
+  // Character Creation Screen - hardcoded until we figure out a different way
   if (message['message'] == "requestJoin"){
     onJoinRequest()
   } else if (message['message'] == 'reconnect'){
@@ -157,7 +156,7 @@ function sendMessage(message) {
 
 //********************* Screen Pieces ************************//
 
-function clearDOM() {
+function clearIDGameInDOM() {
   let rootElement = document.querySelector('#game');
 
   while (rootElement.firstChild) {
@@ -188,7 +187,7 @@ function addAndStartCountdown(duration, parentClass) {
     displayElement.textContent = "Cooldown: " + minutes + ":" + seconds;
     
 
-    if (timer > 0 && timer < 11){
+    if (timer > 0 && timer < 6){
       --timer
       displayElement.classList.add("pulsate")
     }
@@ -200,23 +199,20 @@ function addAndStartCountdown(duration, parentClass) {
       enableElements([`${parentClass}`])
     }
   }, 1000);
-
-  DOMElements.push(`countdown-${duration}`)
 }
 
 
-function addPrompt(str){
+function addPrompt(str) {
   console.log(str)
   let newPrompt = document.createElement("h1")
   let newPromptText = document.createTextNode(str);
   newPrompt.appendChild(newPromptText);
   let gameSection = document.querySelector('#game')
   gameSection.appendChild(newPrompt)
-  DOMElements.push("prompt")
 }
 
 
-function addInput(inputClasses){
+function addInput(inputClasses) {
   inputClasses.forEach(input => {
     let newInput = document.createElement("TEXTAREA")
     newInput.classList.add(`${input}`)
@@ -230,12 +226,11 @@ function addInput(inputClasses){
     }
     let gameSection = document.querySelector('#game')
     gameSection.appendChild(newInput)
-    DOMElements.push(input)
   })
 }
 
 
-function addButtons(buttonClasses){
+function addButtons(buttonClasses) {
   buttonClasses.forEach((button) => {
     let newButton = document.createElement("BUTTON");
     let newButtonText = document.createTextNode(capitalize(button));
@@ -253,13 +248,11 @@ function addButtons(buttonClasses){
     else if (button == "catchphrase"){
       document.querySelector(`.${button}`).addEventListener('click', onClickCatchphrase)
     } 
-
-    DOMElements.push(button)
   })
 }
 
 
-function addEmojiTray(){
+function addEmojiTray() {
   let emojiCollection = ['❤️', '😭', '🐝', '❗']
 
   let newSection = document.createElement("SECTION")
@@ -274,16 +267,16 @@ function addEmojiTray(){
     newButton.appendChild(newButtonText);
     newButton.classList.add(`emoji${i}`)
     newSection.appendChild(newButton)
-    document.querySelector(`.emoji${i}`).addEventListener('click', onClickEmoji)
-  }
-
+    document.querySelector(`.emoji${i}`).addEventListener("click", function () {
+      onClickEmoji(`emoji${i}`);
+    })}
 }
 
 
 function capitalize(word){return word.charAt(0).toUpperCase() + word.slice(1)}
 
 
-function enableElements(elementClasses){
+function enableElements(elementClasses) {
   elementClasses.forEach(element => {
     document.querySelector(`.${element}`).disabled = false
     document.querySelector(`.${element}`).classList.remove("disabled")
@@ -292,7 +285,7 @@ function enableElements(elementClasses){
 }
 
 
-function makeElementsReadOnly(elementClasses){
+function makeElementsReadOnly(elementClasses) {
   elementClasses.forEach(element => {
     document.querySelector(`.${element}`).disabled = true
     document.querySelector(`.${element}`).classList.add("disabled")
@@ -301,13 +294,9 @@ function makeElementsReadOnly(elementClasses){
 }
 
 
-function getInputValue(elementClass){
+function getInputValue(elementClass) {
   let input = document.querySelector(`.${elementClass}`)
   let inputValue = input.value
   return inputValue
  
 }
-
-// Add in elements that I want for each screen
-// Elements: Prompt, small input, large input, timer, emoteButtons, submitButton
-// Elements need to be customizable (innerText, color, placeholder)
