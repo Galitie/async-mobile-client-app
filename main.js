@@ -166,6 +166,7 @@ function clearDOM() {
 
 }
 
+
 function addAndStartCountdown(duration, parentClass) {
   let timer = duration, minutes, seconds;
 
@@ -202,6 +203,7 @@ function addAndStartCountdown(duration, parentClass) {
 
   DOMElements.push(`countdown-${duration}`)
 }
+
 
 function addPrompt(str){
   console.log(str)
@@ -256,6 +258,7 @@ function addButtons(buttonClasses){
   })
 }
 
+
 function addEmojiTray(){
   let emojiCollection = ['❤️', '😭', '🐝', '❗']
 
@@ -276,6 +279,7 @@ function addEmojiTray(){
 
 }
 
+
 function capitalize(word){return word.charAt(0).toUpperCase() + word.slice(1)}
 
 
@@ -287,6 +291,7 @@ function enableElements(elementClasses){
   })
 }
 
+
 function makeElementsReadOnly(elementClasses){
   elementClasses.forEach(element => {
     document.querySelector(`.${element}`).disabled = true
@@ -294,6 +299,7 @@ function makeElementsReadOnly(elementClasses){
     document.querySelector(`.${element}`).innerText = "Submitted"
   })
 }
+
 
 function getInputValue(elementClass){
   let input = document.querySelector(`.${elementClass}`)
