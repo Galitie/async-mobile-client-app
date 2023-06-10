@@ -95,7 +95,7 @@ function onClickCharacterCreation(){
 
 function onClickEmoji(){
   console.log("You pressed an emoji")
-  let emojiValue = getInputValue('emoji')
+  let emojiValue = getInputValue('emoji0')
 
   const packet = {
     "action": "messageHost",
