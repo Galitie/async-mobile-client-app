@@ -9,3 +9,5 @@ sprite_frames = ExtResource("2_ja462")
 sprite_offset = Vector2(8.5, 7)
 tts_name = "MSTTS_V110_itIT_CosimoM"
 voice_pitch = 2.0
+icon_region = Rect2(224, 192, 32, 32)
+name = "Mario"

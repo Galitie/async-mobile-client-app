@@ -9,3 +9,5 @@ sprite_frames = ExtResource("2_0khfa")
 sprite_offset = Vector2(8.5, 4)
 tts_name = "MSTTS_V110_enIE_SeanM"
 voice_pitch = 1.0
+icon_region = Rect2(224, 224, 32, 32)
+name = "Shrek"

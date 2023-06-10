@@ -1,11 +1,12 @@
+# TODO: Wipe users table on every addToDB packet
 extends Node2D
 
 var character_manifest = [
 	"res://characters/tyler.tres",
+	"res://characters/shrek.tres",
 	"res://characters/mario.tres",
 	"res://characters/kermit.tres",
-	"res://characters/snake.tres",
-	"res://characters/shrek.tres"
+	"res://characters/snake.tres"
 ]
 var voices
 
@@ -81,6 +82,8 @@ func UpdateUserData(user_data):
 func Speak(ip, chat_content):
 	DisplayServer.tts_speak(chat_content, players[ip].voice_id, 50, players[ip].character.character_data.voice_pitch)
 	$CanvasLayer/TextBox/Dialogue.text = chat_content
+	$CanvasLayer/TextBox/Icon/Name.text = "[center]" + players[ip].character.character_data.name
+	$CanvasLayer/TextBox/Icon.texture.region = players[ip].character.character_data.icon_region
 	$CanvasLayer/TextBox/AnimationPlayer.play("appear")
 	
 func _process(delta):

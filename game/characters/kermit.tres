@@ -9,3 +9,5 @@ sprite_frames = ExtResource("2_r1cp7")
 sprite_offset = Vector2(8.5, 3)
 tts_name = "MSTTS_V110_enCA_RichardM"
 voice_pitch = 0.0
+icon_region = Rect2(224, 128, 32, 32)
+name = "Kermit"
