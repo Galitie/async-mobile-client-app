@@ -43,13 +43,13 @@ body{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    text-align: center;
 }
 
 button {
     width:100%;
     min-height: 150px;
     font-size: 5vw;
-    text-align: center;
 }
 
 button:active {
