@@ -1,17 +1,22 @@
-
+// Battle screen
+// Refactoring Event Listeners now that I know I can pass arguments
+// Styling everything
+// Making UI friendly to laptops (incase someone needs to use a computer?)
 
 
 // ************************* Screens *************************** //
 //Splash Screen when host is not connected
-function hostNotConnected(){
-  console.log("Host not connected")
+function notConnectedScreen(){
+  console.log("Host or Server not connected")
 
   clearIDGameInDOM()
   addPrompt(`TYLERPG`)
+  addButtons(['connect'])
 }
 
+
 // Character Screen
-function onJoinRequest() {
+function onJoinRequestScreen() {
   console.log("I got your join request")
 
   clearIDGameInDOM()
@@ -24,7 +29,7 @@ function onJoinRequest() {
 
 
 // Overworld Screen
-function overWorldMenu() {
+function overWorldMenuScreen() {
   console.log("Switched to overworld menu")
 
   clearIDGameInDOM()
@@ -35,6 +40,9 @@ function overWorldMenu() {
 }
 
 
+function battleScreen(){
+
+}
 
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
@@ -128,7 +136,7 @@ function onClickCharacterCreation() {
       "catchphrase": bigInputValue
       }
     sendMessage(JSON.stringify(packet))
-    overWorldMenu()
+    overWorldMenuScreen()
     bigInput.classList.remove("missedInput")
     smallInput.classList.remove("missedInput")
   } else if (bigInputValue == "" && smallInputValue == "") {
@@ -157,6 +165,9 @@ function onClickEmoji(emojiClass, emoji) {
     sendMessage(JSON.stringify(packet))
 }
 
+function onClickConnect(){
+  location.reload(true)
+}
 
 // ******************** Web Socket Stuff ********************** //
 let playerServerStatus = document.querySelector('h4')
@@ -189,11 +200,11 @@ socket.onmessage = function (event) {
     hostServerStatus.style.color = "green"
     onJoinRequest()
   } else if (message['message'] == 'reconnect'){
-    overWorldMenu()
+    overWorldMenuScreen()
   } else if (message['message'] == 'Internal server error'){
     hostServerStatus.innerText = "\u2717 Disconnected from Host"
     hostServerStatus.style.color = "red"
-    hostNotConnected()
+    notConnectedScreen()
   } 
 };
 
@@ -205,6 +216,7 @@ socket.onerror = function (error) {
 // Connection closed event
 socket.onclose = function (event) {
   console.log('WebSocket connection closed:', event.code, event.reason);
+  notConnectedScreen()
   playerServerStatus.innerText = "\u2717 Disconnected from Server"
   playerServerStatus.style.color = "red"
 };
@@ -309,7 +321,10 @@ function addButtons(buttonClasses) {
     }
     else if (button == "catchphrase"){
       document.querySelector(`.${button}`).addEventListener('click', onClickCatchphrase)
-    } 
+    }
+    else if (button == "connect"){
+      document.querySelector(`.${button}`).addEventListener('click', onClickConnect)
+    }
   })
 }
 

@@ -94,6 +94,12 @@ h1{
     color: black;
 }
 
+.connect {
+    border: none;
+    background-color: greenyellow;
+    color: black;
+}
+
 .create {
     border: none;
     background-color: greenyellow;
