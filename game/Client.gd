@@ -73,7 +73,6 @@ func ProcessPacket(packet):
 
 func _addedToDB(packet):
 	$World.ready_for_players = true
-	pass
 
 # { "action: messageHost", "message: attemptJoin" }
 func _userAttemptedToJoin(packet):
@@ -86,7 +85,7 @@ func _userAttemptedToJoin(packet):
 		print(user.name + " has reconnected")
 		response["message"] = "reconnect"
 	else:
-		if true: # Insert game check for lobby state here
+		if $World.ready_for_players:
 			response["message"] = "requestJoin"
 		else:
 			response["message"] = "refuseJoin"

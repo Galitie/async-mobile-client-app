@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_ate2r")
 sprite_frames = ExtResource("2_cklsk")
-sprite_offset = Vector2(8.5, 5)
+sprite_offset = Vector2(8.5, -1)
 tts_name = "MSTTS_V110_jaJP_IchiroM"
 voice_pitch = 0.0
 icon_region = Rect2(224, 160, 32, 32)
