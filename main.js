@@ -3,6 +3,8 @@
 // Styling everything
 // Making UI friendly to laptops (incase someone needs to use a computer?)
 
+// Need to test if this fixes issue where keyboard pushes content around!
+navigator.virtualKeyboard.overlaysContent = true
 
 // ************************* Screens *************************** //
 //Splash Screen when host is not connected

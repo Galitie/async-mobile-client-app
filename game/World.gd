@@ -5,8 +5,8 @@ var character_manifest = [
 	"res://characters/tyler.tres",
 	"res://characters/mario.tres",
 	"res://characters/snake.tres",
-	"res://characters/kermit.tres",
-	"res://characters/shrek.tres"
+	"res://characters/shrek.tres",
+	"res://characters/kermit.tres"
 ]
 var voices
 
