@@ -36,6 +36,8 @@ func SetCellDestination(cell_pos, _direction):
 	var current_frame = frame
 	animation = "walk_" + _direction
 	frame = current_frame
+	var old_direction = direction
+	direction = _direction
 	
 	var tile_data = world.current_map.get_cell_tile_data(3, cell_destination)
 	if tile_data:
@@ -44,8 +46,7 @@ func SetCellDestination(cell_pos, _direction):
 		return
 	
 	if follower:
-		follower.SetCellDestination(cell_position, direction)
-	direction = _direction
+		follower.SetCellDestination(cell_position, old_direction)
 	
 	$StepTimer.start()
 	var tween = get_tree().create_tween()
@@ -62,6 +63,25 @@ func _process(delta):
 			SetCellDestination(cell_position + Vector2i(0, -1), "north")
 		elif can_move && Input.is_action_pressed("move_down"):
 			SetCellDestination(cell_position + Vector2i(0, 1), "south")
+			
+		if Input.is_action_just_pressed("interact"):
+			Interact()
+
+func Interact():
+	var interact_destination
+	match (direction):
+		"south":
+			interact_destination = cell_position + Vector2i(0, 1)
+		"north":
+			interact_destination = cell_position + Vector2i(0, -1)
+		"east":
+			interact_destination = cell_position + Vector2i(1, 0)
+		"west":
+			interact_destination = cell_position + Vector2i(-1, 0)
+	for object in world.current_map.get_node("Objects").get_children():
+		if object.cell_position == interact_destination:
+			object.region_rect = object.interact_sprite
+			world.emit_signal(object.interact_signal)
 
 func _onStep():
 	frame = fmod(frame + 1, 4)

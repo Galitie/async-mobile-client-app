@@ -29,7 +29,7 @@ func _ready():
 	# Speech and reimported in order to be recognized by Godot
 	voices = DisplayServer.tts_get_voices()
 	
-	var lobby_map = preload("res://Lobby.tscn") as PackedScene
+	var lobby_map = preload("res://dungeon1/Lobby.tscn") as PackedScene
 	current_map = lobby_map.instantiate()
 	add_child(current_map)
 	
@@ -89,3 +89,6 @@ func Speak(ip, chat_content):
 func _process(delta):
 	if !DisplayServer.tts_is_speaking() && $CanvasLayer/TextBox.visible:
 		$CanvasLayer/TextBox/AnimationPlayer.play("disappear")
+
+func _itemFound():
+	$CanvasLayer/TextBox/AnimationPlayer.play("appear")
