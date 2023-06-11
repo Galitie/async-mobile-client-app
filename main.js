@@ -1,6 +1,6 @@
-// Battle screen
 // Refactoring Event Listeners now that I know I can pass arguments
 // Styling everything
+// Emoji needs emoji packet
 // Making UI friendly to laptops (incase someone needs to use a computer?)
 
 // Need to test if this fixes issue where keyboard pushes content around!
@@ -13,20 +13,22 @@ function notConnectedScreen(){
 
   clearIDGameInDOM()
   addPrompt(`TYLERPG`)
+  addPrompt(`Click below to join or re-join the game!`)
   addButtons(['connect'])
+
 }
 
 
-// Character Screen
+// Player join screen
 function onJoinRequestScreen() {
   console.log("I got your join request")
 
   clearIDGameInDOM()
-  addPrompt("Create a new Character:")
+  addPrompt("Add player to game:")
   addInput(['smallInput', 'bigInput'])
-  addButtons(['create'])
+  addButtons(['join'])
   document.querySelector(".smallInput").setAttribute("placeholder", "Your name")
-  document.querySelector(".bigInput").setAttribute("placeholder", "Type in a catchphrase you'd like to use often!")
+  document.querySelector(".bigInput").setAttribute("placeholder", "Type in a catchphrase!")
 }
 
 
@@ -35,16 +37,31 @@ function overWorldMenuScreen() {
   console.log("Switched to overworld menu")
 
   clearIDGameInDOM()
-  addPrompt("Say some stuff to Tyler or press the catchphrase button!")
+  addPrompt("Say some stuff to Tyler or tap an emoji:")
   addInput(['bigInput'])
-  addButtons(['submit', 'catchphrase'])
+  addButtons(['submit'])
   addEmojiTray()
 }
 
 
 function battleScreen(){
-
+  clearIDGameInDOM()
+  addPrompt(`Name an attack for Tyler to use:`)
+  addInput(['smallInput'])
+  document.querySelector(".smallInput").setAttribute("placeholder", "Type attack here")
+  addButtons(['[submit]'])
+  addEmojiTray()
 }
+
+
+function nameItemScreen(){
+  clearIDGameInDOM()
+  addPrompt(`Name the item that Tyler found:`)
+  addInput(['smallInput'])
+  document.querySelector(".smallInput").setAttribute("placeholder", "Type item name here")
+  addButtons(['[submit]'])
+}
+
 
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
@@ -60,7 +77,6 @@ function onClickSubmit() {
         "content": smallInputValue, bigInputValue
         }
         sendMessage(JSON.stringify(packet))
-        addAndStartCountdown(15, 'submit')
 
         bigInput.value = ""
         smallInput.value = ""
@@ -85,7 +101,6 @@ function onClickSubmit() {
         "content": bigInputValue
         }
         sendMessage(JSON.stringify(packet))
-        addAndStartCountdown(15, 'submit')
         bigInput.value = ""
         bigInput.classList.remove("missedInput")
       } else {
@@ -102,7 +117,6 @@ function onClickSubmit() {
       "content": smallInputValue
       }
       sendMessage(JSON.stringify(packet))
-      addAndStartCountdown(15, 'submit')
 
       smallInput.value = ""
       smallInput.classList.remove("missedInput")
@@ -121,7 +135,6 @@ function onClickCatchphrase() {
   "message": "sayCatchphrase"
   }
   sendMessage(JSON.stringify(packet))
-  addAndStartCountdown(15, 'catchphrase')
 
 }
 
@@ -166,6 +179,7 @@ function onClickEmoji(emojiClass, emoji) {
     }
     sendMessage(JSON.stringify(packet))
 }
+
 
 function onClickConnect(){
   location.reload(true)
@@ -318,7 +332,7 @@ function addButtons(buttonClasses) {
     if (button == "submit"){
       document.querySelector(`.${button}`).addEventListener('click', onClickSubmit)
     } 
-    else if (button == "create") {
+    else if (button == "join") {
       document.querySelector(`.${button}`).addEventListener('click', onClickCharacterCreation)
     }
     else if (button == "catchphrase"){
