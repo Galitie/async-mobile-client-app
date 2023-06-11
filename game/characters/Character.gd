@@ -54,7 +54,7 @@ func SetCellDestination(cell_pos, _direction):
 	tween.tween_callback(_finishedMoving)
 
 func _process(delta):
-	if controllable:
+	if !world.paused && controllable:
 		if can_move && Input.is_action_pressed("move_right"):
 			SetCellDestination(cell_position + Vector2i(1, 0), "east")
 		elif can_move && Input.is_action_pressed("move_left"):
@@ -80,8 +80,10 @@ func Interact():
 			interact_destination = cell_position + Vector2i(-1, 0)
 	for object in world.current_map.get_node("Objects").get_children():
 		if object.cell_position == interact_destination:
-			object.region_rect = object.interact_sprite
-			world.emit_signal(object.interact_signal)
+			if !object.one_shot || (object.one_shot && !object.interacted_with):
+				object.region_rect = object.interact_sprite
+				object.interacted_with = true
+				world.emit_signal(object.interact_signal, object.messages)
 
 func _onStep():
 	frame = fmod(frame + 1, 4)

@@ -1,5 +1,7 @@
-# TODO: Wipe users table on every addToDB packet
+# TODO: $disconnect route to inform all users if it came from the host
 extends Node2D
+
+signal item_found
 
 var character_manifest = [
 	"res://characters/tyler.tres",
@@ -13,7 +15,18 @@ var voices
 var client
 var ready_for_players = false
 var current_map
+var paused = false
 var last_ip
+var reading = false
+var message_queue = []
+var tts_queue = []
+
+class TTSMessage:
+	var content
+	var voice_id
+	var pitch
+	var speaker_name
+	var icon_region
 
 class Player:
 	var user_data
@@ -23,6 +36,8 @@ class Player:
 var players = {}
 
 func _ready():
+	connect("item_found", _itemFound)
+	
 	# TTS voices need to be installed from either the Windows speech package downloader in settings or from the
 	# runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
 	# Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
@@ -41,9 +56,9 @@ func _ready():
 	host_data.role = "host"
 	host_data.connection_id = "0"
 	host_data.connection_status = client.CONNECTION_STATUS.ONLINE
-	var character = CreateCharacter(0)
 	AddPlayer(host_data, players.size())
 	SpawnCharacter(players[host_data.ip], true, null, Vector2i(-1, 0))
+	$Camera2D.SetTarget(players[host_data.ip].character)
 	
 func SpawnCharacter(player, controllable, character_to_follow, cell_position):
 	player.character.controllable = controllable
@@ -80,15 +95,45 @@ func UpdateUserData(user_data):
 		player.character.modulate = Color.DIM_GRAY
 
 func Speak(ip, chat_content):
-	DisplayServer.tts_speak(chat_content, players[ip].voice_id, 50, players[ip].character.character_data.voice_pitch)
-	$CanvasLayer/TextBox/Dialogue.text = chat_content
-	$CanvasLayer/TextBox/Icon/Name.text = "[center]" + players[ip].character.character_data.name
-	$CanvasLayer/TextBox/Icon.texture.region = players[ip].character.character_data.icon_region
-	$CanvasLayer/TextBox/AnimationPlayer.play("appear")
+	var tts_msg = TTSMessage.new()
+	tts_msg.content = chat_content
+	tts_msg.voice_id = players[ip].voice_id
+	tts_msg.pitch = players[ip].character.character_data.voice_pitch
+	tts_msg.speaker_name = players[ip].character.character_data.name
+	tts_msg.icon_region = players[ip].character.character_data.icon_region
+	tts_queue.append(tts_msg)
 	
 func _process(delta):
-	if !DisplayServer.tts_is_speaking() && $CanvasLayer/TextBox.visible:
-		$CanvasLayer/TextBox/AnimationPlayer.play("disappear")
+	if !paused:
+		if !DisplayServer.tts_is_speaking():
+			if tts_queue.size():
+				var tts = tts_queue.pop_front()
+				DisplayServer.tts_speak(tts.content, tts.voice_id, 50, tts.pitch)
+				$CanvasLayer/MessageBox.Show(tts.content, tts.speaker_name, tts.icon_region)
+			elif $CanvasLayer/MessageBox.showing:
+				$CanvasLayer/MessageBox.Hide()
+	elif reading && Input.is_action_just_pressed("interact"):
+		var next_message = message_queue.pop_front()
+		if next_message == null:
+			$CanvasLayer/MessageBox.Hide()
+			reading = false
+			ResumeWorld()
+		else:
+			$CanvasLayer/MessageBox.Show(next_message)
 
-func _itemFound():
-	$CanvasLayer/TextBox/AnimationPlayer.play("appear")
+func _itemFound(messages):
+	PauseWorld()
+	reading = true
+	message_queue = messages
+	var message = message_queue.pop_front()
+	$CanvasLayer/MessageBox.Show(message)
+
+func PauseWorld():
+	# client.SendPacket("action": "MessageAllUsers", "message": "pauseWorld")
+	paused = true
+	DisplayServer.tts_pause()
+	
+func ResumeWorld():
+	# client.SendPacket("action": "MessageAllUsers", "message": "resumeWorld")
+	paused = false
+	DisplayServer.tts_resume()

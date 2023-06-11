@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2jppjuo4c7nk"]
 
-[ext_resource type="TileSet" uid="uid://dfspnesgu01bd" path="res://dungeon1/intro_tileset.tres" id="1_6v0yu"]
+[ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6v0yu"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="2_wsmvx"]
 [ext_resource type="Texture2D" uid="uid://cvruot8ljkbm0" path="res://dungeon1/dungeon_tile.png" id="3_jvo88"]
 [ext_resource type="Script" path="res://Interactable.gd" id="4_bgr3q"]
@@ -53,6 +53,8 @@ centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_bgr3q")
+one_shot = true
 cell_position = Vector2i(4, -2)
 interact_sprite = Rect2(145, 96, 17, 16)
 interact_signal = "item_found"
+messages = ["Wow, neat! You got a...", "Uh..", "I forgot."]
