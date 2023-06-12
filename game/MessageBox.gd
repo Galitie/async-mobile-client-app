@@ -8,13 +8,10 @@ var speaker_name
 var icon_region
 
 func _ready():
-	$AnimationPlayer.connect("animation_started", _animationStarted)
 	$AnimationPlayer.connect("animation_finished", _animationFinished)
 
 func Show(content, _speaker_name = "", _icon_region = null):
-	message = content
-	speaker_name = _speaker_name
-	icon_region = _icon_region
+	SetText(false, content, _speaker_name, _icon_region)
 	if showing:
 		Hide()
 		awaiting_message = true
@@ -27,24 +24,26 @@ func Hide():
 		$Icon.visible = false
 		$Dialogue.visible = false
 		$AnimationPlayer.play("disappear")
-
-func _animationStarted(anim):
-	if anim == "appear":
-		if speaker_name:
+	
+func SetText(explicit, content, _speaker_name = "", _icon_region = null):
+	message = content
+	speaker_name = _speaker_name
+	icon_region = _icon_region
+	if explicit:
+		if _speaker_name:
 			$Dialogue.text = message
 			$Icon.texture.region = icon_region
 			$Icon/Name.text = "[center]" + speaker_name
+			$Dialogue.visible = true
+			$Icon.visible = true
 		else:
 			$Info.text = "[center]" + message
+			$Info.visible = true
 
 func _animationFinished(anim):
 	if anim == "appear":
 		showing = true
-		if speaker_name:
-			$Dialogue.visible = true
-			$Icon.visible = true
-		else:
-			$Info.visible = true
+		SetText(true, message, speaker_name, icon_region)
 	elif anim == "disappear":
 		if awaiting_message:
 			$AnimationPlayer.play("appear")
