@@ -119,7 +119,7 @@ func _process(delta):
 			reading = false
 			ResumeWorld()
 		else:
-			$CanvasLayer/MessageBox.Show(next_message)
+			$CanvasLayer/MessageBox.SetText(true, next_message)
 
 func _itemFound(messages):
 	PauseWorld()
