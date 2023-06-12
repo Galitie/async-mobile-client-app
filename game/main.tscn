@@ -22,3 +22,7 @@ y_sort_enabled = true
 [node name="CanvasLayer" type="CanvasLayer" parent="World"]
 
 [node name="MessageBox" parent="World/CanvasLayer" instance=ExtResource("4_lgd38")]
+offset_left = -227.5
+offset_top = -126.0
+offset_right = 227.5
+offset_bottom = -10.0

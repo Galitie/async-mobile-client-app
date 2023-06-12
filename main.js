@@ -69,29 +69,36 @@ function onClickSubmit() {
   if (document.querySelector('.bigInput') && document.querySelector('.smallInput')){
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
     let [bigInput, bigInputValue] = getInputAndValue('bigInput')
+    let inputValid = true // this could be a method, reusuable validateInputs([])
 
-    if (smallInputValue !== "" && bigInputValue !== ""){
-      const packet = {
-        "action": "messageHost",
-        "message": "chat",
-        "content": smallInputValue, bigInputValue
-        }
-        sendMessage(JSON.stringify(packet))
-
-        bigInput.value = ""
-        smallInput.value = ""
-        bigInput.classList.remove("missedInput")
-        smallInput.classList.remove("missedInput")
-    } else if (smallInputValue == "" && bigInputValue == ""){
+    if (smallInputValue == "") {
       smallInput.classList.add("missedInput")
+      inputValid = false
+    } 
+    
+    if (bigInputValue == "") {
       bigInput.classList.add("missedInput")
-    } else if (smallInput == ""){
-      smallInput.classList.add("missedInput")
-    } else {
-      bigInput.classList.add("missedInput")
+      inputValid = false
     }
-  }
-  else if (document.querySelector('.bigInput'))  {
+
+    if (inputValid == false) {
+      return
+    }
+
+    const packet = {
+      "action": "messageHost",
+      "message": "chat",
+      "content": smallInputValue, bigInputValue
+    }
+
+    sendMessage(JSON.stringify(packet))
+
+    // this could be a method "cleanUpInput" with arr of what to cleanup
+    bigInput.value = ""
+    smallInput.value = ""
+    bigInput.classList.remove("missedInput")
+    smallInput.classList.remove("missedInput")
+  } else if (document.querySelector('.bigInput')) {
     let [bigInput, bigInputValue] = getInputAndValue('bigInput')
 
     if (bigInputValue !== ""){
@@ -99,22 +106,22 @@ function onClickSubmit() {
         "action": "messageHost",
         "message": "chat",
         "content": bigInputValue
-        }
-        sendMessage(JSON.stringify(packet))
-        bigInput.value = ""
-        bigInput.classList.remove("missedInput")
-      } else {
-        bigInput.classList.add("missedInput")
+      }
+      sendMessage(JSON.stringify(packet))
+      bigInput.value = ""
+      bigInput.classList.remove("missedInput")
+    } else {
+      bigInput.classList.add("missedInput")
     }
 
   } else {
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
 
     if (smallInput !== ""){
-    const packet = {
-      "action": "messageHost",
-      "message": "chat",
-      "content": smallInputValue
+      const packet = {
+        "action": "messageHost",
+        "message": "chat",
+        "content": smallInputValue
       }
       sendMessage(JSON.stringify(packet))
 
@@ -215,8 +222,10 @@ socket.onmessage = function (event) {
     hostServerStatus.innerText = "\u2705 Connected to Host"
     hostServerStatus.style.color = "green"
     onJoinRequestScreen()
+
   } else if (message['message'] == 'reconnect'){
     overWorldMenuScreen()
+
   } else if (message['message'] == 'Internal server error'){
     hostServerStatus.innerText = "\u2717 Disconnected from Host"
     hostServerStatus.style.color = "red"
@@ -242,6 +251,13 @@ function sendMessage(message) {
   socket.send(message);
   console.log('Sent message:', message)
 }
+
+
+function setConnectionStatus(serverType, color){
+  // if host server or player server => change inner text and color
+  // put in notConnectedScreen
+}
+
 
 
 //********************* Screen Pieces ************************//
@@ -322,26 +338,21 @@ function addInput(inputClasses) {
 
 function addButtons(buttonClasses) {
   buttonClasses.forEach((button) => {
-    let newButton = document.createElement("BUTTON");
-    let newButtonText = document.createTextNode(capitalize(button));
-    newButton.appendChild(newButtonText);
+    let newButton = document.createElement('BUTTON')
+    let newButtonText = document.createTextNode(capitalize(button))
+    newButton.appendChild(newButtonText)
     newButton.classList.add(`${button}`)
-    let gameSection = document.querySelector('#game')
-    gameSection.appendChild(newButton)
+    document.querySelector('#game').appendChild(newButton)
+    document.getElementsByClassName(`${button}`).addEventListener('click', buttonMap[button])
 
-    if (button == "submit"){
-      document.querySelector(`.${button}`).addEventListener('click', onClickSubmit)
-    } 
-    else if (button == "join") {
-      document.querySelector(`.${button}`).addEventListener('click', onClickCharacterCreation)
-    }
-    else if (button == "catchphrase"){
-      document.querySelector(`.${button}`).addEventListener('click', onClickCatchphrase)
-    }
-    else if (button == "connect"){
-      document.querySelector(`.${button}`).addEventListener('click', onClickConnect)
-    }
   })
+}
+
+let buttonMap = {
+  'submit': onClickSubmit,
+  'join': onClickCharacterCreation,
+  'catchphrase': onClickCatchphrase,
+  'connect': onClickConnect
 }
 
 
@@ -351,18 +362,18 @@ function addEmojiTray() {
   let newSection = document.createElement("SECTION")
   newSection.setAttribute('id', 'emojiContainer')
 
-  let gameSection = document.querySelector('#game')
-  gameSection.appendChild(newSection)
+  document.querySelector('#game').appendChild(newSection)
 
   for(let i=0; i < emojiCollection.length; i++){
     let newButton = document.createElement("BUTTON");
     let newButtonText = document.createTextNode(emojiCollection[i])
-    newButton.appendChild(newButtonText);
+    newButton.appendChild(newButtonText)
     newButton.classList.add(`emoji${i}`)
     newSection.appendChild(newButton)
     document.querySelector(`.emoji${i}`).addEventListener("click", function () {
-      onClickEmoji(`emoji${i}`, `${newButton.innerText}`);
-    })}
+      onClickEmoji(`emoji${i}`, `${newButton.innerText}`)
+    })
+  }
 }
 
 
