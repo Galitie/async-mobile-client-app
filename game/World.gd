@@ -2,6 +2,7 @@
 extends Node2D
 
 signal item_found
+signal portal_entered
 
 var character_manifest = [
 	"res://characters/tyler.tres",
@@ -33,10 +34,16 @@ class Player:
 	var character
 	var voice_id
 
+const MAX_PLAYERS = 2
 var players = {}
 
+var next_map
+var spawn_position
+
 func _ready():
+	$CanvasLayer/AnimationPlayer.connect("animation_finished", _animationFinished)
 	connect("item_found", _itemFound)
+	connect("portal_entered", _portalEntered)
 	
 	# TTS voices need to be installed from either the Windows speech package downloader in settings or from the
 	# runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
@@ -57,11 +64,10 @@ func _ready():
 	host_data.connection_id = "0"
 	host_data.connection_status = client.CONNECTION_STATUS.ONLINE
 	AddPlayer(host_data, players.size())
-	SpawnCharacter(players[host_data.ip], true, null, Vector2i(-1, 0))
+	SpawnCharacter(players[host_data.ip], null, Vector2i(-1, 0))
 	$Camera2D.SetTarget(players[host_data.ip].character)
 	
-func SpawnCharacter(player, controllable, character_to_follow, cell_position):
-	player.character.controllable = controllable
+func SpawnCharacter(player, character_to_follow, cell_position):
 	player.character.SetCellPosition(cell_position)
 	if character_to_follow:
 		character_to_follow.follower = player.character
@@ -77,12 +83,15 @@ func AddPlayer(user_data, character_index):
 			player.voice_id = voice["id"]
 	players[player.user_data.ip] = player
 	
+	if players.size() == MAX_PLAYERS:
+		OpenLobbyDoor()
+	
 func CreateCharacter(character_index):
 	var character_data = ResourceLoader.load(character_manifest[character_index])
 	var character_scene = load("res://Characters/Character.tscn") as PackedScene
 	var character = character_scene.instantiate()
 	character.visible = false
-	$Characters.add_child(character)
+	$Party.add_child(character)
 	character.Init(self, character_data)
 	return character
 	
@@ -105,6 +114,9 @@ func Speak(ip, chat_content):
 	
 func _process(delta):
 	if !paused:
+		# First party member is controllable
+		$Party.get_child(0).Update(delta)
+		
 		if !DisplayServer.tts_is_speaking():
 			if tts_queue.size():
 				var tts = tts_queue.pop_front()
@@ -121,12 +133,34 @@ func _process(delta):
 		else:
 			$CanvasLayer/MessageBox.SetText(true, next_message)
 
+func OpenLobbyDoor():
+	current_map.emit_signal("open_door")
+
 func _itemFound(messages):
 	PauseWorld()
 	reading = true
-	message_queue = messages
+	message_queue = messages.duplicate()
 	var message = message_queue.pop_front()
 	$CanvasLayer/MessageBox.Show(message)
+	
+func _portalEntered(_next_map, _spawn_position):
+	PauseWorld()
+	next_map = _next_map
+	spawn_position = _spawn_position
+	$CanvasLayer/AnimationPlayer.play("fade_out")
+	
+func _animationFinished(anim):
+	if anim == "fade_out":
+		remove_child(current_map)
+		current_map = load(next_map).instantiate()
+		add_child(current_map)
+		for ip in players:
+			players[ip].character.SetCellPosition(spawn_position)
+		next_map = null
+		spawn_position = Vector2i.ZERO
+		$CanvasLayer/AnimationPlayer.play("fade_in")
+	elif anim == "fade_in":
+		ResumeWorld()
 
 func PauseWorld():
 	# client.SendPacket("action": "MessageAllUsers", "message": "pauseWorld")

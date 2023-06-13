@@ -1,3 +1,4 @@
+class_name Interactable
 extends Sprite2D
 
 @export var one_shot : bool
@@ -6,13 +7,16 @@ extends Sprite2D
 @export var interact_signal : String
 @export var messages : Array
 
-var map
 var interacted_with = false
 
 func _ready():
-	map = get_parent().get_parent()
-	SetCellPosition(cell_position)
+	var map = get_parent().get_parent()
+	transform.origin = Vector2(map.cell_quadrant_size * cell_position.x, map.cell_quadrant_size * cell_position.y)
 	set_process(false)
 
-func SetCellPosition(cell_pos):
-	transform.origin = Vector2(map.cell_quadrant_size * cell_pos.x, map.cell_quadrant_size * cell_pos.y)
+func Interact():
+	if !one_shot || (one_shot && !interacted_with):
+		region_rect = interact_sprite
+		interacted_with = true
+		return interact_signal
+	return ""
