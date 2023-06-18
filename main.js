@@ -3,6 +3,10 @@
 // Emoji needs emoji packet
 // Making UI friendly to laptops (incase someone needs to use a computer?)
 
+// make dating sim portraits square porportion
+// make more rooms
+// find tile sets for dating sim portion
+
 // Need to test if this fixes issue where keyboard pushes content around!
 navigator.virtualKeyboard.overlaysContent = true
 
