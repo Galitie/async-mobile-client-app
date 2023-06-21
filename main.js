@@ -3,7 +3,7 @@
 // Emoji needs emoji packet
 // Making UI friendly to laptops (incase someone needs to use a computer?)
 
-// make dating sim portraits square porportion
+// make dating sim portraits square proportion
 // make more rooms
 // find tile sets for dating sim portion
 
