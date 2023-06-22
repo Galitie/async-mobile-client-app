@@ -15,9 +15,10 @@ func _process(delta):
 	pass
 
 func _chestOpened():
-	if !chest_opened_before:
+	if chest_opened_before:
+		print('Chest has been opened before')
+		
+	else:
 		print('This is the first chest ever')
 		chest_opened_before = true
 		
-	else:
-		print('Chest has been opened before')
