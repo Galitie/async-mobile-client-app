@@ -105,7 +105,7 @@ func UpdateUserData(user_data):
 
 func ParseContext(packet):
 	if is_connected(packet["context"], Callable(self, "_" + packet["context"])):
-		emit_signal(packet["context"])
+		emit_signal(packet["context"], packet)
 	else:
 		pass
 		# Emit signal to map
