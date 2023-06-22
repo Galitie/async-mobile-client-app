@@ -92,7 +92,8 @@ function onClickSubmit() {
     const packet = {
       "action": "messageHost",
       "message": "sendText",
-      "content": smallInputValue, bigInputValue
+      "content": smallInputValue, bigInputValue,
+      "context": "speak"
     }
 
     sendMessage(JSON.stringify(packet))
@@ -118,7 +119,8 @@ function onClickSubmit() {
       const packet = {
         "action": "messageHost",
         "message": "sendText",
-        "content": bigInputValue
+        "content": bigInputValue,
+        "context": "speak"
       }
 
       sendMessage(JSON.stringify(packet))
@@ -142,7 +144,8 @@ function onClickSubmit() {
     const packet = {
       "action": "messageHost",
       "message": "sendText",
-      "content": smallInputValue
+      "content": smallInputValue,
+      "context": "speak"
     }
 
     sendMessage(JSON.stringify(packet))
