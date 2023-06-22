@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://2jppjuo4c7nk"]
+[gd_scene load_steps=7 format=3 uid="uid://2jppjuo4c7nk"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6v0yu"]
+[ext_resource type="Script" path="res://dungeon1/Lobby.gd" id="2_daw8g"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="2_wsmvx"]
 [ext_resource type="Texture2D" uid="uid://cvruot8ljkbm0" path="res://dungeon1/dungeon_tile.png" id="3_jvo88"]
 [ext_resource type="Script" path="res://Interactable.gd" id="4_bgr3q"]
@@ -32,6 +33,7 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(196602, 851968, 19, 131076, 851968, 19, 131067, 851968, 19, 327672, 851968, 19, 327673, 851968, 19, 327674, 851968, 19, 327675, 851968, 19, 327676, 851968, 19, 327677, 851968, 19, 327678, 851968, 19, 327679, 851968, 19, 262144, 851968, 19, 262145, 851968, 19, 262146, 851968, 19, 262147, 851968, 19, 262148, 851968, 19, 262149, 851968, 19, 196614, 851968, 19, 262150, 851968, 19, 131078, 851968, 19, 65542, 851968, 19, 6, 851968, 19, -65530, 851968, 19, -131066, 851968, 19, -196602, 851968, 19, -262138, 851968, 19, -327674, 851968, 19, -327675, 851968, 19, -327676, 851968, 19, -327677, 851968, 19, -327678, 851968, 19, -327679, 851968, 19, -327680, 851968, 19, -262146, 851968, 19, -262147, 851968, 19, -262148, 851968, 19, -262149, 851968, 19, -262150, 851968, 19, -262151, 851968, 19, -262152, 851968, 19, -196616, 851968, 19, -131080, 851968, 19, -65544, 851968, 19, -8, 851968, 19, 65528, 851968, 19, 131064, 851968, 19, 196600, 851968, 19, 262136, 851968, 19, 196601, 851968, 19, 262139, 851968, 19, -131068, 851968, 19, -65542, 851968, 19, -131079, 851968, 19, -196604, 851968, 19, -131078, 851968, 19)
+script = ExtResource("2_daw8g")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(0, 0, 0, 1)

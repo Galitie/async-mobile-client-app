@@ -84,7 +84,7 @@ func AddPlayer(user_data, character_index):
 	players[player.user_data.ip] = player
 	
 	if players.size() == MAX_PLAYERS:
-		OpenLobbyDoor()
+		current_map.emit_signal("all_players_joined")
 	
 func CreateCharacter(character_index):
 	var character_data = ResourceLoader.load(character_manifest[character_index])

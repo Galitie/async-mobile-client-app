@@ -16,6 +16,7 @@ func _ready():
 	set_process(false)
 	
 func SetLockStatus(lock_status):
+	locked = lock_status
 	if lock_status:
 		region_rect = locked_sprite_region
 	else:

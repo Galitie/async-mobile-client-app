@@ -85,7 +85,7 @@ func _userAttemptedToJoin(packet):
 		print(user.name + " has reconnected")
 		response["message"] = "reconnect"
 	else:
-		if $World.ready_for_players:
+		if $World.ready_for_players && $World.players.size() < $World.MAX_PLAYERS:
 			response["message"] = "requestJoin"
 		else:
 			response["message"] = "refuseJoin"
