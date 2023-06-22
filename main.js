@@ -91,7 +91,7 @@ function onClickSubmit() {
 
     const packet = {
       "action": "messageHost",
-      "message": "chat",
+      "message": "sendText",
       "content": smallInputValue, bigInputValue
     }
 
@@ -117,7 +117,7 @@ function onClickSubmit() {
 
       const packet = {
         "action": "messageHost",
-        "message": "chat",
+        "message": "sendText",
         "content": bigInputValue
       }
 
@@ -141,7 +141,7 @@ function onClickSubmit() {
 
     const packet = {
       "action": "messageHost",
-      "message": "chat",
+      "message": "sendText",
       "content": smallInputValue
     }
 
@@ -208,13 +208,13 @@ function onClickCharacterCreation() {
 }  
   
 
-
+// Need to change packet to emoji packet when available
 function onClickEmoji(emojiClass, emoji) {
   console.log(`You pressed an ${emojiClass}`)
 
   const packet = {
     "action": "messageHost",
-    "message": "chat",
+    "message": "sendText",
     "content": `${emoji}`
     }
     sendMessage(JSON.stringify(packet))
