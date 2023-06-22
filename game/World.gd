@@ -111,7 +111,7 @@ func ParseContext(packet):
 
 func _speak(packet):
 	var tts_msg = TTSMessage.new()
-	tts_msg.content = packet["content"]
+	tts_msg.content = packet["bigInputValue"]
 	tts_msg.voice_id = players[packet["userIP"]].voice_id
 	tts_msg.pitch = players[packet["userIP"]].character.character_data.voice_pitch
 	tts_msg.speaker_name = players[packet["userIP"]].character.character_data.name

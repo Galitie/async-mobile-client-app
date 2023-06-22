@@ -2,7 +2,7 @@ extends Node2D
 
 signal addedToDB
 signal attemptJoin
-signal createCharacter
+signal addPlayer
 signal disconnect
 signal sendText
 signal sayCatchphrase
@@ -22,6 +22,23 @@ class UserData:
 	var connection_id
 	var catchphrase
 	var connection_status
+	
+class Prompt:
+	var data = {
+		"message": "prompt",
+		"header": "Default header",
+		"context": "default",
+		"timer": 0.0,
+		"emojis": false,
+		"inputs": {} # "big" and/or "small" keys with placeholder values
+	}
+	
+	func _init(header, context, timer, emojis, inputs):
+		data["header"] = header
+		data["context"] = context
+		data["timer"] = timer
+		data["emojis"] = emojis
+		data["inputs"] = inputs
 
 func _ready():
 	var err = socket.connect_to_url(websocket_url)
@@ -32,11 +49,11 @@ func _ready():
 		print('Websocket is connected')
 	
 	connect("addedToDB", _addedToDB)
-	connect("attemptJoin",  _userAttemptedToJoin)
-	connect("disconnect", _userDisconnected)
-	connect("sendText", _userSentText)
-	connect("createCharacter", _characterCreated)
-	connect("sayCatchphrase", _userSaidCatchphrase)
+	connect("attemptJoin", _attemptJoin)
+	connect("disconnect", _disconnect)
+	connect("sendText", _sendText)
+	connect("addPlayer", _addPlayer)
+	connect("sayCatchphrase", _sayCatchPhrase)
 	
 func _process(delta):
 	socket.poll()
@@ -74,8 +91,7 @@ func ProcessPacket(packet):
 func _addedToDB(packet):
 	$World.ready_for_players = true
 
-# { "action: messageHost", "message: attemptJoin" }
-func _userAttemptedToJoin(packet):
+func _attemptJoin(packet):
 	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
 	if users.has(packet["userIP"]):
 		var user = users[packet["userIP"]]
@@ -86,41 +102,43 @@ func _userAttemptedToJoin(packet):
 		response["message"] = "reconnect"
 	else:
 		if $World.ready_for_players && $World.players.size() < $World.MAX_PLAYERS:
-			response["message"] = "prompt"
-			response["header"] = "Add player to game:"
-			response["context"] = "addPlayer"
-			response["timer"] = 0
-			response["emojis"] = false
-			response["inputs"] = {"big": "Enter a signature catchphrase.", "small": "Enter your name."}
+			var prompt = Prompt.new("Add player to game:", "addPlayer", 0.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
+			response.merge(prompt.data)
 		else:
 			response["message"] = "refuseJoin"
 	SendPacket(response)
 
 # { "action": "messageHost", "message": "createCharacter", "name": "S", "catchphrase": "S" }
-func _characterCreated(packet):
+func _addPlayer(packet):
 	var user_data = UserData.new()
 	user_data.ip = packet["userIP"]
-	user_data.name = packet["name"]
+	user_data.name = packet["smallInputValue"]
 	user_data.role = "user"
 	user_data.connection_id = packet["connectionID"]
-	user_data.catchphrase = packet["catchphrase"]
+	user_data.catchphrase = packet["bigInputValue"]
 	user_data.connection_status = CONNECTION_STATUS.ONLINE
 	users[user_data.ip] = user_data
 	$World.AddPlayer(user_data, $World.players.size())
 	$World.SpawnCharacter($World.players[user_data.ip], $World.players[$World.last_ip].character, $World.players["0.0.0.0"].character.cell_position)
 	print(user_data.name + " has joined the game")
 	SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": packet["userIP"], "connectionID": packet["connectionID"]})
+	var prompt = Prompt.new("Say something to Tyler!", "speak", 0.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
+	var user_packet = {"action": "respondToUser", "connectionID": packet["connectionID"]}
+	user_packet.merge(prompt.data)
+	SendPacket(user_packet)
 	
-func _userDisconnected(packet):
+func _disconnect(packet):
 	if users.has(packet["userIP"]):
 		users[packet["userIP"]].connection_status = CONNECTION_STATUS.OFFLINE
 		$World.UpdateUserData(users[packet["userIP"]])
 		print(users[packet["userIP"]].name + " has left the game")
 
-func _userSentText(packet):
+func _sendText(packet):
 	if users.has(packet["userIP"]):
 		$World.ParseContext(packet)
+	else:
+		emit_signal(packet["context"], packet)
 
-func _userSaidCatchphrase(packet):
+func _sayCatchPhrase(packet):
 	if users.has(packet["userIP"]):
 		$World.Speak(packet["userIP"], users[packet["userIP"]].catchphrase)
