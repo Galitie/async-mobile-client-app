@@ -1,7 +1,6 @@
 # TODO: $disconnect route to inform all users if it came from the host
 extends Node2D
 
-signal item_found
 signal portal_entered
 
 var character_manifest = [
@@ -34,7 +33,7 @@ class Player:
 	var character
 	var voice_id
 
-const MAX_PLAYERS = 2
+const MAX_PLAYERS = 3
 var players = {}
 
 var next_map
@@ -42,7 +41,6 @@ var spawn_position
 
 func _ready():
 	$CanvasLayer/AnimationPlayer.connect("animation_finished", _animationFinished)
-	connect("item_found", _itemFound)
 	connect("portal_entered", _portalEntered)
 	
 	# TTS voices need to be installed from either the Windows speech package downloader in settings or from the
@@ -133,10 +131,7 @@ func _process(delta):
 		else:
 			$CanvasLayer/MessageBox.SetText(true, next_message)
 
-func OpenLobbyDoor():
-	current_map.emit_signal("open_door")
-
-func _itemFound(messages):
+func SetMessageQueue(messages):
 	PauseWorld()
 	reading = true
 	message_queue = messages.duplicate()

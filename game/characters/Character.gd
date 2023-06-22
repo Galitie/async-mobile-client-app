@@ -91,9 +91,11 @@ func Interact():
 			interact_destination = cell_position + Vector2i(-1, 0)
 	for object in world.current_map.get_node("Objects").get_children():
 		if object.cell_position == interact_destination:
-			var interact_signal = object.Interact()
-			if interact_signal:
-				world.emit_signal(interact_signal, object.messages)
+			if object.Interact():
+				if object.interact_signal:
+					world.current_map.emit_signal(object.interact_signal)
+				if object.messages:
+					world.SetMessageQueue(object.messages)
 
 func _onStep():
 	frame = fmod(frame + 1, 4)

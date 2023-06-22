@@ -18,5 +18,5 @@ func Interact():
 	if !one_shot || (one_shot && !interacted_with):
 		region_rect = interact_sprite
 		interacted_with = true
-		return interact_signal
-	return ""
+		return true
+	return false

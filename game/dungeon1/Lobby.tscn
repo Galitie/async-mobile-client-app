@@ -59,7 +59,6 @@ script = ExtResource("4_bgr3q")
 one_shot = true
 cell_position = Vector2i(4, -2)
 interact_sprite = Rect2(145, 96, 17, 16)
-interact_signal = "item_found"
 messages = ["You find something worn and used...", "Perfect!", "Got a [color=yellow]rusty hilt."]
 
 [node name="Portals" type="Node2D" parent="."]

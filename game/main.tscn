@@ -76,11 +76,6 @@ y_sort_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="World"]
 
-offset_left = 252.5
-offset_top = 414.0
-offset_right = 707.5
-offset_bottom = 530.0
-
 [node name="FadeTransition" type="ColorRect" parent="World/CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
@@ -101,3 +96,10 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_wp1pa")
 }
+
+[node name="MessageBox" parent="World/CanvasLayer" instance=ExtResource("4_lgd38")]
+offset_left = -227.5
+offset_top = -126.0
+offset_right = 227.5
+offset_bottom = -10.0
+size_flags_vertical = 8

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Interactable.gd" id="4_5avbr"]
 [ext_resource type="Script" path="res://dungeon1/Portal.gd" id="5_wkuu8"]
 
-[node name="Lobby" type="TileMap"]
+[node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_5qi4a")
 format = 2
 layer_0/name = "background"
@@ -68,8 +68,10 @@ texture = ExtResource("3_fdsqf")
 centered = false
 region_enabled = true
 script = ExtResource("5_wkuu8")
+locked = true
 cell_position = Vector2i(-1, 5)
 trigger_cell = Vector2i(-1, 5)
 next_map = "res://dungeon1/Lobby.tscn"
 next_map_cell_position = Vector2i(-1, -5)
 unlocked_sprite_region = Rect2(176, 208, 16, 16)
+locked_sprite_region = Rect2(208, 208, 16, 16)
