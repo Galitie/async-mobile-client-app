@@ -8,7 +8,7 @@
 
 // Need to test if this fixes issue where keyboard pushes content around!
 navigator.virtualKeyboard.overlaysContent = true
-
+let packageContext = ''
 // ************************* Screens *************************** //
 
 // If player is not connected
@@ -22,16 +22,18 @@ function notConnectedScreen(){
 
 // Prompt screen
 function promptScreen(prompt, timerAmount, includeEmojiTray, inputs){
-
   clearIDGameInDOM()
   addPrompt(prompt)
-  
+
+  if (timerAmount > 0){
+    addTimer(timerAmount)
+  }
+
   if (inputs.big && inputs.small){
     addInput(['smallInput', 'bigInput'])
     document.querySelector(".smallInput").setAttribute("placeholder", inputs.small)
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big)
-  }
-  else if (inputs.big){
+  } else if (inputs.big){
     addInput(['bigInput'])
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big)
   } else {
@@ -42,9 +44,7 @@ function promptScreen(prompt, timerAmount, includeEmojiTray, inputs){
   addButtons(['submit'])
   if (includeEmojiTray == true){
     addEmojiTray()}
-  if (timerAmount > 0){
-    addAndStartCountdown(timerAmount, 'submit')
-  }
+
 }
 
 
@@ -86,7 +86,6 @@ function onClickSubmit() {
     smallInput.value = ""
     bigInput.classList.remove("missedInput")
     smallInput.classList.remove("missedInput")
-    packageContext = ''
   } else if (document.querySelector('.bigInput')) {
       let [bigInput, bigInputValue] = getInputAndValue('bigInput')
       let inputValid = true
@@ -111,7 +110,6 @@ function onClickSubmit() {
 
       bigInput.value = ""
       bigInput.classList.remove("missedInput")
-      packageContext = ''
 
   } else {
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
@@ -137,7 +135,6 @@ function onClickSubmit() {
 
     smallInput.value = ""
     smallInput.classList.remove("missedInput")
-    packageContext = ''
   }
 
 }
@@ -161,7 +158,6 @@ function onClickConnect(){
 // ******************** Web Socket Stuff ********************** //
 let playerServerStatus = document.querySelector('h4')
 let hostServerStatus = document.querySelector('h3')
-let packageContext = ''
 const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod';
 const socket = new WebSocket(websocketUrl);
 
@@ -227,14 +223,14 @@ function clearIDGameInDOM() {
 }
 
 
-function addAndStartCountdown(duration, parentClass) {
+function addTimer(duration) {
   let timer = duration, minutes, seconds;
 
   let displayElement = document.createElement("h3")
   let displayElementText = document.createTextNode("");
   displayElement.appendChild(displayElementText);
 
-  let parent = document.querySelector(`.${parentClass}`)
+  let parent = document.querySelector(`#game`)
   parent.appendChild(displayElement)
   
 
@@ -245,7 +241,7 @@ function addAndStartCountdown(duration, parentClass) {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    displayElement.textContent = "Cooldown: " + minutes + ":" + seconds;
+    displayElement.textContent =  minutes + ":" + seconds;
     
 
     if (timer > 0 && timer < 6){
@@ -256,9 +252,6 @@ function addAndStartCountdown(duration, parentClass) {
     else if(--timer < 0) {
       clearInterval(countdown);
       displayElement.classList.remove("pulsate")
-      parent.removeChild(displayElement)
-      makeElementsReadOnly([`${parentClass}`])
-      onClickSubmit()
     }
   }, 1000);
 }
