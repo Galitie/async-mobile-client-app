@@ -3,6 +3,10 @@
 // Emoji needs emoji packet
 // Making UI friendly to laptops (incase someone needs to use a computer?)
 
+// make dating sim portraits square proportion
+// make more rooms
+// find tile sets for dating sim portion
+
 // Need to test if this fixes issue where keyboard pushes content around!
 navigator.virtualKeyboard.overlaysContent = true
 
@@ -99,37 +103,53 @@ function onClickSubmit() {
     bigInput.classList.remove("missedInput")
     smallInput.classList.remove("missedInput")
   } else if (document.querySelector('.bigInput')) {
-    let [bigInput, bigInputValue] = getInputAndValue('bigInput')
+      let [bigInput, bigInputValue] = getInputAndValue('bigInput')
+      let inputValid = true
+    
+      if (bigInputValue == ""){
+        bigInput.classList.add("missedInput")
+        inputValid = false
+      }
 
-    if (bigInputValue !== ""){
+      if (inputValid == false){
+        return
+      }
+
       const packet = {
         "action": "messageHost",
         "message": "chat",
         "content": bigInputValue
       }
+
       sendMessage(JSON.stringify(packet))
+
       bigInput.value = ""
       bigInput.classList.remove("missedInput")
-    } else {
-      bigInput.classList.add("missedInput")
-    }
 
   } else {
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
+    let inputValid = true
 
-    if (smallInput !== ""){
-      const packet = {
-        "action": "messageHost",
-        "message": "chat",
-        "content": smallInputValue
-      }
-      sendMessage(JSON.stringify(packet))
-
-      smallInput.value = ""
-      smallInput.classList.remove("missedInput")
-    } else {
+    if (smallInputValue == ""){
       smallInput.classList.add("missedInput")
+      inputValid = false
     }
+
+    if (inputValid == false){
+      return
+    }
+
+    const packet = {
+      "action": "messageHost",
+      "message": "chat",
+      "content": smallInputValue
+    }
+
+    sendMessage(JSON.stringify(packet))
+
+    smallInput.value = ""
+    smallInput.classList.remove("missedInput")
+
   }
 
 }
@@ -149,31 +169,44 @@ function onClickCatchphrase() {
 function onClickCharacterCreation() {
   let [smallInput, smallInputValue] = getInputAndValue('smallInput')
   let [bigInput, bigInputValue] = getInputAndValue('bigInput')
+  let inputValid = true
 
-  if (smallInputValue !== "" && bigInputValue !== ""){
-    const packet = {
-      "action": "messageHost",
-      "message": "createCharacter",
-      "name": smallInputValue,
-      "catchphrase": bigInputValue
-      }
-    sendMessage(JSON.stringify(packet))
-    overWorldMenuScreen()
-    bigInput.classList.remove("missedInput")
-    smallInput.classList.remove("missedInput")
-  } else if (bigInputValue == "" && smallInputValue == "") {
+  if (bigInputValue == "" && smallInputValue == "") {
     bigInput.classList.add("missedInput")
     smallInput.classList.add("missedInput")
-  } else if (bigInputValue == "") {
-    bigInput.classList.add("missedInput")
-    smallInput.classList.remove("missedInput")
-  } else {
-    smallInput.classList.add("missedInput")
-    bigInput.classList.remove("missedInput")
+    inputValid = false
   }
-  
 
-}
+  if (bigInputValue == "") {
+    bigInput.classList.add("missedInput")
+    smallInput.classList.remove("missedInput")
+    inputValid = false
+  }
+
+  if (smallInputValue == "") {
+    smallInput.classList.add("missedInput")
+    bigInput.classList.remove("missedInput")
+    inputValid = false
+  }
+
+  if (inputValid == false){
+    return
+  }
+
+  const packet = {
+    "action": "messageHost",
+    "message": "createCharacter",
+    "name": smallInputValue,
+    "catchphrase": bigInputValue
+    }
+
+  sendMessage(JSON.stringify(packet))
+  bigInput.classList.remove("missedInput")
+  smallInput.classList.remove("missedInput")
+  overWorldMenuScreen()
+
+}  
+  
 
 
 function onClickEmoji(emojiClass, emoji) {
@@ -343,8 +376,9 @@ function addButtons(buttonClasses) {
     newButton.appendChild(newButtonText)
     newButton.classList.add(`${button}`)
     document.querySelector('#game').appendChild(newButton)
-    document.getElementsByClassName(`${button}`).addEventListener('click', buttonMap[button])
-
+    let getElementButton = document.querySelector(`.${button}`)
+    getElementButton.addEventListener('click', buttonMap[button])
+  
   })
 }
 

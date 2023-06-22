@@ -182,3 +182,8 @@ h1{
 .missedInput{
     border: 5px solid red;
 }
+
+/* Desktop */
+@media (min-width: 600px) {
+  }
+  
