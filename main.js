@@ -1,6 +1,5 @@
 // Refactoring Event Listeners now that I know I can pass arguments
 // Styling everything
-// Emoji needs emoji packet
 // Making UI friendly to laptops (incase someone needs to use a computer?)
 
 // make dating sim portraits square proportion
@@ -11,64 +10,47 @@
 navigator.virtualKeyboard.overlaysContent = true
 
 // ************************* Screens *************************** //
-//Splash Screen when host is not connected
+
+// If player is not connected
 function notConnectedScreen(){
   console.log("Host or Server not connected")
-
   clearIDGameInDOM()
   addPrompt(`TYLERPG`)
   addPrompt(`Click below to join or re-join the game!`)
   addButtons(['connect'])
-
 }
 
-
-// Player join screen
-function onJoinRequestScreen() {
-  console.log("I got your join request")
+// Prompt screen
+function promptScreen(prompt, timerAmount, includeEmojiTray, inputs){
 
   clearIDGameInDOM()
-  addPrompt("Add player to game:")
-  addInput(['smallInput', 'bigInput'])
-  addButtons(['join'])
-  document.querySelector(".smallInput").setAttribute("placeholder", "Your name")
-  document.querySelector(".bigInput").setAttribute("placeholder", "Type in a catchphrase!")
-}
-
-
-// Overworld Screen
-function overWorldMenuScreen() {
-  console.log("Switched to overworld menu")
-
-  clearIDGameInDOM()
-  addPrompt("Say some stuff to Tyler or tap an emoji:")
-  addInput(['bigInput'])
+  addPrompt(prompt)
+  
+  if (inputs.big && inputs.small){
+    addInput(['smallInput', 'bigInput'])
+    document.querySelector(".smallInput").setAttribute("placeholder", inputs.small)
+    document.querySelector(".bigInput").setAttribute("placeholder", inputs.big)
+  }
+  else if (inputs.big){
+    addInput(['bigInput'])
+    document.querySelector(".bigInput").setAttribute("placeholder", inputs.big)
+  } else {
+    addInput(['smallInput'])
+    document.querySelector(".smallInput").setAttribute("placeholder", inputs.small)
+  }
+  
   addButtons(['submit'])
-  addEmojiTray()
-}
-
-
-function battleScreen(){
-  clearIDGameInDOM()
-  addPrompt(`Name an attack for Tyler to use:`)
-  addInput(['smallInput'])
-  document.querySelector(".smallInput").setAttribute("placeholder", "Type attack here")
-  addButtons(['[submit]'])
-  addEmojiTray()
-}
-
-
-function nameItemScreen(){
-  clearIDGameInDOM()
-  addPrompt(`Name the item that Tyler found:`)
-  addInput(['smallInput'])
-  document.querySelector(".smallInput").setAttribute("placeholder", "Type item name here")
-  addButtons(['[submit]'])
+  if (includeEmojiTray == true){
+    addEmojiTray()}
+  if (timerAmount > 0){
+    addAndStartCountdown(timerAmount, 'submit')
+  }
 }
 
 
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
+  
 
   if (document.querySelector('.bigInput') && document.querySelector('.smallInput')){
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
@@ -92,8 +74,9 @@ function onClickSubmit() {
     const packet = {
       "action": "messageHost",
       "message": "sendText",
-      "content": smallInputValue, bigInputValue,
-      "context": "speak"
+      "smallInputValue": smallInputValue,
+      "bigInputValue" : bigInputValue,
+      "context": `${packageContext}`
     }
 
     sendMessage(JSON.stringify(packet))
@@ -103,6 +86,7 @@ function onClickSubmit() {
     smallInput.value = ""
     bigInput.classList.remove("missedInput")
     smallInput.classList.remove("missedInput")
+    packageContext = ''
   } else if (document.querySelector('.bigInput')) {
       let [bigInput, bigInputValue] = getInputAndValue('bigInput')
       let inputValid = true
@@ -119,14 +103,15 @@ function onClickSubmit() {
       const packet = {
         "action": "messageHost",
         "message": "sendText",
-        "content": bigInputValue,
-        "context": "speak"
+        "bigInputValue" : bigInputValue,
+        "context": `${packageContext}`
       }
 
       sendMessage(JSON.stringify(packet))
 
       bigInput.value = ""
       bigInput.classList.remove("missedInput")
+      packageContext = ''
 
   } else {
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
@@ -144,76 +129,21 @@ function onClickSubmit() {
     const packet = {
       "action": "messageHost",
       "message": "sendText",
-      "content": smallInputValue,
-      "context": "speak"
+      "smallInputValue": smallInputValue,
+      "context": `${packageContext}`
     }
 
     sendMessage(JSON.stringify(packet))
 
     smallInput.value = ""
     smallInput.classList.remove("missedInput")
-
+    packageContext = ''
   }
 
 }
+ 
 
-
-function onClickCatchphrase() {
-  console.log("You said your catchphrase!")
-  const packet = {
-  "action": "messageHost",
-  "message": "sayCatchphrase"
-  }
-  sendMessage(JSON.stringify(packet))
-
-}
-
-
-function onClickCharacterCreation() {
-  let [smallInput, smallInputValue] = getInputAndValue('smallInput')
-  let [bigInput, bigInputValue] = getInputAndValue('bigInput')
-  let inputValid = true
-
-  if (bigInputValue == "" && smallInputValue == "") {
-    bigInput.classList.add("missedInput")
-    smallInput.classList.add("missedInput")
-    inputValid = false
-  }
-
-  if (bigInputValue == "") {
-    bigInput.classList.add("missedInput")
-    smallInput.classList.remove("missedInput")
-    inputValid = false
-  }
-
-  if (smallInputValue == "") {
-    smallInput.classList.add("missedInput")
-    bigInput.classList.remove("missedInput")
-    inputValid = false
-  }
-
-  if (inputValid == false){
-    return
-  }
-
-  const packet = {
-    "action": "messageHost",
-    "message": "createCharacter",
-    "name": smallInputValue,
-    "catchphrase": bigInputValue
-    }
-
-  sendMessage(JSON.stringify(packet))
-  bigInput.classList.remove("missedInput")
-  smallInput.classList.remove("missedInput")
-  overWorldMenuScreen()
-
-}  
-  
-
-// Need to change packet to emoji packet when available
 function onClickEmoji(emojiClass, emoji) {
-  console.log(`You pressed an ${emojiClass}`)
 
   const packet = {
     "action": "messageHost",
@@ -223,7 +153,7 @@ function onClickEmoji(emojiClass, emoji) {
     sendMessage(JSON.stringify(packet))
 }
 
-
+// this is only for the not connected screen
 function onClickConnect(){
   location.reload(true)
 }
@@ -231,6 +161,7 @@ function onClickConnect(){
 // ******************** Web Socket Stuff ********************** //
 let playerServerStatus = document.querySelector('h4')
 let hostServerStatus = document.querySelector('h3')
+let packageContext = ''
 const websocketUrl = 'wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod';
 const socket = new WebSocket(websocketUrl);
 
@@ -253,21 +184,16 @@ socket.onmessage = function (event) {
   const message = JSON.parse(event.data);
   console.log('Received message:', message)
 
-  // Character Creation Screen - hardcoded until we figure out a different way
-  if (message['message'] == "requestJoin" && message['action'] == "respondToUser"){
-    hostServerStatus.innerText = "\u2705 Connected to Host"
-    hostServerStatus.style.color = "green"
-    onJoinRequestScreen()
-
-  } else if (message['message'] == 'reconnect'){
-    overWorldMenuScreen()
-
-  } else if (message['message'] == 'Internal server error'){
+  if (message['message'] == 'Internal server error'){
     hostServerStatus.innerText = "\u2717 Disconnected from Host"
     hostServerStatus.style.color = "red"
     notConnectedScreen()
-  } 
+  } else {
+    promptScreen(message['header'], message['timer'], message['emojis'], message['inputs'])
+    packageContext = message['context']
+  }
 };
+
 
 // Error event
 socket.onerror = function (error) {
@@ -277,9 +203,9 @@ socket.onerror = function (error) {
 // Connection closed event
 socket.onclose = function (event) {
   console.log('WebSocket connection closed:', event.code, event.reason);
-  notConnectedScreen()
   playerServerStatus.innerText = "\u2717 Disconnected from Server"
   playerServerStatus.style.color = "red"
+  notConnectedScreen()
 };
 
 // Send a message to the WebSocket API
@@ -287,13 +213,6 @@ function sendMessage(message) {
   socket.send(message);
   console.log('Sent message:', message)
 }
-
-
-function setConnectionStatus(serverType, color){
-  // if host server or player server => change inner text and color
-  // put in notConnectedScreen
-}
-
 
 
 //********************* Screen Pieces ************************//
@@ -314,7 +233,7 @@ function addAndStartCountdown(duration, parentClass) {
   let displayElement = document.createElement("h3")
   let displayElementText = document.createTextNode("");
   displayElement.appendChild(displayElementText);
-  makeElementsReadOnly([`${parentClass}`])
+
   let parent = document.querySelector(`.${parentClass}`)
   parent.appendChild(displayElement)
   
@@ -338,7 +257,8 @@ function addAndStartCountdown(duration, parentClass) {
       clearInterval(countdown);
       displayElement.classList.remove("pulsate")
       parent.removeChild(displayElement)
-      enableElements([`${parentClass}`])
+      makeElementsReadOnly([`${parentClass}`])
+      onClickSubmit()
     }
   }, 1000);
 }
@@ -387,8 +307,6 @@ function addButtons(buttonClasses) {
 
 let buttonMap = {
   'submit': onClickSubmit,
-  'join': onClickCharacterCreation,
-  'catchphrase': onClickCatchphrase,
   'connect': onClickConnect
 }
 
@@ -441,3 +359,4 @@ function getInputAndValue(elementClass) {
   return [input, inputValue]
  
 }
+
