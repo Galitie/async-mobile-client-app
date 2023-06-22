@@ -2,6 +2,7 @@
 extends Node2D
 
 signal portal_entered
+signal speak
 
 var character_manifest = [
 	"res://characters/tyler.tres",
@@ -41,6 +42,7 @@ var spawn_position
 
 func _ready():
 	$CanvasLayer/AnimationPlayer.connect("animation_finished", _animationFinished)
+	connect("speak", _speak)
 	connect("portal_entered", _portalEntered)
 	
 	# TTS voices need to be installed from either the Windows speech package downloader in settings or from the
@@ -101,13 +103,20 @@ func UpdateUserData(user_data):
 	elif user_data.connection_status == client.CONNECTION_STATUS.OFFLINE:
 		player.character.modulate = Color.DIM_GRAY
 
-func Speak(ip, chat_content):
+func ParseContext(packet):
+	if is_connected(packet["context"], Callable(self, "_" + packet["context"])):
+		emit_signal(packet["context"])
+	else:
+		pass
+		# Emit signal to map
+
+func _speak(packet):
 	var tts_msg = TTSMessage.new()
-	tts_msg.content = chat_content
-	tts_msg.voice_id = players[ip].voice_id
-	tts_msg.pitch = players[ip].character.character_data.voice_pitch
-	tts_msg.speaker_name = players[ip].character.character_data.name
-	tts_msg.icon_region = players[ip].character.character_data.icon_region
+	tts_msg.content = packet["content"]
+	tts_msg.voice_id = players[packet["userIP"]].voice_id
+	tts_msg.pitch = players[packet["userIP"]].character.character_data.voice_pitch
+	tts_msg.speaker_name = players[packet["userIP"]].character.character_data.name
+	tts_msg.icon_region = players[packet["userIP"]].character.character_data.icon_region
 	tts_queue.append(tts_msg)
 	
 func _process(delta):

@@ -4,7 +4,7 @@ signal addedToDB
 signal attemptJoin
 signal createCharacter
 signal disconnect
-signal chat
+signal sendText
 signal sayCatchphrase
 
 var websocket_url = "wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod/"
@@ -34,7 +34,7 @@ func _ready():
 	connect("addedToDB", _addedToDB)
 	connect("attemptJoin",  _userAttemptedToJoin)
 	connect("disconnect", _userDisconnected)
-	connect("chat", _userChatted)
+	connect("sendText", _userSentText)
 	connect("createCharacter", _characterCreated)
 	connect("sayCatchphrase", _userSaidCatchphrase)
 	
@@ -112,9 +112,9 @@ func _userDisconnected(packet):
 		$World.UpdateUserData(users[packet["userIP"]])
 		print(users[packet["userIP"]].name + " has left the game")
 
-func _userChatted(packet):
+func _userSentText(packet):
 	if users.has(packet["userIP"]):
-		$World.Speak(packet["userIP"], packet["content"])
+		$World.ParseContext(packet)
 
 func _userSaidCatchphrase(packet):
 	if users.has(packet["userIP"]):
