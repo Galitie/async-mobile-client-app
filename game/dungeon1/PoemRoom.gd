@@ -19,5 +19,5 @@ func _chestOpened():
 		print('This is the first chest ever')
 		chest_opened_before = true
 		
-	if chest_opened_before == true:
+	elif chest_opened_before == true:
 		print('Chest has been opened before')
