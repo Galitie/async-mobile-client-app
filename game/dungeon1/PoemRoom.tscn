@@ -18,7 +18,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-262145, 1048576, 14, -196609, 1048576, 15, -262144, 1114112, 15, -196608, 786432, 8, -131072, 786432, 9, -131074, 786432, 8, -65538, 786432, 9, -393211, 393216, 20, -393212, 393216, 20, -393213, 393216, 20, -393214, 393216, 20, -393215, 393216, 20, -524292, 655360, 7, -393230, 589824, 7, -393229, 655360, 7, 131073, 589824, 7, 131074, 655360, 7, -262143, 851968, 7, -327679, 851968, 7, -327677, 589824, 7, -327676, 655360, 7, -458760, 851968, 7, -458759, 589824, 7, -458758, 655360, 7, -327684, 327680, 9, -327685, 327680, 9, -327686, 327680, 9, -327687, 327680, 9, -589829, 851968, 10, -589832, 327680, 9, -589831, 327680, 9, -589830, 327680, 9)
+layer_1/tile_data = PackedInt32Array(-262145, 1048576, 14, -196609, 1048576, 15, -262144, 1114112, 15, -196608, 786432, 8, -131072, 786432, 9, -131074, 786432, 8, -65538, 786432, 9, -393211, 393216, 20, -393212, 393216, 20, -393213, 393216, 20, -393214, 393216, 20, -393215, 393216, 20, -524292, 655360, 7, -262143, 851968, 7, -327679, 851968, 7, -458760, 851968, 7, -327684, 327680, 9, -327685, 327680, 9, -327686, 327680, 9, -327687, 327680, 9, -589829, 851968, 10, -589832, 327680, 9, -589831, 327680, 9, -589830, 327680, 9)
 layer_2/name = "foreground"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -53,45 +53,45 @@ texture = ExtResource("2_vv7fo")
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Chest" type="Sprite2D" parent="Objects"]
-visible = false
 texture = ExtResource("3_fdsqf")
 centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_5avbr")
+one_shot = true
 cell_position = Vector2i(1, 2)
 interact_sprite = Rect2(145, 96, 17, 16)
 interact_signal = "chestOpened"
 
 [node name="Chest2" type="Sprite2D" parent="Objects"]
-visible = false
 texture = ExtResource("3_fdsqf")
 centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_5avbr")
+one_shot = true
 cell_position = Vector2i(3, -5)
 interact_sprite = Rect2(145, 96, 17, 16)
 interact_signal = "chestOpened"
 
 [node name="Chest3" type="Sprite2D" parent="Objects"]
-visible = false
 texture = ExtResource("3_fdsqf")
 centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_5avbr")
+one_shot = true
 cell_position = Vector2i(-7, -8)
 interact_sprite = Rect2(145, 96, 17, 16)
 interact_signal = "chestOpened"
 
 [node name="Chest4" type="Sprite2D" parent="Objects"]
-visible = false
 texture = ExtResource("3_fdsqf")
 centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_5avbr")
+one_shot = true
 cell_position = Vector2i(-14, -7)
 interact_sprite = Rect2(145, 96, 17, 16)
 interact_signal = "chestOpened"

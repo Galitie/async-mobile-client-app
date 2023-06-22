@@ -106,9 +106,8 @@ func UpdateUserData(user_data):
 func ParseContext(packet):
 	if is_connected(packet["context"], Callable(self, "_" + packet["context"])):
 		emit_signal(packet["context"], packet)
-	else:
-		pass
-		# Emit signal to map
+	elif is_connected(packet["context"], Callable(current_map, "_" + packet["context"])):
+		current_map.emit_signal(packet["context"], packet)
 
 func _speak(packet):
 	var tts_msg = TTSMessage.new()

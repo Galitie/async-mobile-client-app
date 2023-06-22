@@ -86,7 +86,12 @@ func _userAttemptedToJoin(packet):
 		response["message"] = "reconnect"
 	else:
 		if $World.ready_for_players && $World.players.size() < $World.MAX_PLAYERS:
-			response["message"] = "requestJoin"
+			response["message"] = "prompt"
+			response["header"] = "Add player to game:"
+			response["context"] = "addPlayer"
+			response["timer"] = 0
+			response["emojis"] = false
+			response["inputs"] = {"big": "Enter a signature catchphrase.", "small": "Enter your name."}
 		else:
 			response["message"] = "refuseJoin"
 	SendPacket(response)
