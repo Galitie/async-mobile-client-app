@@ -25,118 +25,71 @@ function promptScreen(prompt, timerAmount, includeEmojiTray, inputs){
   clearIDGameInDOM()
   addPrompt(prompt)
 
-  if (timerAmount > 0){
+  if (timerAmount > 0) {
     addTimer(timerAmount)
   }
 
-  if (inputs.big && inputs.small){
-    addInput(['smallInput', 'bigInput'])
-    document.querySelector(".smallInput").setAttribute("placeholder", inputs.small)
-    document.querySelector(".bigInput").setAttribute("placeholder", inputs.big)
-  } else if (inputs.big){
+  if (inputs.small) {
+    addInput(['smallInput'])
+    document.querySelector('.smallInput').setAttribute('placeholder', inputs.small)
+  }
+  if (inputs.big) {
     addInput(['bigInput'])
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big)
-  } else {
-    addInput(['smallInput'])
-    document.querySelector(".smallInput").setAttribute("placeholder", inputs.small)
   }
-  
-  addButtons(['submit'])
-  if (includeEmojiTray == true){
-    addEmojiTray()}
 
+  addButtons(['submit'])
+
+  if (includeEmojiTray == true) {
+    addEmojiTray()
+  }
 }
 
 
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
-  
+  let textboxes
+  let packet = {
+    "action": "messageHost",
+    "message": "sendText",
+    "context": `${packageContext}`
+  }
 
   if (document.querySelector('.bigInput') && document.querySelector('.smallInput')){
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
     let [bigInput, bigInputValue] = getInputAndValue('bigInput')
-    let inputValid = true // this could be a method, reusuable validateInputs([])
-
-    if (smallInputValue == "") {
-      smallInput.classList.add("missedInput")
-      inputValid = false
-    } 
+    textboxes = [smallInput, bigInput]
     
-    if (bigInputValue == "") {
-      bigInput.classList.add("missedInput")
-      inputValid = false
-    }
-
-    if (inputValid == false) {
+    if (validateInputs(textboxes) == false) {
       return
     }
 
-    const packet = {
-      "action": "messageHost",
-      "message": "sendText",
-      "smallInputValue": smallInputValue,
-      "bigInputValue" : bigInputValue,
-      "context": `${packageContext}`
-    }
-
-    sendMessage(JSON.stringify(packet))
-
-    // this could be a method "cleanUpInput" with arr of what to cleanup
-    bigInput.value = ""
-    smallInput.value = ""
-    bigInput.classList.remove("missedInput")
-    smallInput.classList.remove("missedInput")
+    packet.smallInputValue = smallInputValue
+    packet.bigInputValue = bigInputValue
+    
   } else if (document.querySelector('.bigInput')) {
       let [bigInput, bigInputValue] = getInputAndValue('bigInput')
-      let inputValid = true
+      textboxes = [bigInput]
     
-      if (bigInputValue == ""){
-        bigInput.classList.add("missedInput")
-        inputValid = false
-      }
-
-      if (inputValid == false){
+      if (validateInputs(textboxes) == false) {
         return
       }
 
-      const packet = {
-        "action": "messageHost",
-        "message": "sendText",
-        "bigInputValue" : bigInputValue,
-        "context": `${packageContext}`
-      }
-
-      sendMessage(JSON.stringify(packet))
-
-      bigInput.value = ""
-      bigInput.classList.remove("missedInput")
+      packet.bigInputValue = bigInputValue
 
   } else {
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
-    let inputValid = true
+    textboxes = [smallInput]
 
-    if (smallInputValue == ""){
-      smallInput.classList.add("missedInput")
-      inputValid = false
-    }
-
-    if (inputValid == false){
+    if (validateInputs(textboxes) == false) {
       return
     }
 
-    const packet = {
-      "action": "messageHost",
-      "message": "sendText",
-      "smallInputValue": smallInputValue,
-      "context": `${packageContext}`
-    }
-
-    sendMessage(JSON.stringify(packet))
-
-    smallInput.value = ""
-    smallInput.classList.remove("missedInput")
+    packet.smallInputValue = smallInputValue
   }
 
+  sendMessage(JSON.stringify(packet))
+  cleanUpInput(textboxes)
 }
  
 
@@ -353,3 +306,20 @@ function getInputAndValue(elementClass) {
  
 }
 
+function cleanUpInput(textboxes){
+  textboxes.forEach(textbox => {
+    textbox.value = ""
+    textbox.classList.remove("missedInput")
+  })
+}
+
+function validateInputs(inputs){
+  let inputValid = true
+  inputs.forEach(input => {
+    if (input.value == ""){
+      input.classList.add("missedInput")
+      inputValid = false
+    }
+  })
+  return inputValid
+}
