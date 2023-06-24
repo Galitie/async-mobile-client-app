@@ -28,14 +28,14 @@ func Hide():
 func SetText(explicit, content, _speaker_name = "", _icon_region = null):
 	message = content
 	speaker_name = _speaker_name
-	icon_region = _icon_region
+	icon_region = _icon_region if _icon_region != null else Rect2(0, 0, 0, 0)
 	if explicit:
 		if _speaker_name:
 			$Dialogue.text = message
 			$Icon.texture.region = icon_region
+			$Icon.visible = true
 			$Icon/Name.text = "[center]" + speaker_name
 			$Dialogue.visible = true
-			$Icon.visible = true
 		else:
 			$Info.text = "[center]" + message
 			$Info.visible = true

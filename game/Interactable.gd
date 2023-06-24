@@ -1,18 +1,29 @@
 class_name Interactable
 extends Sprite2D
 
+@export var passable : bool
 @export var one_shot : bool
 @export var cell_position : Vector2i
 @export var interact_sprite : Rect2
 @export var interact_signal : String
-@export var messages : Array
+@export var speaker : String
+@export var messages : Array[Resource]
 
+const speed = 0.2
 var interacted_with = false
 
 func _ready():
-	var map = get_parent().get_parent()
-	transform.origin = Vector2(map.cell_quadrant_size * cell_position.x, map.cell_quadrant_size * cell_position.y)
+	SetCellPosition(cell_position)
 	set_process(false)
+	
+func SetCellPosition(cell_pos, instant = true):
+	var map = get_parent().get_parent()
+	cell_position = cell_pos
+	if instant:
+		transform.origin = Vector2(map.cell_quadrant_size * cell_position.x, map.cell_quadrant_size * cell_position.y)
+	else:
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "position", Vector2(map.cell_quadrant_size * cell_pos.x, map.cell_quadrant_size * cell_pos.y), speed).set_trans(Tween.TRANS_LINEAR)
 
 func Interact():
 	if !one_shot || (one_shot && !interacted_with):

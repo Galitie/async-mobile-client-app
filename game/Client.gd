@@ -22,23 +22,6 @@ class UserData:
 	var connection_id
 	var catchphrase
 	var connection_status
-	
-class Prompt:
-	var data = {
-		"message": "prompt",
-		"header": "Default header",
-		"context": "default",
-		"timer": 0.0,
-		"emojis": false,
-		"inputs": {} # "big" and/or "small" keys with placeholder values
-	}
-	
-	func _init(header, context, timer, emojis, inputs):
-		data["header"] = header
-		data["context"] = context
-		data["timer"] = timer
-		data["emojis"] = emojis
-		data["inputs"] = inputs
 
 func _ready():
 	var err = socket.connect_to_url(websocket_url)
@@ -100,10 +83,10 @@ func _attemptJoin(packet):
 		$World.UpdateUserData(user)
 		print(user.name + " has reconnected")
 		response["message"] = "reconnect"
+		response.merge($World.world_prompt.data)
 	else:
 		if $World.ready_for_players && $World.players.size() < $World.MAX_PLAYERS:
-			var prompt = Prompt.new("Add player to game:", "addPlayer", 0.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
-			response.merge(prompt.data)
+			response.merge($World.create_character_prompt.data)
 		else:
 			response["message"] = "refuseJoin"
 	SendPacket(response)
@@ -122,9 +105,8 @@ func _addPlayer(packet):
 	$World.SpawnCharacter($World.players[user_data.ip], $World.players[$World.last_ip].character, $World.players["0.0.0.0"].character.cell_position)
 	print(user_data.name + " has joined the game")
 	SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": packet["userIP"], "connectionID": packet["connectionID"]})
-	var prompt = Prompt.new("Say something to Tyler!", "speak", 0.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 	var user_packet = {"action": "respondToUser", "connectionID": packet["connectionID"]}
-	user_packet.merge(prompt.data)
+	user_packet.merge($World.world_prompt.data)
 	SendPacket(user_packet)
 	
 func _disconnect(packet):

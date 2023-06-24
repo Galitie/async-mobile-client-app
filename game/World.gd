@@ -18,9 +18,32 @@ var ready_for_players = false
 var current_map
 var paused = false
 var last_ip
+var current_message = null
 var reading = false
 var message_queue = []
 var tts_queue = []
+
+class Prompt:
+	var data = {
+		"message": "prompt",
+		"header": "Default header",
+		"context": "default",
+		"timerType": "none", # none, cooldown, countdown
+		"timer": 0.0,
+		"emojis": false,
+		"inputs": {} # "big" and/or "small" keys with placeholder values
+	}
+	
+	func _init(header, context, timerType, timer, emojis, inputs):
+		data["header"] = header
+		data["context"] = context
+		data["timerType"] = timerType
+		data["timer"] = timer
+		data["emojis"] = emojis
+		data["inputs"] = inputs
+
+var create_character_prompt = Prompt.new("Add player to game:", "addPlayer", "countdown", 10.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
+var world_prompt = Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
 class TTSMessage:
 	var content
@@ -106,7 +129,7 @@ func UpdateUserData(user_data):
 func ParseContext(packet):
 	if is_connected(packet["context"], Callable(self, "_" + packet["context"])):
 		emit_signal(packet["context"], packet)
-	elif is_connected(packet["context"], Callable(current_map, "_" + packet["context"])):
+	elif current_map.is_connected(packet["context"], Callable(current_map, "_" + packet["context"])):
 		current_map.emit_signal(packet["context"], packet)
 
 func _speak(packet):
@@ -131,20 +154,26 @@ func _process(delta):
 			elif $CanvasLayer/MessageBox.showing:
 				$CanvasLayer/MessageBox.Hide()
 	elif reading && Input.is_action_just_pressed("interact"):
-		var next_message = message_queue.pop_front()
-		if next_message == null:
+		if current_message.signal_timing == Message.SignalTiming.DISAPPEAR:
+			current_map.emit_signal(current_message.message_signal)
+		current_message = message_queue.pop_front()
+		if current_message == null:
 			$CanvasLayer/MessageBox.Hide()
 			reading = false
 			ResumeWorld()
 		else:
-			$CanvasLayer/MessageBox.SetText(true, next_message)
+			$CanvasLayer/MessageBox.SetText(true, current_message.content, current_message.speaker)
+			if current_message.signal_timing == Message.SignalTiming.APPEAR:
+				current_map.emit_signal(current_message.message_signal)
 
 func SetMessageQueue(messages):
 	PauseWorld()
 	reading = true
 	message_queue = messages.duplicate()
-	var message = message_queue.pop_front()
-	$CanvasLayer/MessageBox.Show(message)
+	current_message = message_queue.pop_front()
+	$CanvasLayer/MessageBox.Show(current_message.content, current_message.speaker)
+	if current_message.signal_timing == Message.SignalTiming.APPEAR:
+		current_map.emit_signal(current_message.message_signal)
 	
 func _portalEntered(_next_map, _spawn_position):
 	PauseWorld()

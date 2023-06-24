@@ -37,8 +37,13 @@ func SetCellDestination(cell_pos, _direction):
 	var current_frame = frame
 	animation = "walk_" + _direction
 	frame = current_frame
-	var old_direction = direction
 	direction = _direction
+	
+	var tile_data = world.current_map.get_cell_tile_data(COLLISION_LAYER, cell_destination)
+	if tile_data:
+		cell_destination = Vector2i.ZERO
+		can_move = true
+		return
 	
 	var portals = world.current_map.get_node("Portals")
 	if portals:
@@ -50,15 +55,27 @@ func SetCellDestination(cell_pos, _direction):
 					return
 				else:
 					world.emit_signal(portal.Use(), portal.next_map, portal.next_map_cell_position)
-	
-	var tile_data = world.current_map.get_cell_tile_data(COLLISION_LAYER, cell_destination)
-	if tile_data:
-		cell_destination = Vector2i.ZERO
-		can_move = true
-		return
+		
+	var objects = world.current_map.get_node("Objects")
+	for object in objects.get_children():
+		if !object.passable && cell_destination == object.cell_position:
+			cell_destination = Vector2i.ZERO
+			can_move = true
+			return
 	
 	if follower:
-		follower.SetCellDestination(cell_position, old_direction)
+		var follower_direction = "south"
+		var diff = follower.cell_position - cell_position
+		match diff:
+			Vector2i(1, 0):
+				follower_direction = "west"
+			Vector2i(-1, 0):
+				follower_direction = "east"
+			Vector2i(0, 1):
+				follower_direction = "north"
+			Vector2i(0, -1):
+				follower_direction = "south"
+		follower.SetCellDestination(cell_position, follower_direction)
 	
 	$StepTimer.start()
 	var tween = get_tree().create_tween()
