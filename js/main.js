@@ -1,6 +1,7 @@
 
 navigator.virtualKeyboard.overlaysContent = true
 let packageContext = ''
+let timerRunning = true
 // ************************* Screens *************************** //
 
 // If player is not connected
@@ -25,6 +26,7 @@ function promptScreen(prompt, timerAmount, timerType, includeEmojiTray, inputs){
     addInput(['smallInput'])
     document.querySelector('.smallInput').setAttribute('placeholder', inputs.small)
   }
+
   if (inputs.big) {
     addInput(['bigInput'])
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big)
@@ -87,6 +89,7 @@ function onClickSubmit() {
   removeTimer()
   cleanUpInput(textboxes)
   sendMessage(JSON.stringify(packet))
+  timerRunning = false
 }
  
 
@@ -120,6 +123,7 @@ function clearIDGameInDOM() {
 
 
 function addCountdownTimer(duration) {
+  timerRunning = true
   let timer = duration, minutes, seconds;
   let displayElement = document.createElement("h5")
   let displayElementText = document.createTextNode("")
@@ -127,6 +131,7 @@ function addCountdownTimer(duration) {
 
   let parent = document.querySelector(`#game`)
   parent.appendChild(displayElement)
+
 
   let countdown = setInterval(function() {
     minutes = parseInt(timer / 60, 10);
@@ -136,8 +141,11 @@ function addCountdownTimer(duration) {
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
     displayElement.textContent =  minutes + ":" + seconds;
-    
 
+    if (!timerRunning){
+      return
+    }
+    
     if (timer > 0 && timer < 6){
       --timer
       displayElement.classList.add("pulsate")
@@ -147,9 +155,22 @@ function addCountdownTimer(duration) {
       clearInterval(countdown);
       displayElement.classList.remove("pulsate")
       removeTimer()
+
+      if (document.querySelector('textarea')){
+        let textareas = document.querySelectorAll('textarea')
+        for (let i = 0; i < textareas.length; i++){
+          if (textareas[i].value == ""){
+            textareas[i].value = "*blushes*"
+          }
+        }
+        onClickSubmit()
+        return
+      }
     }
+
   }, 1000)
 }
+
 
 function addCooldownTimer(duration) {
   let timer = duration, minutes, seconds;
@@ -188,6 +209,7 @@ function addCooldownTimer(duration) {
 function removeTimer(){
   if (document.querySelector('h5')){
     let timer = document.querySelector('h5')
+    console.log(`removed ${timer}`)
     timer.remove()
   }
 }
