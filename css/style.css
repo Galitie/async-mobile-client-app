@@ -1,0 +1,182 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+* {
+    box-sizing: border-box;
+  }
+  
+  /******************************************
+  /* LAYOUT
+  /*******************************************/
+
+* {
+    text-align: center;
+    font-family: monospace;
+    margin: 0% 3%;
+    font-size: 4vw;
+}
+
+body{
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap:2em;
+}
+
+#stats{
+    padding: 0;
+    margin: 0;
+    width:100%;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+#game {
+    display:flex;
+    flex-direction: column;
+    height:100%;
+    gap: 2em;
+}
+
+#emojiContainer {
+    margin: unset;
+    padding: unset;
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+}
+
+button {
+    width:100%;
+    min-height: 150px;
+    font-size: 5vw;
+    text-align: center;
+    padding: unset;
+    margin: unset;
+}
+
+button:active {
+    background-color: lightgray;
+}
+
+
+h1{
+    margin: unset;
+}
+
+  
+  
+  /******************************************
+  /* ADDITIONAL STYLES
+  /*******************************************/
+
+.smallInput {
+    width:100%;
+    min-height: 2em;
+    font-size: 5vw;
+    border: 1px solid black;
+    text-align: left;
+    padding: 0 1em;
+    padding-top: 1em;
+}
+
+.bigInput {
+    width:100%;
+    min-height: 4em;
+    font-size: 5vw;
+    border: 1px solid black;
+    text-align: left;
+    padding: 0 1em;
+    padding-top: 1em;
+
+}
+
+.submit {
+    border: none;
+    background-color: greenyellow;
+    color: black;
+}
+
+.connect {
+    border: none;
+    background-color: greenyellow;
+    color: black;
+}
+
+.join {
+    border: none;
+    background-color: greenyellow;
+    color: black;
+}
+
+.emoji0 {
+    width: 20%;
+    min-height: 150px;
+    font-size: 8vw;
+    border: none;
+    background-color: white;
+}
+
+.emoji1 {
+    width: 20%;
+    min-height: 150px;
+    font-size: 8vw;
+    border: none;
+    background-color: white;
+}
+
+.emoji2 {
+    width: 20%;
+    min-height: 150px;
+    font-size: 8vw;
+    border: none;
+    background-color: white;
+}
+
+.emoji3 {
+    width: 20%;
+    min-height: 150px;
+    font-size: 8vw;
+    border: none;
+    background-color: white;
+}
+
+.disabled{
+    background-color:lightgray;
+    transition: 0.9s;
+}
+
+
+.pulsate{
+    color:red;
+    font-size: 5vw;
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: infinite; 
+    opacity: 0.5;
+}
+
+@keyframes pulsate {
+    0% { 
+        opacity: 0.5;
+    }
+    50% { 
+        opacity: 1.0;
+    }
+    100% { 
+        opacity: 0.5;
+    }
+}
+
+.missedInput{
+    border: 5px solid red;
+}
+
+/* Desktop */
+@media (min-width: 600px) {
+  }
+  
