@@ -27,7 +27,7 @@ socket.onmessage = function (event) {
     hostServerStatus.style.color = "red"
     notConnectedScreen()
   } else {
-    promptScreen(message['header'], message['timer'], message['emojis'], message['inputs'])
+    promptScreen(message['header'], message['timer'], message['timerType'], message['emojis'], message['inputs'])
     packageContext = message['context']
   }
 };

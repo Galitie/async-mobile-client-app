@@ -1,12 +1,4 @@
-// Refactoring Event Listeners now that I know I can pass arguments
-// Styling everything
-// Making UI friendly to laptops (incase someone needs to use a computer?)
 
-// make dating sim portraits square proportion
-// make more rooms
-// find tile sets for dating sim portion
-
-// Need to test if this fixes issue where keyboard pushes content around!
 navigator.virtualKeyboard.overlaysContent = true
 let packageContext = ''
 // ************************* Screens *************************** //
@@ -21,12 +13,12 @@ function notConnectedScreen(){
 }
 
 // Prompt screen
-function promptScreen(prompt, timerAmount, includeEmojiTray, inputs){
+function promptScreen(prompt, timerAmount, timerType, includeEmojiTray, inputs){
   clearIDGameInDOM()
   addPrompt(prompt)
 
-  if (timerAmount > 0) {
-    addTimer(timerAmount)
+  if (timerAmount > 0 && timerType == 'countdown') {
+    addCountdownTimer(timerAmount)
   }
 
   if (inputs.small) {
@@ -39,6 +31,12 @@ function promptScreen(prompt, timerAmount, includeEmojiTray, inputs){
   }
 
   addButtons(['submit'])
+
+  if (timerType == 'cooldown' && timerAmount > 0) {
+    document.querySelector('.submit').addEventListener('click', function() {
+      addCooldownTimer(timerAmount)
+    })
+  }
 
   if (includeEmojiTray == true) {
     addEmojiTray()
@@ -61,12 +59,11 @@ function onClickSubmit() {
     textboxes = [smallInput, bigInput]
     
     if (validateInputs(textboxes) == false) {
-      return
+        return
     }
 
     packet.smallInputValue = smallInputValue
     packet.bigInputValue = bigInputValue
-    
   } else if (document.querySelector('.bigInput')) {
       let [bigInput, bigInputValue] = getInputAndValue('bigInput')
       textboxes = [bigInput]
@@ -76,7 +73,6 @@ function onClickSubmit() {
       }
 
       packet.bigInputValue = bigInputValue
-
   } else {
     let [smallInput, smallInputValue] = getInputAndValue('smallInput')
     textboxes = [smallInput]
@@ -88,8 +84,9 @@ function onClickSubmit() {
     packet.smallInputValue = smallInputValue
   }
 
-  sendMessage(JSON.stringify(packet))
+  removeTimer()
   cleanUpInput(textboxes)
+  sendMessage(JSON.stringify(packet))
 }
  
 
@@ -98,7 +95,8 @@ function onClickEmoji(emojiClass, emoji) {
   const packet = {
     "action": "messageHost",
     "message": "sendText",
-    "content": `${emoji}`
+    "content": `${emojiClass}`,
+    "context": "speak"
     }
     sendMessage(JSON.stringify(packet))
 }
@@ -107,7 +105,6 @@ function onClickEmoji(emojiClass, emoji) {
 function onClickConnect(){
   location.reload(true)
 }
-
 
 
 //********************* Screen Pieces ************************//
@@ -122,16 +119,14 @@ function clearIDGameInDOM() {
 }
 
 
-function addTimer(duration) {
+function addCountdownTimer(duration) {
   let timer = duration, minutes, seconds;
-
-  let displayElement = document.createElement("h3")
-  let displayElementText = document.createTextNode("");
-  displayElement.appendChild(displayElementText);
+  let displayElement = document.createElement("h5")
+  let displayElementText = document.createTextNode("")
+  displayElement.appendChild(displayElementText)
 
   let parent = document.querySelector(`#game`)
   parent.appendChild(displayElement)
-  
 
   let countdown = setInterval(function() {
     minutes = parseInt(timer / 60, 10);
@@ -151,13 +146,53 @@ function addTimer(duration) {
     else if(--timer < 0) {
       clearInterval(countdown);
       displayElement.classList.remove("pulsate")
+      removeTimer()
     }
-  }, 1000);
+  }, 1000)
 }
 
+function addCooldownTimer(duration) {
+  let timer = duration, minutes, seconds;
+  let displayElement = document.createElement("h6")
+  let displayElementText = document.createTextNode("")
+  displayElement.appendChild(displayElementText)
+
+  makeElementsReadOnly(['submit'])
+
+  let parent = document.querySelector(`.submit`)
+  parent.appendChild(displayElement)
+
+  let countdown = setInterval(function() {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    displayElement.textContent =  minutes + ":" + seconds;
+
+    if (timer > 0 && timer < 6){
+      --timer
+      displayElement.classList.add("pulsate")
+    }
+
+    else if(--timer < 0) {
+      clearInterval(countdown);
+      displayElement.classList.remove("pulsate")
+      parent.removeChild(displayElement)
+      enableElements(['submit'])
+    }
+  }, 1000)
+  }
+
+function removeTimer(){
+  if (document.querySelector('h5')){
+    let timer = document.querySelector('h5')
+    timer.remove()
+  }
+}
 
 function addPrompt(str) {
-  console.log(str)
   let newPrompt = document.createElement("h1")
   let newPromptText = document.createTextNode(str);
   newPrompt.appendChild(newPromptText);
@@ -224,6 +259,8 @@ function addEmojiTray() {
 }
 
 
+//************Helper Functions *******************/
+
 function capitalize(word){return word.charAt(0).toUpperCase() + word.slice(1)}
 
 
@@ -252,12 +289,14 @@ function getInputAndValue(elementClass) {
  
 }
 
+
 function cleanUpInput(textboxes){
   textboxes.forEach(textbox => {
     textbox.value = ""
     textbox.classList.remove("missedInput")
   })
 }
+
 
 function validateInputs(inputs){
   let inputValid = true
