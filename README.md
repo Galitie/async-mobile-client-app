@@ -1,4 +1,5 @@
 # Async Multiplayer Jackbox-like game
+![test](https://github.com/Galitie/async-mobile-client-app/assets/105133862/fd37e584-51b6-4d03-8cb9-b0f026f374d0)
 
 
 ## How It's Made:
