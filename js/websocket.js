@@ -21,6 +21,7 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = JSON.parse(event.data);
   console.log("Received message:", message);
+  console.log(message["inputs"]);
 
   if (message["message"] == "Internal server error") {
     hostServerStatus.innerText = "\u2717 Disconnected from Host";

@@ -5,10 +5,10 @@ let timerRunning = true;
 
 // If player is not connected
 function notConnectedScreen() {
-  // console.log("Host or Server not connected");
-  // clearIDGameInDOM();
-  // addPrompt(`TYLERPG`);
-  // addPrompt(`Click below to join or re-join the game!`);
+  console.log("Host or Server not connected");
+  clearIDGameInDOM();
+  addPrompt(`TYLERPG`);
+  addPrompt(`Click below to join or re-join the game!`);
   addButtons(["connect"]);
 }
 
@@ -24,6 +24,8 @@ function promptScreen(
   console.log("cleared dom");
   addPrompt(prompt);
   console.log("set prompt");
+  console.log(inputs.small);
+  console.log(inputs.big);
 
   if (timerAmount > 0 && timerType == "countdown") {
     addCountdownTimer(timerAmount);
