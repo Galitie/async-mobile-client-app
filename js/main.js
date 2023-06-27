@@ -1,7 +1,6 @@
 navigator.virtualKeyboard.overlaysContent = true;
 let packageContext = "";
 let timerRunning = true;
-addButtons(["connect"]);
 // ************************* Screens *************************** //
 
 // If player is not connected
