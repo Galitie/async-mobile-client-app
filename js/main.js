@@ -26,39 +26,41 @@ function promptScreen(
   console.log("set prompt");
   console.log(inputs.small);
   console.log(inputs.big);
+  console.log(timerAmount);
+  console.log(timerType);
 
   if (timerAmount > 0 && timerType == "countdown") {
-    addCountdownTimer(timerAmount);
     console.log("added countdowntimer");
+    addCountdownTimer(timerAmount);
   }
 
   if (inputs.small) {
+    console.log("added small input");
     addInput(["smallInput"]);
     document
       .querySelector(".smallInput")
       .setAttribute("placeholder", inputs.small);
-    console.log("added small input");
   }
 
   if (inputs.big) {
+    console.log("added big input");
     addInput(["bigInput"]);
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big);
-    console.log("added big input");
   }
 
   addButtons(["submit"]);
   console.log("added buttons");
 
   if (timerType == "cooldown" && timerAmount > 0) {
+    console.log("added cooldown timer");
     document.querySelector(".submit").addEventListener("click", function () {
       addCooldownTimer(timerAmount);
     });
-    console.log("added cooldown timer");
   }
 
   if (includeEmojiTray == true) {
-    addEmojiTray();
     console.log("added emoji tray");
+    addEmojiTray();
   }
 }
 
