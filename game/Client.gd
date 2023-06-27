@@ -91,7 +91,6 @@ func _attemptJoin(packet):
 			response["message"] = "refuseJoin"
 	SendPacket(response)
 
-# { "action": "messageHost", "message": "createCharacter", "name": "S", "catchphrase": "S" }
 func _addPlayer(packet):
 	var user_data = UserData.new()
 	user_data.ip = packet["userIP"]

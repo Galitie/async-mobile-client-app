@@ -110,7 +110,7 @@ func Interact():
 		if object.cell_position == interact_destination:
 			if object.Interact():
 				if object.interact_signal:
-					world.current_map.emit_signal(object.interact_signal)
+					world.current_map.emit_signal(object.interact_signal, object)
 				if object.messages:
 					world.SetMessageQueue(object.messages)
 

@@ -1,4 +1,7 @@
-# TODO: $disconnect route to inform all users if it came from the host
+# BUG: Speaker name does not show if there is no icon
+# BUG: Icon texture on TTS message is blown up if talking to an icon-less speaker
+# BUG: UI in windowed mode on Galit's device does not scale
+# BUG: Transition fade has visual glitch on Galit's device
 extends Node2D
 
 signal portal_entered
@@ -195,11 +198,9 @@ func _animationFinished(anim):
 		ResumeWorld()
 
 func PauseWorld():
-	# client.SendPacket("action": "MessageAllUsers", "message": "pauseWorld")
 	paused = true
 	DisplayServer.tts_pause()
 	
 func ResumeWorld():
-	# client.SendPacket("action": "MessageAllUsers", "message": "resumeWorld")
 	paused = false
 	DisplayServer.tts_resume()
