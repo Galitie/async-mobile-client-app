@@ -1,6 +1,7 @@
 navigator.virtualKeyboard.overlaysContent = true;
 let packageContext = "";
 let timerRunning = true;
+addButtons(["connect"]);
 // ************************* Screens *************************** //
 
 // If player is not connected
@@ -24,8 +25,6 @@ function promptScreen(
   console.log("cleared dom");
   addPrompt(prompt);
   console.log("set prompt");
-  addButtons(["submit"]);
-  console.log("added buttons");
 
   if (timerAmount > 0 && timerType == "countdown") {
     addCountdownTimer(timerAmount);
@@ -45,6 +44,9 @@ function promptScreen(
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big);
     console.log("added big input");
   }
+
+  addButtons(["submit"]);
+  console.log("added buttons");
 
   if (timerType == "cooldown" && timerAmount > 0) {
     document.querySelector(".submit").addEventListener("click", function () {
