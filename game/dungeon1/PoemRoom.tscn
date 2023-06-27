@@ -44,12 +44,10 @@ layer_3/tile_data = PackedInt32Array(393212, 851968, 19, 393213, 851968, 19, 393
 script = ExtResource("2_11itm")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 blend_mode = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(-6, -80)
 scale = Vector2(4.16468, 3.73377)
 color = Color(0.741176, 0.8, 1, 1)

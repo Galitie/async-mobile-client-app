@@ -220,6 +220,8 @@ texture = ExtResource("1_h225k")
 5:23/0 = 0
 13:19/0 = 0
 18:14/0 = 0
+16:13/0 = 0
+14:16/0 = 0
 
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_erfd8")
