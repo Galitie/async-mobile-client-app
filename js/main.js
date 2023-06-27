@@ -99,6 +99,7 @@ function onClickSubmit() {
   cleanUpInput(textboxes);
   sendMessage(JSON.stringify(packet));
   timerRunning = false;
+  navigator.vibrate(200);
 }
 
 function onClickEmoji(emojiClass, emoji) {
