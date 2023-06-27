@@ -2,6 +2,7 @@
 # BUG: Icon texture on TTS message is blown up if talking to an icon-less speaker
 # BUG: UI in windowed mode on Galit's device does not scale
 # BUG: Transition fade has visual glitch on Galit's device
+# BUG/TODO: Characters need to be put on the same layer as map objects for proper Y sorting
 extends Node2D
 
 signal portal_entered
@@ -60,7 +61,7 @@ class Player:
 	var character
 	var voice_id
 
-const MAX_PLAYERS = 3
+const MAX_PLAYERS = 5
 var players = {}
 
 var next_map

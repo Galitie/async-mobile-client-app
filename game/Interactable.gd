@@ -6,7 +6,6 @@ extends Sprite2D
 @export var cell_position : Vector2i
 @export var interact_sprite : Rect2
 @export var interact_signal : String
-@export var speaker : String
 @export var messages : Array[Resource]
 
 const speed = 0.2

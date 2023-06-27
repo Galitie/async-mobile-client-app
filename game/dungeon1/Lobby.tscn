@@ -86,6 +86,7 @@ messages = Array[Resource]([SubResource("Resource_aigs6"), SubResource("Resource
 [node name="Portals" type="Node2D" parent="."]
 
 [node name="OutsideDoor" type="Sprite2D" parent="Portals"]
+visible = false
 texture = ExtResource("3_jvo88")
 centered = false
 region_enabled = true
@@ -94,5 +95,17 @@ cell_position = Vector2i(-1, -6)
 trigger_cell = Vector2i(-1, -6)
 next_map = "res://dungeon1/PoemRoom.tscn"
 next_map_cell_position = Vector2i(-1, 4)
+unlocked_sprite_region = Rect2(176, 208, 16, 16)
+locked_sprite_region = Rect2(208, 208, 16, 16)
+
+[node name="DebugPortal" type="Sprite2D" parent="Portals"]
+texture = ExtResource("3_jvo88")
+centered = false
+region_enabled = true
+script = ExtResource("6_cwvc8")
+cell_position = Vector2i(-1, -6)
+trigger_cell = Vector2i(-1, -6)
+next_map = "res://dungeon1/CrateRoom.tscn"
+next_map_cell_position = Vector2i(0, 4)
 unlocked_sprite_region = Rect2(176, 208, 16, 16)
 locked_sprite_region = Rect2(208, 208, 16, 16)

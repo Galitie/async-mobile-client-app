@@ -17,14 +17,15 @@ func _ready():
 	connect("moveGatekeeper", _moveGatekeeper)
 	set_process(false)
 
-func _chestOpened(object):
+func _chestOpened(character, object):
 	if !chests_opened:
 		var packet = {"action": "messageAllUsers"}
 		var poem_prompt = get_parent().Prompt.new("Think of a poetic line that ends in \"ing\"", "poemEntry", "countdown", 30.0, false, {"big": "Don't be shy!"})
 		packet.merge(poem_prompt.data)
 		get_parent().client.SendPacket(packet)
+		chests_opened = 4
 		
-	chests_opened += 1
+	#chests_opened += 1
 	
 	match chests_opened:
 		1:
@@ -42,7 +43,7 @@ func _poemEntry(packet):
 	response.merge(get_parent().world_prompt.data)
 	get_parent().client.SendPacket(response)
 
-func _talkedToGatekeeper(object):
+func _talkedToGatekeeper(character, object):
 	if !moved && chests_opened == max_chests:
 		var dialogue : Array[Resource] = []
 		for line in poem:
