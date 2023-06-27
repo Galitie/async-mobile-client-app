@@ -1,7 +1,6 @@
 navigator.virtualKeyboard.overlaysContent = true;
 let packageContext = "";
 let timerRunning = true;
-navigator.vibrate(200);
 // ************************* Screens *************************** //
 
 // If player is not connected
@@ -114,8 +113,6 @@ function onClickEmoji(emojiClass, emoji) {
 
 // this is only for the not connected screen
 function onClickConnect() {
-  navigator.vibrate(200);
-  alert("Tried vibrate");
   location.reload(true);
 }
 
