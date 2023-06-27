@@ -21,10 +21,13 @@ function promptScreen(
   inputs
 ) {
   clearIDGameInDOM();
+  console.log("cleared dom");
   addPrompt(prompt);
+  console.log("set prompt");
 
   if (timerAmount > 0 && timerType == "countdown") {
     addCountdownTimer(timerAmount);
+    console.log("added countdowntimer");
   }
 
   if (inputs.small) {
@@ -32,23 +35,28 @@ function promptScreen(
     document
       .querySelector(".smallInput")
       .setAttribute("placeholder", inputs.small);
+    console.log("added small input");
   }
 
   if (inputs.big) {
     addInput(["bigInput"]);
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big);
+    console.log("added big input");
   }
 
   addButtons(["submit"]);
+  console.log("added buttons");
 
   if (timerType == "cooldown" && timerAmount > 0) {
     document.querySelector(".submit").addEventListener("click", function () {
       addCooldownTimer(timerAmount);
     });
+    console.log("added cooldown timer");
   }
 
   if (includeEmojiTray == true) {
     addEmojiTray();
+    console.log("added emoji tray");
   }
 }
 
