@@ -115,6 +115,7 @@ function onClickEmoji(emojiClass, emoji) {
 // this is only for the not connected screen
 function onClickConnect() {
   navigator.vibrate(200);
+  alert("Tried vibrate");
   location.reload(true);
 }
 
