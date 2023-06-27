@@ -5,10 +5,10 @@ let timerRunning = true;
 
 // If player is not connected
 function notConnectedScreen() {
-  console.log("Host or Server not connected");
-  clearIDGameInDOM();
-  addPrompt(`TYLERPG`);
-  addPrompt(`Click below to join or re-join the game!`);
+  // console.log("Host or Server not connected");
+  // clearIDGameInDOM();
+  // addPrompt(`TYLERPG`);
+  // addPrompt(`Click below to join or re-join the game!`);
   addButtons(["connect"]);
 }
 
