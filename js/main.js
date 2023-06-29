@@ -29,10 +29,10 @@ function promptScreen(
   console.log(timerAmount);
   console.log(timerType);
 
-  // if (timerAmount > 0 && timerType == "countdown") {
-  //   console.log("added countdowntimer");
-  //   addCountdownTimer(timerAmount); // breaking here!
-  // }
+  if (timerAmount > 0 && timerType == "countdown") {
+    console.log("added countdowntimer");
+    addCountdownTimer(timerAmount); // breaking here!
+  }
 
   if (inputs.small) {
     console.log("added small input");
