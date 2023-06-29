@@ -27,6 +27,7 @@ socket.onmessage = function (event) {
     hostServerStatus.style.color = "red";
     notConnectedScreen();
   } else {
+    console.log(JSON.stringify(message));
     promptScreen(
       message["header"],
       message["timer"],

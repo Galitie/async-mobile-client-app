@@ -66,6 +66,7 @@ function promptScreen(
 
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
+  console.log("You clicked submit!");
   let textboxes;
   let packet = {
     action: "messageHost",
@@ -125,7 +126,7 @@ function onClickEmoji(emojiClass, emoji) {
 
 // this is only for the not connected screen
 function onClickConnect() {
-  console.log("You tried to connect!");
+  console.log("You clicked connect!");
   location.reload(true);
 }
 
