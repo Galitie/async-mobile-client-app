@@ -1,4 +1,4 @@
-navigator.virtualKeyboard.overlaysContent = true;
+// navigator.virtualKeyboard.overlaysContent = true;
 let packageContext = "";
 let timerRunning = true;
 // ************************* Screens *************************** //
@@ -31,7 +31,7 @@ function promptScreen(
 
   if (timerAmount > 0 && timerType == "countdown") {
     console.log("added countdowntimer");
-    addCountdownTimer(timerAmount);
+    addCountdownTimer(timerAmount); // breaking here!
   }
 
   if (inputs.small) {
