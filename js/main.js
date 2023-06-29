@@ -29,10 +29,10 @@ function promptScreen(
   console.log(timerAmount);
   console.log(timerType);
 
-  if (timerAmount > 0 && timerType == "countdown") {
-    console.log("added countdowntimer");
-    addCountdownTimer(timerAmount); // breaking here!
-  }
+  // if (timerAmount > 0 && timerType == "countdown") {
+  //   console.log("added countdowntimer");
+  //   addCountdownTimer(timerAmount); // breaking here!
+  // }
 
   if (inputs.small) {
     console.log("added small input");
@@ -125,6 +125,7 @@ function onClickEmoji(emojiClass, emoji) {
 
 // this is only for the not connected screen
 function onClickConnect() {
+  console.log("You tried to connect!");
   location.reload(true);
 }
 
@@ -254,6 +255,7 @@ function addInput(inputClasses) {
 
 function addButtons(buttonClasses) {
   buttonClasses.forEach((button) => {
+    console.log("trying to make button");
     let newButton = document.createElement("BUTTON");
     let newButtonText = document.createTextNode(capitalize(button));
     newButton.appendChild(newButtonText);
@@ -261,6 +263,7 @@ function addButtons(buttonClasses) {
     document.querySelector("#game").appendChild(newButton);
     let getElementButton = document.querySelector(`.${button}`);
     getElementButton.addEventListener("click", buttonMap[button]);
+    console.log("made button and added event listener");
   });
 }
 
