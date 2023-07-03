@@ -98,3 +98,7 @@ libraries = {
 }
 
 [node name="MessageBox" parent="World/CanvasLayer" instance=ExtResource("4_lgd38")]
+offset_left = 252.5
+offset_top = 414.0
+offset_right = 707.5
+offset_bottom = 530.0
