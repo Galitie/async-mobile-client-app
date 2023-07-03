@@ -27,8 +27,6 @@ socket.onmessage = function (event) {
     hostServerStatus.style.color = "red";
     notConnectedScreen();
   } else {
-    navigator.vibrate(200);
-    console.log("tried nav.vibrate");
     console.log(JSON.stringify(message));
     promptScreen(
       message["header"],
