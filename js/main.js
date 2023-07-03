@@ -21,21 +21,13 @@ function promptScreen(
   inputs
 ) {
   clearIDGameInDOM();
-  console.log("cleared dom");
   addPrompt(prompt);
-  console.log("set prompt");
-  console.log(inputs.small);
-  console.log(inputs.big);
-  console.log(timerAmount);
-  console.log(timerType);
 
   if (timerAmount > 0 && timerType == "countdown") {
-    console.log("added countdowntimer");
-    addCountdownTimer(timerAmount); // breaking here!
+    addCountdownTimer(timerAmount);
   }
 
   if (inputs.small) {
-    console.log("added small input");
     addInput(["smallInput"]);
     document
       .querySelector(".smallInput")
@@ -43,16 +35,13 @@ function promptScreen(
   }
 
   if (inputs.big) {
-    console.log("added big input");
     addInput(["bigInput"]);
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big);
   }
 
   addButtons(["submit"]);
-  console.log("added buttons");
 
   if (timerType == "cooldown" && timerAmount > 0) {
-    console.log("added cooldown timer");
     document.querySelector(".submit").addEventListener("click", function () {
       addCooldownTimer(timerAmount);
     });
@@ -66,7 +55,6 @@ function promptScreen(
 
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
-  console.log("You clicked submit!");
   let textboxes;
   let packet = {
     action: "messageHost",
@@ -126,7 +114,6 @@ function onClickEmoji(emojiClass, emoji) {
 
 // this is only for the not connected screen
 function onClickConnect() {
-  console.log("You clicked connect!");
   location.reload(true);
 }
 
@@ -256,7 +243,6 @@ function addInput(inputClasses) {
 
 function addButtons(buttonClasses) {
   buttonClasses.forEach((button) => {
-    console.log("trying to make button");
     let newButton = document.createElement("BUTTON");
     let newButtonText = document.createTextNode(capitalize(button));
     newButton.appendChild(newButtonText);
@@ -264,7 +250,6 @@ function addButtons(buttonClasses) {
     document.querySelector("#game").appendChild(newButton);
     let getElementButton = document.querySelector(`.${button}`);
     getElementButton.addEventListener("click", buttonMap[button]);
-    console.log("made button and added event listener");
   });
 }
 
