@@ -7,6 +7,7 @@
 # BUG: MessageBox on its first appearance sometimes has no appear animation
 # TODO: Reset method for box rooms
 # TODO: Create proper states for the world (reading, battling, etc)
+# TODO: Add emoji graphics and handling
 extends Node2D
 
 signal portal_entered
@@ -50,7 +51,7 @@ class Prompt:
 		data["emojis"] = emojis
 		data["inputs"] = inputs
 
-var create_character_prompt = Prompt.new("Add player to game:", "addPlayer", "countdown", 10.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
+var create_character_prompt = Prompt.new("Add player to game:", "addPlayer", "none", 0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
 var world_prompt = Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
 class TTSMessage:

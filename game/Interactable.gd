@@ -1,9 +1,13 @@
+@tool
 class_name Interactable
 extends Sprite2D
 
 @export var passable : bool
 @export var one_shot : bool
-@export var cell_position : Vector2i
+@export var cell_position : Vector2i = Vector2.ZERO:
+	set(new_position):
+		cell_position = new_position
+		SetCellPosition(cell_position)
 @export var interact_sprite : Rect2
 @export var interact_signal : String
 @export var messages : Array[Resource]
@@ -17,7 +21,6 @@ func _ready():
 	
 func SetCellPosition(cell_pos, instant = true):
 	var map = get_parent().get_parent()
-	cell_position = cell_pos
 	if instant:
 		transform.origin = Vector2(map.cell_quadrant_size * cell_position.x, map.cell_quadrant_size * cell_position.y)
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vm20nks46h8x"]
+[gd_scene load_steps=8 format=3 uid="uid://djai2tjej18xw"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_o081q"]
 [ext_resource type="Script" path="res://dungeon1/CrateRoom.gd" id="2_8d33a"]
@@ -11,8 +11,8 @@
 script = ExtResource("5_2ji5t")
 speaker = "Foe"
 content = "You're not getting past me!"
-message_signal = ""
-signal_timing = 0
+message_signal = "startBattle"
+signal_timing = 2
 
 [node name="CrateRoom2" type="TileMap"]
 tile_set = ExtResource("1_o081q")
@@ -46,6 +46,7 @@ script = ExtResource("2_8d33a")
 y_sort_enabled = true
 
 [node name="Crate1" type="Sprite2D" parent="Objects"]
+position = Vector2(-32, -224)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -56,6 +57,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate2" type="Sprite2D" parent="Objects"]
+position = Vector2(-16, -224)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -66,6 +68,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate3" type="Sprite2D" parent="Objects"]
+position = Vector2(16, -224)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -76,6 +79,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate4" type="Sprite2D" parent="Objects"]
+position = Vector2(32, -224)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -86,6 +90,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate5" type="Sprite2D" parent="Objects"]
+position = Vector2(-16, -208)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -96,6 +101,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate6" type="Sprite2D" parent="Objects"]
+position = Vector2(0, -208)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -106,6 +112,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate7" type="Sprite2D" parent="Objects"]
+position = Vector2(16, -208)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -116,6 +123,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate8" type="Sprite2D" parent="Objects"]
+position = Vector2(-32, -192)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -126,6 +134,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate9" type="Sprite2D" parent="Objects"]
+position = Vector2(32, -192)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -136,6 +145,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate10" type="Sprite2D" parent="Objects"]
+position = Vector2(-16, -176)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -146,6 +156,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate11" type="Sprite2D" parent="Objects"]
+position = Vector2(0, -176)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -156,6 +167,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate12" type="Sprite2D" parent="Objects"]
+position = Vector2(16, -176)
 texture = ExtResource("3_uuh84")
 centered = false
 region_enabled = true
@@ -166,6 +178,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Enemy" type="Sprite2D" parent="Objects"]
+position = Vector2(0, 16)
 script = ExtResource("4_8v2hl")
 one_shot = true
 cell_position = Vector2i(0, 1)
