@@ -178,7 +178,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Enemy" type="Sprite2D" parent="Objects"]
-position = Vector2(0, 16)
+position = Vector2(0, -128)
 script = ExtResource("4_8v2hl")
 one_shot = true
 cell_position = Vector2i(0, -8)
