@@ -8,7 +8,7 @@ function notConnectedScreen() {
   console.log("Host or Server not connected");
   clearIDGameInDOM();
   addPrompt(`TYLERPG`);
-  addPrompt(`Click below to join or re-join the game!`);
+  addDescription(`Click below to join or re-join the game!`);
   addButtons(["connect"]);
 }
 
@@ -222,6 +222,14 @@ function addPrompt(str) {
   newPrompt.appendChild(newPromptText);
   let gameSection = document.querySelector("#game");
   gameSection.appendChild(newPrompt);
+}
+
+function addDescription(str) {
+  let newDes = document.createElement("h2");
+  let newDesText = document.createTextNode(str);
+  newDes.appendChild(newDesText);
+  let gameSection = document.querySelector("#game");
+  gameSection.appendChild(newDes);
 }
 
 function addInput(inputClasses) {
