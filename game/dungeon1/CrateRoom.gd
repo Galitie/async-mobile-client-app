@@ -1,10 +1,12 @@
 extends TileMap
 
+signal startBattle
 signal pushCrate
 
 const COLLISION_LAYER = 3
 
 func _ready():
+	connect("startBattle", _startBattle)
 	connect("pushCrate", _pushCrate)
 	set_process(false)
 
@@ -27,3 +29,6 @@ func _pushCrate(character, object):
 		if obj.cell_position == destination:
 			return
 	object.SetCellPosition(destination, false)
+
+func _startBattle():
+	get_parent().StartBattle()
