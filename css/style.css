@@ -13,12 +13,17 @@
 
 * {
     text-align: center;
-    font-family: monospace;
-    margin: 0% 3%;
-    font-size: 4vw;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0% 10%;
+    font-size: 3vw;
+}
+
+html {
+    margin: unset;
 }
 
 body{
+    border: 1em solid black;
     min-height:100vh;
     display: flex;
     flex-direction: column;
@@ -58,6 +63,7 @@ button {
     text-align: center;
     padding: unset;
     margin: unset;
+    
 }
 
 button:active {
@@ -77,19 +83,20 @@ h1{
 
 .smallInput {
     width:100%;
-    min-height: 2em;
-    font-size: 5vw;
-    border: 1px solid black;
+    min-height: 3em;
+    font-size: 4vw;
+    border: .25em solid black;
     text-align: left;
     padding: 0 1em;
     padding-top: 1em;
+
 }
 
 .bigInput {
     width:100%;
-    min-height: 4em;
-    font-size: 5vw;
-    border: 1px solid black;
+    min-height: 7em;
+    font-size: 4vw;
+    border: .25em solid black;
     text-align: left;
     padding: 0 1em;
     padding-top: 1em;
@@ -100,12 +107,14 @@ h1{
     border: none;
     background-color: greenyellow;
     color: black;
+    border: .25em solid black;
 }
 
 .connect {
     border: none;
     background-color: greenyellow;
     color: black;
+    border: .25em solid black;
 }
 
 .join {
