@@ -28,6 +28,9 @@ socket.onmessage = function (event) {
     notConnectedScreen();
   } else {
     window.Navigator.vibrate(200);
+    console.log("tried window.nav");
+    navigator.vibrate(200);
+    console.log("tried nav.vibrate");
     console.log(JSON.stringify(message));
     promptScreen(
       message["header"],
