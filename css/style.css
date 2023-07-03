@@ -19,11 +19,11 @@
 }
 
 html {
-    border: 1em solid black;
     margin: unset;
 }
 
 body{
+    border: 1em solid black;
     min-height:100vh;
     display: flex;
     flex-direction: column;
