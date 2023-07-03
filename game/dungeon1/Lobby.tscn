@@ -73,6 +73,7 @@ texture = ExtResource("2_wsmvx")
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Chest" type="Sprite2D" parent="Objects"]
+position = Vector2(64, -32)
 texture = ExtResource("3_jvo88")
 centered = false
 region_enabled = true
