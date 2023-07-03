@@ -1,8 +1,12 @@
 # BUG: Speaker name does not show if there is no icon
 # BUG: Icon texture on TTS message is blown up if talking to an icon-less speaker
 # BUG: UI in windowed mode on Galit's device does not scale
-# BUG: Transition fade has visual glitch on Galit's device
+# BUG: Transition fade does not adapt to different screen sizes
 # BUG/TODO: Characters need to be put on the same layer as map objects for proper Y sorting
+# BUG/TODO: Camera visibly moves between room transitions rather than being set
+# BUG: MessageBox on its first appearance sometimes has no appear animation
+# TODO: Reset method for box rooms
+# TODO: Create proper states for the world (reading, battling, etc)
 extends Node2D
 
 signal portal_entered
@@ -66,6 +70,7 @@ var players = {}
 
 var next_map
 var spawn_position
+var battle = false
 
 func _ready():
 	$CanvasLayer/AnimationPlayer.connect("animation_finished", _animationFinished)
@@ -164,7 +169,8 @@ func _process(delta):
 		if current_message == null:
 			$CanvasLayer/MessageBox.Hide()
 			reading = false
-			ResumeWorld()
+			if !battle:
+				ResumeWorld()
 		else:
 			$CanvasLayer/MessageBox.SetText(true, current_message.content, current_message.speaker)
 			if current_message.signal_timing == Message.SignalTiming.APPEAR:
@@ -184,19 +190,20 @@ func _portalEntered(_next_map, _spawn_position):
 	next_map = _next_map
 	spawn_position = _spawn_position
 	$CanvasLayer/AnimationPlayer.play("fade_out")
+	await get_tree().create_timer(0.4).timeout
+	remove_child(current_map)
+	current_map = load(next_map).instantiate()
+	add_child(current_map)
+	for ip in players:
+		players[ip].character.SetCellPosition(spawn_position)
+	next_map = null
+	spawn_position = Vector2i.ZERO
+	await get_tree().create_timer(0.4).timeout
+	ResumeWorld()
 	
 func _animationFinished(anim):
 	if anim == "fade_out":
-		remove_child(current_map)
-		current_map = load(next_map).instantiate()
-		add_child(current_map)
-		for ip in players:
-			players[ip].character.SetCellPosition(spawn_position)
-		next_map = null
-		spawn_position = Vector2i.ZERO
 		$CanvasLayer/AnimationPlayer.play("fade_in")
-	elif anim == "fade_in":
-		ResumeWorld()
 
 func PauseWorld():
 	paused = true
@@ -205,3 +212,14 @@ func PauseWorld():
 func ResumeWorld():
 	paused = false
 	DisplayServer.tts_resume()
+
+func StartBattle():
+	PauseWorld()
+	battle = true
+	$CanvasLayer/AnimationPlayer.play("fade_out")
+	await get_tree().create_timer(0.4).timeout
+	var battle_scene = load("res://Battle.tscn") as PackedScene
+	var battle_instance = battle_scene.instantiate()
+	battle_instance.z_index = 5
+	add_child(battle_instance)
+	await get_tree().create_timer(0.4).timeout
