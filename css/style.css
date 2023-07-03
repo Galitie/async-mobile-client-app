@@ -16,6 +16,7 @@
     font-family: 'Press Start 2P', cursive;
     margin: 0% 10%;
     font-size: 3vw;
+
 }
 
 html {
@@ -43,7 +44,9 @@ body{
     display:flex;
     flex-direction: column;
     height:100%;
-    gap: 2em;
+    min-height: 75vh;
+    gap: 3em;
+    justify-content: center;
 }
 
 #emojiContainer {
