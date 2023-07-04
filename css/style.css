@@ -167,7 +167,7 @@ h1{
 
 .pulsate{
     color:red;
-    font-size: 5vw;
+    font-size: 4vw;
     animation: pulsate 1s ease-out;
     animation-iteration-count: infinite; 
     opacity: 0.5;
