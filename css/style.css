@@ -33,8 +33,7 @@ body{
     flex-direction: column;
     justify-content: space-around;
     gap:2em;
-    background: rgb(11, 0, 207);
-    background: linear-gradient(0deg, rgba(11, 0, 207, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 180, 217, 1) 100%);
+    background: sienna
 }
 
 #stats{
@@ -94,6 +93,7 @@ textarea {
     text-shadow: none;
     color:black;
     box-shadow: -10px 10px black;
+    resize:none;
 
 }
   
@@ -110,18 +110,12 @@ textarea {
 }
 
 .submit {
-    background-color: greenyellow;
+    background-color: rgb(11, 0, 207);
     
 }
 
 .connect {
-    background-color: greenyellow;
-}
-
-.join {
-    border: none;
-    background-color: greenyellow;
-    color: black;
+    background-color: rgb(11, 0, 207);
 }
 
 .emoji {
@@ -129,7 +123,8 @@ textarea {
     min-height: 150px;
     font-size: 8vw;
     border: none;
-    background-color: white;
+    box-shadow: none;
+    background-color: transparent;
 }
 
 .disabled{

@@ -38,7 +38,9 @@ function promptScreen(
     document.querySelector(".bigInput").setAttribute("placeholder", inputs.big);
   }
 
-  addButtons(["submit"]);
+  if (inputs.big || inputs.small) {
+    addButtons(["submit"]);
+  }
 
   if (timerType == "cooldown" && timerAmount > 0) {
     document.querySelector(".submit").addEventListener("click", function () {

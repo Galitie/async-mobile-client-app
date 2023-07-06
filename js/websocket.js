@@ -9,7 +9,6 @@ const socket = new WebSocket(websocketUrl);
 socket.onopen = function (event) {
   console.log("WebSocket connection established.");
   playerServerStatus.innerText = "\u2705 Connected to Server";
-  playerServerStatus.style.color = "green";
 
   const packet = {
     action: "messageHost",
