@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://fq76xsh17p00"]
+[gd_scene load_steps=12 format=3 uid="uid://fq76xsh17p00"]
 
 [ext_resource type="Script" path="res://Battle.gd" id="1_fa0c3"]
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ucup7"]
 [ext_resource type="PackedScene" uid="uid://j4arlkmxuayy" path="res://characters/Character.tscn" id="3_j4x47"]
 [ext_resource type="SpriteFrames" uid="uid://buah1prm3ccyy" path="res://characters/snake_frames.tres" id="3_pm1pv"]
 [ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="3_ycp2p"]
+[ext_resource type="PackedScene" uid="uid://6lh05vm6wb2i" path="res://DropBox.tscn" id="4_8luep"]
 [ext_resource type="SpriteFrames" uid="uid://8y7ri24itstq" path="res://characters/mario_frames.tres" id="4_bqjp3"]
 [ext_resource type="Texture2D" uid="uid://c04le768q4be2" path="res://enemy.png" id="4_os6i8"]
 [ext_resource type="SpriteFrames" uid="uid://bi6q8j335ixdu" path="res://characters/kermit_frames.tres" id="5_ch6ys"]
+[ext_resource type="Texture2D" uid="uid://yc3l02gbhl7p" path="res://cursor.png" id="5_j1nqu"]
 [ext_resource type="SpriteFrames" uid="uid://bg8rjyk5nckoy" path="res://characters/shrek_frames.tres" id="6_3bqlg"]
 
 [node name="Battle" type="Node2D"]
@@ -23,15 +25,48 @@ position_smoothing_speed = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
-[node name="TextBox" parent="Camera2D/CanvasLayer" instance=ExtResource("3_ycp2p")]
+[node name="Control" type="Control" parent="Camera2D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleInfo" parent="Camera2D/CanvasLayer/Control" instance=ExtResource("3_ycp2p")]
+layout_mode = 1
 anchors_preset = 5
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 392.0
-offset_top = 0.0
-offset_right = 847.0
-offset_bottom = 116.0
-grow_vertical = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -119.5
+offset_top = 5.0
+offset_right = 119.5
+offset_bottom = 67.0
+grow_horizontal = 2
+
+[node name="DropBox" parent="Camera2D/CanvasLayer/Control" instance=ExtResource("4_8luep")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -42.0
+offset_right = 50.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="TextureRect" parent="Camera2D/CanvasLayer/Control/DropBox"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 22.0
+offset_bottom = 26.0
+texture = ExtResource("5_j1nqu")
+stretch_mode = 2
 
 [node name="Character" parent="." instance=ExtResource("3_j4x47")]
 position = Vector2(150, -100)

@@ -1,13 +1,13 @@
 # BUG: Speaker name does not show if there is no icon
 # BUG: Icon texture on TTS message is blown up if talking to an icon-less speaker
 # BUG: UI in windowed mode on Galit's device does not scale
-# BUG: Transition fade does not adapt to different screen sizes
 # BUG/TODO: Characters need to be put on the same layer as map objects for proper Y sorting
 # BUG/TODO: Camera visibly moves between room transitions rather than being set
 # BUG: MessageBox on its first appearance sometimes has no appear animation
 # TODO: Reset method for box rooms
 # TODO: Create proper states for the world (reading, battling, etc)
 # TODO: Add emoji graphics
+# TODO: Revamp movement system. Tweens and timers will not cut it
 extends Node2D
 
 signal portal_entered
@@ -32,27 +32,8 @@ var reading = false
 var message_queue = []
 var tts_queue = []
 
-class Prompt:
-	var data = {
-		"message": "prompt",
-		"header": "Default header",
-		"context": "default",
-		"timerType": "none", # none, cooldown, countdown
-		"timer": 0.0,
-		"emojis": false,
-		"inputs": {} # "big" and/or "small" keys with placeholder values
-	}
-	
-	func _init(header, context, timerType, timer, emojis, inputs):
-		data["header"] = header
-		data["context"] = context
-		data["timerType"] = timerType
-		data["timer"] = timer
-		data["emojis"] = emojis
-		data["inputs"] = inputs
-
-var create_character_prompt = Prompt.new("Add player to game:", "addPlayer", "none", 0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
-var world_prompt = Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
+var create_character_prompt = Global.Prompt.new("Add player to game:", "addPlayer", "none", 0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
+var world_prompt = Global.Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
 class TTSMessage:
 	var content
@@ -220,10 +201,16 @@ func ResumeWorld():
 	DisplayServer.tts_resume()
 
 func StartBattle():
+	var packet = {"action": "messageAllUsers"}
+	var wait_prompt = Global.Prompt.new("Please wait...", "wait", "none", 0.0, false, {"small": ""})
+	packet.merge(wait_prompt.data)
+	client.SendPacket(packet)
+	
 	PauseWorld()
 	battle = true
 	$CanvasLayer/AnimationPlayer.play("fade_out")
 	await get_tree().create_timer(0.4).timeout
+	visible = false
 	var battle_scene = load("res://Battle.tscn") as PackedScene
 	var battle_instance = battle_scene.instantiate()
 	battle_instance.z_index = 5

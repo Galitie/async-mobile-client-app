@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://6lh05vm6wb2i"]
+
+[ext_resource type="Texture2D" uid="uid://bsjtsip24x74p" path="res://drop_box.png" id="1_dr1wd"]
+[ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="2_dox2j"]
+
+[node name="DropBox" type="TextureRect"]
+offset_top = 1.0
+offset_right = 100.0
+offset_bottom = 85.0
+texture = ExtResource("1_dr1wd")
+stretch_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 93.0
+offset_bottom = 79.0
+
+[node name="Move1" type="RichTextLabel" parent="GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(51, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = ExtResource("2_dox2j")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[right]megatriplebenis"
+scroll_active = false
+
+[node name="Move2" type="RichTextLabel" parent="GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(51, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = ExtResource("2_dox2j")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[right]megatriplebenis"
+scroll_active = false
+
+[node name="Move3" type="RichTextLabel" parent="GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(51, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = ExtResource("2_dox2j")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[right]megatriplebenis"
+scroll_active = false
+
+[node name="Move4" type="RichTextLabel" parent="GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(51, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = ExtResource("2_dox2j")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[right]megatriplebenis"
+scroll_active = false
