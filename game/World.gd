@@ -7,7 +7,7 @@
 # BUG: MessageBox on its first appearance sometimes has no appear animation
 # TODO: Reset method for box rooms
 # TODO: Create proper states for the world (reading, battling, etc)
-# TODO: Add emoji graphics and handling
+# TODO: Add emoji graphics
 extends Node2D
 
 signal portal_entered
@@ -72,6 +72,8 @@ var players = {}
 var next_map
 var spawn_position
 var battle = false
+
+@onready var message_box = $CanvasLayer/UI/MessageBox
 
 func _ready():
 	$CanvasLayer/AnimationPlayer.connect("animation_finished", _animationFinished)
@@ -151,6 +153,9 @@ func _speak(packet):
 	tts_msg.icon_region = players[packet["userIP"]].character.character_data.icon_region
 	tts_queue.append(tts_msg)
 	
+func Emote(ip, emoji):
+	players[ip].character.Emote(emoji)
+	
 func _process(delta):
 	if !paused:
 		# First party member is controllable
@@ -160,20 +165,20 @@ func _process(delta):
 			if tts_queue.size():
 				var tts = tts_queue.pop_front()
 				DisplayServer.tts_speak(tts.content, tts.voice_id, 50, tts.pitch)
-				$CanvasLayer/MessageBox.Show(tts.content, tts.speaker_name, tts.icon_region)
-			elif $CanvasLayer/MessageBox.showing:
-				$CanvasLayer/MessageBox.Hide()
+				message_box.Show(tts.content, tts.speaker_name, tts.icon_region)
+			elif message_box.showing:
+				message_box.Hide()
 	elif reading && Input.is_action_just_pressed("interact"):
 		if current_message.signal_timing == Message.SignalTiming.DISAPPEAR:
 			current_map.emit_signal(current_message.message_signal)
 		current_message = message_queue.pop_front()
 		if current_message == null:
-			$CanvasLayer/MessageBox.Hide()
+			message_box.Hide()
 			reading = false
 			if !battle:
 				ResumeWorld()
 		else:
-			$CanvasLayer/MessageBox.SetText(true, current_message.content, current_message.speaker)
+			message_box.SetText(true, current_message.content, current_message.speaker)
 			if current_message.signal_timing == Message.SignalTiming.APPEAR:
 				current_map.emit_signal(current_message.message_signal)
 
@@ -182,7 +187,7 @@ func SetMessageQueue(messages):
 	reading = true
 	message_queue = messages.duplicate()
 	current_message = message_queue.pop_front()
-	$CanvasLayer/MessageBox.Show(current_message.content, current_message.speaker)
+	message_box.Show(current_message.content, current_message.speaker)
 	if current_message.signal_timing == Message.SignalTiming.APPEAR:
 		current_map.emit_signal(current_message.message_signal)
 	
@@ -222,5 +227,6 @@ func StartBattle():
 	var battle_scene = load("res://Battle.tscn") as PackedScene
 	var battle_instance = battle_scene.instantiate()
 	battle_instance.z_index = 5
-	add_child(battle_instance)
+	client.add_child(battle_instance)
+	client.game_handle = battle_instance
 	await get_tree().create_timer(0.4).timeout

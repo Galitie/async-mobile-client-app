@@ -7,245 +7,92 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2430s"]
 atlas = ExtResource("3_6wvxd")
-region = Rect2(224, 128, 32, 32)
+region = Rect2(224, 192, 32, 32)
 
-[sub_resource type="Animation" id="Animation_fw17m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(455, 116)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(80, 72)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(13, 10)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(252.5, 414)]
-}
-
-[sub_resource type="Animation" id="Animation_iw5gy"]
+[sub_resource type="Animation" id="Animation_ejiu0"]
 resource_name = "appear"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:size")
+tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(455, 0), Vector2(455, 116)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(253, 530), Vector2(252.5, 414)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(80, 19), Vector2(80, 72)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Icon:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(13, -11), Vector2(13, 10)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_bcyyo"]
+[sub_resource type="Animation" id="Animation_8tpjn"]
 resource_name = "disappear"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:size")
+tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(455, 116), Vector2(455, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(252.5, 414), Vector2(253, 530)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(80, 72), Vector2(80, 19)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Icon:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(13, 10), Vector2(13, -11)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bqcb8"]
+[sub_resource type="Animation" id="Animation_kx5i0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvsbu"]
 _data = {
-"RESET": SubResource("Animation_fw17m"),
-"appear": SubResource("Animation_iw5gy"),
-"disappear": SubResource("Animation_bcyyo")
+"RESET": SubResource("Animation_kx5i0"),
+"appear": SubResource("Animation_ejiu0"),
+"disappear": SubResource("Animation_8tpjn")
 }
 
 [node name="TextBox" type="TextureRect"]
 visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -227.5
-offset_top = -126.0
-offset_right = 227.5
-offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_right = 239.0
+offset_bottom = 62.0
+pivot_offset = Vector2(228, 58)
 size_flags_vertical = 4
 texture = ExtResource("1_tej0g")
-expand_mode = 2
 script = ExtResource("2_5mtgl")
 
 [node name="Dialogue" type="RichTextLabel" parent="."]
 visible = false
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -124.5
-offset_top = -31.0
-offset_right = 216.5
-offset_bottom = 43.0
-grow_horizontal = 2
+offset_left = -186.0
+offset_top = -14.0
+offset_right = -9.0
+offset_bottom = 26.0
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_y = 1
 theme_override_fonts/normal_font = ExtResource("2_r4gmc")
-theme_override_font_sizes/normal_font_size = 26
-text = "Mama mia Tyler, I can't take any more of this!"
+theme_override_font_sizes/normal_font_size = 12
+text = "This is the longest sentence ever. It is so long."
 scroll_active = false
 
 [node name="Info" type="RichTextLabel" parent="."]
@@ -257,19 +104,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -188.0
-offset_top = -17.0
-offset_right = 188.0
-offset_bottom = 17.0
+offset_left = -105.0
+offset_top = -8.5
+offset_right = 105.0
+offset_bottom = 8.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_y = 1
 theme_override_fonts/normal_font = ExtResource("2_r4gmc")
-theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "[center]Wow, neat! You got a...?"
+text = "[center]You find something old and worthless..."
 scroll_active = false
 
 [node name="Icon" type="TextureRect" parent="."]
@@ -279,12 +126,13 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 13.0
-offset_top = -48.0
-offset_right = 93.0
-offset_bottom = 24.0
+offset_left = 6.0
+offset_top = -28.5
+offset_right = 50.0
+offset_bottom = 14.5
 grow_vertical = 2
 texture = SubResource("AtlasTexture_2430s")
+stretch_mode = 4
 
 [node name="Name" type="RichTextLabel" parent="Icon"]
 texture_filter = 1
@@ -294,22 +142,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -7.0
-offset_right = 31.0
-offset_bottom = 20.0
+offset_left = -22.5
+offset_top = -4.0
+offset_right = 22.5
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_y = 1
 theme_override_fonts/normal_font = ExtResource("2_r4gmc")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "[center]Mario[center]["
+text = "[center]Mario"
 scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bqcb8")
+"": SubResource("AnimationLibrary_kvsbu")
 }

@@ -6,6 +6,7 @@ signal addPlayer
 signal disconnect
 signal sendText
 signal sayCatchphrase
+signal emote
 
 var websocket_url = "wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod/"
 var socket = WebSocketPeer.new()
@@ -14,6 +15,8 @@ var initial_connection = true
 var users = {}
 
 enum CONNECTION_STATUS {ONLINE, OFFLINE}
+
+@onready var game_handle = $World
 
 class UserData:
 	var ip
@@ -37,6 +40,7 @@ func _ready():
 	connect("sendText", _sendText)
 	connect("addPlayer", _addPlayer)
 	connect("sayCatchphrase", _sayCatchPhrase)
+	connect("emote", _emote)
 	
 func _process(delta):
 	socket.poll()
@@ -72,7 +76,7 @@ func ProcessPacket(packet):
 ################### Signals ###################
 
 func _addedToDB(packet):
-	$World.ready_for_players = true
+	game_handle.ready_for_players = true
 
 func _attemptJoin(packet):
 	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
@@ -80,13 +84,13 @@ func _attemptJoin(packet):
 		var user = users[packet["userIP"]]
 		user.connection_id = packet["connectionID"]
 		user.connection_status = CONNECTION_STATUS.ONLINE
-		$World.UpdateUserData(user)
+		game_handle.UpdateUserData(user)
 		print(user.name + " has reconnected")
 		response["message"] = "reconnect"
-		response.merge($World.world_prompt.data)
+		response.merge(game_handle.world_prompt.data)
 	else:
-		if $World.ready_for_players && $World.players.size() < $World.MAX_PLAYERS:
-			response.merge($World.create_character_prompt.data)
+		if game_handle.ready_for_players && game_handle.players.size() < game_handle.MAX_PLAYERS:
+			response.merge(game_handle.create_character_prompt.data)
 		else:
 			response["message"] = "refuseJoin"
 	SendPacket(response)
@@ -100,26 +104,30 @@ func _addPlayer(packet):
 	user_data.catchphrase = packet["bigInputValue"]
 	user_data.connection_status = CONNECTION_STATUS.ONLINE
 	users[user_data.ip] = user_data
-	$World.AddPlayer(user_data, $World.players.size())
-	$World.SpawnCharacter($World.players[user_data.ip], $World.players[$World.last_ip].character, $World.players["0.0.0.0"].character.cell_position)
+	game_handle.AddPlayer(user_data, game_handle.players.size())
+	game_handle.SpawnCharacter(game_handle.players[user_data.ip], game_handle.players[game_handle.last_ip].character, game_handle.players["0.0.0.0"].character.cell_position)
 	print(user_data.name + " has joined the game")
 	SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": packet["userIP"], "connectionID": packet["connectionID"]})
 	var user_packet = {"action": "respondToUser", "connectionID": packet["connectionID"]}
-	user_packet.merge($World.world_prompt.data)
+	user_packet.merge(game_handle.world_prompt.data)
 	SendPacket(user_packet)
 	
 func _disconnect(packet):
 	if users.has(packet["userIP"]):
 		users[packet["userIP"]].connection_status = CONNECTION_STATUS.OFFLINE
-		$World.UpdateUserData(users[packet["userIP"]])
+		game_handle.UpdateUserData(users[packet["userIP"]])
 		print(users[packet["userIP"]].name + " has left the game")
 
 func _sendText(packet):
 	if users.has(packet["userIP"]):
-		$World.ParseContext(packet)
+		game_handle.ParseContext(packet)
 	else:
 		emit_signal(packet["context"], packet)
 
 func _sayCatchPhrase(packet):
 	if users.has(packet["userIP"]):
-		$World.Speak(packet["userIP"], users[packet["userIP"]].catchphrase)
+		game_handle.Speak(packet["userIP"], users[packet["userIP"]].catchphrase)
+
+func _emote(packet):
+	if users.has(packet["userIP"]):
+		game_handle.Emote(packet["userIP"], packet["emoji"])

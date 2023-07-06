@@ -125,3 +125,6 @@ func _onStep():
 func _finishedMoving():
 	can_move = true
 	cell_position = cell_destination
+
+func Emote(emoji):
+	print(emoji)

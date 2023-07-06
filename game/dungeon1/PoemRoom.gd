@@ -23,9 +23,8 @@ func _chestOpened(character, object):
 		var poem_prompt = get_parent().Prompt.new("Think of a poetic line that ends in \"ing\"", "poemEntry", "countdown", 30.0, false, {"big": "Don't be shy!"})
 		packet.merge(poem_prompt.data)
 		get_parent().client.SendPacket(packet)
-		chests_opened = 4
 		
-	#chests_opened += 1
+	chests_opened += 1
 	
 	match chests_opened:
 		1:
