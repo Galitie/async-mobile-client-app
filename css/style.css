@@ -16,6 +16,8 @@
     font-family: 'Press Start 2P', cursive;
     margin: 0% 10%;
     font-size: 3vw;
+    color: white;
+    text-shadow: -.1em .1em black;
 
 }
 
@@ -24,13 +26,15 @@ html {
 }
 
 body{
-    border: 1em solid black;
+    border: 1em solid white;
     min-height:100vh;
     max-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     gap:2em;
+    background: rgb(11, 0, 207);
+    background: linear-gradient(0deg, rgba(11, 0, 207, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 180, 217, 1) 100%);
 }
 
 #stats{
@@ -67,7 +71,8 @@ button {
     text-align: center;
     padding: unset;
     margin: unset;
-    
+    border: .25em solid white;
+    box-shadow: -10px 10px black;
 }
 
 button:active {
@@ -79,46 +84,38 @@ h1{
     margin: unset;
 }
 
-  
+textarea {
+    width:100%;
+    font-size: 4vw;
+    text-align: left;
+    padding: 0 1em;
+    padding-top: 1em;
+    border: .25em solid white;
+    text-shadow: none;
+    color:black;
+    box-shadow: -10px 10px black;
+
+}
   
   /******************************************
   /* ADDITIONAL STYLES
   /*******************************************/
 
 .smallInput {
-    width:100%;
     min-height: 3em;
-    font-size: 4vw;
-    border: .25em solid black;
-    text-align: left;
-    padding: 0 1em;
-    padding-top: 1em;
-
 }
 
 .bigInput {
-    width:100%;
     min-height: 7em;
-    font-size: 4vw;
-    border: .25em solid black;
-    text-align: left;
-    padding: 0 1em;
-    padding-top: 1em;
-
 }
 
 .submit {
-    border: none;
     background-color: greenyellow;
-    color: black;
-    border: .25em solid black;
+    
 }
 
 .connect {
-    border: none;
     background-color: greenyellow;
-    color: black;
-    border: .25em solid black;
 }
 
 .join {

@@ -248,6 +248,11 @@ function addInput(inputClasses) {
 }
 
 function addButtons(buttonClasses) {
+  let buttonMap = {
+    submit: onClickSubmit,
+    connect: onClickConnect,
+  };
+
   buttonClasses.forEach((button) => {
     let newButton = document.createElement("BUTTON");
     let newButtonText = document.createTextNode(capitalize(button));
@@ -258,11 +263,6 @@ function addButtons(buttonClasses) {
     getElementButton.addEventListener("click", buttonMap[button]);
   });
 }
-
-let buttonMap = {
-  submit: onClickSubmit,
-  connect: onClickConnect,
-};
 
 function addEmojiTray() {
   let emojiMap = {
