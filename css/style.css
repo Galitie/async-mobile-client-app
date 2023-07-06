@@ -33,7 +33,7 @@ body{
     flex-direction: column;
     justify-content: space-around;
     gap:2em;
-    background: sienna
+    background: sienna;
 }
 
 #stats{
@@ -120,11 +120,9 @@ textarea {
 
 .emoji {
     width: 20%;
-    min-height: 150px;
     font-size: 8vw;
-    border: none;
-    box-shadow: none;
-    background-color: transparent;
+    background-color: rgb(11, 0, 207);
+    padding-bottom: .25em;
 }
 
 .disabled{

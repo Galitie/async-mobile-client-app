@@ -1,3 +1,5 @@
+let canVibrate = false;
+
 let playerServerStatus = document.querySelector("h4");
 let hostServerStatus = document.querySelector("h3");
 
@@ -21,12 +23,14 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = JSON.parse(event.data);
   console.log("Received message:", message);
+  if ("vibrate" in navigator) canVibrate = true;
 
   if (message["message"] == "Internal server error") {
     hostServerStatus.innerText = "\u2717 Disconnected from Host";
     hostServerStatus.style.color = "red";
     notConnectedScreen();
   } else {
+    if (canVibrate) navigator.vibrate(200);
     console.log(JSON.stringify(message));
     promptScreen(
       message["header"],
