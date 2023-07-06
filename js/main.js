@@ -1,4 +1,3 @@
-// navigator.virtualKeyboard.overlaysContent = true;
 let packageContext = "";
 let timerRunning = true;
 // ************************* Screens *************************** //
@@ -102,14 +101,15 @@ function onClickSubmit() {
   timerRunning = false;
 }
 
-function onClickEmoji(emojiClass, emoji) {
-  const packet = {
-    action: "messageHost",
-    message: "sendText",
-    content: `${emojiClass}`,
-    context: "speak",
-  };
-  sendMessage(JSON.stringify(packet));
+function onClickEmoji(emojiStr) {
+  console.log(`You clicked ${emojiStr}`);
+
+  // const packet = {
+  //   action: "messageHost",
+  //   message: "emote",
+  //   emoji: emojiStr,
+  // };
+  // sendMessage(JSON.stringify(packet));
 }
 
 // this is only for the not connected screen
@@ -267,23 +267,28 @@ let buttonMap = {
 };
 
 function addEmojiTray() {
-  let emojiCollection = ["❤️", "😭", "🐝", "❗"];
+  let emojiMap = {
+    love: "❤️",
+    sad: "😭",
+    bee: "🐝",
+    wow: "❗",
+  };
 
   let newSection = document.createElement("SECTION");
   newSection.setAttribute("id", "emojiContainer");
-
   document.querySelector("#game").appendChild(newSection);
 
-  for (let i = 0; i < emojiCollection.length; i++) {
+  Object.keys(emojiMap).forEach((emoji) => {
     let newButton = document.createElement("BUTTON");
-    let newButtonText = document.createTextNode(emojiCollection[i]);
+    let newButtonText = document.createTextNode(emojiMap[emoji]);
     newButton.appendChild(newButtonText);
-    newButton.classList.add(`emoji${i}`);
+    newButton.classList.add(`emoji`);
+    newButton.setAttribute("id", `${emoji}`);
     newSection.appendChild(newButton);
-    document.querySelector(`.emoji${i}`).addEventListener("click", function () {
-      onClickEmoji(`emoji${i}`, `${newButton.innerText}`);
+    document.getElementById(`${emoji}`).addEventListener("click", function () {
+      onClickEmoji(emoji);
     });
-  }
+  });
 }
 
 //************Helper Functions *******************/

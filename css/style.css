@@ -127,7 +127,7 @@ h1{
     color: black;
 }
 
-.emoji0 {
+.emoji {
     width: 20%;
     min-height: 150px;
     font-size: 8vw;
@@ -135,7 +135,7 @@ h1{
     background-color: white;
 }
 
-.emoji1 {
+/* .emoji1 {
     width: 20%;
     min-height: 150px;
     font-size: 8vw;
@@ -157,7 +157,7 @@ h1{
     font-size: 8vw;
     border: none;
     background-color: white;
-}
+} */
 
 .disabled{
     background-color:lightgray;

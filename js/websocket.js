@@ -1,5 +1,6 @@
 let playerServerStatus = document.querySelector("h4");
 let hostServerStatus = document.querySelector("h3");
+
 const websocketUrl =
   "wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod";
 const socket = new WebSocket(websocketUrl);
