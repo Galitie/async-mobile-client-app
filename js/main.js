@@ -102,14 +102,12 @@ function onClickSubmit() {
 }
 
 function onClickEmoji(emojiStr) {
-  console.log(`You clicked ${emojiStr}`);
-
-  // const packet = {
-  //   action: "messageHost",
-  //   message: "emote",
-  //   emoji: emojiStr,
-  // };
-  // sendMessage(JSON.stringify(packet));
+  const packet = {
+    action: "messageHost",
+    message: "emote",
+    emoji: emojiStr,
+  };
+  sendMessage(JSON.stringify(packet));
 }
 
 // this is only for the not connected screen

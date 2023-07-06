@@ -135,30 +135,6 @@ h1{
     background-color: white;
 }
 
-/* .emoji1 {
-    width: 20%;
-    min-height: 150px;
-    font-size: 8vw;
-    border: none;
-    background-color: white;
-}
-
-.emoji2 {
-    width: 20%;
-    min-height: 150px;
-    font-size: 8vw;
-    border: none;
-    background-color: white;
-}
-
-.emoji3 {
-    width: 20%;
-    min-height: 150px;
-    font-size: 8vw;
-    border: none;
-    background-color: white;
-} */
-
 .disabled{
     background-color:lightgray;
     transition: 0.9s;
