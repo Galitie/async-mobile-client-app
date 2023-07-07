@@ -23,6 +23,7 @@ socket.onopen = function (event) {
 socket.onmessage = function (event) {
   const message = JSON.parse(event.data);
   console.log("Received message:", message);
+
   if ("vibrate" in navigator) canVibrate = true;
 
   if (message["message"] == "Internal server error") {

@@ -5,6 +5,8 @@ const COLLISION_LAYER = 3
 
 var world
 
+var floating_emoji = preload("res://Emoji.tscn")
+
 var cell_size
 var cell_position = Vector2(0, 0)
 var cell_destination = Vector2i.ZERO
@@ -127,4 +129,6 @@ func _finishedMoving():
 	cell_position = cell_destination
 
 func Emote(emoji):
-	print(emoji)
+	var emoji_float = floating_emoji.instantiate()
+	emoji_float.content = emoji
+	add_child(emoji_float)

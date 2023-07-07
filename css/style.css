@@ -75,7 +75,7 @@ button {
 }
 
 button:active {
-    transform: translateY(4px)
+    transform: translateY(6px)
 }
 
 
