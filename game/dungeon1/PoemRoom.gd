@@ -20,9 +20,9 @@ func _ready():
 func _chestOpened(character, object):
 	if !chests_opened:
 		var packet = {"action": "messageAllUsers"}
-		var poem_prompt = Global.Prompt.new("Think of a poetic line that ends in \"ing\"", "poemEntry", "countdown", 30.0, false, {"big": "Don't be shy!"})
+		var poem_prompt = Game.Prompt.new("Think of a poetic line that ends in \"ing\"", "poemEntry", "countdown", 30.0, false, {"big": "Roses are red..."})
 		packet.merge(poem_prompt.data)
-		get_parent().client.SendPacket(packet)
+		Client.SendPacket(packet)
 		
 	chests_opened += 1
 	
@@ -40,7 +40,7 @@ func _poemEntry(packet):
 	poem.append(packet["bigInputValue"])
 	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
 	response.merge(get_parent().world_prompt.data)
-	get_parent().client.SendPacket(response)
+	Client.SendPacket(response)
 
 func _talkedToGatekeeper(character, object):
 	if !moved && chests_opened == max_chests:

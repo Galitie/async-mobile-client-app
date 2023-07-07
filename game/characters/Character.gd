@@ -8,7 +8,7 @@ var world
 var floating_emoji = preload("res://Emoji.tscn")
 
 var cell_size
-var cell_position = Vector2(0, 0)
+var cell_position = Vector2i(0, 0)
 var cell_destination = Vector2i.ZERO
 var can_move = true
 var direction = "south"

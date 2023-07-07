@@ -6,7 +6,7 @@ extends Marker2D
 var content = ""
 
 func _ready():
-	label.set_text(str(content))
+	label.text = content
 	tween.tween_property(self, "scale", Vector2(.7,.7), 0.2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "scale", Vector2(.1,.1), .5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT).set_delay(0.2)
 	tween.tween_callback(self.queue_free)

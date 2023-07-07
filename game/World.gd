@@ -1,14 +1,11 @@
-# BUG: Speaker name does not show if there is no icon
-# BUG: Icon texture on TTS message is blown up if talking to an icon-less speaker
-# BUG: UI in windowed mode on Galit's device does not scale
-# BUG/TODO: Characters need to be put on the same layer as map objects for proper Y sorting
-# BUG/TODO: Camera visibly moves between room transitions rather than being set
-# BUG: MessageBox on its first appearance sometimes has no appear animation
-# TODO: Reset method for box rooms
-# TODO: Create proper states for the world (reading, battling, etc)
-# TODO: Add emoji graphics
-# TODO: Revamp movement system. Tweens and timers will not cut it
 extends Node2D
+
+signal user_reconnected
+signal user_joined
+signal user_disconnected
+signal sent_text
+signal add_user
+signal emote
 
 signal portal_entered
 signal speak
@@ -20,10 +17,7 @@ var character_manifest = [
 	"res://characters/shrek.tres",
 	"res://characters/kermit.tres"
 ]
-var voices
 
-var client
-var ready_for_players = false
 var current_map
 var paused = false
 var last_ip
@@ -32,8 +26,8 @@ var reading = false
 var message_queue = []
 var tts_queue = []
 
-var create_character_prompt = Global.Prompt.new("Add player to game:", "addPlayer", "none", 0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
-var world_prompt = Global.Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
+@onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "none", 0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
+@onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
 class TTSMessage:
 	var content
@@ -42,13 +36,7 @@ class TTSMessage:
 	var speaker_name
 	var icon_region
 
-class Player:
-	var user_data
-	var character
-	var voice_id
-
-const MAX_PLAYERS = 5
-var players = {}
+var characters = {}
 
 var next_map
 var spawn_position
@@ -57,50 +45,47 @@ var battle = false
 @onready var message_box = $CanvasLayer/UI/MessageBox
 
 func _ready():
+	Game.state = self
+	
 	$CanvasLayer/AnimationPlayer.connect("animation_finished", _animationFinished)
+	connect("user_reconnected", _userReconnected)
+	connect("user_joined", _userJoined)
+	connect("user_disconnected", _userDisconnected)
+	connect("sent_text", _sentText)
+	connect("add_user", _addUser)
+	connect("emote", _emote)
 	connect("speak", _speak)
 	connect("portal_entered", _portalEntered)
-	
-	# TTS voices need to be installed from either the Windows speech package downloader in settings or from the
-	# runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
-	# Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
-	# Speech and reimported in order to be recognized by Godot
-	voices = DisplayServer.tts_get_voices()
 	
 	var lobby_map = preload("res://dungeon1/Lobby.tscn") as PackedScene
 	current_map = lobby_map.instantiate()
 	add_child(current_map)
 	
-	client = get_parent()
-	var host_data = client.UserData.new()
-	host_data.ip = "0.0.0.0"
+	var host_data = Game.UserData.new()
+	host_data.ip = Game.HOST_IP
 	host_data.name = "Tyler"
 	host_data.catchphrase = "..."
 	host_data.role = "host"
 	host_data.connection_id = "0"
-	host_data.connection_status = client.CONNECTION_STATUS.ONLINE
-	AddPlayer(host_data, players.size())
-	SpawnCharacter(players[host_data.ip], null, Vector2i(-1, 0))
-	$Camera2D.SetTarget(players[host_data.ip].character)
+	host_data.connection_status = Client.CONNECTION_STATUS.ONLINE
+	characters[host_data.ip] = CreateCharacter(0)
+	host_data.character_data = characters[host_data.ip]
+	host_data.voice_id = GetVoiceID(characters[host_data.ip])
+	Game.users[host_data.ip] = host_data
+	last_ip = host_data.ip
 	
-func SpawnCharacter(player, character_to_follow, cell_position):
-	player.character.SetCellPosition(cell_position)
-	if character_to_follow:
-		character_to_follow.follower = player.character
-	last_ip = player.user_data.ip
-	player.character.visible = true
+	SpawnCharacter(characters[host_data.ip], Vector2i(-1, 0))
+	$Camera2D.SetTarget(characters[host_data.ip])
 	
-func AddPlayer(user_data, character_index):
-	var player = Player.new()
-	player.user_data = user_data
-	player.character = CreateCharacter(character_index)
-	for voice in voices:
-		if voice["name"] == player.character.character_data.tts_name:
-			player.voice_id = voice["id"]
-	players[player.user_data.ip] = player
+func SpawnCharacter(character, cell_position):
+	character.SetCellPosition(cell_position)
+	character.visible = true
 	
-	if players.size() == MAX_PLAYERS:
-		current_map.emit_signal("all_players_joined")
+func GetVoiceID(character):
+	for voice in Game.voices:
+		if voice["name"] == character.character_data.tts_name:
+			return voice["id"]
+	return Game.voices[0]["id"]
 	
 func CreateCharacter(character_index):
 	var character_data = ResourceLoader.load(character_manifest[character_index])
@@ -110,14 +95,21 @@ func CreateCharacter(character_index):
 	$Party.add_child(character)
 	character.Init(self, character_data)
 	return character
+		
+func _userReconnected(packet):
+	if characters.has(packet["userIP"]):
+		characters[packet["userIP"]].modulate = Color.WHITE
+		
+		var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
+		response.merge(world_prompt.data)
+		Client.SendPacket(response)
 	
-func UpdateUserData(user_data):
-	var player = players[user_data.ip]
-	player.user_data = user_data
-	if user_data.connection_status == client.CONNECTION_STATUS.ONLINE:
-		player.character.modulate = Color.WHITE
-	elif user_data.connection_status == client.CONNECTION_STATUS.OFFLINE:
-		player.character.modulate = Color.DIM_GRAY
+func _userDisconnected(packet):
+	if characters.has(packet["userIP"]):
+		characters[packet["userIP"]].modulate = Color.DIM_GRAY
+
+func _sentText(packet):
+	emit_signal(packet["context"], packet)
 
 func ParseContext(packet):
 	if is_connected(packet["context"], Callable(self, "_" + packet["context"])):
@@ -128,14 +120,44 @@ func ParseContext(packet):
 func _speak(packet):
 	var tts_msg = TTSMessage.new()
 	tts_msg.content = packet["bigInputValue"]
-	tts_msg.voice_id = players[packet["userIP"]].voice_id
-	tts_msg.pitch = players[packet["userIP"]].character.character_data.voice_pitch
-	tts_msg.speaker_name = players[packet["userIP"]].character.character_data.name
-	tts_msg.icon_region = players[packet["userIP"]].character.character_data.icon_region
+	tts_msg.voice_id = Game.users[packet["userIP"]].voice_id
+	tts_msg.pitch = Game.users[packet["userIP"]].character_data.voice_pitch
+	tts_msg.speaker_name = Game.users[packet["userIP"]].character_data.name
+	tts_msg.icon_region = Game.users[packet["userIP"]].character_data.icon_region
 	tts_queue.append(tts_msg)
 	
-func Emote(ip, emoji):
-	players[ip].character.Emote(emoji)
+func _userJoined(packet):
+	packet.merge(create_character_prompt.data)
+	Client.SendPacket(packet)
+	
+func _addUser(packet):
+	var user_data = Game.UserData.new()
+	user_data.ip = packet["userIP"]
+	user_data.name = packet["smallInputValue"]
+	user_data.role = "user"
+	user_data.connection_id = packet["connectionID"]
+	user_data.catchphrase = packet["bigInputValue"]
+	user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
+	
+	characters[user_data.ip] = CreateCharacter(characters.size())
+	user_data.character_data = characters[user_data.ip].character_data
+	user_data.voice_id = GetVoiceID(characters[user_data.ip])
+	Game.users[user_data.ip] = user_data
+	
+	characters[last_ip].follower = characters[user_data.ip]
+	SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
+	last_ip = user_data.ip
+	
+	print(user_data.name + " has joined the game")
+	Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
+	
+	var response = {"action": "respondToUser", "connectionID": user_data.connection_id}
+	response.merge(world_prompt.data)
+	Client.SendPacket(response)
+	
+func _emote(packet):
+	if Game.users.has(packet["userIP"]):
+		characters[packet["userIP"]].Emote(packet["emoji"])
 	
 func _process(delta):
 	if !paused:
@@ -181,8 +203,8 @@ func _portalEntered(_next_map, _spawn_position):
 	remove_child(current_map)
 	current_map = load(next_map).instantiate()
 	add_child(current_map)
-	for ip in players:
-		players[ip].character.SetCellPosition(spawn_position)
+	for member in $Party.get_children():
+		member.SetCellPosition(spawn_position)
 	next_map = null
 	spawn_position = Vector2i.ZERO
 	await get_tree().create_timer(0.4).timeout
@@ -202,9 +224,9 @@ func ResumeWorld():
 
 func StartBattle():
 	var packet = {"action": "messageAllUsers"}
-	var wait_prompt = Global.Prompt.new("Please wait...", "wait", "none", 0.0, false, {"small": ""})
+	var wait_prompt = Game.Prompt.new("Please wait...", "wait", "none", 0.0, false, {"small": ""})
 	packet.merge(wait_prompt.data)
-	client.SendPacket(packet)
+	Client.SendPacket(packet)
 	
 	PauseWorld()
 	battle = true
@@ -214,6 +236,6 @@ func StartBattle():
 	var battle_scene = load("res://Battle.tscn") as PackedScene
 	var battle_instance = battle_scene.instantiate()
 	battle_instance.z_index = 5
-	client.add_child(battle_instance)
-	client.game_handle = battle_instance
+	Client.add_child(battle_instance)
+	Game.state = battle_instance
 	await get_tree().create_timer(0.4).timeout
