@@ -11,6 +11,7 @@
 extends Node2D
 
 var state = null
+var previous_state
 var users = {}
 var ready_for_players = false
 const HOST_IP = "0.0.0.0"
@@ -21,6 +22,12 @@ const MAX_PLAYERS = 5
 # Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
 # Speech and reimported in order to be recognized by Godot
 @onready var voices = DisplayServer.tts_get_voices()
+
+func ChangeState(end_state, start_state):
+	end_state.emit_signal("end_state")
+	start_state.emit_signal("start_state")
+	Game.state = start_state
+	Game.previous_state = end_state
 
 class UserData:
 	var ip

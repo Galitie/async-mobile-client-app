@@ -1,5 +1,8 @@
 extends Node2D
 
+signal start_state
+signal end_state
+
 signal user_reconnected
 signal user_joined
 signal user_disconnected
@@ -42,12 +45,13 @@ var next_map
 var spawn_position
 var battle = false
 
-@onready var message_box = $CanvasLayer/UI/MessageBox
+@onready var message_box = $Camera2D/CanvasLayer/UI/MessageBox
 
 func _ready():
 	Game.state = self
 	
-	$CanvasLayer/AnimationPlayer.connect("animation_finished", _animationFinished)
+	connect("start_state", _startState)
+	connect("end_state", _endState)
 	connect("user_reconnected", _userReconnected)
 	connect("user_joined", _userJoined)
 	connect("user_disconnected", _userDisconnected)
@@ -198,7 +202,7 @@ func _portalEntered(_next_map, _spawn_position):
 	PauseWorld()
 	next_map = _next_map
 	spawn_position = _spawn_position
-	$CanvasLayer/AnimationPlayer.play("fade_out")
+	Transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout
 	remove_child(current_map)
 	current_map = load(next_map).instantiate()
@@ -207,12 +211,9 @@ func _portalEntered(_next_map, _spawn_position):
 		member.SetCellPosition(spawn_position)
 	next_map = null
 	spawn_position = Vector2i.ZERO
+	Transition.get_node("AnimationPlayer").play("fade_in")
 	await get_tree().create_timer(0.4).timeout
 	ResumeWorld()
-	
-func _animationFinished(anim):
-	if anim == "fade_out":
-		$CanvasLayer/AnimationPlayer.play("fade_in")
 
 func PauseWorld():
 	paused = true
@@ -228,14 +229,21 @@ func StartBattle():
 	packet.merge(wait_prompt.data)
 	Client.SendPacket(packet)
 	
-	PauseWorld()
 	battle = true
-	$CanvasLayer/AnimationPlayer.play("fade_out")
+	Transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout
-	visible = false
 	var battle_scene = load("res://Battle.tscn") as PackedScene
 	var battle_instance = battle_scene.instantiate()
-	battle_instance.z_index = 5
-	Client.add_child(battle_instance)
-	Game.state = battle_instance
+	get_tree().root.add_child(battle_instance)
+	Game.ChangeState(self, battle_instance)
+	Transition.get_node("AnimationPlayer").play("fade_in")
 	await get_tree().create_timer(0.4).timeout
+	
+func _startState():
+	visible = true
+	ResumeWorld()
+	
+func _endState():
+	PauseWorld()
+	visible = false
+	

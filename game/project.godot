@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Game="*res://Game.gd"
 Client="*res://Client.gd"
+Transition="*res://Transition.tscn"
 
 [display]
 

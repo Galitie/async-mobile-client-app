@@ -72,7 +72,6 @@ func _attemptJoin(packet):
 		response["message"] = "reconnect"
 		print(user.name + " has reconnected")
 		Game.state.emit_signal("user_reconnected", packet)
-		#response.merge(game_handle.world_prompt.data)
 	else:
 		if Game.ready_for_players:
 			Game.state.emit_signal("user_joined", response)
@@ -83,16 +82,8 @@ func _attemptJoin(packet):
 func _addPlayer(packet):
 	Game.state.emit_signal("character_created", packet)
 	
-	#game_handle.AddPlayer(user_data, game_handle.players.size())
-	#game_handle.SpawnCharacter(game_handle.players[user_data.ip], game_handle.players[game_handle.last_ip].character, game_handle.players["0.0.0.0"].character.cell_position)
-	
 func _disconnect(packet):
 	Game.state.emit_signal("user_disconnected", packet)
-	#if users.has(packet["userIP"]):
-	#	users[packet["userIP"]].connection_status = CONNECTION_STATUS.OFFLINE
-	#	Game.state.emit_signal("user_disconnected", packet)
-		#game_handle.UpdateUserData(users[packet["userIP"]])
-	#	print(users[packet["userIP"]].name + " has left the game")
 
 func _sendText(packet):
 	Game.state.emit_signal("sent_text", packet)
