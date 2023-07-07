@@ -1,0 +1,88 @@
+/* Desktop */
+@media (min-width: 600px) {
+    * {
+        text-align: center;
+        font-family: 'Press Start 2P', cursive;
+        margin: auto;
+        font-size: 1rem;
+    }
+
+    html {
+        justify-content: center;
+        align-items: center;
+    }
+
+    body {
+        border: 1em solid white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+        max-height: 100vw;
+        padding: 2em;
+    }
+
+    #stats {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        flex-shrink: 0;
+        height: fit-content;
+        min-height: fit-content;
+    }
+
+    #game {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 500px;
+        width: 100%;
+        min-height: fit-content;
+    }
+
+    button {
+        width: 50%;
+        padding: 3%;
+        font-size: 1rem;
+        text-align: center;
+        margin: auto;
+        border: .25em solid white;
+        box-shadow: -10px 10px black;
+        touch-action: manipulation;
+    }
+
+    textarea {
+        width: 50%;
+        margin: auto;
+        font-size: unset;
+        text-align: left;
+        padding: 0 1em;
+        padding-top: 1em;
+        border: .25em solid white;
+        text-shadow: none;
+        color: black;
+        box-shadow: -10px 10px black;
+        resize: none;
+
+    }
+
+    #emojiContainer {
+        margin: auto;
+        padding: unset;
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .emoji {
+        width: 20%;
+        padding: unset;
+        font-size: 2em;
+        background-color: rgb(11, 0, 207);
+        min-height: unset;
+        padding-bottom: .5em;
+    }
+}
