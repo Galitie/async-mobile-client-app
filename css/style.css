@@ -1,17 +1,10 @@
-/******************************************
-/* CSS
-/*******************************************/
 
-/* Box Model Hack */
-* {
-    box-sizing: border-box;
-  }
-  
   /******************************************
   /* LAYOUT
   /*******************************************/
 
 * {
+    box-sizing: border-box;
     text-align: center;
     font-family: 'Press Start 2P', cursive;
     margin: 0% 10%;
@@ -33,7 +26,7 @@ body{
     flex-direction: column;
     justify-content: space-around;
     gap:2em;
-    background: sienna;
+    background: gray;
 }
 
 #stats{

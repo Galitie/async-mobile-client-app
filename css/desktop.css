@@ -3,13 +3,14 @@
     * {
         text-align: center;
         font-family: 'Press Start 2P', cursive;
-        margin: auto;
+        margin: 0, auto;
         font-size: 1rem;
     }
 
     html {
         justify-content: center;
         align-items: center;
+        width: 100%;
     }
 
     body {
@@ -18,14 +19,16 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2em;
         max-height: 100vw;
-        padding: 2em;
+        padding: 1em;
+        margin: 0 auto;
+        width:75%;
+        
     }
 
     #stats {
         padding: 0;
-        margin: 0;
+        margin: 0 auto;
         width: 100%;
         flex-shrink: 0;
         height: fit-content;
@@ -35,7 +38,8 @@
     #game {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
+        align-items: center;
         height: 500px;
         width: 100%;
         min-height: fit-content;
@@ -46,7 +50,7 @@
         padding: 3%;
         font-size: 1rem;
         text-align: center;
-        margin: auto;
+        margin: 0 auto;
         border: .25em solid white;
         box-shadow: -10px 10px black;
         touch-action: manipulation;
@@ -54,7 +58,7 @@
 
     textarea {
         width: 50%;
-        margin: auto;
+        margin: 0 auto;
         font-size: unset;
         text-align: left;
         padding: 0 1em;
@@ -68,7 +72,7 @@
     }
 
     #emojiContainer {
-        margin: auto;
+        margin: 0 auto;
         padding: unset;
         width: 50%;
         display: flex;
