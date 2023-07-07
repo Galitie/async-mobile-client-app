@@ -1,28 +1,28 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfx0rhlafo6nr"]
 
 [ext_resource type="Script" path="res://Emoji.gd" id="1_xhu5d"]
-[ext_resource type="Texture2D" uid="uid://b7xyxiorgrgf7" path="res://characters/party.png" id="3_rwmrw"]
+[ext_resource type="Texture2D" uid="uid://b0jyvrgdegiuy" path="res://characters/emoji.png" id="2_d8n42"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q5pdx"]
 particles_animation = true
-particles_anim_h_frames = 11
-particles_anim_v_frames = 10
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id="Gradient_15rco"]
+[sub_resource type="Gradient" id="Gradient_0oje8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0745098)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6q0bb"]
-gradient = SubResource("Gradient_15rco")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_585ht"]
+gradient = SubResource("Gradient_0oje8")
 
-[sub_resource type="Curve" id="Curve_v2xe4"]
+[sub_resource type="Curve" id="Curve_pdvvx"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.539877), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_7ikyr"]
-curve = SubResource("Curve_v2xe4")
+[sub_resource type="CurveTexture" id="CurveTexture_8yytu"]
+curve = SubResource("Curve_pdvvx")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_woujq"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_16mps"]
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 10.0
@@ -31,10 +31,10 @@ initial_velocity_min = 50.0
 initial_velocity_max = 50.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_curve = SubResource("CurveTexture_7ikyr")
-color_ramp = SubResource("GradientTexture1D_6q0bb")
-anim_offset_min = 0.09
-anim_offset_max = 0.09
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_8yytu")
+color_ramp = SubResource("GradientTexture1D_585ht")
 
 [node name="Emoji" type="Marker2D"]
 position = Vector2(10, 0)
@@ -43,9 +43,11 @@ script = ExtResource("1_xhu5d")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_q5pdx")
+position = Vector2(0, -10)
+scale = Vector2(0.5, 0.5)
 emitting = false
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_woujq")
-texture = ExtResource("3_rwmrw")
+process_material = SubResource("ParticleProcessMaterial_16mps")
+texture = ExtResource("2_d8n42")
 one_shot = true
 speed_scale = 2.0
