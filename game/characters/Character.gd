@@ -129,6 +129,4 @@ func _finishedMoving():
 	cell_position = cell_destination
 
 func Emote(emoji):
-	var emoji_float = floating_emoji.instantiate()
-	emoji_float.content = emoji
-	add_child(emoji_float)
+	$Emoji.Display(emoji)
