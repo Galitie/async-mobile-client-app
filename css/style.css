@@ -72,6 +72,7 @@ button {
     margin: unset;
     border: .25em solid white;
     box-shadow: -10px 10px black;
+    touch-action: manipulation;
 }
 
 button:active {
