@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfx0rhlafo6nr"]
+[gd_scene load_steps=3 format=3 uid="uid://cfx0rhlafo6nr"]
 
 [ext_resource type="Script" path="res://Emoji.gd" id="1_xhu5d"]
+[ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="2_ag735"]
 
 [node name="Emoji" type="Marker2D"]
 position = Vector2(10, 0)
@@ -19,6 +20,7 @@ offset_right = 16.5
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ag735")
 text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1
