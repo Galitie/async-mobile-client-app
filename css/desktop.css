@@ -11,10 +11,11 @@
         justify-content: center;
         align-items: center;
         width: 100%;
+        background-color:white;
     }
 
     body {
-        border: 1em solid white;
+        border: 1em solid blue;
         display: flex;
         flex-direction: column;
         justify-content: center;
