@@ -65,9 +65,9 @@ body{
 
 button {
     width:100%;
-    min-height: 150px;
     font-size: 5vw;
     text-align: center;
+    min-height: 3em;
     padding: unset;
     margin: unset;
     border: .25em solid white;
@@ -123,6 +123,7 @@ textarea {
     font-size: 8vw;
     background-color: rgb(11, 0, 207);
     padding-bottom: .25em;
+    min-height: unset;
 }
 
 .disabled{
