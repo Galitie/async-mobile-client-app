@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bui8g5cbxms2m"]
+[gd_scene load_steps=11 format=3 uid="uid://b3tvrwc41yiyl"]
 
-[ext_resource type="Texture2D" uid="uid://c04le768q4be2" path="res://battle/enemy.png" id="1_dsgun"]
-[ext_resource type="Texture2D" uid="uid://bt6rbhfibofhq" path="res://battle/flameTexture.png" id="2_6kemj"]
+[ext_resource type="Texture2D" uid="uid://dmm8rscpko6pt" path="res://battle/flameTexture.png" id="2_6kemj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vr28n"]
 blend_mode = 1
@@ -69,13 +68,8 @@ color_ramp = SubResource("GradientTexture1D_tq4j7")
 
 [node name="ParticleParty" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -41)
-texture = ExtResource("1_dsgun")
-
 [node name="Fire" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_vr28n")
-emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_wb8nj")
 texture = ExtResource("2_6kemj")

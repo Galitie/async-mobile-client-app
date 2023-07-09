@@ -100,7 +100,6 @@ function onClickSubmit() {
   removeTimer();
   cleanUpInput(textboxes);
   sendMessage(JSON.stringify(packet));
-  timerRunning = false;
 }
 
 function onClickEmoji(emojiStr) {
@@ -149,7 +148,7 @@ function addCountdownTimer(duration) {
     displayElement.textContent = minutes + ":" + seconds;
 
     if (!timerRunning) {
-      return;
+      clearInterval(countdown);
     }
 
     if (timer > 0 && timer < 6) {
@@ -158,7 +157,6 @@ function addCountdownTimer(duration) {
     } else if (--timer < 0) {
       clearInterval(countdown);
       displayElement.classList.remove("pulsate");
-      removeTimer();
 
       if (document.querySelector("textarea")) {
         let textareas = document.querySelectorAll("textarea");
@@ -168,7 +166,6 @@ function addCountdownTimer(duration) {
           }
         }
         onClickSubmit();
-        return;
       }
     }
   }, 1000);
@@ -209,6 +206,7 @@ function addCooldownTimer(duration) {
 }
 
 function removeTimer() {
+  timerRunning = false;
   if (document.querySelector("h5")) {
     let timer = document.querySelector("h5");
     console.log(`removed ${timer}`);
