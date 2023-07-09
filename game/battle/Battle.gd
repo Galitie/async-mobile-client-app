@@ -10,13 +10,18 @@ signal battle_entry
 @onready var battle_info = $Camera2D/CanvasLayer/Control/BattleInfo
 @onready var drop_box = $Camera2D/CanvasLayer/Control/DropBox
 @onready var cursor = $Camera2D/CanvasLayer/Control/DropBox/Cursor
+@onready var enemy = $Enemy
 
 var moves = []
 var cursor_position = 0
 var turn = 0
 const max_turns = 1
 
+var enemy_info = null
+
 func _ready():
+	enemy.texture = enemy_info.texture
+	
 	connect("start_state", _startState)
 	connect("end_state", _endState)
 	connect("emote", _emote)
@@ -25,7 +30,7 @@ func _ready():
 	
 	camera.make_current()
 	await get_tree().create_timer(0.8).timeout
-	battle_info.Show("You've come to blows with a Gatekeeper!")
+	battle_info.Show("It's a " + enemy_info.enemy_name + "!")
 	await get_tree().create_timer(2.5).timeout
 	battle_info.Hide()
 	await get_tree().create_timer(0.8).timeout
@@ -65,7 +70,7 @@ func GetPartyMoves():
 	Client.SendPacket(packet)
 	
 func EnemyTurn():
-	battle_info.Show("The enemy attacks!")
+	battle_info.Show("The " + enemy_info.enemy_name + " attacks!")
 	await get_tree().create_timer(2.0).timeout
 	battle_info.Hide()
 	await get_tree().create_timer(1.0)
@@ -93,6 +98,8 @@ func _battleEntry(packet):
 		drop_box.visible = true
 		
 func EndBattle():
+	enemy.get_node("AnimationPlayer").play("dead")
+	await get_tree().create_timer(1.4).timeout
 	battle_info.Show("Tyler and company are victorious!")
 	await get_tree().create_timer(3.0).timeout
 	battle_info.Hide()

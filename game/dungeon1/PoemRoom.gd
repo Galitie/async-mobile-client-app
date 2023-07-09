@@ -53,7 +53,7 @@ func _talkedToGatekeeper(character, object):
 		object.messages = dialogue
 		moved = true
 
-func _moveGatekeeper():
+func _moveGatekeeper(message_args):
 	$Gatekeeper.SetCellPosition($Gatekeeper.cell_position + Vector2i(1, 0), false)
 	var dialogue : Array[Resource] = []
 	var message = Message.new("Gatekeeper", "Great job - seriously. You've moved me.")

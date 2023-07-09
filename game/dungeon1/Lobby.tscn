@@ -13,6 +13,7 @@ script = ExtResource("6_svky4")
 speaker = ""
 content = "You find something old and worthless..."
 message_signal = ""
+message_args = []
 signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_qka3c"]
@@ -20,6 +21,7 @@ script = ExtResource("6_svky4")
 speaker = ""
 content = "Perfect!"
 message_signal = ""
+message_args = []
 signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_hkmet"]
@@ -27,6 +29,7 @@ script = ExtResource("6_svky4")
 speaker = ""
 content = "Got a [color=yellow]rusty hilt."
 message_signal = ""
+message_args = []
 signal_timing = 0
 
 [node name="Lobby" type="TileMap"]

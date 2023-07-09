@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=4 format=3 uid="uid://bf7bstvyg25l6"]
+
+[ext_resource type="Script" path="res://battle/Enemy.gd" id="1_d822h"]
+[ext_resource type="Texture2D" uid="uid://dvhuw5nms02tg" path="res://battle/enemies.png" id="2_flbwb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b080g"]
+atlas = ExtResource("2_flbwb")
+region = Rect2(0, 0, 88, 89)
+
+[resource]
+script = ExtResource("1_d822h")
+enemy_name = "Gatekeeper"
+texture = SubResource("AtlasTexture_b080g")

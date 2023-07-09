@@ -12,7 +12,7 @@ script = ExtResource("5_2ji5t")
 speaker = "Foe"
 content = "You're not getting past me!"
 message_signal = "startBattle"
-message_args = []
+message_args = ["res://battle/Gatekeeper2.tres"]
 signal_timing = 2
 
 [node name="CrateRoom2" type="TileMap"]

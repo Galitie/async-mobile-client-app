@@ -235,8 +235,9 @@ func StartBattle(battle_args):
 	battle = true
 	Transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout
-	var battle_scene = load("res://Battle.tscn") as PackedScene
+	var battle_scene = load("res://battle/Battle.tscn") as PackedScene
 	var battle_instance = battle_scene.instantiate()
+	battle_instance.enemy_info = ResourceLoader.load(battle_args[0])
 	get_tree().root.add_child(battle_instance)
 	Game.ChangeState(self, battle_instance)
 	Transition.get_node("AnimationPlayer").play("fade_in")
