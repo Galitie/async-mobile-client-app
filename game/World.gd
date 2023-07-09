@@ -29,7 +29,7 @@ var reading = false
 var message_queue = []
 var tts_queue = []
 
-@onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "none", 0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
+@onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "countdown", 0.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
 @onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
 class TTSMessage:
@@ -251,4 +251,3 @@ func _startState():
 func _endState():
 	PauseWorld()
 	visible = false
-	
