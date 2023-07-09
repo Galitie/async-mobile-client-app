@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://bui8g5cbxms2m"]
+
+[ext_resource type="Texture2D" uid="uid://c04le768q4be2" path="res://battle/enemy.png" id="1_dsgun"]
+[ext_resource type="Texture2D" uid="uid://bt6rbhfibofhq" path="res://battle/flameTexture.png" id="2_6kemj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vr28n"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_4opia"]
+offsets = PackedFloat32Array(0, 0.123153, 0.231527, 0.70936, 1)
+colors = PackedColorArray(1, 1, 0, 0, 0, 0.494118, 0.921569, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tq4j7"]
+gradient = SubResource("Gradient_4opia")
+width = 100
+
+[sub_resource type="Curve" id="Curve_ek6f3"]
+_data = [Vector2(0.0566802, 0.730061), 0.0, 0.0, 0, 0, Vector2(0.659919, 0.93865), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mlr28"]
+curve = SubResource("Curve_ek6f3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wb8nj"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 136.62
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 720.0
+angle_max = 720.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_mlr28")
+color_ramp = SubResource("GradientTexture1D_tq4j7")
+
+[sub_resource type="Curve" id="Curve_axvi6"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.809717, 79.1411), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7bfkb"]
+curve = SubResource("Curve_axvi6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n3d2p"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 580.29
+initial_velocity_max = 580.29
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+damping_curve = SubResource("CurveTexture_7bfkb")
+angle_min = 720.0
+angle_max = 720.0
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_mlr28")
+color_ramp = SubResource("GradientTexture1D_tq4j7")
+
+[node name="ParticleParty" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -41)
+texture = ExtResource("1_dsgun")
+
+[node name="Fire" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_vr28n")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_wb8nj")
+texture = ExtResource("2_6kemj")
+explosiveness = 0.01
+randomness = 0.04
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_vr28n")
+position = Vector2(0, -42)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_n3d2p")
+texture = ExtResource("2_6kemj")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.89
+randomness = 0.04
