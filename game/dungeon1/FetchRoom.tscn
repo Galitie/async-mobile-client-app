@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvlrnjx1b2o05"]
+[gd_scene load_steps=11 format=3 uid="uid://jcotg4s8uke6"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_de4f7"]
-[ext_resource type="Script" path="res://dungeon1/Lobby.gd" id="2_4q4bf"]
 [ext_resource type="Texture2D" uid="uid://cvruot8ljkbm0" path="res://dungeon1/dungeon_tile.png" id="3_0glsu"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="3_4tc3e"]
 [ext_resource type="Script" path="res://Interactable.gd" id="4_e4cjy"]
@@ -13,6 +12,7 @@ script = ExtResource("5_txsci")
 speaker = ""
 content = "You find something old and worthless..."
 message_signal = ""
+message_args = []
 signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_qka3c"]
@@ -20,6 +20,7 @@ script = ExtResource("5_txsci")
 speaker = ""
 content = "Perfect!"
 message_signal = ""
+message_args = []
 signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_hkmet"]
@@ -27,6 +28,7 @@ script = ExtResource("5_txsci")
 speaker = ""
 content = "Got a [color=yellow]rusty hilt."
 message_signal = ""
+message_args = []
 signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_av76i"]
@@ -34,6 +36,7 @@ script = ExtResource("5_txsci")
 speaker = "Foe"
 content = "You're not getting past me!"
 message_signal = "startBattle"
+message_args = []
 signal_timing = 2
 
 [node name="FetchRoom" type="TileMap"]
@@ -62,7 +65,6 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(327672, 851968, 19, 327673, 851968, 19, 327674, 851968, 19, 327675, 851968, 19, 327676, 851968, 19, 327677, 851968, 19, 327678, 851968, 19, 262144, 851968, 19, 262145, 851968, 19, 262146, 851968, 19, 262147, 851968, 19, 262148, 851968, 19, 262149, 851968, 19, 196614, 851968, 19, 262150, 851968, 19, 131078, 851968, 19, 65542, 851968, 19, 6, 851968, 19, -65530, 851968, 19, -131066, 851968, 19, -196602, 851968, 19, -262138, 851968, 19, -327674, 851968, 19, -327675, 851968, 19, -327676, 851968, 19, -327677, 851968, 19, -327678, 851968, 19, -327679, 851968, 19, -327680, 851968, 19, -262146, 851968, 19, -262147, 851968, 19, -262148, 851968, 19, -262149, 851968, 19, -262150, 851968, 19, -262151, 851968, 19, -262152, 851968, 19, -196616, 851968, 19, -131080, 851968, 19, -65544, 851968, 19, -8, 851968, 19, 65528, 851968, 19, 131064, 851968, 19, 196600, 851968, 19, 262136, 851968, 19, 327680, 851968, 19, 393214, 851968, 19, 458750, 851968, 19, 393216, 851968, 19, 458751, 851968, 19)
-script = ExtResource("2_4q4bf")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(0, 0, 0, 1)
@@ -77,10 +79,8 @@ shadow_filter = 1
 shadow_filter_smooth = 25.2
 texture = ExtResource("3_4tc3e")
 
-[node name="Objects" type="Node2D" parent="."]
-
-[node name="Chest" type="Sprite2D" parent="Objects"]
-position = Vector2(42, -63)
+[node name="Chest" type="Sprite2D" parent="."]
+position = Vector2(64, -32)
 texture = ExtResource("3_0glsu")
 centered = false
 region_enabled = true
@@ -91,21 +91,24 @@ cell_position = Vector2i(4, -2)
 interact_sprite = Rect2(145, 96, 17, 16)
 messages = Array[Resource]([SubResource("Resource_aigs6"), SubResource("Resource_qka3c"), SubResource("Resource_hkmet")])
 
-[node name="Enemy" type="Sprite2D" parent="Objects"]
-position = Vector2(-8, -73)
+[node name="Enemy" type="Sprite2D" parent="."]
+position = Vector2(-16, 0)
 texture = ExtResource("3_0glsu")
+centered = false
+offset = Vector2(1, -3)
 region_enabled = true
 region_rect = Rect2(209, 268, 16, 22)
 script = ExtResource("4_e4cjy")
 one_shot = true
+cell_position = Vector2i(-1, 0)
 messages = Array[Resource]([SubResource("Resource_av76i")])
 
-[node name="Portals" type="Node2D" parent="."]
-
-[node name="OutsideDoor" type="Sprite2D" parent="Portals"]
+[node name="OutsideDoor" type="Sprite2D" parent="."]
+position = Vector2(-16, -96)
 texture = ExtResource("3_0glsu")
 centered = false
 region_enabled = true
+region_rect = Rect2(176, 208, 16, 16)
 script = ExtResource("6_vgd24")
 cell_position = Vector2i(-1, -6)
 trigger_cell = Vector2i(-1, -6)

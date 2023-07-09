@@ -14,6 +14,7 @@ signal battle_entry
 var moves = []
 var cursor_position = 0
 var turn = 0
+const max_turns = 1
 
 func _ready():
 	connect("start_state", _startState)
@@ -50,7 +51,7 @@ func _process(delta):
 			battle_info.Hide()
 			await get_tree().create_timer(1.0)
 			turn += 1
-			if turn > 0:
+			if turn > max_turns:
 				EndBattle()
 			else:
 				EnemyTurn()

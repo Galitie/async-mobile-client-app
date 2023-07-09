@@ -2,7 +2,6 @@
 class_name Interactable
 extends Sprite2D
 
-const cell_size = 16
 @export var passable : bool
 @export var one_shot : bool
 @export var cell_position : Vector2i = Vector2.ZERO:
@@ -17,15 +16,16 @@ const speed = 0.2
 var interacted_with = false
 
 func _ready():
+	add_to_group("interactables")
 	SetCellPosition(cell_position)
 	set_process(false)
 	
 func SetCellPosition(cell_pos, instant = true):
 	if instant:
-		transform.origin = Vector2(cell_size * cell_position.x, cell_size * cell_position.y)
+		transform.origin = Vector2(Game.map_cell_size * cell_position.x, Game.map_cell_size * cell_position.y)
 	else:
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "position", Vector2(cell_size * cell_pos.x, cell_size * cell_pos.y), speed).set_trans(Tween.TRANS_LINEAR)
+		tween.tween_property(self, "position", Vector2(Game.map_cell_size * cell_pos.x, Game.map_cell_size * cell_pos.y), speed).set_trans(Tween.TRANS_LINEAR)
 		var callable = Callable(self, "finishedMoving")
 		tween.tween_callback(callable.bind(cell_pos))
 

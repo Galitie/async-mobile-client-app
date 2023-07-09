@@ -1,7 +1,7 @@
 extends TileMap
 
 signal chestOpened
-signal poemEntry
+signal map_poem_entry
 signal talkedToGatekeeper
 signal moveGatekeeper
 
@@ -12,7 +12,7 @@ var moved = false
 
 func _ready():
 	connect("chestOpened", _chestOpened)
-	connect("poemEntry", _poemEntry)
+	connect("map_poem_entry", _poemEntry)
 	connect("talkedToGatekeeper", _talkedToGatekeeper)
 	connect("moveGatekeeper", _moveGatekeeper)
 	set_process(false)
@@ -20,7 +20,7 @@ func _ready():
 func _chestOpened(character, object):
 	if !chests_opened:
 		var packet = {"action": "messageAllUsers"}
-		var poem_prompt = Game.Prompt.new("Think of a poetic line that ends in \"ing\"", "poemEntry", "countdown", 30.0, false, {"big": "Roses are red..."})
+		var poem_prompt = Game.Prompt.new("Think of a poetic line that ends in \"ing\"", "map_poem_entry", "countdown", 30.0, false, {"big": "Roses are red..."})
 		packet.merge(poem_prompt.data)
 		Client.SendPacket(packet)
 		
@@ -54,8 +54,8 @@ func _talkedToGatekeeper(character, object):
 		moved = true
 
 func _moveGatekeeper():
-	$Objects/Gatekeeper.SetCellPosition($Objects/Gatekeeper.cell_position + Vector2i(1, 0), false)
+	$Gatekeeper.SetCellPosition($Gatekeeper.cell_position + Vector2i(1, 0), false)
 	var dialogue : Array[Resource] = []
 	var message = Message.new("Gatekeeper", "Great job - seriously. You've moved me.")
 	dialogue.append(message)
-	$Objects/Gatekeeper.messages = dialogue
+	$Gatekeeper.messages = dialogue

@@ -3,10 +3,9 @@
 # BUG: UI in windowed mode on Galit's device does not scale
 # BUG/TODO: Characters need to be put on the same layer as map objects for proper Y sorting
 # BUG/TODO: Camera visibly moves between room transitions rather than being set
-# BUG: MessageBox on its first appearance sometimes has no appear animation
+# TODO: Message box animations
 # TODO: Reset method for box rooms
 # TODO: Create proper states for the world (reading, battling, etc)
-# TODO: Add emoji graphics
 # TODO: Revamp movement system. Tweens and timers will not cut it
 extends Node2D
 
@@ -16,6 +15,9 @@ var users = {}
 var ready_for_players = false
 const HOST_IP = "0.0.0.0"
 const MAX_PLAYERS = 5
+
+const map_cell_size = 16
+const collision_layer = 3
 
 # TTS voices need to be installed from either the Windows speech package downloader in settings or from the
 # runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224

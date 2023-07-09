@@ -3,8 +3,6 @@ extends TileMap
 signal startBattle
 signal pushCrate
 
-const COLLISION_LAYER = 3
-
 func _ready():
 	connect("startBattle", _startBattle)
 	connect("pushCrate", _pushCrate)
@@ -22,13 +20,14 @@ func _pushCrate(character, object):
 		"west":
 			direction = Vector2i(-1, 0)
 	var destination = object.cell_position + direction
-	var tile_data = get_cell_tile_data(COLLISION_LAYER, destination)
+	var tile_data = get_cell_tile_data(Game.collision_layer, destination)
 	if tile_data:
 		return
-	for obj in $Objects.get_children():
-		if obj.cell_position == destination:
+	for interactable in get_tree().get_nodes_in_group("interactables"):
+		if interactable.cell_position == destination:
 			return
 	object.SetCellPosition(destination, false)
 
-func _startBattle():
-	get_parent().StartBattle()
+func _startBattle(message_args):
+	$Enemy.queue_free()
+	get_parent().StartBattle(message_args)

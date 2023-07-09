@@ -6,6 +6,7 @@ enum SignalTiming { NONE, APPEAR, DISAPPEAR }
 @export var speaker : String
 @export var content : String
 @export var message_signal : String
+@export var message_args : Array
 @export var signal_timing : SignalTiming
 
 func _init(_speaker = "", _content = "", _signal = "", _timing = SignalTiming.NONE):

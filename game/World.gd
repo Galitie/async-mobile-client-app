@@ -113,7 +113,10 @@ func _userDisconnected(packet):
 		characters[packet["userIP"]].modulate = Color.DIM_GRAY
 
 func _sentText(packet):
-	emit_signal(packet["context"], packet)
+	if packet["context"].substr(0, 3) == "map":
+		current_map.emit_signal(packet["context"], packet)
+	else:
+		emit_signal(packet["context"], packet)
 
 func ParseContext(packet):
 	if is_connected(packet["context"], Callable(self, "_" + packet["context"])):
@@ -177,7 +180,7 @@ func _process(delta):
 				message_box.Hide()
 	elif reading && Input.is_action_just_pressed("interact"):
 		if current_message.signal_timing == Message.SignalTiming.DISAPPEAR:
-			current_map.emit_signal(current_message.message_signal)
+			current_map.emit_signal(current_message.message_signal, current_message.message_args)
 		current_message = message_queue.pop_front()
 		if current_message == null:
 			message_box.Hide()
@@ -187,7 +190,7 @@ func _process(delta):
 		else:
 			message_box.SetText(true, current_message.content, current_message.speaker)
 			if current_message.signal_timing == Message.SignalTiming.APPEAR:
-				current_map.emit_signal(current_message.message_signal)
+				current_map.emit_signal(current_message.message_signal, current_message.message_args)
 
 func SetMessageQueue(messages):
 	PauseWorld()
@@ -196,7 +199,7 @@ func SetMessageQueue(messages):
 	current_message = message_queue.pop_front()
 	message_box.Show(current_message.content, current_message.speaker)
 	if current_message.signal_timing == Message.SignalTiming.APPEAR:
-		current_map.emit_signal(current_message.message_signal)
+		current_map.emit_signal(current_message.message_signal, current_message.message_args)
 	
 func _portalEntered(_next_map, _spawn_position):
 	PauseWorld()
@@ -223,7 +226,7 @@ func ResumeWorld():
 	paused = false
 	DisplayServer.tts_resume()
 
-func StartBattle():
+func StartBattle(battle_args):
 	var packet = {"action": "messageAllUsers"}
 	var wait_prompt = Game.Prompt.new("Please wait...", "wait", "none", 0.0, false, {"small": ""})
 	packet.merge(wait_prompt.data)
@@ -241,6 +244,7 @@ func StartBattle():
 	
 func _startState():
 	visible = true
+	battle = false
 	ResumeWorld()
 	
 func _endState():

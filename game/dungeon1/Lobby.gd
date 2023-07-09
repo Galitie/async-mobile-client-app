@@ -3,10 +3,10 @@ extends TileMap
 signal all_players_joined
 
 func _ready():
-	$Portals/OutsideDoor.SetLockStatus(false)
+	$OutsideDoor.SetLockStatus(false)
 	connect("all_players_joined", _allPlayersJoined)
 	set_process(false)
 
 func _allPlayersJoined():
-	$Portals/OutsideDoor.SetLockStatus(false)
+	$OutsideDoor.SetLockStatus(false)
 	$PointLight2D.energy *= 1.5

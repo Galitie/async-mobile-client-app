@@ -70,9 +70,7 @@ shadow_filter = 1
 shadow_filter_smooth = 25.2
 texture = ExtResource("2_wsmvx")
 
-[node name="Objects" type="Node2D" parent="."]
-
-[node name="Chest" type="Sprite2D" parent="Objects"]
+[node name="Chest" type="Sprite2D" parent="."]
 position = Vector2(64, -32)
 texture = ExtResource("3_jvo88")
 centered = false
@@ -84,12 +82,12 @@ cell_position = Vector2i(4, -2)
 interact_sprite = Rect2(145, 96, 17, 16)
 messages = Array[Resource]([SubResource("Resource_aigs6"), SubResource("Resource_qka3c"), SubResource("Resource_hkmet")])
 
-[node name="Portals" type="Node2D" parent="."]
-
-[node name="OutsideDoor" type="Sprite2D" parent="Portals"]
+[node name="OutsideDoor" type="Sprite2D" parent="."]
+position = Vector2(-16, -96)
 texture = ExtResource("3_jvo88")
 centered = false
 region_enabled = true
+region_rect = Rect2(176, 208, 16, 16)
 script = ExtResource("6_cwvc8")
 cell_position = Vector2i(-1, -6)
 trigger_cell = Vector2i(-1, -6)

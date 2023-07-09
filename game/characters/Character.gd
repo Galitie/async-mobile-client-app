@@ -46,24 +46,22 @@ func SetCellDestination(cell_pos, _direction):
 		cell_destination = Vector2i.ZERO
 		can_move = true
 		return
-	
-	var portals = world.current_map.get_node("Portals")
-	if portals:
-		for portal in portals.get_children():
-			if cell_destination == portal.trigger_cell:
-				if portal.locked:
+		
+	for interactable in get_tree().get_nodes_in_group("interactables"):
+		if interactable is Portal:
+			if cell_destination == interactable.trigger_cell:
+				if interactable.locked:
 					cell_destination = Vector2i.ZERO
 					can_move = true
 					return
 				else:
-					world.emit_signal(portal.Use(), portal.next_map, portal.next_map_cell_position)
-		
-	var objects = world.current_map.get_node("Objects")
-	for object in objects.get_children():
-		if !object.passable && cell_destination == object.cell_position:
-			cell_destination = Vector2i.ZERO
-			can_move = true
-			return
+					world.emit_signal(interactable.Use(), interactable.next_map, interactable.next_map_cell_position)
+					
+		if interactable is Interactable:
+			if !interactable.passable && cell_destination == interactable.cell_position:
+				cell_destination = Vector2i.ZERO
+				can_move = true
+				return
 	
 	if follower:
 		var follower_direction = "south"
@@ -108,13 +106,13 @@ func Interact():
 			interact_destination = cell_position + Vector2i(1, 0)
 		"west":
 			interact_destination = cell_position + Vector2i(-1, 0)
-	for object in world.current_map.get_node("Objects").get_children():
-		if object.cell_position == interact_destination:
-			if object.Interact():
-				if object.interact_signal:
-					world.current_map.emit_signal(object.interact_signal, self, object)
-				if object.messages:
-					world.SetMessageQueue(object.messages)
+	for interactable in get_tree().get_nodes_in_group("interactables"):
+		if interactable is Interactable:
+			if interactable.cell_position == interact_destination && interactable.Interact():
+				if interactable.interact_signal:
+					world.current_map.emit_signal(interactable.interact_signal, self, interactable)
+				if interactable.messages:
+					world.SetMessageQueue(interactable.messages)
 
 func _onStep():
 	frame = fmod(frame + 1, 4)
