@@ -1,5 +1,6 @@
 let packageContext = "";
 let timerRunning = true;
+let timerCooldown = false;
 // ************************* Screens *************************** //
 
 // If player is not connected
@@ -43,9 +44,9 @@ function promptScreen(
   }
 
   if (timerAmount > 0 && timerType == "cooldown") {
-    document.querySelector(".submit").addEventListener("click", function () {
-      addTimer(timerAmount, timerType);
-    });
+    timerCooldown = true;
+  } else {
+    timerCooldown = false;
   }
 
   if (includeEmojiTray == true) {
@@ -97,6 +98,9 @@ function onClickSubmit() {
     packet.smallInputValue = smallInputValue;
   }
 
+  if (timerCooldown == true) {
+    addTimer(10, "cooldown");
+  }
   removeTimer();
   cleanUpInput(textboxes);
   sendMessage(JSON.stringify(packet));
@@ -136,21 +140,16 @@ function addTimer(duration, type) {
   if (type == "countdown") {
     element = "h5";
     timerRunning = true;
+    parentElement = "#game";
   } else {
     element = "h6";
+    makeElementsReadOnly(["submit"]);
+    parentElement = ".submit";
   }
 
   let displayElement = document.createElement(element);
   let displayElementText = document.createTextNode("");
   displayElement.appendChild(displayElementText);
-
-  if (type == "countdown") {
-    parentElement = "#game";
-  } else {
-    makeElementsReadOnly(["submit"]);
-    parentElement = ".submit";
-  }
-
   let parent = document.querySelector(parentElement);
   parent.appendChild(displayElement);
 
