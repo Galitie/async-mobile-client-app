@@ -1,6 +1,7 @@
 let packageContext = "";
 let timerRunning = true;
 let timerCooldown = false;
+let timerCooldownAmount = 0;
 // ************************* Screens *************************** //
 
 // If player is not connected
@@ -45,6 +46,7 @@ function promptScreen(
 
   if (timerAmount > 0 && timerType == "cooldown") {
     timerCooldown = true;
+    timerCooldownAmount = timerAmount;
   } else {
     timerCooldown = false;
   }
@@ -99,7 +101,7 @@ function onClickSubmit() {
   }
 
   if (timerCooldown == true) {
-    addTimer(10, "cooldown");
+    addTimer(timerCooldownAmount, "cooldown");
   }
   removeTimer();
   cleanUpInput(textboxes);
