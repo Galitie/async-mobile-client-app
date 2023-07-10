@@ -23,7 +23,7 @@ function promptScreen(
   addPrompt(prompt);
 
   if (timerAmount > 0 && timerType == "countdown") {
-    addCountdownTimer(timerAmount);
+    addTimer(timerAmount, timerType);
   }
 
   if (inputs.small) {
@@ -42,9 +42,9 @@ function promptScreen(
     addButtons(["submit"]);
   }
 
-  if (timerType == "cooldown" && timerAmount > 0) {
+  if (timerAmount > 0 && timerType == "cooldown") {
     document.querySelector(".submit").addEventListener("click", function () {
-      addCooldownTimer(timerAmount);
+      addTimer(timerAmount, timerType);
     });
   }
 
@@ -126,16 +126,32 @@ function clearIDGameInDOM() {
   }
 }
 
-function addCountdownTimer(duration) {
-  timerRunning = true;
+function addTimer(duration, type) {
   let timer = duration,
     minutes,
     seconds;
-  let displayElement = document.createElement("h5");
+  let element = "";
+  let parentElement = "";
+
+  if (type == "countdown") {
+    element = "h5";
+    timerRunning = true;
+  } else {
+    element = "h6";
+  }
+
+  let displayElement = document.createElement(element);
   let displayElementText = document.createTextNode("");
   displayElement.appendChild(displayElementText);
 
-  let parent = document.querySelector(`#game`);
+  if (type == "countdown") {
+    parentElement = "#game";
+  } else {
+    makeElementsReadOnly(["submit"]);
+    parentElement = ".submit";
+  }
+
+  let parent = document.querySelector(parentElement);
   parent.appendChild(displayElement);
 
   let countdown = setInterval(function () {
@@ -147,60 +163,37 @@ function addCountdownTimer(duration) {
 
     displayElement.textContent = minutes + ":" + seconds;
 
-    if (!timerRunning) {
-      clearInterval(countdown);
-    }
-
-    if (timer > 0 && timer < 6) {
-      --timer;
-      displayElement.classList.add("pulsate");
-    } else if (--timer < 0) {
-      clearInterval(countdown);
-      displayElement.classList.remove("pulsate");
-
-      if (document.querySelector("textarea")) {
-        let textareas = document.querySelectorAll("textarea");
-        for (let i = 0; i < textareas.length; i++) {
-          if (textareas[i].value == "") {
-            textareas[i].value = "*blushes*";
-          }
-        }
-        onClickSubmit();
+    if (type == "countdown") {
+      if (!timerRunning) {
+        clearInterval(countdown);
       }
-    }
-  }, 1000);
-}
 
-function addCooldownTimer(duration) {
-  let timer = duration,
-    minutes,
-    seconds;
-  let displayElement = document.createElement("h6");
-  let displayElementText = document.createTextNode("");
-  displayElement.appendChild(displayElementText);
-
-  makeElementsReadOnly(["submit"]);
-
-  let parent = document.querySelector(`.submit`);
-  parent.appendChild(displayElement);
-
-  let countdown = setInterval(function () {
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    displayElement.textContent = minutes + ":" + seconds;
-
-    if (timer > 0 && timer < 6) {
-      --timer;
-      displayElement.classList.add("pulsate");
-    } else if (--timer < 0) {
-      clearInterval(countdown);
-      displayElement.classList.remove("pulsate");
-      parent.removeChild(displayElement);
-      enableElements(["submit"]);
+      if (timer > 0 && timer < 6) {
+        --timer;
+        displayElement.classList.add("pulsate");
+      } else if (--timer < 0) {
+        clearInterval(countdown);
+        displayElement.classList.remove("pulsate");
+        if (document.querySelector("textarea")) {
+          let textareas = document.querySelectorAll("textarea");
+          for (let i = 0; i < textareas.length; i++) {
+            if (textareas[i].value == "") {
+              textareas[i].value = "*blushes*";
+            }
+          }
+          onClickSubmit();
+        }
+      }
+    } else {
+      if (timer > 0 && timer < 6) {
+        --timer;
+        displayElement.classList.add("pulsate");
+      } else if (--timer < 0) {
+        clearInterval(countdown);
+        displayElement.classList.remove("pulsate");
+        parent.removeChild(displayElement);
+        enableElements(["submit"]);
+      }
     }
   }, 1000);
 }
