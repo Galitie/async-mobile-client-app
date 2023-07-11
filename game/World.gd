@@ -138,29 +138,31 @@ func _userJoined(packet):
 	Client.SendPacket(packet)
 	
 func _addUser(packet):
-	var user_data = Game.UserData.new()
-	user_data.ip = packet["userIP"]
-	user_data.name = packet["smallInputValue"]
-	user_data.role = "user"
-	user_data.connection_id = packet["connectionID"]
-	user_data.catchphrase = packet["bigInputValue"]
-	user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
-	
-	characters[user_data.ip] = CreateCharacter(characters.size())
-	user_data.character_data = characters[user_data.ip].character_data
-	user_data.voice_id = GetVoiceID(characters[user_data.ip])
-	Game.users[user_data.ip] = user_data
-	
-	characters[last_ip].follower = characters[user_data.ip]
-	SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
-	last_ip = user_data.ip
-	
-	print(user_data.name + " has joined the game")
-	Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
-	
-	var response = {"action": "respondToUser", "connectionID": user_data.connection_id}
-	response.merge(world_prompt.data)
-	Client.SendPacket(response)
+	if Game.ready_for_players:
+		var user_data = Game.UserData.new()
+		user_data.ip = packet["userIP"]
+		user_data.name = packet["smallInputValue"]
+		user_data.role = "user"
+		user_data.connection_id = packet["connectionID"]
+		user_data.catchphrase = packet["bigInputValue"]
+		user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
+		
+		characters[user_data.ip] = CreateCharacter(characters.size())
+		user_data.character_data = characters[user_data.ip].character_data
+		user_data.voice_id = GetVoiceID(characters[user_data.ip])
+		Game.users[user_data.ip] = user_data
+		
+		characters[last_ip].follower = characters[user_data.ip]
+		SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
+		last_ip = user_data.ip
+		
+		print(user_data.name + " has joined the game")
+		Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
+		
+		Game.SendPromptToUser(world_prompt, user_data.ip)
+	else:
+		var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
+		Client.SendPacket(response)
 	
 func _emote(packet):
 	if Game.users.has(packet["userIP"]):
@@ -203,6 +205,7 @@ func SetMessageQueue(messages):
 		current_map.emit_signal(current_message.message_signal, current_message.message_args)
 	
 func _portalEntered(_next_map, _spawn_position):
+	Game.ready_for_players = false
 	PauseWorld()
 	next_map = _next_map
 	spawn_position = _spawn_position
@@ -215,6 +218,7 @@ func _portalEntered(_next_map, _spawn_position):
 		member.SetCellPosition(spawn_position)
 	next_map = null
 	spawn_position = Vector2i.ZERO
+	$Camera2D.transform.origin = characters[Game.HOST_IP].transform.origin
 	Transition.get_node("AnimationPlayer").play("fade_in")
 	await get_tree().create_timer(0.4).timeout
 	ResumeWorld()

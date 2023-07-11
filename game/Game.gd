@@ -1,7 +1,6 @@
 # BUG: Speaker name does not show if there is no icon
 # BUG: Icon texture on TTS message is blown up if talking to an icon-less speaker
 # BUG/TODO: Characters need to be put on the same layer as map objects for proper Y sorting
-# BUG/TODO: Camera visibly moves between room transitions rather than being set
 # TODO: Message box animations
 # BUG: Controller interferes with keyboard movement
 # TODO: Revamp movement system. Step timer does not sync properly in fullscreen
