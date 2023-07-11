@@ -30,6 +30,8 @@ socket.onmessage = function (event) {
     hostServerStatus.innerText = "\u2717 Disconnected from Host";
     hostServerStatus.style.color = "red";
     notConnectedScreen();
+  } else if (message["message"] == "refuseJoin") {
+    gameAlreadyStartedScreen();
   } else {
     hostServerStatus.innerText = "\u2705 Host sent message!";
     hostServerStatus.style.color = "white";

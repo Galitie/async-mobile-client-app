@@ -13,6 +13,14 @@ function notConnectedScreen() {
   addButtons(["connect"]);
 }
 
+// Game already started screen
+function gameAlreadyStartedScreen() {
+  console.log("Game already started");
+  clearIDGameInDOM();
+  addPrompt(`TYLERPG`);
+  addDescription(`Game has already started! Can't join.`);
+}
+
 // Prompt screen
 function promptScreen(
   prompt,
