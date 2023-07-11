@@ -103,7 +103,7 @@ function onClickSubmit() {
   if (timerCooldown == true) {
     addTimer(timerCooldownAmount, "cooldown");
   }
-  removeTimer();
+  removeCountdownTimer();
   cleanUpInput(textboxes);
   sendMessage(JSON.stringify(packet));
 }
@@ -199,7 +199,7 @@ function addTimer(duration, type) {
   }, 1000);
 }
 
-function removeTimer() {
+function removeCountdownTimer() {
   timerRunning = false;
   if (document.querySelector("h5")) {
     let timer = document.querySelector("h5");
