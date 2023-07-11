@@ -1,12 +1,13 @@
 # BUG: Speaker name does not show if there is no icon
 # BUG: Icon texture on TTS message is blown up if talking to an icon-less speaker
-# BUG: UI in windowed mode on Galit's device does not scale
 # BUG/TODO: Characters need to be put on the same layer as map objects for proper Y sorting
 # BUG/TODO: Camera visibly moves between room transitions rather than being set
 # TODO: Message box animations
-# TODO: Reset method for box rooms
+# BUG: Controller interferes with keyboard movement
+# TODO: Revamp movement system. Step timer does not sync properly in fullscreen
 # TODO: Create proper states for the world (reading, battling, etc)
-# TODO: Revamp movement system. Tweens and timers will not cut it
+# BUG: Sending a TTS message with only punctuation leads to an empty message that shows up for
+# a split second. Possibly add a minimum time limit to display the message?
 extends Node2D
 
 var state = null
@@ -19,6 +20,8 @@ const MAX_PLAYERS = 5
 const map_cell_size = 16
 const collision_layer = 3
 
+var wait_prompt = Prompt.new("Please wait...", "wait", "none", 0.0, false, {"small": ""})
+
 # TTS voices need to be installed from either the Windows speech package downloader in settings or from the
 # runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
 # Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
@@ -30,6 +33,18 @@ func ChangeState(end_state, start_state):
 	start_state.emit_signal("start_state")
 	Game.state = start_state
 	Game.previous_state = end_state
+	
+func SendPromptToUsers(prompt):
+	for user in Game.users:
+		if Game.users[user].ip == HOST_IP:
+			continue
+		SendPromptToUser(prompt, Game.users[user].ip)
+
+func SendPromptToUser(prompt, ip):
+	if Game.users[ip].connection_status == Client.CONNECTION_STATUS.ONLINE:
+		var response = {"action": "respondToUser", "connectionID": Game.users[ip].connection_id}
+		response.merge(prompt.data)
+		Client.SendPacket(response)
 
 class UserData:
 	var ip

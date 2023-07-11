@@ -1,4 +1,4 @@
-extends TileMap
+extends Map
 
 signal chestOpened
 signal map_poem_entry
@@ -19,10 +19,8 @@ func _ready():
 
 func _chestOpened(character, object):
 	if !chests_opened:
-		var packet = {"action": "messageAllUsers"}
 		var poem_prompt = Game.Prompt.new("Think of a poetic line that ends in \"ing\"", "map_poem_entry", "countdown", 30.0, false, {"big": "Roses are red..."})
-		packet.merge(poem_prompt.data)
-		Client.SendPacket(packet)
+		Game.SendPromptToUsers(poem_prompt)
 		
 	chests_opened += 1
 	
@@ -38,9 +36,7 @@ func _chestOpened(character, object):
 
 func _poemEntry(packet):
 	poem.append(packet["bigInputValue"])
-	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
-	response.merge(get_parent().world_prompt.data)
-	Client.SendPacket(response)
+	Game.SendPromptToUser(get_parent().world_prompt, packet["userIP"])
 
 func _talkedToGatekeeper(character, object):
 	if !moved && chests_opened == max_chests:

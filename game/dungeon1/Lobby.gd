@@ -1,4 +1,4 @@
-extends TileMap
+extends Map
 
 signal all_players_joined
 

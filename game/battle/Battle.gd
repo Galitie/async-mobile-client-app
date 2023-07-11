@@ -5,6 +5,8 @@ signal end_state
 signal emote
 signal sent_text
 signal battle_entry
+signal user_reconnected
+signal user_disconnected
 
 @onready var camera = $Camera2D
 @onready var battle_info = $Camera2D/CanvasLayer/Control/BattleInfo
@@ -12,12 +14,21 @@ signal battle_entry
 @onready var cursor = $Camera2D/CanvasLayer/Control/DropBox/Cursor
 @onready var enemy = $Enemy
 
+class Move:
+	var ip
+	var name
+	
+	func _init(_ip, _name):
+		ip = _ip
+		name = _name
+
 var moves = []
 var cursor_position = 0
 var turn = 0
 const max_turns = 1
 
 var enemy_info = null
+var party_turn = false
 
 func _ready():
 	enemy.texture = enemy_info.texture
@@ -27,6 +38,8 @@ func _ready():
 	connect("emote", _emote)
 	connect("sent_text", _sentText)
 	connect("battle_entry", _battleEntry)
+	connect("user_disconnected", _userDisconnected)
+	connect("user_reconnected", _userReconnected)
 	
 	camera.make_current()
 	await get_tree().create_timer(0.8).timeout
@@ -34,7 +47,7 @@ func _ready():
 	await get_tree().create_timer(2.5).timeout
 	battle_info.Hide()
 	await get_tree().create_timer(0.8).timeout
-	GetPartyMoves()
+	PartyTurn()
 	
 func _process(delta):
 	if drop_box.visible:
@@ -51,7 +64,7 @@ func _process(delta):
 			drop_box.visible = false
 			battle_info.hide()
 			await get_tree().create_timer(0.8).timeout
-			battle_info.Show(moves[cursor_position])
+			battle_info.Show(moves[cursor_position].name)
 			await get_tree().create_timer(2.0).timeout
 			battle_info.Hide()
 			await get_tree().create_timer(1.0)
@@ -61,41 +74,56 @@ func _process(delta):
 			else:
 				EnemyTurn()
 
-func GetPartyMoves():
+func PartyTurn():
+	party_turn = true
 	moves.clear()
 	battle_info.Show("The party is thinking about their next move...")
-	var packet = {"action": "messageAllUsers"}
 	var battle_prompt = Game.Prompt.new("Think of a powerful move that will help Tyler in battle!", "battle_entry", "countdown", 30.0, false, {"small": "Megaflare"})
-	packet.merge(battle_prompt.data)
-	Client.SendPacket(packet)
+	Game.SendPromptToUsers(battle_prompt)
+	
+	for user in Game.users:
+		if Game.users[user].connection_status == Client.CONNECTION_STATUS.OFFLINE:
+			moves.append(Move.new(Game.users[user].ip, "*blushes*"))
+			CheckAllMovesSubmitted()
 	
 func EnemyTurn():
 	battle_info.Show("The " + enemy_info.enemy_name + " attacks!")
 	await get_tree().create_timer(2.0).timeout
 	battle_info.Hide()
 	await get_tree().create_timer(1.0)
-	GetPartyMoves()
+	PartyTurn()
 	
 func _sentText(packet):
 	emit_signal(packet["context"], packet)
 	
 func _emote(packet):
 	pass
+	
+func _userReconnected(packet):
+	Game.SendPromptToUser(Game.wait_prompt, packet["userIP"])
+	
+func _userDisconnected(packet):
+	if party_turn:
+		for move in moves:
+			if move.ip == packet["userIP"]:
+				return
+		moves.append(Move.new(packet["userIP"], "*blushes*"))
+		CheckAllMovesSubmitted()
 
 func _battleEntry(packet):
-	moves.append(packet["smallInputValue"])
-	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
-	var wait_prompt = Game.Prompt.new("Please wait...", "wait", "none", 0.0, false, {"big": ""})
-	response.merge(wait_prompt.data)
-	Client.SendPacket(response)
-	
+	moves.append(Move.new(packet["userIP"], packet["smallInputValue"]))
+	Game.SendPromptToUser(Game.wait_prompt, packet["userIP"])
+	CheckAllMovesSubmitted()
+		
+func CheckAllMovesSubmitted():
 	if moves.size() == Game.users.size() - 1:
 		battle_info.SetText(true, "Choose the best one, Tyler!")
 		for option in drop_box.get_child(0).get_children():
 			option.text = ""
 		for i in range(0, moves.size(), 1):
-			drop_box.get_child(0).get_child(i).text = moves[i]
+			drop_box.get_child(0).get_child(i).text = moves[i].name
 		drop_box.visible = true
+		party_turn = false
 		
 func EndBattle():
 	enemy.get_node("AnimationPlayer").play("dead")
