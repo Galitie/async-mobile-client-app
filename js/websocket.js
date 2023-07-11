@@ -31,7 +31,7 @@ socket.onmessage = function (event) {
     hostServerStatus.style.color = "red";
     notConnectedScreen();
   } else {
-    hostServerStatus.innerText = "\u2705 Host sent a message!";
+    hostServerStatus.innerText = "\u2705 Host sent message!";
     hostServerStatus.style.color = "white";
     if (canVibrate) navigator.vibrate(200);
     console.log(JSON.stringify(message));
