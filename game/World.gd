@@ -104,9 +104,7 @@ func _userReconnected(packet):
 	if characters.has(packet["userIP"]):
 		characters[packet["userIP"]].modulate = Color.WHITE
 		
-		var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
-		response.merge(world_prompt.data)
-		Client.SendPacket(response)
+		Game.SendPromptToUser(world_prompt, packet["userIP"])
 	
 func _userDisconnected(packet):
 	if characters.has(packet["userIP"]):
@@ -134,33 +132,37 @@ func _speak(packet):
 	tts_queue.append(tts_msg)
 	
 func _userJoined(packet):
+	# Packet is returned merged with the character creation prompt because no user has been
+	# established yet.
 	packet.merge(create_character_prompt.data)
 	Client.SendPacket(packet)
 	
 func _addUser(packet):
-	var user_data = Game.UserData.new()
-	user_data.ip = packet["userIP"]
-	user_data.name = packet["smallInputValue"]
-	user_data.role = "user"
-	user_data.connection_id = packet["connectionID"]
-	user_data.catchphrase = packet["bigInputValue"]
-	user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
-	
-	characters[user_data.ip] = CreateCharacter(characters.size())
-	user_data.character_data = characters[user_data.ip].character_data
-	user_data.voice_id = GetVoiceID(characters[user_data.ip])
-	Game.users[user_data.ip] = user_data
-	
-	characters[last_ip].follower = characters[user_data.ip]
-	SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
-	last_ip = user_data.ip
-	
-	print(user_data.name + " has joined the game")
-	Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
-	
-	var response = {"action": "respondToUser", "connectionID": user_data.connection_id}
-	response.merge(world_prompt.data)
-	Client.SendPacket(response)
+	if Game.ready_for_players:
+		var user_data = Game.UserData.new()
+		user_data.ip = packet["userIP"]
+		user_data.name = packet["smallInputValue"]
+		user_data.role = "user"
+		user_data.connection_id = packet["connectionID"]
+		user_data.catchphrase = packet["bigInputValue"]
+		user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
+		
+		characters[user_data.ip] = CreateCharacter(characters.size())
+		user_data.character_data = characters[user_data.ip].character_data
+		user_data.voice_id = GetVoiceID(characters[user_data.ip])
+		Game.users[user_data.ip] = user_data
+		
+		characters[last_ip].follower = characters[user_data.ip]
+		SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
+		last_ip = user_data.ip
+		
+		print(user_data.name + " has joined the game")
+		Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
+		
+		Game.SendPromptToUser(world_prompt, user_data.ip)
+	else:
+		var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
+		Client.SendPacket(response)
 	
 func _emote(packet):
 	if Game.users.has(packet["userIP"]):
@@ -170,6 +172,7 @@ func _process(delta):
 	if !paused:
 		# First party member is controllable
 		$Party.get_child(0).Update(delta)
+		current_map.update(delta)
 		
 		if !DisplayServer.tts_is_speaking():
 			if tts_queue.size():
@@ -202,6 +205,7 @@ func SetMessageQueue(messages):
 		current_map.emit_signal(current_message.message_signal, current_message.message_args)
 	
 func _portalEntered(_next_map, _spawn_position):
+	Game.ready_for_players = false
 	PauseWorld()
 	next_map = _next_map
 	spawn_position = _spawn_position
@@ -214,6 +218,7 @@ func _portalEntered(_next_map, _spawn_position):
 		member.SetCellPosition(spawn_position)
 	next_map = null
 	spawn_position = Vector2i.ZERO
+	$Camera2D.transform.origin = characters[Game.HOST_IP].transform.origin
 	Transition.get_node("AnimationPlayer").play("fade_in")
 	await get_tree().create_timer(0.4).timeout
 	ResumeWorld()
@@ -227,10 +232,7 @@ func ResumeWorld():
 	DisplayServer.tts_resume()
 
 func StartBattle(battle_args):
-	var packet = {"action": "messageAllUsers"}
-	var wait_prompt = Game.Prompt.new("Please wait...", "wait", "none", 0.0, false, {"small": ""})
-	packet.merge(wait_prompt.data)
-	Client.SendPacket(packet)
+	Game.SendPromptToUsers(Game.wait_prompt)
 	
 	battle = true
 	Transition.get_node("AnimationPlayer").play("fade_out")
@@ -246,6 +248,12 @@ func StartBattle(battle_args):
 func _startState():
 	visible = true
 	battle = false
+	for user in Game.users:
+		if Game.users[user].connection_status == Client.CONNECTION_STATUS.ONLINE:
+			characters[Game.users[user].ip].modulate = Color.WHITE
+		elif Game.users[user].connection_status == Client.CONNECTION_STATUS.OFFLINE:
+			characters[Game.users[user].ip].modulate = Color.DIM_GRAY
+	Game.SendPromptToUsers(world_prompt)
 	ResumeWorld()
 	
 func _endState():

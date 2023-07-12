@@ -83,6 +83,8 @@ func _addPlayer(packet):
 	Game.state.emit_signal("character_created", packet)
 	
 func _disconnect(packet):
+	if Game.users.has(packet["userIP"]):
+		Game.users[packet["userIP"]].connection_status = CONNECTION_STATUS.OFFLINE
 	Game.state.emit_signal("user_disconnected", packet)
 
 func _sendText(packet):

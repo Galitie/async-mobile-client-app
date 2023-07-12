@@ -1,4 +1,4 @@
-extends TileMap
+extends Map
 
 signal startBattle
 signal pushCrate
@@ -7,6 +7,10 @@ func _ready():
 	connect("startBattle", _startBattle)
 	connect("pushCrate", _pushCrate)
 	set_process(false)
+	
+func update(delta):
+	if Input.is_action_just_pressed("restart"):
+		get_parent().emit_signal("portal_entered", $RestartPortal.next_map, $RestartPortal.next_map_cell_position)
 
 func _pushCrate(character, object):
 	var direction = Vector2i(0, 0)
