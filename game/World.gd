@@ -138,7 +138,7 @@ func _userJoined(packet):
 	Client.SendPacket(packet)
 	
 func _addUser(packet):
-	if Game.ready_for_players:
+	if Game.ready_for_players && Game.users.size() < Game.MAX_PLAYERS:
 		var user_data = Game.UserData.new()
 		user_data.ip = packet["userIP"]
 		user_data.name = packet["smallInputValue"]

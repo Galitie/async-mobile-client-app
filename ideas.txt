@@ -1,0 +1,95 @@
+-- Battles --
+tyler picks move suggested by party members ala quiplash
+if tyler picks move, said person gets 2 tyler love point (TLP)
+move effect and outcome is chosen from a random pool
+after tyler chooses the move, the move is saved for a later point in the game
+Tyler chooses who to protect during an enemy's attack. The person chosen gets TLP.
+
+-- Overworld --
+Character icons and sprites gradually change after hitting certain TLP thresholds
+Cooldown timer after "say something!" prompt
+Catchphrase button (also on cooldown)
+Emoji RPG prompt thing.
+Annoying ass puzzle that tyler will get stuck on for 15 minutes
+Lazy ass fetch quest that spans two feet.
+
+-- Story -- 
+Last boss: the person with the least TLP. The supposed dark lord was actually jealously all along.
+People's overworld "say something" messages are overridden with generic ass anime love messages and thoughts.
+Raam merchant who shows up 3 times and starves because Tyler won't buy anything.
+Game currency: Tyler is rich. Currency possibly goes off screen in amount.
+Galit is navigation fairy.
+Short one on one cutscenes. TLP affects which cutscene is chosen and how romantic it is. They happen during puzzle?
+Cutscenes that Tyler has to press "A" through, while other people react with emojis.
+Final cutscenes are voiced in nonsensical Japanese TTS. Players make the subtitles.
+Progression: RPG, Dating Sim-RPG, full blown Dating Sim.
+Tyler's dark outline (along with his chosen one) rides off into the sunset Pokemon GSC style. The person who was posessed with jealousy has their grave plotted next to Raam the merchant's.
+
+(Tyler gradually gets possessed and becomes Shadow Tyler. Needs true love's first kiss to be purified. Shadow Tyler boss battle. He can use all moves he picked to attack the party.)
+
+-- Misc --
+Timer on prompts.
+Character limit on prompts. (Server action: text prompt text, timer, character limit, emojis enabled or not)
+Default message: *Blushes*
+Puzzle solution is penis-shaped.
+Numbered boxes. Colored boxes. Doesn't matter. It becomes a penis.
+Raam the merchant's grave at the end.
+Tyler can react to "say something" messages?
+One-on-ones have intro prompts before beginning (same as RPG intro sequence)
+
+-- Characters --
+A werewolf who becomes a furry
+Mario who becomes Handsome Anime Mario
+Solid Snake who takes his shirt off
+Kermit Frog who gets hair and a strong jawline
+Shrek. You know. He's naked by the end.
+
+-- Outline --
+Tyler starts game and is stuck in a small room walking around.
+People take forever to join, setting their name and catchphrase.
+They spawn behind Tyler with a character based on a first come first serve queue.
+Character info is saved somewhere, either on server or on game.
+While Tyler is walking, people can test the "say something" prompt and emojis.
+When everyone says something, the door will open. Next room.
+Vague RPG intro plays. Voiced by Raam. People can still say something in the dark. East and West reference. LIQUIIIIID.
+Raam the merchant is waiting at the dungeon entrance. Interrupt his monologue. "Oh shit, you heard me?"
+Tyler picks up shit on the ground instead of buying equipment. Next room.
+Galit the fairy says tutorial red-herring RPG shit. Says TLP is Training Level Points.
+Everyone battles in these handful of rooms. Fetch quest joke. Next room.
+Puzzle time. Tyler takes forever. A few one-on-ones. Next room.
+We're in the mid-game now. Raam the merchant is annoyed, but wants a sale. Galit the fairy asks Tyler has anyone special to him. Being awkward. Tyler can only emoji.
+Enemies become sensitive. Battle dialogue is strange. Move effects are...different. Blushing abound.
+Rooms are more pastel. Prettier. A few more one-on-ones. Tyler gets thrown on another fetch quest with an item that's in a giant, crappy maze. Maze gets more anime. Everyone is more anime. Raam the merchant is on the floor and dying, emaciated inside the maze. Tyler still won't buy. Tyler finds the item, but no one wants to return it, so they keep it. End game time.
+Person with the least TLP gets the final one-on-one in the hopes of getting some sweet, sweet TLP for redemption.
+Final boss time. Galit the fairy explains that jealousy was the true cause haunting the land. There is no dark lord.
+Ending.
+
+-- Programming designs --
+Have recieved messages call signals (which may or may not be answered)
+
+-- Other ideas --
+Second room activity:
+Door needs to be opened with a phrase.
+Scraps of paper found in 4-5 chests scattered around the room.
+Each piece of paper is a prompt to a player in sequential order.
+The next player responds to the previous player's entry as a prompt.
+A strange cold wind comments on how lovely the poem was, and asks Tyler which line resonated with him.
+The winner gets TLP (sort of secretly).
+
+Fart room.
+Everyone gets a fart button, and the one who mashes it the most by the time Tyler reaches the end loses 1 TLP.
+"There's a lot of gas in this room."
+"I hope Tyler doesn't make a holocaust joke."
+
+Tyler quiz gameshow in near Earth orbit.
+
+Put in Tyler's measurements in his bio during the dating sim.
+People build his bio and he has to pick the best ones.
+
+Absolute chaos near the end. Full off the rails.
+Sephiroth theme. Fake equations on screen.
+Fart button comes back / The villian player can shit talk the others while fighting FF style.
+
+Transition point to high school dating sim is a long hallway. It plays Snake Eater.
+The climax of the game takes place in Tyler Court. If a player said something bad it is used against them in court. If they haven't, we make something up in a fake
+flashback.

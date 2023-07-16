@@ -1,0 +1,30 @@
+-- First Playtest Results --
+
+Connect disconnect visual glitch.
+Player cap.
+Battle turns didn't match party size.
+Android phones didn't vibrate.
+Display crunched on Jake's phone.
+Table is not cleared in DynamoDB after the first session for some reason.
+
+
+Crate puzzle 2 was hard.
+Players collaborated on the puzzle eventually (and realized they could speak in real time).
+Battles used up the entire countdown.
+Players didn't emote that much.
+Players were funny, especially when stuck in a room.
+Be more sarcastic with the world prompt. Say something extremely "helpful" to Tyler. Prompt was not descriptive enough.
+Peter felt it most fun when providing answers to a prompt.
+Players didn't initially connected the idea that their input contributed to the game, or thought their input would be used later.
+Sarah was disappointed the poem didn't connect or flow as well.
+Jake and others said that battle move character length and countdown timer was too short.
+Adam knew people were coming up with responses during battle.
+
+Feature: Random response when putting in an empty prompt ....Maybe....
+Feature: Two random suggestions they could select.
+Feature: Thumbs up emoji.
+Feature: More cats.
+Idea: Fake bug for Tyler to troll him.
+Idea: More Sonic references. More Sanic.
+Idea: An escape room.
+Idea: Put laugh tracks in the game.

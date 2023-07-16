@@ -25,7 +25,7 @@ class Move:
 var moves = []
 var cursor_position = 0
 var turn = 0
-const max_turns = 1
+var max_turns = Game.users.size() - 1
 
 var enemy_info = null
 var party_turn = false
