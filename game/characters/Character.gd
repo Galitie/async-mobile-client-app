@@ -1,8 +1,6 @@
 class_name Character
 extends AnimatedSprite2D
 
-const COLLISION_LAYER = 3
-
 var world
 
 var floating_emoji = preload("res://Emoji.tscn")
@@ -41,7 +39,7 @@ func SetCellDestination(cell_pos, _direction):
 	frame = current_frame
 	direction = _direction
 	
-	var tile_data = world.current_map.get_cell_tile_data(COLLISION_LAYER, cell_destination)
+	var tile_data = world.current_map.get_cell_tile_data(Game.collision_layer, cell_destination)
 	if tile_data:
 		cell_destination = Vector2i.ZERO
 		can_move = true
@@ -56,8 +54,11 @@ func SetCellDestination(cell_pos, _direction):
 					return
 				else:
 					world.emit_signal(interactable.Use(), interactable.next_map, interactable.next_map_cell_position)
-					
-		if interactable is Interactable:
+		elif interactable is Trigger:
+			if cell_destination == interactable.cell_position:
+				if interactable.active:
+					world.emit_signal("sent_text", {"context": interactable.signal_string})
+		elif interactable is Interactable:
 			if !interactable.passable && cell_destination == interactable.cell_position:
 				cell_destination = Vector2i.ZERO
 				can_move = true

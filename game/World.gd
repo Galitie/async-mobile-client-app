@@ -116,12 +116,6 @@ func _sentText(packet):
 	else:
 		emit_signal(packet["context"], packet)
 
-func ParseContext(packet):
-	if is_connected(packet["context"], Callable(self, "_" + packet["context"])):
-		emit_signal(packet["context"], packet)
-	elif current_map.is_connected(packet["context"], Callable(current_map, "_" + packet["context"])):
-		current_map.emit_signal(packet["context"], packet)
-
 func _speak(packet):
 	var tts_msg = TTSMessage.new()
 	tts_msg.content = packet["bigInputValue"]
