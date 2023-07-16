@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3tvrwc41yiyl"]
+[gd_scene load_steps=17 format=3 uid="uid://b3tvrwc41yiyl"]
 
+[ext_resource type="Texture2D" uid="uid://cdb1mpd1bbd5e" path="res://battle/lineTexture.png" id="2_3u2sb"]
 [ext_resource type="Texture2D" uid="uid://dmm8rscpko6pt" path="res://battle/flameTexture.png" id="2_6kemj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vr28n"]
@@ -66,6 +67,41 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_mlr28")
 color_ramp = SubResource("GradientTexture1D_tq4j7")
 
+[sub_resource type="Gradient" id="Gradient_n724q"]
+offsets = PackedFloat32Array(0, 0.847176, 0.940199, 0.983389)
+colors = PackedColorArray(1, 1, 1, 0.52549, 0.297093, 0.297093, 0.297093, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3aaks"]
+gradient = SubResource("Gradient_n724q")
+
+[sub_resource type="Curve" id="Curve_5dvqa"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8x34l"]
+curve = SubResource("Curve_5dvqa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_igqf6"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 150.0
+emission_ring_inner_radius = 120.0
+particle_flag_align_y = true
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = -600.0
+radial_accel_max = -600.0
+scale_min = 2.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_3aaks")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_8x34l")
+
 [node name="ParticleParty" type="Node2D"]
 
 [node name="Fire" type="GPUParticles2D" parent="."]
@@ -88,3 +124,12 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 0.89
 randomness = 0.04
+
+[node name="Confetti Implosion" type="GPUParticles2D" parent="."]
+position = Vector2(0, -42)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_igqf6")
+texture = ExtResource("2_3u2sb")
+one_shot = true
+speed_scale = 1.5

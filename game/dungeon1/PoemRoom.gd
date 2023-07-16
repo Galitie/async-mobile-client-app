@@ -26,13 +26,13 @@ func _chestOpened(character, object):
 	
 	match chests_opened:
 		1:
-			object.messages.append(Message.new("", "You found a[color=yellow] scrap of paper."))
+			object.messages.append(Message.new("", "You found a[color=yellow] scrap of paper that could be written on..."))
 		2:
 			object.messages.append(Message.new("", "You found another[color=yellow] scrap of paper."))
 		3:
 			object.messages.append(Message.new("", "One more[color=yellow] scrap of paper."))
 		4:
-			object.messages.append(Message.new("", "You got the last[color=yellow] scrap of paper."))
+			object.messages.append(Message.new("", "You got the last[color=yellow] scrap of paper!"))
 
 func _poemEntry(packet):
 	poem.append(packet["bigInputValue"])
@@ -44,7 +44,7 @@ func _talkedToGatekeeper(character, object):
 		for line in poem:
 			var message = Message.new("Gatekeeper", line)
 			dialogue.append(message)
-		var parting_words = Message.new("Gatekeeper", "Beautiful. You may pass.", "moveGatekeeper", Message.SignalTiming.DISAPPEAR)
+		var parting_words = Message.new("Gatekeeper", "I have tears in my eyes. You may pass.", "moveGatekeeper", Message.SignalTiming.DISAPPEAR)
 		dialogue.append(parting_words)
 		object.messages = dialogue
 		moved = true

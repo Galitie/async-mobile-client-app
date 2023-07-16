@@ -117,7 +117,7 @@ func _battleEntry(packet):
 		
 func CheckAllMovesSubmitted():
 	if moves.size() == Game.users.size() - 1:
-		battle_info.SetText(true, "Choose the best one, Tyler!")
+		battle_info.SetText(true, "Choose your favorite attack, Tyler!")
 		for option in drop_box.get_child(0).get_children():
 			option.text = ""
 		for i in range(0, moves.size(), 1):
@@ -128,7 +128,7 @@ func CheckAllMovesSubmitted():
 func EndBattle():
 	enemy.get_node("AnimationPlayer").play("dead")
 	await get_tree().create_timer(1.4).timeout
-	battle_info.Show("Tyler and company are victorious!")
+	battle_info.Show("The " + enemy_info.enemy_name + " was defeated!" + " Tyler and company are victorious!")
 	await get_tree().create_timer(3.0).timeout
 	battle_info.Hide()
 	Transition.get_node("AnimationPlayer").play("fade_out")

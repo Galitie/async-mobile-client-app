@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_7o4og"]
 script = ExtResource("6_b4r4n")
 speaker = "Gatekeeper"
-content = "What do you want?"
+content = "You shall not pass! But...uh... I am easily swayed by deep and beautiful poetry."
 message_signal = ""
 message_args = []
 signal_timing = 0
@@ -50,7 +50,6 @@ color = Color(0, 0, 0, 1)
 blend_mode = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(-6, -80)
 scale = Vector2(4.16468, 3.73377)
 color = Color(0.741176, 0.8, 1, 1)
