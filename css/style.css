@@ -1,3 +1,8 @@
+:root {
+    --normalFont: 'Press Start 2P',
+        cursive;
+    --datingSimFont: 'Lilita One, cursive';
+}
 
   /******************************************
   /* LAYOUT
@@ -6,7 +11,7 @@
 * {
     box-sizing: border-box;
     text-align: center;
-    font-family: 'Press Start 2P', cursive;
+    font-family: var(--normalFont);
     margin: 0% 10%;
     font-size: 3vw;
     color: white;
@@ -28,7 +33,7 @@ body{
     background-color: slategrey;
 }
 
-#stats{
+.stats{
     margin: 0;
     padding: 1em 0;
     width:100%;
@@ -40,7 +45,7 @@ h3, h4 {
     padding: .25em 0;
 }
 
-#game {
+.game {
     display:flex;
     flex-direction: column;
     height:100%;
@@ -49,7 +54,7 @@ h3, h4 {
     justify-content: center;
 }
 
-#emojiContainer {
+.emojiContainer {
     margin: unset;
     padding: unset;
     width:100%;
@@ -159,3 +164,7 @@ textarea {
     border: 5px solid red;
 }
 
+
+  /******************************************
+  /* DATING SIM STYLES
+  /*******************************************/

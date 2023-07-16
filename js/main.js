@@ -2,6 +2,7 @@ let packageContext = "";
 let timerRunning = true;
 let timerCooldown = false;
 let timerCooldownAmount = 0;
+
 // ************************* Screens *************************** //
 
 // If player is not connected
@@ -133,7 +134,7 @@ function onClickConnect() {
 //********************* Screen Pieces ************************//
 
 function clearIDGameInDOM() {
-  let rootElement = document.querySelector("#game");
+  let rootElement = document.querySelector(".game");
 
   while (rootElement.firstChild) {
     rootElement.removeChild(rootElement.firstChild);
@@ -220,7 +221,7 @@ function addPrompt(str) {
   let newPrompt = document.createElement("h1");
   let newPromptText = document.createTextNode(str);
   newPrompt.appendChild(newPromptText);
-  let gameSection = document.querySelector("#game");
+  let gameSection = document.querySelector(".game");
   gameSection.appendChild(newPrompt);
 }
 
@@ -228,7 +229,7 @@ function addDescription(str) {
   let newDes = document.createElement("h2");
   let newDesText = document.createTextNode(str);
   newDes.appendChild(newDesText);
-  let gameSection = document.querySelector("#game");
+  let gameSection = document.querySelector(".game");
   gameSection.appendChild(newDes);
 }
 
@@ -244,7 +245,7 @@ function addInput(inputClasses) {
       newInput.setAttribute("placeholder", "Type something!");
       newInput.setAttribute("maxlength", "15");
     }
-    let gameSection = document.querySelector("#game");
+    let gameSection = document.querySelector(".game");
     gameSection.appendChild(newInput);
   });
 }
@@ -260,7 +261,7 @@ function addButtons(buttonClasses) {
     let newButtonText = document.createTextNode(capitalize(button));
     newButton.appendChild(newButtonText);
     newButton.classList.add(`${button}`);
-    document.querySelector("#game").appendChild(newButton);
+    document.querySelector(".game").appendChild(newButton);
     let getElementButton = document.querySelector(`.${button}`);
     getElementButton.addEventListener("click", buttonMap[button]);
   });
@@ -276,7 +277,7 @@ function addEmojiTray() {
 
   let newSection = document.createElement("SECTION");
   newSection.setAttribute("id", "emojiContainer");
-  document.querySelector("#game").appendChild(newSection);
+  document.querySelector(".game").appendChild(newSection);
 
   Object.keys(emojiMap).forEach((emoji) => {
     let newButton = document.createElement("BUTTON");

@@ -107,9 +107,10 @@ hue_variation_curve = SubResource("CurveTexture_8x34l")
 [node name="Fire" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_vr28n")
 emitting = false
-amount = 16
+amount = 30
 process_material = SubResource("ParticleProcessMaterial_wb8nj")
 texture = ExtResource("2_6kemj")
+one_shot = true
 explosiveness = 0.01
 randomness = 0.04
 
@@ -128,7 +129,7 @@ randomness = 0.04
 [node name="Confetti Implosion" type="GPUParticles2D" parent="."]
 position = Vector2(0, -42)
 emitting = false
-amount = 50
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_igqf6")
 texture = ExtResource("2_3u2sb")
 one_shot = true
