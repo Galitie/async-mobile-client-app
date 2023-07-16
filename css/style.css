@@ -1,7 +1,14 @@
 :root {
-    --normalFont: 'Press Start 2P',
+    --fontFamily: 'Press Start 2P',
         cursive;
-    --datingSimFont: 'Lilita One, cursive';
+    --fontSize: 3vw;
+    --textColor: white;
+    --backgroundColor:slategrey;
+    --buttonColor:rgb(11, 0, 207);
+    --placeholderColor:slategrey;
+    --textShadowColor: -.1em .1em black;
+    --backgroundShadowColor: -10px 10px black;
+    --borderRadius: 0em;
 }
 
   /******************************************
@@ -11,11 +18,12 @@
 * {
     box-sizing: border-box;
     text-align: center;
-    font-family: var(--normalFont);
+    font-family: var(--fontFamily);
     margin: 0% 10%;
-    font-size: 3vw;
-    color: white;
-    text-shadow: -.1em .1em black;
+    font-size: var(--fontSize);
+    color: var(--textColor);
+    text-shadow: var(--textShadowColor);
+    border-radius: var(--borderRadius);
 
 }
 
@@ -30,7 +38,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: slategrey;
+    background-color: var(--backgroundColor);
 }
 
 .stats{
@@ -72,7 +80,7 @@ button {
     padding: unset;
     margin: unset;
     border: .15em solid white;
-    box-shadow: -10px 10px black;
+    box-shadow: var(--backgroundShadowColor);
     touch-action: none;
     user-select: none;
     -webkit-user-select: none;
@@ -99,9 +107,13 @@ textarea {
     border: .25em solid white;
     text-shadow: none;
     color:black;
-    box-shadow: -10px 10px black;
+    box-shadow: var(--backgroundShadowColor);
     resize:none;
 
+}
+
+textarea::placeholder {
+    color: var(--placeholderColor)
 }
   
   /******************************************
@@ -117,18 +129,18 @@ textarea {
 }
 
 .submit {
-    background-color: rgb(11, 0, 207);
+    background-color: var(--buttonColor);
     
 }
 
 .connect {
-    background-color: rgb(11, 0, 207);
+    background-color: var(--buttonColor);
 }
 
 .emoji {
     width: 20%;
     font-size: 8vw;
-    background-color: rgb(11, 0, 207);
+    background-color: var(--buttonColor);
     padding-bottom: .25em;
     min-height: unset;
     border: .10em solid white;

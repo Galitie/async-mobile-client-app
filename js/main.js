@@ -2,6 +2,20 @@ let packageContext = "";
 let timerRunning = true;
 let timerCooldown = false;
 let timerCooldownAmount = 0;
+let isDatingSimTime = false;
+
+function setStyleDatingSim() {
+  isDatingSimTime = true;
+  let rootTheme = document.querySelector(":root");
+  rootTheme.style.setProperty("--fontFamily", "'Lilita One', cursive");
+  rootTheme.style.setProperty("--fontSize", "5vw");
+  rootTheme.style.setProperty("--backgroundColor", "hotpink");
+  rootTheme.style.setProperty("--buttonColor", "purple");
+  rootTheme.style.setProperty("--placeholderColor", "pink");
+  rootTheme.style.setProperty("--textShadowColor", "-.1em .1em purple");
+  rootTheme.style.setProperty("--backgroundShadowColor", "-10px 10px purple");
+  rootTheme.style.setProperty("--borderRadius", "1em");
+}
 
 // ************************* Screens *************************** //
 
@@ -217,10 +231,16 @@ function removeCountdownTimer() {
   }
 }
 
-function addPrompt(str) {
+function addPrompt(str, addon) {
   let newPrompt = document.createElement("h1");
   let newPromptText = document.createTextNode(str);
+  if (isDatingSimTime == true) {
+    newPrompt.innerText += "❤️";
+  }
   newPrompt.appendChild(newPromptText);
+  if (isDatingSimTime == true) {
+    newPrompt.innerText += "❤️";
+  }
   let gameSection = document.querySelector(".game");
   gameSection.appendChild(newPrompt);
 }
@@ -260,6 +280,9 @@ function addButtons(buttonClasses) {
     let newButton = document.createElement("BUTTON");
     let newButtonText = document.createTextNode(capitalize(button));
     newButton.appendChild(newButtonText);
+    if (isDatingSimTime == true) {
+      newButton.innerText += "❤️";
+    }
     newButton.classList.add(`${button}`);
     document.querySelector(".game").appendChild(newButton);
     let getElementButton = document.querySelector(`.${button}`);
@@ -276,7 +299,7 @@ function addEmojiTray() {
   };
 
   let newSection = document.createElement("SECTION");
-  newSection.setAttribute("id", "emojiContainer");
+  newSection.setAttribute("class", "emojiContainer");
   document.querySelector(".game").appendChild(newSection);
 
   Object.keys(emojiMap).forEach((emoji) => {
