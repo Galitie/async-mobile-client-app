@@ -165,7 +165,7 @@ function addTimer(duration, type) {
   if (type == "countdown") {
     element = "h5";
     timerRunning = true;
-    parentElement = "#game";
+    parentElement = ".game";
   } else {
     element = "h6";
     makeElementsReadOnly(["submit"]);
@@ -231,7 +231,7 @@ function removeCountdownTimer() {
   }
 }
 
-function addPrompt(str, addon) {
+function addPrompt(str) {
   let newPrompt = document.createElement("h1");
   let newPromptText = document.createTextNode(str);
   if (isDatingSimTime == true) {
