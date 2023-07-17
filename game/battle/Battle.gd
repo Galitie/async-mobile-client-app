@@ -71,7 +71,7 @@ func _process(delta):
 			drop_box.visible = false
 			battle_info.hide()
 			await get_tree().create_timer(0.8).timeout
-			battle_info.Show(moves[cursor_position].name)
+			battle_info.Show("Tyler used " + moves[cursor_position].name + "!!!")
 			await get_tree().create_timer(2.0).timeout
 			var move = move_effects.get_children().pick_random()
 			move.emitting = true
@@ -145,7 +145,7 @@ func EndBattle():
 	UI.message_box.Hide()
 	bgm_player.stream = victory_music
 	bgm_player.play()
-	battle_info.Show("The " + enemy_info.enemy_name + " was defeated!" + " Tyler and company are victorious!")
+	battle_info.Show("Tyler and company are victorious!")
 	await get_tree().create_timer(11.0).timeout
 	battle_info.Hide()
 	UI.transition.get_node("AnimationPlayer").play("fade_out")

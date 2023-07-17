@@ -44,10 +44,27 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 0.219608, 1, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_vv57n"]
+resource_name = "onhit"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_64l5n"]
 _data = {
 "RESET": SubResource("Animation_i5qrt"),
-"dead": SubResource("Animation_4kxf8")
+"dead": SubResource("Animation_4kxf8"),
+"onhit": SubResource("Animation_vv57n")
 }
 
 [node name="Battle" type="Node2D"]

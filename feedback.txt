@@ -2,7 +2,6 @@
 
 Connect disconnect visual glitch.
 Player cap.
-Battle turns didn't match party size.
 Android phones didn't vibrate.
 Display crunched on Jake's phone.
 Table is not cleared in DynamoDB after the first session for some reason.
