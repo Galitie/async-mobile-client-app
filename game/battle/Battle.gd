@@ -131,10 +131,10 @@ func EndBattle():
 	battle_info.Show("The " + enemy_info.enemy_name + " was defeated!" + " Tyler and company are victorious!")
 	await get_tree().create_timer(3.0).timeout
 	battle_info.Hide()
-	Transition.get_node("AnimationPlayer").play("fade_out")
+	UI.transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout
 	Game.ChangeState(self, Game.previous_state)
-	Transition.get_node("AnimationPlayer").play("fade_in")
+	UI.transition.get_node("AnimationPlayer").play("fade_in")
 
 func _startState():
 	pass

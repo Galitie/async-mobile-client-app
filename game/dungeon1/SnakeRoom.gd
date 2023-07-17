@@ -36,5 +36,5 @@ func update(delta):
 	light.texture_scale = lerp(1.5, 3.0, ladder_progress)
 	light.transform.origin = host.transform.origin
 	if climbing_ladder && !sfx.playing:
-		if get_parent().characters[Game.HOST_IP].frame == 1 || get_parent().characters[Game.HOST_IP].frame == 3:
+		if host.frame == 1 || host.frame == 3:
 			sfx.play()

@@ -45,8 +45,6 @@ var next_map
 var spawn_position
 var battle = false
 
-@onready var message_box = $Camera2D/CanvasLayer/UI/MessageBox
-
 func _ready():
 	Game.state = self
 	
@@ -172,20 +170,20 @@ func _process(delta):
 			if tts_queue.size():
 				var tts = tts_queue.pop_front()
 				DisplayServer.tts_speak(tts.content, tts.voice_id, 50, tts.pitch)
-				message_box.Show(tts.content, tts.speaker_name, tts.icon_region)
-			elif message_box.showing:
-				message_box.Hide()
+				UI.message_box.Show(tts.content, tts.speaker_name, tts.icon_region)
+			elif UI.message_box.showing:
+				UI.message_box.Hide()
 	elif reading && Input.is_action_just_pressed("interact"):
 		if current_message.signal_timing == Message.SignalTiming.DISAPPEAR:
 			current_map.emit_signal(current_message.message_signal, current_message.message_args)
 		current_message = message_queue.pop_front()
 		if current_message == null:
-			message_box.Hide()
+			UI.message_box.Hide()
 			reading = false
 			if !battle:
 				ResumeWorld()
 		else:
-			message_box.SetText(true, current_message.content, current_message.speaker)
+			UI.message_box.SetText(true, current_message.content, current_message.speaker)
 			if current_message.signal_timing == Message.SignalTiming.APPEAR:
 				current_map.emit_signal(current_message.message_signal, current_message.message_args)
 
@@ -194,7 +192,7 @@ func SetMessageQueue(messages):
 	reading = true
 	message_queue = messages.duplicate()
 	current_message = message_queue.pop_front()
-	message_box.Show(current_message.content, current_message.speaker)
+	UI.message_box.Show(current_message.content, current_message.speaker)
 	if current_message.signal_timing == Message.SignalTiming.APPEAR:
 		current_map.emit_signal(current_message.message_signal, current_message.message_args)
 	
@@ -203,7 +201,7 @@ func _portalEntered(_next_map, _spawn_position):
 	PauseWorld()
 	next_map = _next_map
 	spawn_position = _spawn_position
-	Transition.get_node("AnimationPlayer").play("fade_out")
+	UI.transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout
 	remove_child(current_map)
 	current_map = load(next_map).instantiate()
@@ -213,7 +211,8 @@ func _portalEntered(_next_map, _spawn_position):
 	next_map = null
 	spawn_position = Vector2i.ZERO
 	$Camera2D.transform.origin = characters[Game.HOST_IP].transform.origin
-	Transition.get_node("AnimationPlayer").play("fade_in")
+	UI.transition.get_node("AnimationPlayer").play("fade_in")
+	print(UI.transition)
 	await get_tree().create_timer(0.4).timeout
 	ResumeWorld()
 
@@ -226,17 +225,17 @@ func ResumeWorld():
 	DisplayServer.tts_resume()
 
 func StartBattle(battle_args):
-	Game.SendPromptToUsers(Game.wait_prompt)
+	Game.SendPromptToUsers(Game.wait_prompt, false)
 	
 	battle = true
-	Transition.get_node("AnimationPlayer").play("fade_out")
+	UI.transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout
 	var battle_scene = load("res://battle/Battle.tscn") as PackedScene
 	var battle_instance = battle_scene.instantiate()
 	battle_instance.enemy_info = ResourceLoader.load(battle_args[0])
 	get_tree().root.add_child(battle_instance)
 	Game.ChangeState(self, battle_instance)
-	Transition.get_node("AnimationPlayer").play("fade_in")
+	UI.transition.get_node("AnimationPlayer").play("fade_in")
 	await get_tree().create_timer(0.4).timeout
 	
 func _startState():
@@ -247,7 +246,7 @@ func _startState():
 			characters[Game.users[user].ip].modulate = Color.WHITE
 		elif Game.users[user].connection_status == Client.CONNECTION_STATUS.OFFLINE:
 			characters[Game.users[user].ip].modulate = Color.DIM_GRAY
-	Game.SendPromptToUsers(world_prompt)
+	Game.SendPromptToUsers(world_prompt, false)
 	ResumeWorld()
 	
 func _endState():

@@ -33,11 +33,13 @@ func ChangeState(end_state, start_state):
 	Game.state = start_state
 	Game.previous_state = end_state
 	
-func SendPromptToUsers(prompt):
+func SendPromptToUsers(prompt, notify = true):
 	for user in Game.users:
 		if Game.users[user].ip == HOST_IP:
 			continue
 		SendPromptToUser(prompt, Game.users[user].ip)
+	if notify:
+		UI.notif.Appear()
 
 func SendPromptToUser(prompt, ip):
 	if Game.users[ip].connection_status == Client.CONNECTION_STATUS.ONLINE:

@@ -26,7 +26,7 @@ func _chestOpened(character, object):
 	
 	match chests_opened:
 		1:
-			object.messages.append(Message.new("", "You found a[color=yellow] scrap of paper that could be written on..."))
+			object.messages.append(Message.new("", "You found a[color=yellow] blank scrap of paper..."))
 		2:
 			object.messages.append(Message.new("", "You found another[color=yellow] scrap of paper."))
 		3:
@@ -44,14 +44,16 @@ func _talkedToGatekeeper(character, object):
 		for line in poem:
 			var message = Message.new("Gatekeeper", line)
 			dialogue.append(message)
-		var parting_words = Message.new("Gatekeeper", "I have tears in my eyes. You may pass.", "moveGatekeeper", Message.SignalTiming.DISAPPEAR)
-		dialogue.append(parting_words)
+		dialogue.append(Message.new("Gatekeeper", "Wow!"))
+		dialogue.append(Message.new("Gatekeeper", "The tears just won't stop."))
+		dialogue.append(Message.new("Gatekeeper", "I'm inspired -- truly."))
+		dialogue.append(Message.new("Gatekeeper", "You shall pass.", "moveGatekeeper", Message.SignalTiming.DISAPPEAR))
 		object.messages = dialogue
 		moved = true
 
 func _moveGatekeeper(message_args):
 	$Gatekeeper.SetCellPosition($Gatekeeper.cell_position + Vector2i(1, 0), false)
 	var dialogue : Array[Resource] = []
-	var message = Message.new("Gatekeeper", "Great job - seriously. You've moved me.")
-	dialogue.append(message)
+	dialogue.append(Message.new("Gatekeeper", "That was so moving."))
+	dialogue.append(Message.new("Gatekeeper", "Like, I'm all the way over here now!"))
 	$Gatekeeper.messages = dialogue

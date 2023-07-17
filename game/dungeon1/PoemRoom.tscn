@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmjljqfcx4gg4"]
+[gd_scene load_steps=11 format=3 uid="uid://cmjljqfcx4gg4"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_5qi4a"]
 [ext_resource type="Script" path="res://dungeon1/PoemRoom.gd" id="2_11itm"]
@@ -11,7 +11,23 @@
 [sub_resource type="Resource" id="Resource_7o4og"]
 script = ExtResource("6_b4r4n")
 speaker = "Gatekeeper"
-content = "You shall not pass! But...uh... I am easily swayed by deep and beautiful poetry."
+content = "You shall not pass!"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_b0mr1"]
+script = ExtResource("6_b4r4n")
+speaker = "Gatekeeper"
+content = "...Unless you read me some beautiful poetry."
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_2hxty"]
+script = ExtResource("6_b4r4n")
+speaker = "Gatekeeper"
+content = "Then I am quite easily swayed."
 message_signal = ""
 message_args = []
 signal_timing = 0
@@ -27,7 +43,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-196608, 786432, 8, -131072, 786432, 9, -131074, 786432, 8, -65538, 786432, 9, -393211, 393216, 20, -393212, 393216, 20, -393213, 393216, 20, -393214, 393216, 20, -393215, 393216, 20, -524292, 655360, 7, -262143, 851968, 7, -327679, 851968, 7, -458760, 851968, 7, -327684, 327680, 9, -327685, 327680, 9, -327686, 327680, 9, -327687, 327680, 9, -589829, 851968, 10, -589832, 327680, 9, -589831, 327680, 9, -589830, 327680, 9)
+layer_1/tile_data = PackedInt32Array(-196608, 786432, 8, -131072, 786432, 9, -131074, 786432, 8, -65538, 786432, 9, -393211, 393216, 20, -393212, 393216, 20, -393213, 393216, 20, -393214, 393216, 20, -393215, 393216, 20, -524292, 655360, 7, -262143, 851968, 7, -327679, 851968, 7, -458760, 851968, 7, -589829, 851968, 10)
 layer_2/name = "foreground"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -45,18 +61,17 @@ layer_3/tile_data = PackedInt32Array(393212, 851968, 19, 393213, 851968, 19, 393
 script = ExtResource("2_11itm")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 blend_mode = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-6, -80)
-scale = Vector2(4.16468, 3.73377)
+position = Vector2(-8, -87)
 color = Color(0.741176, 0.8, 1, 1)
 blend_mode = 2
 shadow_filter = 1
 shadow_filter_smooth = 25.2
 texture = ExtResource("2_vv7fo")
+texture_scale = 4.0
 
 [node name="Chest" type="Sprite2D" parent="."]
 position = Vector2(-128, -224)
@@ -116,7 +131,7 @@ script = ExtResource("4_5avbr")
 cell_position = Vector2i(-1, -4)
 interact_sprite = Rect2(256, 236, 17, 20)
 interact_signal = "talkedToGatekeeper"
-messages = Array[Resource]([SubResource("Resource_7o4og")])
+messages = Array[Resource]([SubResource("Resource_7o4og"), SubResource("Resource_b0mr1"), SubResource("Resource_2hxty")])
 
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(-16, -96)

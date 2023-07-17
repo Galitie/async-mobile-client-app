@@ -56,7 +56,7 @@ func SetCellDestination(cell_pos, _direction):
 					world.emit_signal(interactable.Use(), interactable.next_map, interactable.next_map_cell_position)
 		elif interactable is Trigger:
 			if cell_destination == interactable.cell_position:
-				if interactable.active:
+				if interactable.CheckForActivation():
 					world.emit_signal("sent_text", {"context": interactable.signal_string})
 		elif interactable is Interactable:
 			if !interactable.passable && cell_destination == interactable.cell_position:

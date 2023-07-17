@@ -85,7 +85,7 @@ color = Color(0, 0, 0, 1)
 blend_mode = 2
 
 [node name="PointLight" type="PointLight2D" parent="."]
-position = Vector2(8, 32)
+position = Vector2(8, 60)
 color = Color(0.729412, 1, 0.686275, 1)
 energy = 0.4
 blend_mode = 2

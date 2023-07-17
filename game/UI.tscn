@@ -1,0 +1,169 @@
+[gd_scene load_steps=13 format=3 uid="uid://c46pvmkujapqt"]
+
+[ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="1_6jg07"]
+[ext_resource type="Script" path="res://UI.gd" id="1_rilyt"]
+[ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="2_lah2c"]
+[ext_resource type="Script" path="res://Notif.gd" id="3_vgjtm"]
+[ext_resource type="AudioStream" uid="uid://wtottilo3cxg" path="res://notif.mp3" id="5_o17gr"]
+
+[sub_resource type="Animation" id="Animation_38kyq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wyqor"]
+resource_name = "fade_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tgjkm"]
+resource_name = "fade_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4hgfj"]
+_data = {
+"RESET": SubResource("Animation_38kyq"),
+"fade_in": SubResource("Animation_wyqor"),
+"fade_out": SubResource("Animation_tgjkm")
+}
+
+[sub_resource type="Animation" id="Animation_ppwwl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_icu63"]
+resource_name = "blink"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tt2pm"]
+_data = {
+"RESET": SubResource("Animation_ppwwl"),
+"blink": SubResource("Animation_icu63")
+}
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_rilyt")
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessageBox" parent="Screen" instance=ExtResource("1_6jg07")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -119.5
+offset_top = -67.0
+offset_right = 119.5
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Transition" type="ColorRect" parent="Screen"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Screen/Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_4hgfj")
+}
+
+[node name="Notif" type="RichTextLabel" parent="Screen"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -19.0
+offset_right = 125.0
+grow_vertical = 0
+theme_override_colors/default_color = Color(1, 0.164706, 0.180392, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("2_lah2c")
+text = " ! Check Your Phone !"
+scroll_active = false
+script = ExtResource("3_vgjtm")
+
+[node name="Timer" type="Timer" parent="Screen/Notif"]
+wait_time = 4.0
+one_shot = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="Screen/Notif"]
+stream = ExtResource("5_o17gr")
+volume_db = -5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Screen/Notif"]
+libraries = {
+"": SubResource("AnimationLibrary_tt2pm")
+}

@@ -10,7 +10,7 @@
 [sub_resource type="Resource" id="Resource_av76i"]
 script = ExtResource("5_2ji5t")
 speaker = "Foe"
-content = "You're not getting past me!"
+content = "I don't know about that other guy, but you definitely not getting past me!"
 message_signal = "startBattle"
 message_args = ["res://battle/Gatekeeper2.tres"]
 signal_timing = 2
