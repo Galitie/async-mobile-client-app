@@ -9,6 +9,9 @@ const max_chests = 4
 var chests_opened = 0
 var poem = []
 var moved = false
+var got_key = false
+
+var open_chest_region = Rect2(145, 96, 17, 16)
 
 func _ready():
 	connect("chestOpened", _chestOpened)
@@ -18,28 +21,38 @@ func _ready():
 	set_process(false)
 
 func _chestOpened(character, object):
-	if !chests_opened:
-		var poem_prompt = Game.Prompt.new("Think of a poetic line that ends in \"ing\"", "map_poem_entry", "countdown", 30.0, false, {"big": "Roses are red..."})
-		Game.SendPromptToUsers(poem_prompt)
+	if got_key:
+		if !chests_opened:
+			var poem_prompt = Game.Prompt.new("Write something poetic.", "map_poem_entry", "countdown", 30.0, false, {"big": "Roses are red..."})
+			Game.SendPromptToUsers(poem_prompt)
+			
+		chests_opened += 1
+		object.messages.clear()
+		object.one_shot = true
+		object.region_rect = open_chest_region
 		
-	chests_opened += 1
-	
-	match chests_opened:
-		1:
-			object.messages.append(Message.new("", "You found a[color=yellow] blank scrap of paper..."))
-		2:
-			object.messages.append(Message.new("", "You found another[color=yellow] scrap of paper."))
-		3:
-			object.messages.append(Message.new("", "One more[color=yellow] scrap of paper."))
-		4:
-			object.messages.append(Message.new("", "You got the last[color=yellow] scrap of paper!"))
+		match chests_opened:
+			1:
+				object.messages.append(Message.new("", "You found a[color=yellow] blank scrap of paper..."))
+			2:
+				object.messages.append(Message.new("", "You found another[color=yellow] scrap of paper."))
+			3:
+				object.messages.append(Message.new("", "One more[color=yellow] scrap of paper."))
+			4:
+				object.messages.append(Message.new("", "You got the last[color=yellow] scrap of paper!"))
 
 func _poemEntry(packet):
 	poem.append(packet["bigInputValue"])
 	Game.SendPromptToUser(get_parent().world_prompt, packet["userIP"])
 
 func _talkedToGatekeeper(character, object):
-	if !moved && chests_opened == max_chests:
+	if !got_key:
+		got_key = true
+	elif got_key && chests_opened < max_chests:
+		var dialogue : Array[Resource] = []
+		dialogue.append(Message.new("Gatekeeper", "Hurry! My artistic whimsies are stagnant!"))
+		object.messages = dialogue
+	elif got_key && !moved && chests_opened == max_chests:
 		var dialogue : Array[Resource] = []
 		for line in poem:
 			var message = Message.new("Gatekeeper", line)

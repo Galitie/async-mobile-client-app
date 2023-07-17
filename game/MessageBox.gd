@@ -39,6 +39,7 @@ func SetText(explicit, content, _speaker_name = "", _icon_region = null):
 		else:
 			$Info.text = "[center]" + message
 			$Info.visible = true
+			$Dialogue.visible = false
 
 func _animationFinished(anim):
 	if anim == "appear":

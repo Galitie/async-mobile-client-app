@@ -102,7 +102,7 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("CurveTexture_8x34l")
 
-[node name="ParticleParty" type="Node2D"]
+[node name="MoveEffects" type="Node2D"]
 
 [node name="Fire" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_vr28n")

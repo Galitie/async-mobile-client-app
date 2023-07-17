@@ -13,6 +13,11 @@ signal user_disconnected
 @onready var drop_box = $Camera2D/CanvasLayer/Control/DropBox
 @onready var cursor = $Camera2D/CanvasLayer/Control/DropBox/Cursor
 @onready var enemy = $Enemy
+@onready var move_effects = $MoveEffects
+
+var battle_music = load("res://battle/battle.mp3")
+var victory_music = load("res://battle/victory.mp3")
+@onready var bgm_player = $BGMPlayer
 
 class Move:
 	var ip
@@ -31,6 +36,8 @@ var enemy_info = null
 var party_turn = false
 
 func _ready():
+	bgm_player.stream = battle_music
+	bgm_player.play()
 	enemy.texture = enemy_info.texture
 	
 	connect("start_state", _startState)
@@ -66,10 +73,12 @@ func _process(delta):
 			await get_tree().create_timer(0.8).timeout
 			battle_info.Show(moves[cursor_position].name)
 			await get_tree().create_timer(2.0).timeout
+			var move = move_effects.get_children().pick_random()
+			move.emitting = true
 			battle_info.Hide()
-			await get_tree().create_timer(1.0)
+			await get_tree().create_timer(1.5).timeout
 			turn += 1
-			if turn > max_turns:
+			if turn >= max_turns:
 				EndBattle()
 			else:
 				EnemyTurn()
@@ -128,8 +137,16 @@ func CheckAllMovesSubmitted():
 func EndBattle():
 	enemy.get_node("AnimationPlayer").play("dead")
 	await get_tree().create_timer(1.4).timeout
-	battle_info.Show("The " + enemy_info.enemy_name + " was defeated!" + " Tyler and company are victorious!")
+	bgm_player.stop()
+	var final_blow_user = Game.users[moves[cursor_position].ip]
+	DisplayServer.tts_speak(final_blow_user.catchphrase, final_blow_user.voice_id, 50.0, final_blow_user.character_data.voice_pitch)
+	UI.message_box.Show(final_blow_user.catchphrase, final_blow_user.character_data.name, final_blow_user.character_data.icon_region)
 	await get_tree().create_timer(3.0).timeout
+	UI.message_box.Hide()
+	bgm_player.stream = victory_music
+	bgm_player.play()
+	battle_info.Show("The " + enemy_info.enemy_name + " was defeated!" + " Tyler and company are victorious!")
+	await get_tree().create_timer(11.0).timeout
 	battle_info.Hide()
 	UI.transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout

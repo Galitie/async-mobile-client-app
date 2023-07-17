@@ -212,17 +212,14 @@ func _portalEntered(_next_map, _spawn_position):
 	spawn_position = Vector2i.ZERO
 	$Camera2D.transform.origin = characters[Game.HOST_IP].transform.origin
 	UI.transition.get_node("AnimationPlayer").play("fade_in")
-	print(UI.transition)
 	await get_tree().create_timer(0.4).timeout
 	ResumeWorld()
 
 func PauseWorld():
 	paused = true
-	DisplayServer.tts_pause()
 	
 func ResumeWorld():
 	paused = false
-	DisplayServer.tts_resume()
 
 func StartBattle(battle_args):
 	Game.SendPromptToUsers(Game.wait_prompt, false)

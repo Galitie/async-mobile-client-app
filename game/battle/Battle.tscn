@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fq76xsh17p00"]
+[gd_scene load_steps=16 format=3 uid="uid://fq76xsh17p00"]
 
 [ext_resource type="Script" path="res://battle/Battle.gd" id="1_fa0c3"]
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ucup7"]
@@ -10,6 +10,8 @@
 [ext_resource type="SpriteFrames" uid="uid://bi6q8j335ixdu" path="res://characters/kermit_frames.tres" id="5_ch6ys"]
 [ext_resource type="Texture2D" uid="uid://yc3l02gbhl7p" path="res://cursor.png" id="5_j1nqu"]
 [ext_resource type="SpriteFrames" uid="uid://bg8rjyk5nckoy" path="res://characters/shrek_frames.tres" id="6_3bqlg"]
+[ext_resource type="PackedScene" uid="uid://b3tvrwc41yiyl" path="res://battle/MoveEffects.tscn" id="11_qumop"]
+[ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="12_h5hiv"]
 
 [sub_resource type="Animation" id="Animation_i5qrt"]
 length = 0.001
@@ -140,3 +142,21 @@ position = Vector2(-133, -6)
 libraries = {
 "": SubResource("AnimationLibrary_64l5n")
 }
+
+[node name="MoveEffects" parent="." instance=ExtResource("11_qumop")]
+position = Vector2(-125, 20)
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0, 0, 0, 1)
+blend_mode = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.741176, 0.8, 1, 1)
+blend_mode = 2
+shadow_filter = 1
+shadow_filter_smooth = 25.2
+texture = ExtResource("12_h5hiv")
+texture_scale = 15.0

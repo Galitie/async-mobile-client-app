@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmjljqfcx4gg4"]
+[gd_scene load_steps=17 format=3 uid="uid://cmjljqfcx4gg4"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_5qi4a"]
 [ext_resource type="Script" path="res://dungeon1/PoemRoom.gd" id="2_11itm"]
@@ -7,6 +7,38 @@
 [ext_resource type="Script" path="res://Interactable.gd" id="4_5avbr"]
 [ext_resource type="Script" path="res://Message.gd" id="6_b4r4n"]
 [ext_resource type="Script" path="res://Portal.gd" id="7_teu2r"]
+
+[sub_resource type="Resource" id="Resource_alkoi"]
+script = ExtResource("6_b4r4n")
+speaker = ""
+content = "It's locked. You need a key to open it."
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_qaemf"]
+script = ExtResource("6_b4r4n")
+speaker = ""
+content = "It's locked. You need a key to open it."
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_fp0of"]
+script = ExtResource("6_b4r4n")
+speaker = ""
+content = "It's locked. You need a key to open it."
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_ax7pr"]
+script = ExtResource("6_b4r4n")
+speaker = ""
+content = "It's locked. You need a key to open it."
+message_signal = ""
+message_args = []
+signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_7o4og"]
 script = ExtResource("6_b4r4n")
@@ -28,6 +60,22 @@ signal_timing = 0
 script = ExtResource("6_b4r4n")
 speaker = "Gatekeeper"
 content = "Then I am quite easily swayed."
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_5ol0v"]
+script = ExtResource("6_b4r4n")
+speaker = "Gatekeeper"
+content = "Take this key. I left some scribing paper around here somewhere..."
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_d0voj"]
+script = ExtResource("6_b4r4n")
+speaker = ""
+content = "You got a [color=yellow]chest key!"
 message_signal = ""
 message_args = []
 signal_timing = 0
@@ -80,10 +128,10 @@ centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_5avbr")
-one_shot = true
 cell_position = Vector2i(-8, -14)
-interact_sprite = Rect2(145, 96, 17, 16)
+interact_sprite = Rect2(145, 112, 17, 16)
 interact_signal = "chestOpened"
+messages = Array[Resource]([SubResource("Resource_alkoi")])
 
 [node name="Chest2" type="Sprite2D" parent="."]
 position = Vector2(48, -80)
@@ -92,10 +140,10 @@ centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_5avbr")
-one_shot = true
 cell_position = Vector2i(3, -5)
-interact_sprite = Rect2(145, 96, 17, 16)
+interact_sprite = Rect2(145, 112, 17, 16)
 interact_signal = "chestOpened"
+messages = Array[Resource]([SubResource("Resource_qaemf")])
 
 [node name="Chest3" type="Sprite2D" parent="."]
 position = Vector2(-112, -128)
@@ -104,10 +152,10 @@ centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_5avbr")
-one_shot = true
 cell_position = Vector2i(-7, -8)
-interact_sprite = Rect2(145, 96, 17, 16)
+interact_sprite = Rect2(145, 112, 17, 16)
 interact_signal = "chestOpened"
+messages = Array[Resource]([SubResource("Resource_fp0of")])
 
 [node name="Chest4" type="Sprite2D" parent="."]
 position = Vector2(-224, -112)
@@ -116,10 +164,10 @@ centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_5avbr")
-one_shot = true
 cell_position = Vector2i(-14, -7)
-interact_sprite = Rect2(145, 96, 17, 16)
+interact_sprite = Rect2(145, 112, 17, 16)
 interact_signal = "chestOpened"
+messages = Array[Resource]([SubResource("Resource_ax7pr")])
 
 [node name="Gatekeeper" type="Sprite2D" parent="."]
 position = Vector2(-16, -64)
@@ -131,7 +179,7 @@ script = ExtResource("4_5avbr")
 cell_position = Vector2i(-1, -4)
 interact_sprite = Rect2(256, 236, 17, 20)
 interact_signal = "talkedToGatekeeper"
-messages = Array[Resource]([SubResource("Resource_7o4og"), SubResource("Resource_b0mr1"), SubResource("Resource_2hxty")])
+messages = Array[Resource]([SubResource("Resource_7o4og"), SubResource("Resource_b0mr1"), SubResource("Resource_2hxty"), SubResource("Resource_5ol0v"), SubResource("Resource_d0voj")])
 
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(-16, -96)
@@ -142,7 +190,7 @@ region_rect = Rect2(176, 208, 16, 16)
 script = ExtResource("7_teu2r")
 cell_position = Vector2i(-1, -6)
 trigger_cell = Vector2i(-1, -6)
-next_map = "res://dungeon1/CrateRoom.tscn"
+next_map = "res://dungeon1/SnakeRoom.tscn"
 next_map_cell_position = Vector2i(0, 4)
 unlocked_sprite_region = Rect2(176, 208, 16, 16)
 locked_sprite_region = Rect2(208, 208, 16, 16)

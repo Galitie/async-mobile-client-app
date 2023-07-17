@@ -9,6 +9,35 @@
 # a split second. Possibly add a minimum time limit to display the message?
 extends Node2D
 
+class UserData:
+	var ip
+	var name
+	var role
+	var connection_id
+	var catchphrase
+	var connection_status
+	var voice_id
+	var character_data
+
+class Prompt:
+	var data = {
+		"message": "prompt",
+		"header": "Default header",
+		"context": "default",
+		"timerType": "none", # none, cooldown, countdown
+		"timer": 0.0,
+		"emojis": false,
+		"inputs": {} # "big" and/or "small" keys with placeholder values
+	}
+	
+	func _init(header, context, timerType, timer, emojis, inputs):
+		data["header"] = header
+		data["context"] = context
+		data["timerType"] = timerType
+		data["timer"] = timer
+		data["emojis"] = emojis
+		data["inputs"] = inputs
+
 var state = null
 var previous_state
 var users = {}
@@ -46,32 +75,3 @@ func SendPromptToUser(prompt, ip):
 		var response = {"action": "respondToUser", "connectionID": Game.users[ip].connection_id}
 		response.merge(prompt.data)
 		Client.SendPacket(response)
-
-class UserData:
-	var ip
-	var name
-	var role
-	var connection_id
-	var catchphrase
-	var connection_status
-	var voice_id
-	var character_data
-
-class Prompt:
-	var data = {
-		"message": "prompt",
-		"header": "Default header",
-		"context": "default",
-		"timerType": "none", # none, cooldown, countdown
-		"timer": 0.0,
-		"emojis": false,
-		"inputs": {} # "big" and/or "small" keys with placeholder values
-	}
-	
-	func _init(header, context, timerType, timer, emojis, inputs):
-		data["header"] = header
-		data["context"] = context
-		data["timerType"] = timerType
-		data["timer"] = timer
-		data["emojis"] = emojis
-		data["inputs"] = inputs
