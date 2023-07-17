@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fq76xsh17p00"]
+[gd_scene load_steps=15 format=3 uid="uid://fq76xsh17p00"]
 
 [ext_resource type="Script" path="res://battle/Battle.gd" id="1_fa0c3"]
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ucup7"]
@@ -42,10 +42,27 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 0.219608, 1, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_vv57n"]
+resource_name = "onhit"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_64l5n"]
 _data = {
 "RESET": SubResource("Animation_i5qrt"),
-"dead": SubResource("Animation_4kxf8")
+"dead": SubResource("Animation_4kxf8"),
+"onhit": SubResource("Animation_vv57n")
 }
 
 [node name="Battle" type="Node2D"]
