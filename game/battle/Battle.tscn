@@ -163,9 +163,6 @@ libraries = {
 [node name="MoveEffects" parent="." instance=ExtResource("11_qumop")]
 position = Vector2(-125, 20)
 
-[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(0, 0, 0, 1)
 blend_mode = 2

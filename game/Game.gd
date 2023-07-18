@@ -1,6 +1,5 @@
 # BUG: Speaker name does not show if there is no icon
 # BUG: Icon texture on TTS message is blown up if talking to an icon-less speaker
-# BUG/TODO: Characters need to be put on the same layer as map objects for proper Y sorting
 # TODO: Message box animations
 # BUG: Controller interferes with keyboard movement
 # TODO: Revamp movement system. Step timer does not sync properly in fullscreen
@@ -55,6 +54,12 @@ var wait_prompt = Prompt.new("Please wait...", "wait", "none", 0.0, false, {"sma
 # Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
 # Speech and reimported in order to be recognized by Godot
 @onready var voices = DisplayServer.tts_get_voices()
+
+@onready var bgm_player = AudioStreamPlayer.new()
+
+func _ready():
+	bgm_player.volume_db = -20.0
+	add_child(bgm_player)
 
 func ChangeState(end_state, start_state):
 	end_state.emit_signal("end_state")

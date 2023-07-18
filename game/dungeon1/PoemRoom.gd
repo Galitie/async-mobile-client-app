@@ -4,6 +4,7 @@ signal chestOpened
 signal map_poem_entry
 signal talkedToGatekeeper
 signal moveGatekeeper
+signal gatekeeper_speak
 
 const max_chests = 4
 var chests_opened = 0
@@ -13,11 +14,16 @@ var got_key = false
 
 var open_chest_region = Rect2(145, 96, 17, 16)
 
+var music = load("res://dungeon1/poem.mp3")
+
 func _ready():
+	Game.bgm_player.stream = music
+	Game.bgm_player.play()
 	connect("chestOpened", _chestOpened)
 	connect("map_poem_entry", _poemEntry)
 	connect("talkedToGatekeeper", _talkedToGatekeeper)
 	connect("moveGatekeeper", _moveGatekeeper)
+	connect("gatekeeper_speak", _gatekeeperSpeak)
 	set_process(false)
 
 func _chestOpened(character, object):
@@ -54,15 +60,18 @@ func _talkedToGatekeeper(character, object):
 		object.messages = dialogue
 	elif got_key && !moved && chests_opened == max_chests:
 		var dialogue : Array[Resource] = []
+		dialogue.append(Message.new("Gatekeeper", "Let's see what you have for me..."))
 		for line in poem:
-			var message = Message.new("Gatekeeper", line)
-			dialogue.append(message)
-		dialogue.append(Message.new("Gatekeeper", "Wow!"))
-		dialogue.append(Message.new("Gatekeeper", "The tears just won't stop."))
+			dialogue.append(Message.new("Gatekeeper", line, "gatekeeper_speak", Message.SignalTiming.APPEAR, [line]))
+		dialogue.append(Message.new("Gatekeeper", "Wow."))
+		dialogue.append(Message.new("Gatekeeper", "The tears just won't stop!"))
 		dialogue.append(Message.new("Gatekeeper", "I'm inspired -- truly."))
 		dialogue.append(Message.new("Gatekeeper", "You shall pass.", "moveGatekeeper", Message.SignalTiming.DISAPPEAR))
 		object.messages = dialogue
 		moved = true
+		
+func _gatekeeperSpeak(message_args):
+	DisplayServer.tts_speak(message_args[0], Game.voices[0]["id"], 50.0, 1.0)
 
 func _moveGatekeeper(message_args):
 	$Gatekeeper.SetCellPosition($Gatekeeper.cell_position + Vector2i(1, 0), false)
