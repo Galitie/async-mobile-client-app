@@ -11,5 +11,4 @@ position_smoothing_speed = 10.0
 script = ExtResource("3_tdndo")
 
 [node name="Party" type="Node2D" parent="."]
-z_index = 1
 y_sort_enabled = true

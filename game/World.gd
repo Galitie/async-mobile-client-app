@@ -32,6 +32,8 @@ var tts_queue = []
 @onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "countdown", 0.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
 @onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
+@onready var party = $Party
+
 class TTSMessage:
 	var content
 	var voice_id
@@ -62,6 +64,8 @@ func _ready():
 	var lobby_map = preload("res://dungeon1/Lobby.tscn") as PackedScene
 	current_map = lobby_map.instantiate()
 	add_child(current_map)
+	remove_child(party)
+	current_map.add_child(party)
 	
 	var host_data = Game.UserData.new()
 	host_data.ip = Game.HOST_IP
@@ -94,7 +98,7 @@ func CreateCharacter(character_index):
 	var character_scene = load("res://Characters/Character.tscn") as PackedScene
 	var character = character_scene.instantiate()
 	character.visible = false
-	$Party.add_child(character)
+	party.add_child(character)
 	character.Init(self, character_data)
 	return character
 		
@@ -163,7 +167,7 @@ func _emote(packet):
 func _process(delta):
 	if !paused:
 		# First party member is controllable
-		$Party.get_child(0).Update(delta)
+		party.get_child(0).Update(delta)
 		current_map.update(delta)
 		
 		if !DisplayServer.tts_is_speaking():
@@ -203,10 +207,12 @@ func _portalEntered(_next_map, _spawn_position):
 	spawn_position = _spawn_position
 	UI.transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout
+	current_map.remove_child(party)
 	remove_child(current_map)
 	current_map = load(next_map).instantiate()
 	add_child(current_map)
-	for member in $Party.get_children():
+	current_map.add_child(party)
+	for member in party.get_children():
 		member.SetCellPosition(spawn_position)
 	next_map = null
 	spawn_position = Vector2i.ZERO

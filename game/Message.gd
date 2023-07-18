@@ -9,8 +9,9 @@ enum SignalTiming { NONE, APPEAR, DISAPPEAR }
 @export var message_args : Array
 @export var signal_timing : SignalTiming
 
-func _init(_speaker = "", _content = "", _signal = "", _timing = SignalTiming.NONE):
+func _init(_speaker = "", _content = "", _signal = "", _timing = SignalTiming.NONE, _message_args = []):
 	speaker = _speaker
 	content = _content
 	message_signal = _signal
 	signal_timing = _timing
+	message_args = _message_args

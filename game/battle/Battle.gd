@@ -17,7 +17,6 @@ signal user_disconnected
 
 var battle_music = load("res://battle/battle.mp3")
 var victory_music = load("res://battle/victory.mp3")
-@onready var bgm_player = $BGMPlayer
 
 class Move:
 	var ip
@@ -36,8 +35,8 @@ var enemy_info = null
 var party_turn = false
 
 func _ready():
-	bgm_player.stream = battle_music
-	bgm_player.play()
+	Game.bgm_player.stream = battle_music
+	Game.bgm_player.play()
 	enemy.texture = enemy_info.texture
 	
 	connect("start_state", _startState)
@@ -137,16 +136,16 @@ func CheckAllMovesSubmitted():
 func EndBattle():
 	enemy.get_node("AnimationPlayer").play("dead")
 	await get_tree().create_timer(1.4).timeout
-	bgm_player.stop()
+	Game.bgm_player.stop()
 	var final_blow_user = Game.users[moves[cursor_position].ip]
 	DisplayServer.tts_speak(final_blow_user.catchphrase, final_blow_user.voice_id, 50.0, final_blow_user.character_data.voice_pitch)
 	UI.message_box.Show(final_blow_user.catchphrase, final_blow_user.character_data.name, final_blow_user.character_data.icon_region)
 	await get_tree().create_timer(3.0).timeout
 	UI.message_box.Hide()
-	bgm_player.stream = victory_music
-	bgm_player.play()
+	Game.bgm_player.stream = victory_music
+	Game.bgm_player.play()
 	battle_info.Show("Tyler and company are victorious!")
-	await get_tree().create_timer(11.0).timeout
+	await get_tree().create_timer(10.5).timeout
 	battle_info.Hide()
 	UI.transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://fq76xsh17p00"]
+[gd_scene load_steps=17 format=3 uid="uid://fq76xsh17p00"]
 
 [ext_resource type="Script" path="res://battle/Battle.gd" id="1_fa0c3"]
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ucup7"]
@@ -162,9 +162,6 @@ libraries = {
 
 [node name="MoveEffects" parent="." instance=ExtResource("11_qumop")]
 position = Vector2(-125, 20)
-
-[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(0, 0, 0, 1)

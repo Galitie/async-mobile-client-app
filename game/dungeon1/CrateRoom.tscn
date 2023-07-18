@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3cgsqmkh4751"]
+[gd_scene load_steps=12 format=3 uid="uid://b3cgsqmkh4751"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6jcbo"]
 [ext_resource type="Script" path="res://dungeon1/CrateRoom.gd" id="2_147kc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Message.gd" id="5_euear"]
 [ext_resource type="Script" path="res://Interactable.gd" id="5_x2n26"]
 [ext_resource type="Script" path="res://Portal.gd" id="7_13qr2"]
+[ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="7_ok6r6"]
 
 [sub_resource type="Resource" id="Resource_3qvcn"]
 script = ExtResource("5_euear")
@@ -52,11 +53,11 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-720896, 851968, 10, -655360, 786432, 11, -1048577, 786432, 8, -983041, 786432, 9, -917504, 786432, 11, -851968, 851968, 10, -786432, 851968, 10, -1114111, 786432, 8, -1048575, 786432, 9, -458751, 786432, 8, -393215, 786432, 9, -393217, 786432, 8, -327681, 786432, 9)
+layer_1/tile_data = PackedInt32Array(-458751, 786432, 8, -393215, 786432, 9, -393217, 786432, 8, -327681, 786432, 9, -1310736, 1179648, 18, -1245200, 1179648, 18, -1179664, 1179648, 18, -1114128, 1179648, 18, -1048592, 1179648, 18, -983056, 1179648, 18, -917520, 1179648, 18, -851984, 1179648, 18, -786448, 1179648, 18, -720912, 1179648, 18, -655376, 1179648, 18, -589840, 1179648, 18, -524304, 1179648, 18, -458768, 1179648, 18, -393232, 1179648, 18, -327696, 1179648, 18, -262160, 1179648, 18, -196624, 1179648, 18, -131088, 1179648, 18, -65552, 1179648, 18, -16, 1179648, 18, 65520, 1179648, 18, -983041, 786432, 8, -917505, 786432, 9, -1048575, 786432, 8, -983039, 786432, 9)
 layer_2/name = "foreground"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
-layer_2/y_sort_enabled = false
+layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(393215, 458752, 19, 327681, 458752, 19, 262142, 393216, 17, 196606, 393216, 17, 131070, 393216, 17, 65534, 393216, 17, -2, 393216, 17, -65538, 393216, 17, -131074, 393216, 17, -196610, 393216, 17, 196610, 393216, 17, 131074, 393216, 17, 65538, 393216, 17, 2, 393216, 17, -65534, 393216, 17, -131070, 393216, 17, -196606, 393216, 17, -262142, 393216, 17, 327679, 458752, 16, 262144, 458752, 16, 262145, 458752, 16, 262146, 524288, 12, 327678, 393216, 12, 393214, 196608, 19, 327682, 196608, 19, -262146, 393216, 11, -327682, 393216, 11, -393218, 393216, 11, -327678, 393216, 11, -393214, 393216, 11, -458750, 393216, 11, -1048578, 524288, 2, -983042, 524288, 3, -917506, 524288, 3, -851970, 524288, 3, -786434, 393216, 11, -1114110, 655360, 2, -1048574, 524288, 3, -983038, 524288, 3, -917502, 524288, 3, -851966, 393216, 11, -720898, 393216, 17, -655362, 393216, 17, -589826, 393216, 17, -524290, 393216, 17, -458754, 393216, 17, -786430, 393216, 17, -720894, 393216, 17, -655358, 393216, 17, -589822, 393216, 17, -524286, 393216, 17)
@@ -67,6 +68,13 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = -2
 layer_3/tile_data = PackedInt32Array(393214, 851968, 19, 393215, 851968, 19, 327680, 851968, 19, 327681, 851968, 19, 327682, 851968, 19, 262146, 851968, 19, 196610, 851968, 19, 131074, 851968, 19, 65538, 851968, 19, 2, 851968, 19, -65534, 851968, 19, -131070, 851968, 19, -196606, 851968, 19, -262142, 851968, 19, -327678, 851968, 19, -393214, 851968, 19, -458750, 851968, 19, -524286, 851968, 19, -589822, 851968, 19, -655358, 851968, 19, -720894, 851968, 19, -786430, 851968, 19, -851966, 851968, 19, -917502, 851968, 19, -983038, 851968, 19, -1048574, 851968, 19, -1114110, 851968, 19, 327678, 851968, 19, 262142, 851968, 19, 196606, 851968, 19, 131070, 851968, 19, 65534, 851968, 19, -2, 851968, 19, -65538, 851968, 19, -131074, 851968, 19, -196610, 851968, 19, -262146, 851968, 19, -327682, 851968, 19, -393218, 851968, 19, -458754, 851968, 19, -524290, 851968, 19, -589826, 851968, 19, -655362, 851968, 19, -720898, 851968, 19, -786434, 851968, 19, -851970, 851968, 19, -917506, 851968, 19, -983042, 851968, 19, -1048578, 851968, 19, -983041, 851968, 19, -1048575, 851968, 19, -1048577, 851968, 19, -1114112, 851968, 19, -1114111, 851968, 19, -393215, 851968, 19, -327681, 851968, 19, -655359, 851968, 19, -720895, 851968, 19, -786431, 851968, 19, -851967, 851968, 19, -917503, 851968, 19, -589825, 851968, 19, -655361, 851968, 19, -720897, 851968, 19, -786433, 851968, 19, -851969, 851968, 19)
+layer_4/name = "overlay"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = -1
+layer_4/tile_data = PackedInt32Array(-655360, 786432, 11, -917504, 786432, 11, -720896, 851968, 10, -786432, 851968, 10, -851968, 851968, 10)
 script = ExtResource("2_147kc")
 
 [node name="Crate1" type="Sprite2D" parent="."]
@@ -156,3 +164,51 @@ next_map = "res://dungeon1/CrateRoom.tscn"
 next_map_cell_position = Vector2i(0, 4)
 unlocked_sprite_region = Rect2(176, 208, 16, 16)
 locked_sprite_region = Rect2(208, 208, 16, 16)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0, 0, 0, 1)
+blend_mode = 2
+
+[node name="TorchLight1" type="PointLight2D" parent="."]
+position = Vector2(-8, -95)
+color = Color(1, 0.560784, 0.286275, 1)
+energy = 0.5
+shadow_filter = 1
+shadow_filter_smooth = 25.2
+texture = ExtResource("7_ok6r6")
+texture_scale = 2.0
+
+[node name="TorchLight2" type="PointLight2D" parent="."]
+position = Vector2(-8, -95)
+color = Color(1, 0.560784, 0.286275, 1)
+energy = 0.5
+shadow_filter = 1
+shadow_filter_smooth = 25.2
+texture = ExtResource("7_ok6r6")
+texture_scale = 2.0
+
+[node name="TorchLight3" type="PointLight2D" parent="."]
+position = Vector2(-8, -240)
+color = Color(1, 0.560784, 0.286275, 1)
+energy = 0.5
+shadow_filter = 1
+shadow_filter_smooth = 25.2
+texture = ExtResource("7_ok6r6")
+texture_scale = 2.0
+
+[node name="TorchLight4" type="PointLight2D" parent="."]
+position = Vector2(24, -240)
+color = Color(1, 0.560784, 0.286275, 1)
+energy = 0.5
+shadow_filter = 1
+shadow_filter_smooth = 25.2
+texture = ExtResource("7_ok6r6")
+texture_scale = 2.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(8, -80)
+color = Color(0.741176, 0.8, 1, 1)
+shadow_filter = 1
+shadow_filter_smooth = 25.2
+texture = ExtResource("7_ok6r6")
+texture_scale = 4.0
