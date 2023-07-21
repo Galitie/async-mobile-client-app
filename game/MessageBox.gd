@@ -6,11 +6,13 @@ var message
 var info
 var speaker_name
 var icon_region
+var timed = false
 
 func _ready():
 	$AnimationPlayer.connect("animation_finished", _animationFinished)
 
-func Show(content, _speaker_name = "", _icon_region = null):
+func Show(content, _speaker_name = "", _icon_region = null, _timed = false):
+	timed = _timed
 	SetText(false, content, _speaker_name, _icon_region)
 	if showing:
 		Hide()
@@ -45,6 +47,8 @@ func _animationFinished(anim):
 	if anim == "appear":
 		showing = true
 		SetText(true, message, speaker_name, icon_region)
+		if !timed:
+			$AnimationPlayer.play("idle")
 	elif anim == "disappear":
 		if awaiting_message:
 			$AnimationPlayer.play("appear")

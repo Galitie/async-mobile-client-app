@@ -15,6 +15,7 @@ signal speak
 
 var character_manifest = [
 	"res://characters/tyler.tres",
+	"res://characters/shadow.tres",
 	"res://characters/mario.tres",
 	"res://characters/snake.tres",
 	"res://characters/shrek.tres",
@@ -174,7 +175,7 @@ func _process(delta):
 			if tts_queue.size():
 				var tts = tts_queue.pop_front()
 				DisplayServer.tts_speak(tts.content, tts.voice_id, 50, tts.pitch)
-				UI.message_box.Show(tts.content, tts.speaker_name, tts.icon_region)
+				UI.message_box.Show(tts.content, tts.speaker_name, tts.icon_region, true)
 			elif UI.message_box.showing:
 				UI.message_box.Hide()
 	elif reading && Input.is_action_just_pressed("interact"):

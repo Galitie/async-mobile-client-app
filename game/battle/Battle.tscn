@@ -1,17 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://fq76xsh17p00"]
+[gd_scene load_steps=19 format=3 uid="uid://fq76xsh17p00"]
 
 [ext_resource type="Script" path="res://battle/Battle.gd" id="1_fa0c3"]
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ucup7"]
-[ext_resource type="PackedScene" uid="uid://j4arlkmxuayy" path="res://characters/Character.tscn" id="3_j4x47"]
-[ext_resource type="SpriteFrames" uid="uid://buah1prm3ccyy" path="res://characters/snake_frames.tres" id="3_pm1pv"]
 [ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="3_ycp2p"]
 [ext_resource type="PackedScene" uid="uid://6lh05vm6wb2i" path="res://DropBox.tscn" id="4_8luep"]
-[ext_resource type="SpriteFrames" uid="uid://8y7ri24itstq" path="res://characters/mario_frames.tres" id="4_bqjp3"]
-[ext_resource type="SpriteFrames" uid="uid://bi6q8j335ixdu" path="res://characters/kermit_frames.tres" id="5_ch6ys"]
 [ext_resource type="Texture2D" uid="uid://yc3l02gbhl7p" path="res://cursor.png" id="5_j1nqu"]
-[ext_resource type="SpriteFrames" uid="uid://bg8rjyk5nckoy" path="res://characters/shrek_frames.tres" id="6_3bqlg"]
 [ext_resource type="PackedScene" uid="uid://b3tvrwc41yiyl" path="res://battle/MoveEffects.tscn" id="11_qumop"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="12_h5hiv"]
+[ext_resource type="Texture2D" uid="uid://bucfrkhdl87xe" path="res://battle/party.png" id="13_hp70t"]
 
 [sub_resource type="Animation" id="Animation_i5qrt"]
 length = 0.001
@@ -66,6 +62,30 @@ _data = {
 "dead": SubResource("Animation_4kxf8"),
 "onhit": SubResource("Animation_vv57n")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cyxl"]
+atlas = ExtResource("13_hp70t")
+region = Rect2(95, 58, 33, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmgu8"]
+atlas = ExtResource("13_hp70t")
+region = Rect2(4, 66, 35, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1uas"]
+atlas = ExtResource("13_hp70t")
+region = Rect2(43, 62, 45, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq3bb"]
+atlas = ExtResource("13_hp70t")
+region = Rect2(38.3557, 2.2044, 32.3856, 52.8194)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58xuu"]
+atlas = ExtResource("13_hp70t")
+region = Rect2(3, 5, 30, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvetb"]
+atlas = ExtResource("13_hp70t")
+region = Rect2(76, 10, 35, 44)
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_fa0c3")
@@ -123,35 +143,6 @@ offset_bottom = 26.0
 texture = ExtResource("5_j1nqu")
 stretch_mode = 2
 
-[node name="Character" parent="." instance=ExtResource("3_j4x47")]
-position = Vector2(150, -100)
-sprite_frames = ExtResource("3_pm1pv")
-animation = &"walk_west"
-script = null
-
-[node name="Character2" parent="." instance=ExtResource("3_j4x47")]
-position = Vector2(150, -50)
-sprite_frames = ExtResource("4_bqjp3")
-animation = &"walk_west"
-script = null
-
-[node name="Character3" parent="." instance=ExtResource("3_j4x47")]
-position = Vector2(150, 0)
-animation = &"walk_west"
-script = null
-
-[node name="Character4" parent="." instance=ExtResource("3_j4x47")]
-position = Vector2(150, 50)
-sprite_frames = ExtResource("5_ch6ys")
-animation = &"walk_west"
-script = null
-
-[node name="Character5" parent="." instance=ExtResource("3_j4x47")]
-position = Vector2(150, 100)
-sprite_frames = ExtResource("6_3bqlg")
-animation = &"walk_west"
-script = null
-
 [node name="Enemy" type="Sprite2D" parent="."]
 position = Vector2(-133, -6)
 
@@ -174,3 +165,34 @@ shadow_filter = 1
 shadow_filter_smooth = 25.2
 texture = ExtResource("12_h5hiv")
 texture_scale = 15.0
+
+[node name="Party" type="Node2D" parent="."]
+
+[node name="Tyler" type="Sprite2D" parent="Party"]
+position = Vector2(167, -5)
+texture = SubResource("AtlasTexture_1cyxl")
+
+[node name="Shrek" type="Sprite2D" parent="Party"]
+position = Vector2(135, -24)
+texture = SubResource("AtlasTexture_wmgu8")
+
+[node name="Kermit" type="Sprite2D" parent="Party"]
+position = Vector2(131, 28)
+texture = SubResource("AtlasTexture_j1uas")
+
+[node name="Snake" type="Sprite2D" parent="Party"]
+position = Vector2(96, -16)
+texture = SubResource("AtlasTexture_oq3bb")
+
+[node name="Mario" type="Sprite2D" parent="Party"]
+position = Vector2(89, 28)
+texture = SubResource("AtlasTexture_58xuu")
+
+[node name="Shadow" type="Sprite2D" parent="Party"]
+position = Vector2(167, 31)
+texture = SubResource("AtlasTexture_cvetb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true

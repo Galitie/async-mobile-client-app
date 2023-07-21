@@ -33,6 +33,7 @@ var max_turns = Game.users.size() - 1
 
 var enemy_info = null
 var party_turn = false
+var battle_over = false
 
 func _ready():
 	Game.bgm_player.stream = battle_music
@@ -49,7 +50,7 @@ func _ready():
 	
 	camera.make_current()
 	await get_tree().create_timer(0.8).timeout
-	battle_info.Show("It's a " + enemy_info.enemy_name + "!")
+	battle_info.Show("It's a " + enemy_info.enemy_name + "!", "", null, true)
 	await get_tree().create_timer(2.5).timeout
 	battle_info.Hide()
 	await get_tree().create_timer(0.8).timeout
@@ -70,7 +71,7 @@ func _process(delta):
 			drop_box.visible = false
 			battle_info.hide()
 			await get_tree().create_timer(0.8).timeout
-			battle_info.Show("Tyler used " + moves[cursor_position].name + "!!!")
+			battle_info.Show("Tyler used " + moves[cursor_position].name + "!!!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
 			var move = move_effects.get_children().pick_random()
 			move.emitting = true
@@ -78,14 +79,20 @@ func _process(delta):
 			await get_tree().create_timer(1.5).timeout
 			turn += 1
 			if turn >= max_turns:
-				EndBattle()
+				EndBattle(delta)
 			else:
 				EnemyTurn()
+	elif battle_over:
+		if Input.is_action_just_pressed("interact"):
+			UI.transition.get_node("AnimationPlayer").play("fade_out")
+			await get_tree().create_timer(0.4).timeout
+			Game.ChangeState(self, Game.previous_state)
+			UI.transition.get_node("AnimationPlayer").play("fade_in")
 
 func PartyTurn():
 	party_turn = true
 	moves.clear()
-	battle_info.Show("The party is thinking about their next move...")
+	battle_info.Show("The party is thinking about their next move...", "", null, true)
 	var battle_prompt = Game.Prompt.new("Think of a powerful move that will help Tyler in battle!", "battle_entry", "countdown", 30.0, false, {"small": "Megaflare"})
 	Game.SendPromptToUsers(battle_prompt)
 	
@@ -95,7 +102,7 @@ func PartyTurn():
 			CheckAllMovesSubmitted()
 	
 func EnemyTurn():
-	battle_info.Show("The " + enemy_info.enemy_name + " attacks!")
+	battle_info.Show("The " + enemy_info.enemy_name + " attacks!", "", true)
 	await get_tree().create_timer(2.0).timeout
 	battle_info.Hide()
 	await get_tree().create_timer(1.0)
@@ -133,24 +140,19 @@ func CheckAllMovesSubmitted():
 		drop_box.visible = true
 		party_turn = false
 		
-func EndBattle():
+func EndBattle(delta):
 	enemy.get_node("AnimationPlayer").play("dead")
 	await get_tree().create_timer(1.4).timeout
 	Game.bgm_player.stop()
 	var final_blow_user = Game.users[moves[cursor_position].ip]
 	DisplayServer.tts_speak(final_blow_user.catchphrase, final_blow_user.voice_id, 50.0, final_blow_user.character_data.voice_pitch)
-	UI.message_box.Show(final_blow_user.catchphrase, final_blow_user.character_data.name, final_blow_user.character_data.icon_region)
+	UI.message_box.Show(final_blow_user.catchphrase, final_blow_user.character_data.name, final_blow_user.character_data.icon_region, true)
 	await get_tree().create_timer(3.0).timeout
 	UI.message_box.Hide()
 	Game.bgm_player.stream = victory_music
 	Game.bgm_player.play()
 	battle_info.Show("Tyler and company are victorious!")
-	await get_tree().create_timer(10.5).timeout
-	battle_info.Hide()
-	UI.transition.get_node("AnimationPlayer").play("fade_out")
-	await get_tree().create_timer(0.4).timeout
-	Game.ChangeState(self, Game.previous_state)
-	UI.transition.get_node("AnimationPlayer").play("fade_in")
+	battle_over = true
 
 func _startState():
 	pass
