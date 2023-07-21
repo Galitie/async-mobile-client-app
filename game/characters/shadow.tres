@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://8bpumuok7ngt"]
+
+[ext_resource type="Script" path="res://characters/CharacterData.gd" id="1_5tbyu"]
+[ext_resource type="SpriteFrames" uid="uid://cmyekvh74it8o" path="res://characters/shadow_frames.tres" id="2_f8uol"]
+
+[resource]
+script = ExtResource("1_5tbyu")
+sprite_frames = ExtResource("2_f8uol")
+sprite_offset = Vector2(8, 0)
+tts_name = ""
+voice_pitch = 0.0
+icon_region = Rect2(224, 256, 32, 32)
+name = "Shadow"

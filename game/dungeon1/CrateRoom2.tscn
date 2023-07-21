@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djai2tjej18xw"]
+[gd_scene load_steps=10 format=3 uid="uid://djai2tjej18xw"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_o081q"]
 [ext_resource type="Script" path="res://dungeon1/CrateRoom.gd" id="2_8d33a"]
@@ -8,10 +8,18 @@
 [ext_resource type="Script" path="res://Portal.gd" id="6_ju8r3"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="7_cn8ht"]
 
-[sub_resource type="Resource" id="Resource_av76i"]
+[sub_resource type="Resource" id="Resource_1qm8t"]
 script = ExtResource("5_2ji5t")
 speaker = "Foe"
 content = "I don't know about that other guy, but you're definitely not getting past me!"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_av76i"]
+script = ExtResource("5_2ji5t")
+speaker = "Foe"
+content = "I'm different!"
 message_signal = "startBattle"
 message_args = ["res://battle/Gatekeeper2.tres"]
 signal_timing = 2
@@ -201,7 +209,7 @@ script = ExtResource("4_8v2hl")
 one_shot = true
 cell_position = Vector2i(0, -15)
 interact_sprite = Rect2(184, 237, 25, 20)
-messages = Array[Resource]([SubResource("Resource_av76i")])
+messages = Array[Resource]([SubResource("Resource_1qm8t"), SubResource("Resource_av76i")])
 
 [node name="RestartPortal" type="Sprite2D" parent="."]
 position = Vector2(0, -80)

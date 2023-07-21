@@ -6,6 +6,7 @@
 # TODO: Create proper states for the world (reading, battling, etc)
 # BUG: Sending a TTS message with only punctuation leads to an empty message that shows up for
 # a split second. Possibly add a minimum time limit to display the message?
+# TODO: Music needs be edited to loop properly
 extends Node2D
 
 class UserData:
@@ -42,7 +43,7 @@ var previous_state
 var users = {}
 var ready_for_players = false
 const HOST_IP = "0.0.0.0"
-const MAX_PLAYERS = 5
+const MAX_PLAYERS = 6
 
 const map_cell_size = 16
 const collision_layer = 3
@@ -58,7 +59,7 @@ var wait_prompt = Prompt.new("Please wait...", "wait", "none", 0.0, false, {"sma
 @onready var bgm_player = AudioStreamPlayer.new()
 
 func _ready():
-	bgm_player.volume_db = -20.0
+	bgm_player.volume_db = -30.0
 	add_child(bgm_player)
 
 func ChangeState(end_state, start_state):

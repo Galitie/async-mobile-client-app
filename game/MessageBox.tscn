@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnh3kpg5lhlny"]
+[gd_scene load_steps=12 format=3 uid="uid://bnh3kpg5lhlny"]
 
 [ext_resource type="Texture2D" uid="uid://quxtfkgsj1wg" path="res://text_box.png" id="1_tej0g"]
 [ext_resource type="Script" path="res://MessageBox.gd" id="2_5mtgl"]
 [ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="2_r4gmc"]
 [ext_resource type="Texture2D" uid="uid://b7xyxiorgrgf7" path="res://characters/party.png" id="3_6wvxd"]
+[ext_resource type="Texture2D" uid="uid://h52h7kgm1x34" path="res://next_marker.png" id="5_wyeen"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2430s"]
 atlas = ExtResource("3_6wvxd")
@@ -18,6 +19,18 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NextMarker:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -39,6 +52,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NextMarker:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_8tpjn"]
 resource_name = "disappear"
@@ -55,12 +80,41 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NextMarker:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_uaa7m"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NextMarker:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kvsbu"]
 _data = {
 "RESET": SubResource("Animation_kx5i0"),
 "appear": SubResource("Animation_ejiu0"),
-"disappear": SubResource("Animation_8tpjn")
+"disappear": SubResource("Animation_8tpjn"),
+"idle": SubResource("Animation_uaa7m")
 }
 
 [node name="TextBox" type="TextureRect"]
@@ -161,3 +215,20 @@ scroll_active = false
 libraries = {
 "": SubResource("AnimationLibrary_kvsbu")
 }
+
+[node name="NextMarker" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -12.0
+offset_right = -10.0
+offset_bottom = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("5_wyeen")
+stretch_mode = 4
