@@ -7,3 +7,5 @@ extends Resource
 @export var voice_pitch : float
 @export var icon_region : Rect2
 @export var name : String
+@export var school_frames : SpriteFrames
+@export var school_offset : Vector2

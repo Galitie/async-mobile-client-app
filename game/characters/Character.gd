@@ -54,10 +54,6 @@ func SetCellDestination(cell_pos, _direction):
 					return
 				else:
 					world.emit_signal(interactable.Use(), interactable.next_map, interactable.next_map_cell_position)
-		elif interactable is Trigger:
-			if cell_destination == interactable.cell_position:
-				if interactable.CheckForActivation():
-					world.emit_signal("sent_text", {"context": interactable.signal_string})
 		elif interactable is Interactable:
 			if !interactable.passable && cell_destination == interactable.cell_position:
 				cell_destination = Vector2i.ZERO
@@ -126,6 +122,12 @@ func _onStep():
 func _finishedMoving():
 	can_move = true
 	cell_position = cell_destination
+	
+	for interactable in get_tree().get_nodes_in_group("interactables"):
+		if interactable is Trigger:
+			if cell_destination == interactable.cell_position:
+				if interactable.CheckForActivation():
+					world.emit_signal("sent_text", {"context": interactable.signal_string})
 
 func Emote(emoji):
 	$Emoji.Display(emoji)
