@@ -160,7 +160,6 @@ textarea::placeholder {
 .dice {
     width: 20%;
     font-size: 8vw;
-    padding-bottom: .25em;
     background-color: var(--buttonColor);
     min-height: unset;
     border: .10em solid white;

@@ -249,9 +249,6 @@ function removeCountdownTimer() {
 function addPrompt(str) {
   let newPrompt = document.createElement("h1");
   let newPromptText = document.createTextNode(str);
-  if (isDatingSimTime == true) {
-    newPrompt.innerText += "❤️";
-  }
   newPrompt.appendChild(newPromptText);
   if (isDatingSimTime == true) {
     newPrompt.innerText += "❤️";
