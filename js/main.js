@@ -41,7 +41,8 @@ function promptScreen(
   prompt,
   timerAmount,
   timerType,
-  includeDiceTray,
+  diceEnabled,
+  dice,
   inputs,
   style
 ) {
@@ -77,9 +78,9 @@ function promptScreen(
     timerCooldown = false;
   }
 
-  if (includeDiceTray == true) {
+  if (diceEnabled) {
     console.log("added dice tray");
-    addDiceTray();
+    addDiceTray(dice);
   }
 }
 
@@ -147,9 +148,10 @@ function onClickDice(diceNum) {
   const packet = {
     action: "messageHost",
     message: "dice",
-    dice: diceNum,
   };
   sendMessage(JSON.stringify(packet));
+  let dice = document.getElementById(`${diceNum}`);
+  dice.remove();
 }
 
 // this is only for the not connected screen
@@ -327,12 +329,12 @@ function addButtons(buttonClasses) {
 //   });
 // }
 
-function addDiceTray() {
-  let diceMap = {
-    dice1: "🎲",
-    dice2: "🎲",
-    dice3: "🎲",
-  };
+function addDiceTray(amount) {
+  let diceMap = {};
+
+  for (let i = 1; i <= amount; i++) {
+    diceMap[`dice${i}`] = "🎲";
+  }
 
   let newSection = document.createElement("SECTION");
   newSection.setAttribute("class", "diceContainer");

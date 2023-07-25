@@ -78,7 +78,7 @@ h3, h4 {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: center;
 }
 

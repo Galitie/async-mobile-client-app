@@ -24,7 +24,9 @@ socket.onmessage = function (event) {
   const message = JSON.parse(event.data);
   console.log("Received message:", message);
 
-  if ("vibrate" in navigator) canVibrate = true;
+  if ("vibrate" in navigator) {
+    canVibrate = true;
+  }
 
   if (message["message"] == "Internal server error") {
     hostServerStatus.innerText = "\u2717 Disconnected from Host";
@@ -41,8 +43,8 @@ socket.onmessage = function (event) {
       message["header"],
       message["timer"],
       message["timerType"],
-      message["emojis"],
-      //message["dice"],
+      message["diceEnabled"],
+      message["dice"],
       message["inputs"],
       message["style"]
     );
