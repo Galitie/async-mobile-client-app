@@ -1,5 +1,61 @@
--- First Playtest Results --
+-- Order of Events --
+Bathroom
+Hallway, bell rings
+Classroom
+Introduce self
+Lunch - write love notes
+Back to classroom
+Check yes on notes or not
+Tyler quiz
+Class ends
+Confession
+Last battle
+Ride off into sunset
+End game
 
+
+-- Dice roll effects -- 
+Reverse controls
+Speed up
+Slow down
+Tunnel Vision
+Fireworks
+Slippery Movement
+Sanic + Greenhill Music
+Drunk Mode
+Fart noise every step
+One on one
+Bullet Hell, rain down on screen, tyler needs to dodge
+Rickroll
+Camera stops following Tyler
+Spawns a ton of crates
+Spawns banana peels
+Random bonus battle
+Laugh track mode
+Jackpot
+Take a nap, save game, yes, saves for long time
+
+
+-- Add --
+Money on the screen
+Tyler gets money after battle
+Poem room more fun?
+Anime message, text box and pointer into game
+Battle animations
+Battle sounds
+Interactive sounds - pushing, clicking, choosing
+Footsteps
+Sparkles
+Portraits
+Anime backgrounds
+Anime endings/replacements for messages, Kawaii-desu, Baka!, Sugoi! Nani?!, Tyler-kun
+Jury/court room ending, players get sent back to dungeon
+Real winner, who has most Tyler points is safe from jail
+Sephiroth ending animation and music
+Fake HP bar
+
+
+-- First Playtest Results --
 Connect disconnect visual glitch.
 Player cap.
 Android phones didn't vibrate.
