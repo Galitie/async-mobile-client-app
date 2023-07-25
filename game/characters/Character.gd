@@ -31,7 +31,7 @@ func SetCellPosition(cell_pos):
 	cell_position = cell_pos
 	transform.origin = Vector2(cell_size * cell_position.x, cell_size * cell_position.y)
 	
-func SetCellDestination(cell_pos, _direction):
+func SetCellDestination(cell_pos, _direction, in_world):
 	can_move = false
 	cell_destination = cell_pos
 	var current_frame = frame
@@ -39,26 +39,27 @@ func SetCellDestination(cell_pos, _direction):
 	frame = current_frame
 	direction = _direction
 	
-	var tile_data = world.current_map.get_cell_tile_data(Game.collision_layer, cell_destination)
-	if tile_data:
-		cell_destination = Vector2i.ZERO
-		can_move = true
-		return
-		
-	for interactable in get_tree().get_nodes_in_group("interactables"):
-		if interactable is Portal:
-			if cell_destination == interactable.trigger_cell:
-				if interactable.locked:
+	if in_world:
+		var tile_data = world.current_map.get_cell_tile_data(Game.collision_layer, cell_destination)
+		if tile_data:
+			cell_destination = Vector2i.ZERO
+			can_move = true
+			return
+			
+		for interactable in get_tree().get_nodes_in_group("interactables"):
+			if interactable is Portal:
+				if cell_destination == interactable.trigger_cell:
+					if interactable.locked:
+						cell_destination = Vector2i.ZERO
+						can_move = true
+						return
+					else:
+						world.emit_signal(interactable.Use(), interactable.next_map, interactable.next_map_cell_position)
+			elif interactable is Interactable:
+				if !interactable.passable && cell_destination == interactable.cell_position:
 					cell_destination = Vector2i.ZERO
 					can_move = true
 					return
-				else:
-					world.emit_signal(interactable.Use(), interactable.next_map, interactable.next_map_cell_position)
-		elif interactable is Interactable:
-			if !interactable.passable && cell_destination == interactable.cell_position:
-				cell_destination = Vector2i.ZERO
-				can_move = true
-				return
 	
 	if follower:
 		var follower_direction = "south"
@@ -72,22 +73,22 @@ func SetCellDestination(cell_pos, _direction):
 				follower_direction = "north"
 			Vector2i(0, -1):
 				follower_direction = "south"
-		follower.SetCellDestination(cell_position, follower_direction)
+		follower.SetCellDestination(cell_position, follower_direction, false)
 	
 	$StepTimer.start()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(cell_size * cell_destination.x, cell_size * cell_destination.y), speed).set_trans(Tween.TRANS_LINEAR)
-	tween.tween_callback(_finishedMoving)
+	tween.tween_callback(Callable(self, "_finishedMoving").bind(in_world))
 
 func Update(delta):
 	if can_move && Input.is_action_pressed("move_right"):
-		SetCellDestination(cell_position + Vector2i(1, 0), "east")
+		SetCellDestination(cell_position + Vector2i(1, 0), "east", true)
 	elif can_move && Input.is_action_pressed("move_left"):
-		SetCellDestination(cell_position + Vector2i(-1, 0), "west")
+		SetCellDestination(cell_position + Vector2i(-1, 0), "west", true)
 	elif can_move && Input.is_action_pressed("move_up"):
-		SetCellDestination(cell_position + Vector2i(0, -1), "north")
+		SetCellDestination(cell_position + Vector2i(0, -1), "north", true)
 	elif can_move && Input.is_action_pressed("move_down"):
-		SetCellDestination(cell_position + Vector2i(0, 1), "south")
+		SetCellDestination(cell_position + Vector2i(0, 1), "south", true)
 		
 	if Input.is_action_just_pressed("interact"):
 		Interact()
@@ -119,15 +120,16 @@ func _onStep():
 	else:
 		step_index = 0
 
-func _finishedMoving():
+func _finishedMoving(in_world):
 	can_move = true
 	cell_position = cell_destination
 	
-	for interactable in get_tree().get_nodes_in_group("interactables"):
-		if interactable is Trigger:
-			if cell_destination == interactable.cell_position:
-				if interactable.CheckForActivation():
-					world.emit_signal("sent_text", {"context": interactable.signal_string})
+	if in_world:
+		for interactable in get_tree().get_nodes_in_group("interactables"):
+			if interactable is Trigger:
+				if cell_destination == interactable.cell_position:
+					if interactable.CheckForActivation():
+						world.emit_signal("sent_text", {"context": interactable.signal_string})
 
 func Emote(emoji):
 	$Emoji.Display(emoji)

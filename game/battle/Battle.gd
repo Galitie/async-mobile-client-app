@@ -102,7 +102,7 @@ func PartyTurn():
 			CheckAllMovesSubmitted()
 	
 func EnemyTurn():
-	battle_info.Show("The " + enemy_info.enemy_name + " attacks!", "", true)
+	battle_info.Show("The " + enemy_info.enemy_name + " attacks!", "", null, true)
 	await get_tree().create_timer(2.0).timeout
 	battle_info.Hide()
 	await get_tree().create_timer(1.0)

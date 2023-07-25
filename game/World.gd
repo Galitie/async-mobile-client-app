@@ -8,18 +8,18 @@ signal user_joined
 signal user_disconnected
 signal sent_text
 signal add_user
-signal emote
+signal dice
 
 signal portal_entered
 signal speak
 
 var character_manifest = [
 	"res://characters/tyler.tres",
-	"res://characters/shadow.tres",
 	"res://characters/mario.tres",
 	"res://characters/snake.tres",
 	"res://characters/shrek.tres",
-	"res://characters/kermit.tres"
+	"res://characters/kermit.tres",
+	"res://characters/shadow.tres"
 ]
 
 var current_map
@@ -58,7 +58,7 @@ func _ready():
 	connect("user_disconnected", _userDisconnected)
 	connect("sent_text", _sentText)
 	connect("add_user", _addUser)
-	connect("emote", _emote)
+	connect("dice", _dice)
 	connect("speak", _speak)
 	connect("portal_entered", _portalEntered)
 	
@@ -161,9 +161,11 @@ func _addUser(packet):
 		var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
 		Client.SendPacket(response)
 	
-func _emote(packet):
+func _dice(packet):
 	if Game.users.has(packet["userIP"]):
-		characters[packet["userIP"]].Emote(packet["emoji"])
+		print("dice!")
+		Game.users[packet["userIP"]].dice = max(Game.users[packet["userIP"]].dice - 1, 0)
+		print(Game.users[packet["userIP"]].dice)
 	
 func _process(delta):
 	if !paused:

@@ -18,6 +18,7 @@ class UserData:
 	var connection_status
 	var voice_id
 	var character_data
+	var dice = 3
 
 class Prompt:
 	var data = {
@@ -26,17 +27,20 @@ class Prompt:
 		"context": "default",
 		"timerType": "none", # none, cooldown, countdown
 		"timer": 0.0,
-		"emojis": false,
-		"inputs": {} # "big" and/or "small" keys with placeholder values
+		"diceEnabled": false,
+		"dice": 0,
+		"inputs": {}, # "big" and/or "small" keys with placeholder values
+		"style": "rpg" # "rpg" or "cute"
 	}
 	
-	func _init(header, context, timerType, timer, emojis, inputs):
+	func _init(header, context, timerType, timer, diceEnabled, inputs, style = "rpg"):
 		data["header"] = header
 		data["context"] = context
 		data["timerType"] = timerType
 		data["timer"] = timer
-		data["emojis"] = emojis
+		data["diceEnabled"] = diceEnabled
 		data["inputs"] = inputs
+		data["style"] = style
 
 var state = null
 var previous_state
@@ -79,5 +83,7 @@ func SendPromptToUsers(prompt, notify = true):
 func SendPromptToUser(prompt, ip):
 	if Game.users[ip].connection_status == Client.CONNECTION_STATUS.ONLINE:
 		var response = {"action": "respondToUser", "connectionID": Game.users[ip].connection_id}
+		if prompt.data["diceEnabled"]:
+			prompt.data["dice"] = Game.users[ip].dice
 		response.merge(prompt.data)
 		Client.SendPacket(response)

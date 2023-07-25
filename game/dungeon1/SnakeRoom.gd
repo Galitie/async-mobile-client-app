@@ -66,6 +66,12 @@ func _aboveGround(packet):
 	host_character.offset = host_character.character_data.school_offset
 	host_character.frame = last_frame
 	
+	for character in get_parent().characters:
+		get_parent().characters[character].SetCellPosition(host_character.cell_position)
+	
+	Game.bgm_player.stop()
+	get_parent().world_prompt.data["style"] = "cute"
+	Game.SendPromptToUsers(get_parent().world_prompt, false)
 	door_timer.start()
 	
 func _openDoor():
@@ -84,7 +90,7 @@ func update(delta):
 			var progress = (host.transform.origin.y - $Transition.transform.origin.y) / ($TopGround.transform.origin.y - $Transition.transform.origin.y)
 			light.color = lerp(light_color, Color.WHITE, progress)
 			bathroom.modulate = lerp(Color(Color.BLACK, 0), Color.WHITE, progress)
-			light.texture_scale = lerp(light.texture_scale, 7.0, progress)
+			light.texture_scale = lerp(light.texture_scale, 10.0, progress)
 		
 		if climbing_ladder && !sfx.playing:
 			if host.frame == 1 || host.frame == 3:
