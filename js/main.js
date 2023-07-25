@@ -37,13 +37,7 @@ function gameAlreadyStartedScreen() {
 }
 
 // Prompt screen
-function promptScreen(
-  prompt,
-  timerAmount,
-  timerType,
-  includeEmojiTray,
-  inputs
-) {
+function promptScreen(prompt, timerAmount, timerType, includeDiceTray, inputs) {
   clearIDGameInDOM();
   addPrompt(prompt);
 
@@ -74,9 +68,9 @@ function promptScreen(
     timerCooldown = false;
   }
 
-  if (includeEmojiTray == true) {
-    console.log("added emoji tray");
-    addEmojiTray();
+  if (includeDiceTray == true) {
+    console.log("added dice tray");
+    addDiceTray();
   }
 }
 
@@ -131,11 +125,20 @@ function onClickSubmit() {
   sendMessage(JSON.stringify(packet));
 }
 
-function onClickEmoji(emojiStr) {
+// function onClickEmoji(emojiStr) {
+//   const packet = {
+//     action: "messageHost",
+//     message: "emote",
+//     emoji: emojiStr,
+//   };
+//   sendMessage(JSON.stringify(packet));
+// }
+
+function onClickDice(diceNum) {
   const packet = {
     action: "messageHost",
-    message: "emote",
-    emoji: emojiStr,
+    message: "dice",
+    dice: diceNum,
   };
   sendMessage(JSON.stringify(packet));
 }
@@ -290,27 +293,51 @@ function addButtons(buttonClasses) {
   });
 }
 
-function addEmojiTray() {
-  let emojiMap = {
-    love: "❤️",
-    sad: "😭",
-    bee: "🐝",
-    wow: "❗",
+// function addEmojiTray() {
+//   let emojiMap = {
+//     love: "❤️",
+//     sad: "😭",
+//     bee: "🐝",
+//     wow: "❗",
+//   };
+
+//   let newSection = document.createElement("SECTION");
+//   newSection.setAttribute("class", "emojiContainer");
+//   document.querySelector(".game").appendChild(newSection);
+
+//   Object.keys(emojiMap).forEach((emoji) => {
+//     let newButton = document.createElement("BUTTON");
+//     let newButtonText = document.createTextNode(emojiMap[emoji]);
+//     newButton.appendChild(newButtonText);
+//     newButton.classList.add(`emoji`);
+//     newButton.setAttribute("id", `${emoji}`);
+//     newSection.appendChild(newButton);
+//     document.getElementById(`${emoji}`).addEventListener("click", function () {
+//       onClickEmoji(emoji);
+//     });
+//   });
+// }
+
+function addDiceTray() {
+  let diceMap = {
+    dice1: "🎲",
+    dice2: "🎲",
+    dice3: "🎲",
   };
 
   let newSection = document.createElement("SECTION");
-  newSection.setAttribute("class", "emojiContainer");
+  newSection.setAttribute("class", "diceContainer");
   document.querySelector(".game").appendChild(newSection);
 
-  Object.keys(emojiMap).forEach((emoji) => {
+  Object.keys(diceMap).forEach((dice) => {
     let newButton = document.createElement("BUTTON");
-    let newButtonText = document.createTextNode(emojiMap[emoji]);
+    let newButtonText = document.createTextNode(diceMap[dice]);
     newButton.appendChild(newButtonText);
-    newButton.classList.add(`emoji`);
-    newButton.setAttribute("id", `${emoji}`);
+    newButton.classList.add(`dice`);
+    newButton.setAttribute("id", `${dice}`);
     newSection.appendChild(newButton);
-    document.getElementById(`${emoji}`).addEventListener("click", function () {
-      onClickEmoji(emoji);
+    document.getElementById(`${dice}`).addEventListener("click", function () {
+      onClickDice(dice);
     });
   });
 }

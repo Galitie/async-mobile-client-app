@@ -42,6 +42,7 @@ socket.onmessage = function (event) {
       message["timer"],
       message["timerType"],
       message["emojis"],
+      //message["dice"],
       message["inputs"]
     );
     packageContext = message["context"];
