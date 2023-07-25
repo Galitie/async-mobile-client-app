@@ -37,10 +37,19 @@ function gameAlreadyStartedScreen() {
 }
 
 // Prompt screen
-function promptScreen(prompt, timerAmount, timerType, includeDiceTray, inputs) {
+function promptScreen(
+  prompt,
+  timerAmount,
+  timerType,
+  includeDiceTray,
+  inputs,
+  style
+) {
   clearIDGameInDOM();
+  if (style == "cute") {
+    setStyleDatingSim();
+  }
   addPrompt(prompt);
-
   if (timerAmount > 0 && timerType == "countdown") {
     addTimer(timerAmount, timerType);
   }

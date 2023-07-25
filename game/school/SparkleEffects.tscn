@@ -9,7 +9,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_a7ovj"]
-offsets = PackedFloat32Array(0.00332226, 0.312292, 0.598007, 1)
+offsets = PackedFloat32Array(0.00332226, 0.312292, 0.448505, 0.604651)
 colors = PackedColorArray(1, 1, 1, 0.168627, 1, 1, 1, 1, 1, 1, 1, 0.439216, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_yf605"]
