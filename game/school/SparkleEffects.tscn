@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5brtc2jkyquo"]
+
+[ext_resource type="Texture2D" uid="uid://cn87nb6cjoh07" path="res://school/sparkle_tileset.png" id="1_htwn3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xcbya"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_a7ovj"]
+offsets = PackedFloat32Array(0.00332226, 0.312292, 0.598007, 1)
+colors = PackedColorArray(1, 1, 1, 0.168627, 1, 1, 1, 1, 1, 1, 1, 0.439216, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yf605"]
+gradient = SubResource("Gradient_a7ovj")
+
+[sub_resource type="Curve" id="Curve_ajtkn"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nrwhf"]
+curve = SubResource("Curve_ajtkn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fpdks"]
+emission_shape = 2
+emission_sphere_radius = 70.68
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 89.29
+flatness = 0.2
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 31.41
+initial_velocity_max = 31.41
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.15
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_yf605")
+hue_variation_curve = SubResource("CurveTexture_nrwhf")
+anim_speed_min = 1.0
+anim_speed_max = 2.93
+
+[node name="SparkleEffects" type="Node2D"]
+
+[node name="Sparkle1" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xcbya")
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_fpdks")
+texture = ExtResource("1_htwn3")
+speed_scale = 1.25
