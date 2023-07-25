@@ -8,13 +8,13 @@ function setStyleDatingSim() {
   isDatingSimTime = true;
   let rootTheme = document.querySelector(":root");
   rootTheme.style.setProperty("--fontFamily", "'Lilita One', cursive");
-  rootTheme.style.setProperty("--fontSize", "5vw");
+  rootTheme.style.setProperty("--fontSize", "6vw");
   rootTheme.style.setProperty("--backgroundColor", "hotpink");
   rootTheme.style.setProperty("--buttonColor", "purple");
   rootTheme.style.setProperty("--placeholderColor", "pink");
   rootTheme.style.setProperty("--textShadowColor", "-.1em .1em purple");
   rootTheme.style.setProperty("--backgroundShadowColor", "-10px 10px purple");
-  rootTheme.style.setProperty("--borderRadius", "1em");
+  rootTheme.style.setProperty("--borderRadius", "0em");
 }
 
 // ************************* Screens *************************** //
