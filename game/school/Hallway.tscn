@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgsoak1ov3fhu"]
+
+[ext_resource type="Script" path="res://Map.gd" id="1_38nlu"]
+[ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_aohw4"]
+
+[node name="Hallway" type="TileMap"]
+tile_set = ExtResource("1_aohw4")
+format = 2
+script = ExtResource("1_38nlu")
