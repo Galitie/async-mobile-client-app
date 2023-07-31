@@ -1,15 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc7xbqpdknuxo"]
+[gd_scene load_steps=11 format=3 uid="uid://d3s7y33aqxc77"]
 
-[ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6v0yu"]
-[ext_resource type="Script" path="res://dungeon1/Lobby.gd" id="2_daw8g"]
-[ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="2_wsmvx"]
-[ext_resource type="Texture2D" uid="uid://cvruot8ljkbm0" path="res://dungeon1/dungeon_tile.png" id="3_jvo88"]
-[ext_resource type="Script" path="res://Interactable.gd" id="4_bgr3q"]
-[ext_resource type="Script" path="res://Portal.gd" id="6_cwvc8"]
-[ext_resource type="Script" path="res://Message.gd" id="6_svky4"]
+[ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_4wdy5"]
+[ext_resource type="Script" path="res://dungeon1/Lobby.gd" id="2_y0ffw"]
+[ext_resource type="Texture2D" uid="uid://cvruot8ljkbm0" path="res://dungeon1/dungeon_tile.png" id="4_oyv3g"]
+[ext_resource type="Script" path="res://Interactable.gd" id="5_gmba8"]
+[ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="6_c2cj4"]
+[ext_resource type="Script" path="res://Message.gd" id="6_rvld6"]
+[ext_resource type="Script" path="res://Portal.gd" id="7_ayybk"]
 
 [sub_resource type="Resource" id="Resource_aigs6"]
-script = ExtResource("6_svky4")
+script = ExtResource("6_rvld6")
 speaker = ""
 content = "You find something old and worthless..."
 message_signal = ""
@@ -17,7 +17,7 @@ message_args = []
 signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_qka3c"]
-script = ExtResource("6_svky4")
+script = ExtResource("6_rvld6")
 speaker = ""
 content = "Perfect!"
 message_signal = ""
@@ -25,7 +25,7 @@ message_args = []
 signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_hkmet"]
-script = ExtResource("6_svky4")
+script = ExtResource("6_rvld6")
 speaker = ""
 content = "Got a [color=yellow]rusty hilt."
 message_signal = ""
@@ -34,7 +34,7 @@ signal_timing = 0
 
 [node name="Lobby" type="TileMap"]
 y_sort_enabled = true
-tile_set = ExtResource("1_6v0yu")
+tile_set = ExtResource("1_4wdy5")
 format = 2
 layer_0/name = "background"
 layer_0/z_index = -1
@@ -67,7 +67,7 @@ layer_4/y_sort_enabled = false
 layer_4/y_sort_origin = 0
 layer_4/z_index = -1
 layer_4/tile_data = PackedInt32Array(-262145, 786432, 11, 131067, 720896, 7, 131068, 786432, 7)
-script = ExtResource("2_daw8g")
+script = ExtResource("2_y0ffw")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(0, 0, 0, 1)
@@ -78,16 +78,16 @@ position = Vector2(-8, -85)
 color = Color(0.741176, 0.8, 1, 1)
 shadow_filter = 1
 shadow_filter_smooth = 25.2
-texture = ExtResource("2_wsmvx")
+texture = ExtResource("6_c2cj4")
 texture_scale = 4.0
 
 [node name="Chest" type="Sprite2D" parent="."]
 position = Vector2(64, -32)
-texture = ExtResource("3_jvo88")
+texture = ExtResource("4_oyv3g")
 centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
-script = ExtResource("4_bgr3q")
+script = ExtResource("5_gmba8")
 one_shot = true
 cell_position = Vector2i(4, -2)
 interact_sprite = Rect2(145, 96, 17, 16)
@@ -95,11 +95,11 @@ messages = Array[Resource]([SubResource("Resource_aigs6"), SubResource("Resource
 
 [node name="OutsideDoor" type="Sprite2D" parent="."]
 position = Vector2(-16, -96)
-texture = ExtResource("3_jvo88")
+texture = ExtResource("4_oyv3g")
 centered = false
 region_enabled = true
 region_rect = Rect2(176, 208, 16, 16)
-script = ExtResource("6_cwvc8")
+script = ExtResource("7_ayybk")
 cell_position = Vector2i(-1, -6)
 trigger_cell = Vector2i(-1, -6)
 next_map = "res://dungeon1/SnakeRoom.tscn"
