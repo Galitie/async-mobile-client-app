@@ -53,6 +53,9 @@ Jury/court room ending, players get sent back to dungeon
 Real winner, who has most Tyler points is safe from jail
 Sephiroth ending animation and music
 Fake HP bar
+Characters speak outloud in japanese during anime section (words in english)
+Box puzzle but with school kids/bullies
+Or fetch quest
 
 
 -- First Playtest Results --
