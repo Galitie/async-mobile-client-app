@@ -136,15 +136,6 @@ function onClickSubmit() {
   sendMessage(JSON.stringify(packet));
 }
 
-// function onClickEmoji(emojiStr) {
-//   const packet = {
-//     action: "messageHost",
-//     message: "emote",
-//     emoji: emojiStr,
-//   };
-//   sendMessage(JSON.stringify(packet));
-// }
-
 function onClickDice(diceNum) {
   const packet = {
     action: "messageHost",
@@ -160,7 +151,7 @@ function onClickConnect() {
   location.reload(true);
 }
 
-//********************* Screen Pieces ************************//
+//********************* Screen Pieces ************************* //
 
 function clearIDGameInDOM() {
   let rootElement = document.querySelector(".game");
@@ -351,7 +342,7 @@ function addDiceTray(amount) {
   });
 }
 
-//************Helper Functions *******************/
+//**********************Helper Functions ******************** //
 
 function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
