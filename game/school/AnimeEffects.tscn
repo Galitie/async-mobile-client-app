@@ -121,7 +121,6 @@ texture = ExtResource("2_2t0v0")
 
 [node name="SakuraPetals" type="GPUParticles2D" parent="."]
 position = Vector2(229, -7)
-emitting = false
 amount = 300
 process_material = SubResource("ParticleProcessMaterial_ymg8j")
 texture = ExtResource("3_1wsrn")

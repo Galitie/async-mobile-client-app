@@ -145,7 +145,7 @@ trigger_cell = Vector2i(-2, -27)
 next_map = "res://school/Classroom.tscn"
 
 [node name="Crate1" type="Sprite2D" parent="."]
-position = Vector2(-20, -466)
+position = Vector2(-20, -465)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -157,7 +157,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate2" type="Sprite2D" parent="."]
-position = Vector2(-3, -442)
+position = Vector2(-3, -465)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -169,7 +169,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate3" type="Sprite2D" parent="."]
-position = Vector2(15, -442)
+position = Vector2(14, -441)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -181,7 +181,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate4" type="Sprite2D" parent="."]
-position = Vector2(32, -442)
+position = Vector2(32, -465)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -193,7 +193,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate5" type="Sprite2D" parent="."]
-position = Vector2(49, -442)
+position = Vector2(50, -441)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -205,7 +205,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate6" type="Sprite2D" parent="."]
-position = Vector2(49, -514)
+position = Vector2(-3, -490)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -217,7 +217,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate7" type="Sprite2D" parent="."]
-position = Vector2(-19, -514)
+position = Vector2(15, -490)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -229,7 +229,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate8" type="Sprite2D" parent="."]
-position = Vector2(32, -489)
+position = Vector2(32, -490)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -241,7 +241,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate9" type="Sprite2D" parent="."]
-position = Vector2(15, -489)
+position = Vector2(-20, -513)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -253,7 +253,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate10" type="Sprite2D" parent="."]
-position = Vector2(-3, -489)
+position = Vector2(-3, -537)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -265,7 +265,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate11" type="Sprite2D" parent="."]
-position = Vector2(15, -514)
+position = Vector2(14, -513)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -277,7 +277,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate12" type="Sprite2D" parent="."]
-position = Vector2(32, -466)
+position = Vector2(32, -537)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
@@ -289,43 +289,7 @@ interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
 
 [node name="Crate13" type="Sprite2D" parent="."]
-position = Vector2(32, -539)
-texture = ExtResource("5_vqq3v")
-centered = false
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(175, 104, 19, 24)
-script = ExtResource("6_ygqva")
-cell_position = Vector2i(-2, -14)
-interact_sprite = Rect2(175, 104, 19, 24)
-interact_signal = "pushCrate"
-
-[node name="Crate14" type="Sprite2D" parent="."]
-position = Vector2(48, -562)
-texture = ExtResource("5_vqq3v")
-centered = false
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(175, 104, 19, 24)
-script = ExtResource("6_ygqva")
-cell_position = Vector2i(-2, -14)
-interact_sprite = Rect2(175, 104, 19, 24)
-interact_signal = "pushCrate"
-
-[node name="Crate15" type="Sprite2D" parent="."]
-position = Vector2(48, -368)
-texture = ExtResource("5_vqq3v")
-centered = false
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(175, 104, 19, 24)
-script = ExtResource("6_ygqva")
-cell_position = Vector2i(-2, -14)
-interact_sprite = Rect2(175, 104, 19, 24)
-interact_signal = "pushCrate"
-
-[node name="Crate16" type="Sprite2D" parent="."]
-position = Vector2(-19, -318)
+position = Vector2(49, -490)
 texture = ExtResource("5_vqq3v")
 centered = false
 offset = Vector2(0, -8)
