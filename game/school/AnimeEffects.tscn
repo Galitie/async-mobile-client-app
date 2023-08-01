@@ -1,0 +1,129 @@
+[gd_scene load_steps=18 format=3 uid="uid://c5brtc2jkyquo"]
+
+[ext_resource type="Texture2D" uid="uid://cn87nb6cjoh07" path="res://school/sparkle_tileset.png" id="1_htwn3"]
+[ext_resource type="Texture2D" uid="uid://cc1h8guo61c34" path="res://school/heart_tileset.png" id="2_2t0v0"]
+[ext_resource type="Texture2D" uid="uid://dmm8rscpko6pt" path="res://battle/flameTexture.png" id="3_1wsrn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xcbya"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_adhof"]
+offsets = PackedFloat32Array(0.00332226, 0.312292, 0.448505, 0.604651)
+colors = PackedColorArray(1, 1, 1, 0.168627, 1, 1, 1, 1, 1, 1, 1, 0.439216, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mdk42"]
+gradient = SubResource("Gradient_adhof")
+
+[sub_resource type="Curve" id="Curve_72s7d"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hih1l"]
+curve = SubResource("Curve_72s7d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b8pnd"]
+emission_shape = 2
+emission_sphere_radius = 70.68
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 89.29
+flatness = 0.2
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 31.41
+initial_velocity_max = 31.41
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.15
+color_ramp = SubResource("GradientTexture1D_mdk42")
+hue_variation_curve = SubResource("CurveTexture_hih1l")
+anim_speed_min = 1.0
+anim_speed_max = 2.93
+
+[sub_resource type="Gradient" id="Gradient_utgs2"]
+offsets = PackedFloat32Array(0.00332226, 0.291339, 0.448505, 0.604651)
+colors = PackedColorArray(1, 1, 1, 0.168627, 1, 0.341176, 1, 1, 1, 1, 1, 0.439216, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ipj5"]
+gradient = SubResource("Gradient_utgs2")
+
+[sub_resource type="Curve" id="Curve_aefhx"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_n5ehi"]
+curve = SubResource("Curve_aefhx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ej5jp"]
+emission_shape = 2
+emission_sphere_radius = 70.68
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 89.29
+flatness = 0.2
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 31.41
+initial_velocity_max = 31.41
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.15
+color = Color(1, 0.905882, 1, 1)
+color_ramp = SubResource("GradientTexture1D_5ipj5")
+hue_variation_min = 0.11
+hue_variation_max = 0.11
+hue_variation_curve = SubResource("CurveTexture_n5ehi")
+anim_speed_min = 1.0
+anim_speed_max = 2.93
+
+[sub_resource type="Gradient" id="Gradient_h2c5h"]
+colors = PackedColorArray(1, 0.941176, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ro4an"]
+gradient = SubResource("Gradient_h2c5h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ymg8j"]
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(-15, 15, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_max = 5.21
+angle_min = -137.1
+angle_max = 85.7
+scale_min = 0.03
+scale_max = 0.04
+color = Color(1, 0.784314, 1, 1)
+color_ramp = SubResource("GradientTexture1D_ro4an")
+hue_variation_max = 0.1
+turbulence_noise_strength = 9.93
+
+[node name="AnimeEffects" type="Node2D"]
+
+[node name="Sparkle" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xcbya")
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_b8pnd")
+texture = ExtResource("1_htwn3")
+speed_scale = 1.25
+
+[node name="Hearts" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xcbya")
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_ej5jp")
+texture = ExtResource("2_2t0v0")
+
+[node name="SakuraPetals" type="GPUParticles2D" parent="."]
+position = Vector2(229, -7)
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_ymg8j")
+texture = ExtResource("3_1wsrn")
+lifetime = 6.0
+randomness = 0.3
