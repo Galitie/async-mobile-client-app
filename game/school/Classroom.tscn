@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwd7jkm5fs45q"]
+[gd_scene load_steps=9 format=3 uid="uid://cwd7jkm5fs45q"]
 
 [ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_pagol"]
 [ext_resource type="Script" path="res://school/Classroom.gd" id="2_ntmmt"]
 [ext_resource type="SpriteFrames" uid="uid://d0nm1rhqrdbim" path="res://characters/school_tyler_frames.tres" id="3_gy1ry"]
 [ext_resource type="Texture2D" uid="uid://c21kmku6pe51t" path="res://school/teacher.png" id="4_om5fv"]
 [ext_resource type="Texture2D" uid="uid://bupq5ck4tg2la" path="res://school/classroom_bg.jpg" id="5_whvy7"]
+[ext_resource type="Script" path="res://Portal.gd" id="6_veedu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6s7j"]
 atlas = ExtResource("4_om5fv")
@@ -79,3 +80,19 @@ offset_right = 480.0
 offset_bottom = 270.0
 texture = ExtResource("5_whvy7")
 expand_mode = 2
+
+[node name="Portal" type="Sprite2D" parent="."]
+position = Vector2(224, 80)
+script = ExtResource("6_veedu")
+cell_position = Vector2i(14, 5)
+trigger_cell = Vector2i(14, 5)
+next_map = "res://school/Lunchroom.tscn"
+next_map_cell_position = Vector2i(-2, -27)
+
+[node name="Portal2" type="Sprite2D" parent="."]
+position = Vector2(224, 96)
+script = ExtResource("6_veedu")
+cell_position = Vector2i(14, 6)
+trigger_cell = Vector2i(14, 6)
+next_map = "res://school/Lunchroom.tscn"
+next_map_cell_position = Vector2i(-2, -27)
