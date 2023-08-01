@@ -9,6 +9,7 @@ Check yes on notes or not
 Tyler quiz
 Class ends
 Confession
+--
 Last battle
 Ride off into sunset
 End game
@@ -56,6 +57,7 @@ Fake HP bar
 Characters speak outloud in japanese during anime section (words in english)
 Box puzzle but with school kids/bullies
 Or fetch quest
+Students blocking the hallway will hang in the hallway after lunch and you can chat with them
 
 
 -- First Playtest Results --
