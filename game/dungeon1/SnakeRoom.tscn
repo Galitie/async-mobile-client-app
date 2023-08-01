@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4dpmr2px742d"]
+[gd_scene load_steps=12 format=3 uid="uid://b4dpmr2px742d"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ebpfi"]
 [ext_resource type="Script" path="res://dungeon1/SnakeRoom.gd" id="2_mu7jb"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://du0o4wbfr08m7" path="res://dungeon1/ladder.wav" id="6_h8yoq"]
 [ext_resource type="Texture2D" uid="uid://ccqgwrlkqmepc" path="res://school/school_tiles.png" id="7_0j38i"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="7_olexb"]
+[ext_resource type="Script" path="res://Portal.gd" id="8_kh1ov"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vi5j1"]
 texture = ExtResource("7_0j38i")
@@ -595,3 +596,19 @@ texture = SubResource("AtlasTexture_fe45g")
 [node name="DoorTimer" type="Timer" parent="Bathroom"]
 wait_time = 4.0
 one_shot = true
+
+[node name="Portal" type="Sprite2D" parent="."]
+position = Vector2(256, -3520)
+script = ExtResource("8_kh1ov")
+cell_position = Vector2i(16, -220)
+trigger_cell = Vector2i(16, -220)
+next_map = "res://school/Hallway.tscn"
+next_map_cell_position = Vector2i(-1, 3)
+
+[node name="Portal2" type="Sprite2D" parent="."]
+position = Vector2(256, -3504)
+script = ExtResource("8_kh1ov")
+cell_position = Vector2i(16, -219)
+trigger_cell = Vector2i(16, -219)
+next_map = "res://school/Hallway.tscn"
+next_map_cell_position = Vector2i(-1, 3)
