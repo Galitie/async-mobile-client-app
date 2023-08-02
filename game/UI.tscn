@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c46pvmkujapqt"]
+[gd_scene load_steps=14 format=3 uid="uid://c46pvmkujapqt"]
 
 [ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="1_6jg07"]
 [ext_resource type="Script" path="res://UI.gd" id="1_rilyt"]
 [ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="2_lah2c"]
 [ext_resource type="Script" path="res://Notif.gd" id="3_vgjtm"]
 [ext_resource type="AudioStream" uid="uid://wtottilo3cxg" path="res://notif.mp3" id="5_o17gr"]
+[ext_resource type="Texture2D" uid="uid://co6ou5r6vocna" path="res://school/portraits/teacher.png" id="6_xfgv6"]
 
 [sub_resource type="Animation" id="Animation_38kyq"]
 length = 0.001
@@ -107,6 +108,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="LeftSpeaker" type="TextureRect" parent="Screen"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -191.0
+offset_right = 186.0
+grow_vertical = 0
+texture = ExtResource("6_xfgv6")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="RightSpeaker" type="TextureRect" parent="Screen"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -186.0
+offset_top = -191.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_xfgv6")
+expand_mode = 1
+stretch_mode = 6
+flip_h = true
 
 [node name="MessageBox" parent="Screen" instance=ExtResource("1_6jg07")]
 layout_mode = 1

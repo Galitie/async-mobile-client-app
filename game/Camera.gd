@@ -6,4 +6,5 @@ func SetTarget(_target):
 	target = _target
 
 func _process(delta):
-	transform.origin = lerp(transform.origin, target.transform.origin, 0.2)
+	if target != null:
+		transform.origin = lerp(transform.origin, target.transform.origin, 0.2)

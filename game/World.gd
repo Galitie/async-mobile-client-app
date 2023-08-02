@@ -190,6 +190,8 @@ func _process(delta):
 			if !battle:
 				ResumeWorld()
 		else:
+			UI.left_speaker.texture = current_message.left_speaker
+			UI.right_speaker.texture = current_message.right_speaker
 			UI.message_box.SetText(true, current_message.content, current_message.speaker)
 			if current_message.signal_timing == Message.SignalTiming.APPEAR:
 				current_map.emit_signal(current_message.message_signal, current_message.message_args)
@@ -199,6 +201,8 @@ func SetMessageQueue(messages):
 	reading = true
 	message_queue = messages.duplicate()
 	current_message = message_queue.pop_front()
+	UI.left_speaker.texture = current_message.left_speaker
+	UI.right_speaker.texture = current_message.right_speaker
 	UI.message_box.Show(current_message.content, current_message.speaker)
 	if current_message.signal_timing == Message.SignalTiming.APPEAR:
 		current_map.emit_signal(current_message.message_signal, current_message.message_args)
@@ -221,8 +225,8 @@ func _portalEntered(_next_map, _spawn_position):
 	spawn_position = Vector2i.ZERO
 	$Camera2D.transform.origin = characters[Game.HOST_IP].transform.origin
 	UI.transition.get_node("AnimationPlayer").play("fade_in")
+	current_map.init()
 	await get_tree().create_timer(0.4).timeout
-	ResumeWorld()
 
 func PauseWorld():
 	paused = true

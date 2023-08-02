@@ -19,6 +19,8 @@ var above_ground = false
 
 var ambience = load("res://dungeon1/wind.ogg")
 
+var anime_text_box_texture = load("res://drop_box_anime.png")
+
 @onready var door_timer = $Bathroom/DoorTimer
 
 func _ready():
@@ -73,6 +75,8 @@ func _aboveGround(packet):
 	get_parent().world_prompt.data["style"] = "cute"
 	Game.SendPromptToUsers(get_parent().world_prompt, false)
 	door_timer.start()
+	
+	UI.message_box.texture = anime_text_box_texture
 	
 func _openDoor():
 	$Bathroom/BathroomDoor.visible = false

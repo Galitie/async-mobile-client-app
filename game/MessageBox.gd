@@ -26,6 +26,8 @@ func Hide():
 		$Icon.visible = false
 		$Dialogue.visible = false
 		$AnimationPlayer.play("disappear")
+		UI.left_speaker.visible = false
+		UI.right_speaker.visible = false
 	
 func SetText(explicit, content, _speaker_name = "", _icon_region = null):
 	message = content
@@ -38,6 +40,8 @@ func SetText(explicit, content, _speaker_name = "", _icon_region = null):
 			$Icon.visible = true
 			$Icon/Name.text = "[center]" + speaker_name
 			$Dialogue.visible = true
+			UI.left_speaker.visible = true
+			UI.right_speaker.visible = true
 		else:
 			$Info.text = "[center]" + message
 			$Info.visible = true

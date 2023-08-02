@@ -53,7 +53,7 @@ layer_3/tile_data = PackedInt32Array(589823, 196608, 24, 655359, 196608, 25, 720
 script = ExtResource("2_ntmmt")
 
 [node name="Tyler" type="AnimatedSprite2D" parent="."]
-position = Vector2(79.5, 205)
+position = Vector2(79.5, 142)
 sprite_frames = ExtResource("3_gy1ry")
 animation = &"walk_north"
 offset = Vector2(8.5, 1)
