@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqkryy226dp68"]
+
+[ext_resource type="Texture2D" uid="uid://c5sotrltr17bs" path="res://school/Outside_sakura_tree.png" id="1_f4cdc"]
+[ext_resource type="Texture2D" uid="uid://dmm8rscpko6pt" path="res://battle/flameTexture.png" id="2_kt844"]
+
+[sub_resource type="Gradient" id="Gradient_1e2k7"]
+colors = PackedColorArray(1, 0.941176, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ro4an"]
+gradient = SubResource("Gradient_1e2k7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nribt"]
+emission_shape = 3
+emission_box_extents = Vector3(400, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(-10, 10, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_max = 5.21
+angle_min = -137.1
+angle_max = 85.7
+scale_min = 0.03
+scale_max = 0.04
+color = Color(1, 0.784314, 1, 1)
+color_ramp = SubResource("GradientTexture1D_ro4an")
+hue_variation_max = 0.1
+turbulence_noise_strength = 9.93
+
+[node name="ConfessionScene" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = 526.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_f4cdc")
+expand_mode = 1
+
+[node name="SakuraPetals" type="GPUParticles2D" parent="."]
+position = Vector2(446, -22)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_nribt")
+texture = ExtResource("2_kt844")
+lifetime = 9.0
+randomness = 0.3

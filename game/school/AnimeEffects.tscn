@@ -83,7 +83,7 @@ anim_speed_max = 2.93
 [sub_resource type="Gradient" id="Gradient_h2c5h"]
 colors = PackedColorArray(1, 0.941176, 1, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ro4an"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mhga0"]
 gradient = SubResource("Gradient_h2c5h")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ymg8j"]
@@ -99,7 +99,7 @@ angle_max = 85.7
 scale_min = 0.03
 scale_max = 0.04
 color = Color(1, 0.784314, 1, 1)
-color_ramp = SubResource("GradientTexture1D_ro4an")
+color_ramp = SubResource("GradientTexture1D_mhga0")
 hue_variation_max = 0.1
 turbulence_noise_strength = 9.93
 
@@ -146,6 +146,7 @@ lifetime = 6.0
 randomness = 0.3
 
 [node name="Angry" type="GPUParticles2D" parent="."]
+emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_0yiks")
 texture = ExtResource("4_l6st1")
