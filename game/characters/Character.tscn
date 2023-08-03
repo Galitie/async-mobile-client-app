@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cfx0rhlafo6nr" path="res://Emoji.tscn" id="3_fjby6"]
 [ext_resource type="Texture2D" uid="uid://b0jyvrgdegiuy" path="res://characters/emoji.png" id="4_wj73h"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nn3lk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyyan"]
 resource_local_to_scene = true
 atlas = ExtResource("4_wj73h")
 region = Rect2(0, 0, 32, 32)
@@ -21,4 +21,4 @@ one_shot = true
 
 [node name="Emoji" parent="." instance=ExtResource("3_fjby6")]
 position = Vector2(9, -10)
-texture = SubResource("AtlasTexture_nn3lk")
+texture = SubResource("AtlasTexture_qyyan")

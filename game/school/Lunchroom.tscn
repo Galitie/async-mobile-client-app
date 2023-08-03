@@ -144,7 +144,7 @@ region_enabled = true
 region_rect = Rect2(40.3651, 18.1826, 60.8565, 91.6604)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(-1, -29)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(40.365, 18.183, 60.856, 91.66)
 interact_signal = "pushCrate"
 
 [node name="Crate2" type="Sprite2D" parent="."]
@@ -157,7 +157,7 @@ region_enabled = true
 region_rect = Rect2(43.8212, 12.7048, 54.846, 100.676)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(0, -28)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(43.821, 12.705, 54.846, 100.676)
 interact_signal = "pushCrate"
 
 [node name="Crate3" type="Sprite2D" parent="."]
@@ -170,7 +170,7 @@ region_enabled = true
 region_rect = Rect2(50.583, 26.2285, 41.3223, 88.6552)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(1, -29)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(50.583, 26.229, 41.322, 88.655)
 interact_signal = "pushCrate"
 
 [node name="Crate4" type="Sprite2D" parent="."]
@@ -183,7 +183,7 @@ region_enabled = true
 region_rect = Rect2(39.3133, 27.7311, 61.6078, 83.3959)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(2, -28)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(39.313, 27.731, 61.608, 83.396)
 interact_signal = "pushCrate"
 
 [node name="Crate5" type="Sprite2D" parent="."]
@@ -196,7 +196,7 @@ region_enabled = true
 region_rect = Rect2(45.3239, 11.9535, 54.0947, 96.9196)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(3, -29)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(45.324, 11.953, 54.095, 96.92)
 interact_signal = "pushCrate"
 
 [node name="Crate6" type="Sprite2D" parent="."]
@@ -209,7 +209,7 @@ region_enabled = true
 region_rect = Rect2(42.3186, 26.2285, 58.6026, 87.1525)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(-1, -30)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(42.319, 26.229, 58.603, 87.152)
 interact_signal = "pushCrate"
 
 [node name="Crate7" type="Sprite2D" parent="."]
@@ -222,7 +222,7 @@ region_enabled = true
 region_rect = Rect2(34.8055, 133.666, 69.8723, 84.8986)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(0, -31)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(34.806, 133.666, 69.872, 84.899)
 interact_signal = "pushCrate"
 
 [node name="Crate8" type="Sprite2D" parent="."]
@@ -235,7 +235,7 @@ region_enabled = true
 region_rect = Rect2(46.8265, 133.666, 51.0894, 87.9038)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(1, -30)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(46.826, 133.666, 51.089, 87.904)
 interact_signal = "pushCrate"
 
 [node name="Crate9" type="Sprite2D" parent="."]
@@ -248,7 +248,7 @@ region_enabled = true
 region_rect = Rect2(51.3344, 142.682, 43.5763, 81.142)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(2, -31)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(51.334, 142.682, 43.576, 81.142)
 interact_signal = "pushCrate"
 
 [node name="Crate10" type="Sprite2D" parent="."]
@@ -261,7 +261,7 @@ region_enabled = true
 region_rect = Rect2(38.562, 143.434, 66.1157, 76.6341)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(3, -30)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(38.562, 143.434, 66.116, 76.634)
 interact_signal = "pushCrate"
 
 [node name="Crate11" type="Sprite2D" parent="."]
@@ -274,7 +274,7 @@ region_enabled = true
 region_rect = Rect2(48.9159, 141.931, 53.3434, 81.8933)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(-1, -32)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(48.916, 141.931, 53.343, 81.893)
 interact_signal = "pushCrate"
 
 [node name="Crate12" type="Sprite2D" parent="."]
@@ -287,7 +287,7 @@ region_enabled = true
 region_rect = Rect2(40.8159, 139.677, 60.1052, 82.6446)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(1, -32)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(40.816, 139.677, 60.105, 82.645)
 interact_signal = "pushCrate"
 
 [node name="Crate13" type="Sprite2D" parent="."]
@@ -300,5 +300,5 @@ region_enabled = true
 region_rect = Rect2(192.582, 17.2127, 55.5973, 90.9091)
 script = ExtResource("6_ygqva")
 cell_position = Vector2i(3, -32)
-interact_sprite = Rect2(175, 104, 19, 24)
+interact_sprite = Rect2(192.582, 17.213, 55.597, 90.909)
 interact_signal = "pushCrate"
