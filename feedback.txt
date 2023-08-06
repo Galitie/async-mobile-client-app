@@ -46,7 +46,6 @@ Battle animations
 Battle sounds
 Interactive sounds - pushing, clicking, choosing
 Footsteps
-Sparkles when exiting the Bathroom
 Anime endings/replacements for messages, Kawaii-desu, Baka!, Sugoi! Nani?!, Tyler-kun
 Jury/court room ending, players get sent back to dungeon
 Real winner, who has most Tyler points is safe from jail
