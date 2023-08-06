@@ -143,6 +143,7 @@ textarea::placeholder {
     background-color: var(--buttonColor);
     min-height: unset;
     border: .10em solid white;
+    padding-bottom: 1em;
 }
 
 .disabled{
