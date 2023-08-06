@@ -20,7 +20,7 @@ var above_ground = false
 
 var ambience = load("res://dungeon1/wind.ogg")
 
-var anime_text_box_texture = load("res://drop_box_anime.png")
+var anime_text_box_texture = load("res://text_box_anime.png")
 
 @onready var door_timer = $Bathroom/DoorTimer
 
