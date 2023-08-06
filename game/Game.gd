@@ -56,7 +56,9 @@ var wait_prompt = Prompt.new("Please wait...", "wait", "none", 0.0, false, {"sma
 
 # TTS voices need to be installed from either the Windows speech package downloader in settings or from the
 # runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
-# Then the registry key for each voice needs to be exported, and their paths changed from OneSpeech to
+# Open registry editor app from start menu
+# Search local machine for Speech and Speech_OneCore
+# Then the registry key for each voice needs to be exported, and their paths changed from Speech_OneCore to
 # Speech and reimported in order to be recognized by Godot
 @onready var voices = DisplayServer.tts_get_voices()
 
