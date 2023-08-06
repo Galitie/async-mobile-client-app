@@ -9,7 +9,7 @@
     --textShadowColor: -.1em .1em black;
     --backgroundShadowColor: -10px 10px black;
     --borderRadius: 0em;
-    --gap: 3em;
+    --gap: 2em;
 }
 
   /******************************************
@@ -34,7 +34,7 @@ html {
 
 body{
     border: 1em solid white;
-    min-height:90dvh;
+    min-height:100dvh;
     max-height:100dvh;
     display: flex;
     flex-direction: column;
