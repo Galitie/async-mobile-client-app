@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc7xbqpdknuxo"]
+[gd_scene load_steps=10 format=3 uid="uid://dc7xbqpdknuxo"]
 
 [ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_bfc1m"]
 [ext_resource type="Script" path="res://school/Hallway.gd" id="2_kvksm"]
 [ext_resource type="Script" path="res://Portal.gd" id="4_oge2i"]
 [ext_resource type="Texture2D" uid="uid://qiwvou2tbyd0" path="res://school/student1.png" id="4_rberj"]
+[ext_resource type="Script" path="res://Interactable.gd" id="5_i7nw5"]
 [ext_resource type="Texture2D" uid="uid://dxvdhvr57abs0" path="res://school/student2.png" id="6_me4l6"]
 [ext_resource type="Texture2D" uid="uid://p031wvxnf8y2" path="res://school/student3.png" id="7_bdh35"]
 [ext_resource type="Texture2D" uid="uid://vny3sww0r4hx" path="res://school/student4.png" id="8_ck77i"]
@@ -58,7 +59,7 @@ script = ExtResource("4_oge2i")
 cell_position = Vector2i(-2, -28)
 trigger_cell = Vector2i(-2, -28)
 next_map = "res://school/Classroom.tscn"
-next_map_cell_position = Vector2i(14, 5)
+next_map_cell_position = Vector2i(100, 100)
 
 [node name="Portal2" type="Sprite2D" parent="."]
 position = Vector2(-32, -448)
@@ -66,49 +67,59 @@ script = ExtResource("4_oge2i")
 cell_position = Vector2i(-2, -28)
 trigger_cell = Vector2i(-2, -27)
 next_map = "res://school/Classroom.tscn"
-next_map_cell_position = Vector2i(14, 5)
+next_map_cell_position = Vector2i(100, 100)
 
 [node name="npc1" type="Sprite2D" parent="."]
 position = Vector2(-16, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_rberj")
-centered = false
-offset = Vector2(-8, -44)
+offset = Vector2(19, -6)
 region_enabled = true
-region_rect = Rect2(40.3651, 18.1826, 60.8565, 91.6604)
+region_rect = Rect2(40, 18, 61, 92)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(-1, -32)
+interact_sprite = Rect2(40, 18, 61, 92)
 
 [node name="npc2" type="Sprite2D" parent="."]
 position = Vector2(0, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("6_me4l6")
-centered = false
-offset = Vector2(0, -50)
+offset = Vector2(19, -7)
 region_enabled = true
-region_rect = Rect2(43.8212, 12.7048, 54.846, 100.676)
+region_rect = Rect2(44, 13, 55, 101)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(0, -32)
+interact_sprite = Rect2(44, 13, 55, 101)
 
 [node name="npc3" type="Sprite2D" parent="."]
 position = Vector2(16, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_bdh35")
-centered = false
-offset = Vector2(2, -36)
+offset = Vector2(19, 0)
 region_enabled = true
-region_rect = Rect2(50.583, 26.2285, 41.3223, 88.6552)
+region_rect = Rect2(51, 26, 41, 89)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(1, -32)
+interact_sprite = Rect2(51, 26, 41, 89)
 
 [node name="npc4" type="Sprite2D" parent="."]
 position = Vector2(32, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_ck77i")
-centered = false
-offset = Vector2(-8, -34)
+offset = Vector2(18, 0)
 region_enabled = true
-region_rect = Rect2(39.3133, 27.7311, 61.6078, 83.3959)
+region_rect = Rect2(39, 28, 62, 83)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(2, -32)
+interact_sprite = Rect2(39, 28, 62, 83)
 
 [node name="npc5" type="Sprite2D" parent="."]
 position = Vector2(48, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("9_pb51q")
-centered = false
-offset = Vector2(0, -46)
+offset = Vector2(20, -8)
 region_enabled = true
-region_rect = Rect2(45.3239, 11.9535, 54.0947, 96.9196)
+region_rect = Rect2(45, 12, 54, 97)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(3, -32)
+interact_sprite = Rect2(45, 12, 54, 97)
