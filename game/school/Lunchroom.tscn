@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bqqtn0o016c1s"]
 
 [ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_nwgg6"]
-[ext_resource type="Script" path="res://school/Hallway.gd" id="2_acm47"]
+[ext_resource type="Script" path="res://school/Lunchroom.gd" id="2_4gtnr"]
 [ext_resource type="Texture2D" uid="uid://3g0rnmtnv5cx" path="res://school/food.png" id="3_0gh5j"]
 [ext_resource type="Script" path="res://Portal.gd" id="4_bfl5d"]
 [ext_resource type="Texture2D" uid="uid://qiwvou2tbyd0" path="res://school/student1.png" id="5_u86c0"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c8osr24w457qa" path="res://school/student7.png" id="11_3vy2r"]
 [ext_resource type="Texture2D" uid="uid://bnvcmen3bdr45" path="res://school/student6.png" id="12_an80f"]
 
-[node name="Hallway" type="TileMap"]
+[node name="Lunchroom" type="TileMap"]
 y_sort_enabled = true
 tile_set = ExtResource("1_nwgg6")
 format = 2
@@ -48,7 +48,7 @@ layer_4/y_sort_enabled = false
 layer_4/y_sort_origin = 0
 layer_4/z_index = -1
 layer_4/tile_data = PackedInt32Array(-1835010, 131072, 18, -1769474, 131072, 19, -1703938, 131072, 20, -1638402, 131072, 21, -3604486, 0, 26, -4063237, 0, 26, -3604485, 65536, 26, -4063236, 65536, 26, -3604484, 131072, 26, -4063235, 131072, 26, -3604483, 0, 26, -4063234, 0, 26, -3604482, 65536, 26, -4063233, 65536, 26, -4128768, 131072, 26, -4128767, 0, 26, -4128766, 65536, 26, -4128765, 131072, 26, -3670013, 0, 26, -4128764, 0, 26, -3670012, 65536, 26, -4128763, 65536, 26, -3670011, 131072, 26, -4128762, 131072, 26, -3670010, 0, 26, -4128761, 0, 26, -3670009, 65536, 26, -4128760, 65536, 26, -3670008, 131072, 26, -4128759, 131072, 26, -3604481, 131072, 26)
-script = ExtResource("2_acm47")
+script = ExtResource("2_4gtnr")
 
 [node name="sushi2" type="Sprite2D" parent="."]
 position = Vector2(65, -1012)
