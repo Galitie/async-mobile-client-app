@@ -11,6 +11,7 @@ signal map_above_ground
 @onready var sfx = $SFX
 @onready var light = $PointLight
 @onready var light_color = light.color
+@onready var sparkle_effect = $Bathroom/Sparkle
 
 var climbing_ladder = false
 var just_entered = true
@@ -75,12 +76,14 @@ func _aboveGround(packet):
 	get_parent().world_prompt.data["style"] = "cute"
 	Game.SendPromptToUsers(get_parent().world_prompt, false)
 	door_timer.start()
+	sparkle_effect.emitting = true
 	
 	UI.message_box.texture = anime_text_box_texture
 	
 func _openDoor():
 	$Bathroom/BathroomDoor.visible = false
 	erase_cell(Game.collision_layer, Vector2i(0, -222))
+	
 
 func update(delta):
 	if !above_ground:

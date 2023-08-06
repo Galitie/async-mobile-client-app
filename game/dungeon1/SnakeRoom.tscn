@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4dpmr2px742d"]
+[gd_scene load_steps=19 format=3 uid="uid://b4dpmr2px742d"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ebpfi"]
 [ext_resource type="Script" path="res://dungeon1/SnakeRoom.gd" id="2_mu7jb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ccqgwrlkqmepc" path="res://school/school_tiles.png" id="7_0j38i"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="7_olexb"]
 [ext_resource type="Script" path="res://Portal.gd" id="8_kh1ov"]
+[ext_resource type="Texture2D" uid="uid://cn87nb6cjoh07" path="res://school/sparkle_tileset.png" id="8_mln3m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vi5j1"]
 texture = ExtResource("7_0j38i")
@@ -462,6 +463,44 @@ sources/0 = SubResource("TileSetAtlasSource_vi5j1")
 atlas = ExtResource("7_0j38i")
 region = Rect2(334, 304, 20, 48)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_llu8s"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_oq4t6"]
+offsets = PackedFloat32Array(0.00332226, 0.312292, 0.463415, 0.604651)
+colors = PackedColorArray(1, 1, 1, 0.168627, 1, 1, 0.392157, 1, 1, 1, 1, 0.713726, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_enx0h"]
+gradient = SubResource("Gradient_oq4t6")
+
+[sub_resource type="Curve" id="Curve_atpyp"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6ccp4"]
+curve = SubResource("Curve_atpyp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a12ms"]
+emission_shape = 2
+emission_sphere_radius = 27.02
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, -1, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.1
+scale_max = 0.15
+color_ramp = SubResource("GradientTexture1D_enx0h")
+hue_variation_min = -1.0
+hue_variation_max = -1.0
+hue_variation_curve = SubResource("CurveTexture_6ccp4")
+anim_speed_min = 2.76
+anim_speed_max = 5.0
+
 [node name="SnakeRoom" type="TileMap"]
 y_sort_enabled = true
 tile_set = ExtResource("1_ebpfi")
@@ -592,6 +631,19 @@ layer_4/tile_data = PackedInt32Array(-14548976, 393216, 13, -14483440, 393216, 1
 z_index = 3
 position = Vector2(8, -3576)
 texture = SubResource("AtlasTexture_fe45g")
+
+[node name="Sparkle" type="GPUParticles2D" parent="Bathroom"]
+z_index = 3
+material = SubResource("CanvasItemMaterial_llu8s")
+position = Vector2(8, -3565)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_a12ms")
+texture = ExtResource("8_mln3m")
+lifetime = 7.0
+one_shot = true
+speed_scale = 3.06
+explosiveness = 0.07
 
 [node name="DoorTimer" type="Timer" parent="Bathroom"]
 wait_time = 4.0
