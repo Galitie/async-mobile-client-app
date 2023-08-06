@@ -61,6 +61,7 @@ func _wait_for_intro(args):
 	get_intro()
 
 func get_intro():
+	# A delay is needed to prevent the first message in queue being skipped when switching queues on the same frame
 	await get_tree().create_timer(1.0).timeout
 	var student = transfer_students[transfer_student_index]
 	get_parent().SetMessageQueue(intro_messages[student.character_data.name])
