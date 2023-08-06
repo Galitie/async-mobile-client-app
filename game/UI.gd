@@ -5,3 +5,4 @@ extends CanvasLayer
 @onready var transition = $Screen/Transition
 @onready var left_speaker = $Screen/LeftSpeaker
 @onready var right_speaker = $Screen/RightSpeaker
+@onready var background = $Screen/Background

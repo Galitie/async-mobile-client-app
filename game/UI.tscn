@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c46pvmkujapqt"]
+[gd_scene load_steps=15 format=3 uid="uid://c46pvmkujapqt"]
 
 [ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="1_6jg07"]
 [ext_resource type="Script" path="res://UI.gd" id="1_rilyt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Notif.gd" id="3_vgjtm"]
 [ext_resource type="AudioStream" uid="uid://wtottilo3cxg" path="res://notif.mp3" id="5_o17gr"]
 [ext_resource type="Texture2D" uid="uid://co6ou5r6vocna" path="res://school/portraits/teacher.png" id="6_xfgv6"]
+[ext_resource type="Texture2D" uid="uid://bupq5ck4tg2la" path="res://school/classroom_bg.jpg" id="7_7ynyr"]
 
 [sub_resource type="Animation" id="Animation_38kyq"]
 length = 0.001
@@ -108,6 +109,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Screen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_7ynyr")
+expand_mode = 1
 
 [node name="LeftSpeaker" type="TextureRect" parent="Screen"]
 visible = false

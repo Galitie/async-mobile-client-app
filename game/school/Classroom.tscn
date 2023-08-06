@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwd7jkm5fs45q"]
+[gd_scene load_steps=8 format=3 uid="uid://cwd7jkm5fs45q"]
 
 [ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_pagol"]
 [ext_resource type="Script" path="res://school/Classroom.gd" id="2_ntmmt"]
 [ext_resource type="SpriteFrames" uid="uid://d0nm1rhqrdbim" path="res://characters/school_tyler_frames.tres" id="3_gy1ry"]
 [ext_resource type="Texture2D" uid="uid://c21kmku6pe51t" path="res://school/teacher.png" id="4_om5fv"]
-[ext_resource type="Texture2D" uid="uid://bupq5ck4tg2la" path="res://school/classroom_bg.jpg" id="5_whvy7"]
 [ext_resource type="Script" path="res://Portal.gd" id="6_veedu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6s7j"]
@@ -63,23 +62,6 @@ position = Vector2(176, 48)
 sprite_frames = SubResource("SpriteFrames_o5p38")
 animation = &"walk_south"
 offset = Vector2(7.5, -7)
-
-[node name="Viewport" type="Control" parent="."]
-visible = false
-z_index = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Background" type="TextureRect" parent="Viewport"]
-layout_mode = 1
-offset_right = 480.0
-offset_bottom = 270.0
-texture = ExtResource("5_whvy7")
-expand_mode = 2
 
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(224, 80)
