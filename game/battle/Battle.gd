@@ -15,6 +15,7 @@ signal user_disconnected
 @onready var enemy = $Enemy
 @onready var move_effects = $MoveEffects
 
+var quack_sound = load("res://battle/quack.mp3")
 var battle_music = load("res://battle/battle.mp3")
 var victory_music = load("res://battle/victory.mp3")
 
@@ -74,7 +75,10 @@ func _process(delta):
 			battle_info.Show("Tyler used " + moves[cursor_position].name + "!!!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
 			var move = move_effects.get_children().pick_random()
+			var moveSound = move.get_child(0,true)
+			moveSound.play()
 			move.emitting = true
+			$Enemy/AnimationPlayer.play("onhit")
 			battle_info.Hide()
 			await get_tree().create_timer(1.5).timeout
 			turn += 1
