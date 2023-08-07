@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b3tvrwc41yiyl"]
+[gd_scene load_steps=37 format=3 uid="uid://b3tvrwc41yiyl"]
 
 [ext_resource type="Texture2D" uid="uid://cdb1mpd1bbd5e" path="res://battle/lineTexture.png" id="2_3u2sb"]
 [ext_resource type="Texture2D" uid="uid://dmm8rscpko6pt" path="res://battle/flameTexture.png" id="2_6kemj"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://dkyin7thywb0b" path="res://battle/whoosh.mp3" id="5_avyed"]
 [ext_resource type="AudioStream" uid="uid://dvw0dq722b8vp" path="res://battle/quack.mp3" id="6_u5usp"]
 [ext_resource type="AudioStream" uid="uid://hun4k0bscmmh" path="res://battle/thunder.mp3" id="9_80pxk"]
+[ext_resource type="Texture2D" uid="uid://bi6w6mo46pmvg" path="res://battle/Supernova.png" id="10_0ci00"]
+[ext_resource type="AudioStream" uid="uid://5jk4nivxt6kt" path="res://battle/magic.mp3" id="11_ouvlk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vr28n"]
 blend_mode = 1
@@ -165,6 +167,23 @@ turbulence_noise_strength = 4.12
 turbulence_noise_speed_random = 3.95
 anim_speed_max = 2.5
 
+[sub_resource type="Gradient" id="Gradient_6c406"]
+offsets = PackedFloat32Array(0, 0.304795, 0.458904, 0.69863, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.568627, 1, 1, 1, 0.815686, 1, 1, 1, 0.833246, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eon4n"]
+gradient = SubResource("Gradient_6c406")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u7ul0"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, -20, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.75
+scale_max = 0.75
+color_ramp = SubResource("GradientTexture1D_eon4n")
+
 [node name="MoveEffects" type="Node2D"]
 
 [node name="Fire" type="GPUParticles2D" parent="."]
@@ -237,3 +256,15 @@ randomness = 0.87
 [node name="ThunderSound" type="AudioStreamPlayer2D" parent="Lightning"]
 stream = ExtResource("9_80pxk")
 volume_db = -15.0
+
+[node name="Supernova" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_u7ul0")
+texture = ExtResource("10_0ci00")
+lifetime = 2.0
+one_shot = true
+
+[node name="SuperSound" type="AudioStreamPlayer" parent="Supernova"]
+stream = ExtResource("11_ouvlk")
+volume_db = -20.0
