@@ -19,7 +19,6 @@ function setStyleDatingSim() {
   rootTheme.style.setProperty("--textAreaTextColor", "Purple");
   rootTheme.style.setProperty("--paddingBottom", "5%");
 }
-setStyleDatingSim();
 
 // ************************* Screens *************************** //
 
