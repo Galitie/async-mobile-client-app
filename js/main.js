@@ -8,7 +8,7 @@ function setStyleDatingSim() {
   isDatingSimTime = true;
   let rootTheme = document.querySelector(":root");
   rootTheme.style.setProperty("--fontFamily", "'Lilita One', cursive");
-  rootTheme.style.setProperty("--fontSize", "5vw");
+  rootTheme.style.setProperty("--fontSize", "6vw");
   rootTheme.style.setProperty("--backgroundColor", "hotpink");
   rootTheme.style.setProperty("--buttonColor", "purple");
   rootTheme.style.setProperty("--placeholderColor", "pink");
@@ -16,7 +16,10 @@ function setStyleDatingSim() {
   rootTheme.style.setProperty("--backgroundShadowColor", "-10px 10px purple");
   rootTheme.style.setProperty("--borderRadius", ".5em");
   rootTheme.style.setProperty("--gap", "1em");
+  rootTheme.style.setProperty("--textAreaTextColor", "Purple");
+  rootTheme.style.setProperty("--paddingBottom", "5%");
 }
+setStyleDatingSim();
 
 // ************************* Screens *************************** //
 

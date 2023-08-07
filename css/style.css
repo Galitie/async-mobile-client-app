@@ -10,6 +10,8 @@
     --backgroundShadowColor: -10px 10px black;
     --borderRadius: 0em;
     --gap: 2em;
+    --textAreaTextColor: black;
+    --paddingBottom: 2%;
 }
 
   /******************************************
@@ -96,6 +98,7 @@ button:active {
 
 h1{
     margin: unset;
+    font-size: xx-large;
 }
 
 textarea {
@@ -106,10 +109,9 @@ textarea {
     padding-top: 1em;
     border: .25em solid white;
     text-shadow: none;
-    color:black;
+    color: var(--textAreaTextColor);
     box-shadow: var(--backgroundShadowColor);
     resize:none;
-
 }
 
 textarea::placeholder {
@@ -121,7 +123,7 @@ textarea::placeholder {
   /*******************************************/
 
 .smallInput {
-    min-height: 3em;
+    min-height: 3.5em;
 }
 
 .bigInput {
@@ -142,8 +144,9 @@ textarea::placeholder {
     font-size: 8vw;
     background-color: var(--buttonColor);
     min-height: unset;
+    padding: var(--paddingBottom) 0;
+    padding-bottom: 5%;
     border: .10em solid white;
-    padding-bottom: 1em;
 }
 
 .disabled{
