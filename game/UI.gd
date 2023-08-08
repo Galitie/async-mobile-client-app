@@ -6,3 +6,4 @@ extends CanvasLayer
 @onready var left_speaker = $Screen/LeftSpeaker
 @onready var right_speaker = $Screen/RightSpeaker
 @onready var background = $Screen/Background
+@onready var love_note = $Screen/LoveNote
