@@ -50,68 +50,101 @@ layer_4/z_index = -1
 layer_4/tile_data = PackedInt32Array(-1835010, 131072, 18, -1769474, 131072, 19, -1703938, 131072, 20, -1638402, 131072, 21, -3604486, 0, 26, -4063237, 0, 26, -3604485, 65536, 26, -4063236, 65536, 26, -3604484, 131072, 26, -4063235, 131072, 26, -3604483, 0, 26, -4063234, 0, 26, -3604482, 65536, 26, -4063233, 65536, 26, -4128768, 131072, 26, -4128767, 0, 26, -4128766, 65536, 26, -4128765, 131072, 26, -3670013, 0, 26, -4128764, 0, 26, -3670012, 65536, 26, -4128763, 65536, 26, -3670011, 131072, 26, -4128762, 131072, 26, -3670010, 0, 26, -4128761, 0, 26, -3670009, 65536, 26, -4128760, 65536, 26, -3670008, 131072, 26, -4128759, 131072, 26, -3604481, 131072, 26, -3538950, 786432, 5, -3538948, 917504, 5, -3538947, 786432, 5, -3538945, 917504, 5, -3604477, 786432, 5, -3604475, 917504, 5, -3604474, 786432, 5, -3604472, 917504, 5, -4063225, 786432, 5, -4063223, 917504, 5, -4063228, 786432, 5, -4063226, 917504, 5, -4063231, 786432, 5, -4063229, 917504, 5, -3997698, 786432, 5, -4063232, 917504, 5, -3997701, 786432, 5, -3997699, 917504, 5)
 script = ExtResource("2_4gtnr")
 
-[node name="sushi2" type="Sprite2D" parent="."]
-position = Vector2(65, -1012)
+[node name="sushi" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(64, -1008)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_0gh5j")
 centered = false
-offset = Vector2(0, -8)
+offset = Vector2(5, -11)
 region_enabled = true
 region_rect = Rect2(234, 69, 32, 16)
+script = ExtResource("6_ygqva")
+one_shot = true
+cell_position = Vector2i(4, -63)
+interact_signal = "eatFood"
 
-[node name="fries" type="Sprite2D" parent="."]
-position = Vector2(-29, -1012)
+[node name="fries1" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-48, -1008)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_0gh5j")
 centered = false
-offset = Vector2(0, -8)
+offset = Vector2(-5, -15)
 region_enabled = true
 region_rect = Rect2(194, 69, 32, 16)
+script = ExtResource("6_ygqva")
+one_shot = true
+cell_position = Vector2i(-3, -63)
+interact_signal = "eatFood"
 
 [node name="fries2" type="Sprite2D" parent="."]
-position = Vector2(-50, -1012)
+z_index = 1
+position = Vector2(-32, -1008)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_0gh5j")
 centered = false
-offset = Vector2(0, -8)
+offset = Vector2(5, -16)
 region_enabled = true
 region_rect = Rect2(194, 69, 32, 16)
+script = ExtResource("6_ygqva")
+one_shot = true
+cell_position = Vector2i(-2, -63)
+interact_signal = "eatFood"
 
 [node name="donut" type="Sprite2D" parent="."]
-position = Vector2(82, -899)
+z_index = 1
+position = Vector2(80, -896)
 scale = Vector2(0.375, 0.5)
 texture = ExtResource("3_0gh5j")
 centered = false
-offset = Vector2(0, -8)
+offset = Vector2(2, -12)
 region_enabled = true
 region_rect = Rect2(114, 69, 32, 16)
+script = ExtResource("6_ygqva")
+one_shot = true
+cell_position = Vector2i(5, -56)
+interact_signal = "eatFood"
 
 [node name="donut2" type="Sprite2D" parent="."]
-position = Vector2(116, -1011)
+z_index = 1
+position = Vector2(112, -1008)
 scale = Vector2(0.375, 0.5)
 texture = ExtResource("3_0gh5j")
 centered = false
-offset = Vector2(0, -8)
+offset = Vector2(11, -14)
 region_enabled = true
 region_rect = Rect2(114, 69, 32, 16)
+script = ExtResource("6_ygqva")
+one_shot = true
+cell_position = Vector2i(7, -63)
+interact_signal = "eatFood"
 
 [node name="hotdog" type="Sprite2D" parent="."]
-position = Vector2(100, -900)
+z_index = 1
+position = Vector2(-96, -896)
 scale = Vector2(0.375, 0.5)
 texture = ExtResource("3_0gh5j")
-centered = false
-offset = Vector2(0, -8)
+offset = Vector2(25, -5)
 region_enabled = true
-region_rect = Rect2(35, 67, 32, 19)
+region_rect = Rect2(35, 67, 32, 17)
+script = ExtResource("6_ygqva")
+one_shot = true
+cell_position = Vector2i(-6, -56)
+interact_signal = "eatFood"
 
 [node name="hotdog2" type="Sprite2D" parent="."]
-position = Vector2(-92, -900)
+z_index = 1
+position = Vector2(96, -896)
 scale = Vector2(0.375, 0.5)
 texture = ExtResource("3_0gh5j")
-centered = false
-offset = Vector2(0, -8)
+offset = Vector2(25, -5)
 region_enabled = true
-region_rect = Rect2(35, 67, 32, 19)
+region_rect = Rect2(35, 67, 32, 17)
+script = ExtResource("6_ygqva")
+one_shot = true
+cell_position = Vector2i(6, -56)
+interact_signal = "eatFood"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
@@ -121,10 +154,11 @@ blend_mode = 2
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(-32, -448)
 script = ExtResource("4_bfl5d")
+locked = true
 cell_position = Vector2i(-2, -28)
 trigger_cell = Vector2i(-2, -28)
 next_map = "res://school/Classroom.tscn"
-next_map_cell_position = Vector2i(14, 5)
+next_map_cell_position = Vector2i(100, 100)
 
 [node name="RestartPortal" type="Sprite2D" parent="."]
 position = Vector2(-32, -448)
@@ -137,10 +171,11 @@ next_map_cell_position = Vector2i(1, -27)
 [node name="Portal2" type="Sprite2D" parent="."]
 position = Vector2(-32, -448)
 script = ExtResource("4_bfl5d")
+locked = true
 cell_position = Vector2i(-2, -28)
 trigger_cell = Vector2i(-2, -27)
 next_map = "res://school/Classroom.tscn"
-next_map_cell_position = Vector2i(14, 6)
+next_map_cell_position = Vector2i(100, 100)
 
 [node name="Crate1" type="Sprite2D" parent="."]
 position = Vector2(-16, -464)
