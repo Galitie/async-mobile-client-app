@@ -9,23 +9,30 @@ signal map_intro
 @onready var camera = get_parent().get_node("Camera2D")
 
 var teacher_portrait = load("res://school/portraits/teacher.png")
-var tyler_portrait = load("res://school/portraits/teacher.png")
+var tyler_portrait = load("res://school/portraits/tyler.png")
+var mario_portrait = load("res://school/portraits/mario.png")
+var kermit_portrait = load("res://school/portraits/kermit.png")
+var snake_portrait = load("res://school/portraits/snake.png")
+var shadow_portrait = load("res://school/portraits/shadow.png")
+var shrek_portrait = load("res://school/portraits/shrek.png")
 
 var pre_intro_messages = [
-	Message.new("test", "welcome class", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("test", "any second now", "wait_for_intro", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
+	Message.new("test", "Welcome class~!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("test", "Tsch, I just made it!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("test", "Looks like we have some new students!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("test", "Please introduce yourself!", "wait_for_intro", Message.SignalTiming.DISAPPEAR, [], null, teacher_portrait)
 ]
 
 var intro_messages = {
 	"Mario" : [
-		Message.new("Mario", "Itsame, pee pee.", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-		Message.new("Mario", "INTRO", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-		Message.new("Mario", "and yeah", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, teacher_portrait),
+		Message.new("Mario", "Itsame ", "", Message.SignalTiming.NONE, [], mario_portrait , teacher_portrait),
+		Message.new("Mario", "INTRO", "", Message.SignalTiming.NONE, [], mario_portrait, teacher_portrait),
+		Message.new("Mario", "yahoo!", "intro_finished", Message.SignalTiming.DISAPPEAR, [], mario_portrait, teacher_portrait),
 	],
 	"Snake" : [
-		Message.new("Snake", "Eat my shagohod.", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-		Message.new("Snake", "INTRO", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-		Message.new("Snake", "and yeah", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, teacher_portrait),
+		Message.new("Snake", "Kept you waiting huh?", "", Message.SignalTiming.NONE, [], snake_portrait, teacher_portrait),
+		Message.new("Snake", "INTRO", "", Message.SignalTiming.NONE, [], snake_portrait, teacher_portrait),
+		Message.new("Snake", "Metal...gear...", "intro_finished", Message.SignalTiming.DISAPPEAR, [], snake_portrait, teacher_portrait),
 	]
 }
 
@@ -33,7 +40,7 @@ var post_intro_messages = [
 	Message.new("test", "bye bye", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/Lunchroom.tscn", Vector2i(-1, -27)], null, teacher_portrait)
 ]
 
-var intro_prompt = Game.Prompt.new("Introduce yourself to the class.", "map_intro", "countdown", 60.0, false, {"big": "いただきます！"})
+var intro_prompt = Game.Prompt.new("Introduce yourself to the class:", "map_intro", "countdown", 60.0, false, {"big": "My name is...and I..."})
 var transfer_students = []
 var transfer_student_index = 0
 var submitted_intros = 0

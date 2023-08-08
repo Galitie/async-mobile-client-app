@@ -81,6 +81,9 @@ Fake HP bar
 Characters speak outloud in japanese during anime section (words in english)
 Or fetch quest
 Students blocking the hallway will hang in the hallway after lunch and you can chat with them
+More attacks ideas:
+    - Cleo scratch attack
+    - Sonic fullscreen attack
 
 
 -- First Playtest Results --
