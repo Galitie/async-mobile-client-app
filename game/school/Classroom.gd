@@ -18,21 +18,21 @@ var shrek_portrait = load("res://school/portraits/shrek.png")
 
 var pre_intro_messages = [
 	Message.new("test", "Welcome class~!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("test", "Tsch, I just made it!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
-	Message.new("test", "Looks like we have some new students!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("test", "Please introduce yourself!", "wait_for_intro", Message.SignalTiming.DISAPPEAR, [], null, teacher_portrait)
+	Message.new("test", "Tsch, I just made it!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
+	Message.new("test", "Looks like we have some new students!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
+	Message.new("test", "Please introduce yourself!", "wait_for_intro", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
 ]
 
 var intro_messages = {
 	"Mario" : [
-		Message.new("Mario", "Itsame ", "", Message.SignalTiming.NONE, [], mario_portrait , teacher_portrait),
-		Message.new("Mario", "INTRO", "", Message.SignalTiming.NONE, [], mario_portrait, teacher_portrait),
-		Message.new("Mario", "yahoo!", "intro_finished", Message.SignalTiming.DISAPPEAR, [], mario_portrait, teacher_portrait),
+		Message.new("Mario", "Itsame ", "", Message.SignalTiming.NONE, [], null , mario_portrait),
+		Message.new("Mario", "INTRO", "", Message.SignalTiming.NONE, [], null, mario_portrait),
+		Message.new("Mario", "yahoo!", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, mario_portrait),
 	],
 	"Snake" : [
-		Message.new("Snake", "Kept you waiting huh?", "", Message.SignalTiming.NONE, [], snake_portrait, teacher_portrait),
-		Message.new("Snake", "INTRO", "", Message.SignalTiming.NONE, [], snake_portrait, teacher_portrait),
-		Message.new("Snake", "Metal...gear...", "intro_finished", Message.SignalTiming.DISAPPEAR, [], snake_portrait, teacher_portrait),
+		Message.new("Snake", "Kept you waiting huh?", "", Message.SignalTiming.NONE, [], null, snake_portrait),
+		Message.new("Snake", "INTRO", "", Message.SignalTiming.NONE, [], null, snake_portrait),
+		Message.new("Snake", "Metal...gear...", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, snake_portrait),
 	]
 }
 

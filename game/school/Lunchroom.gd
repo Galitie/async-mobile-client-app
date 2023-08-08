@@ -4,12 +4,15 @@ signal pushCrate
 signal eatFood
 
 @onready var camera = get_parent().get_node("Camera2D")
+var love_note_prompt = Game.Prompt.new("OMG write Tyler a love note!!!", "love_note_submitted", "countdown", 60.0, false, {"big": "私の心を動かしてくださいdokidoki"})
 
-var food_to_eat = 7
+const food_to_eat = 7
+var eaten_food = 0
 
 func init():
 	camera.SetTarget(get_parent().characters[Game.HOST_IP])
 	get_parent().ResumeWorld()
+	Game.SendPromptToUsers(Game.world_prompt, false)
 
 func _ready():
 	Game.bgm_player.play()
@@ -22,8 +25,10 @@ func update(delta):
 		get_parent().emit_signal("portal_entered", $RestartPortal.next_map, $RestartPortal.next_map_cell_position)
 		
 func _eatFood(character, object):
-	food_to_eat -= 1
-	if food_to_eat <= 0:
+	if !eaten_food:
+		Game.SendPromptToUsers(love_note_prompt, true)
+	eaten_food += 1
+	if eaten_food >= food_to_eat:
 		$Portal.locked = false
 		$Portal2.locked = false
 

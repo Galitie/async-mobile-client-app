@@ -9,6 +9,7 @@ signal user_disconnected
 signal sent_text
 signal add_user
 signal dice
+signal love_note_submitted
 
 signal portal_entered
 signal speak
@@ -61,6 +62,7 @@ func _ready():
 	connect("dice", _dice)
 	connect("speak", _speak)
 	connect("portal_entered", _portalEntered)
+	connect("love_note_submitted", _loveNoteSubmitted)
 	
 	var lobby_map = preload("res://dungeon1/Lobby.tscn") as PackedScene
 	current_map = lobby_map.instantiate()
@@ -177,6 +179,8 @@ func _process(delta):
 			if tts_queue.size():
 				var tts = tts_queue.pop_front()
 				DisplayServer.tts_speak(tts.content, tts.voice_id, 50, tts.pitch)
+				UI.left_speaker.texture = null
+				UI.right_speaker.texture = null
 				UI.message_box.Show(tts.content, tts.speaker_name, tts.icon_region, true)
 			elif UI.message_box.showing:
 				UI.message_box.Hide()
@@ -262,3 +266,6 @@ func _startState():
 func _endState():
 	PauseWorld()
 	visible = false
+	
+func _loveNoteSubmitted(packet):
+	Game.SendPromptToUser(world_prompt, packet["userIP"])

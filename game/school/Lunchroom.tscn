@@ -157,7 +157,7 @@ script = ExtResource("4_bfl5d")
 locked = true
 cell_position = Vector2i(-2, -28)
 trigger_cell = Vector2i(-2, -28)
-next_map = "res://school/Classroom.tscn"
+next_map = "res://school/PopQuiz.tscn"
 next_map_cell_position = Vector2i(100, 100)
 
 [node name="RestartPortal" type="Sprite2D" parent="."]
@@ -174,7 +174,7 @@ script = ExtResource("4_bfl5d")
 locked = true
 cell_position = Vector2i(-2, -28)
 trigger_cell = Vector2i(-2, -27)
-next_map = "res://school/Classroom.tscn"
+next_map = "res://school/PopQuiz.tscn"
 next_map_cell_position = Vector2i(100, 100)
 
 [node name="Crate1" type="Sprite2D" parent="."]
