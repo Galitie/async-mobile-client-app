@@ -1,3 +1,11 @@
+Tyler - Main player
+Talia
+Ryan
+Carson
+Sabrina
+Taylor
+(Sarah??)
+
 -- Order of Events --
 Bathroom
 Hallway, bell rings
@@ -43,6 +51,7 @@ Take a nap, save game, yes, saves for long time
 
 
 -- Add --
+Flex Character
 Money on the screen
 Tyler gets money after battle
 Poem room more fun?

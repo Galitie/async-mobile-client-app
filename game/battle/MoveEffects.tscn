@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b3tvrwc41yiyl"]
+[gd_scene load_steps=41 format=3 uid="uid://b3tvrwc41yiyl"]
 
 [ext_resource type="Texture2D" uid="uid://cdb1mpd1bbd5e" path="res://battle/lineTexture.png" id="2_3u2sb"]
 [ext_resource type="Texture2D" uid="uid://dmm8rscpko6pt" path="res://battle/flameTexture.png" id="2_6kemj"]
@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://hun4k0bscmmh" path="res://battle/thunder.mp3" id="9_80pxk"]
 [ext_resource type="Texture2D" uid="uid://bi6w6mo46pmvg" path="res://battle/Supernova.png" id="10_0ci00"]
 [ext_resource type="AudioStream" uid="uid://5jk4nivxt6kt" path="res://battle/magic.mp3" id="11_ouvlk"]
+[ext_resource type="Texture2D" uid="uid://5l5i3mdbbhcj" path="res://battle/twompTexture.png" id="12_kw62q"]
+[ext_resource type="AudioStream" uid="uid://b4bfy4l8qbf2k" path="res://battle/thwomp.mp3" id="13_g6yvp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vr28n"]
 blend_mode = 1
@@ -139,6 +141,12 @@ scale_min = 0.25
 scale_max = 0.25
 color_ramp = SubResource("GradientTexture1D_45pi3")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2a0cu"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [sub_resource type="Gradient" id="Gradient_jdm3s"]
 offsets = PackedFloat32Array(0, 0.0547945, 0.0890411, 0.130137, 0.856164, 0.924658, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.223529, 1, 1, 1, 0)
@@ -183,6 +191,20 @@ orbit_velocity_max = 0.0
 scale_min = 0.75
 scale_max = 0.75
 color_ramp = SubResource("GradientTexture1D_eon4n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k57cr"]
+emission_shape = 3
+emission_box_extents = Vector3(75, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 10, 0)
+spread = 30.0
+gravity = Vector3(0, 100, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 400.0
+linear_accel_max = 400.0
+scale_min = 0.25
+scale_max = 0.25
 
 [node name="MoveEffects" type="Node2D"]
 
@@ -245,6 +267,7 @@ stream = ExtResource("6_u5usp")
 volume_db = -30.0
 
 [node name="Lightning" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_2a0cu")
 position = Vector2(-5, -54)
 emitting = false
 amount = 10
@@ -268,3 +291,16 @@ one_shot = true
 [node name="SuperSound" type="AudioStreamPlayer" parent="Supernova"]
 stream = ExtResource("11_ouvlk")
 volume_db = -20.0
+
+[node name="Twomp" type="GPUParticles2D" parent="."]
+position = Vector2(0, -208)
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_k57cr")
+texture = ExtResource("12_kw62q")
+one_shot = true
+speed_scale = 1.5
+
+[node name="Twomp" type="AudioStreamPlayer2D" parent="Twomp"]
+position = Vector2(0, 9)
+stream = ExtResource("13_g6yvp")

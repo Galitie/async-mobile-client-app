@@ -75,6 +75,7 @@ func _process(delta):
 			battle_info.Show("Tyler used " + moves[cursor_position].name + "!!!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
 			var move = move_effects.get_children().pick_random()
+			# var move = move_effects.get_node("Twomp")
 			var moveSound = move.get_child(0,true)
 			moveSound.play()
 			move.emitting = true

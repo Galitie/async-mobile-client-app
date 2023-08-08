@@ -8,7 +8,7 @@ function setStyleDatingSim() {
   isDatingSimTime = true;
   let rootTheme = document.querySelector(":root");
   rootTheme.style.setProperty("--fontFamily", "'Lilita One', cursive");
-  rootTheme.style.setProperty("--fontSize", "6vw");
+  rootTheme.style.setProperty("--fontSize", "7vw");
   rootTheme.style.setProperty("--backgroundColor", "hotpink");
   rootTheme.style.setProperty("--buttonColor", "purple");
   rootTheme.style.setProperty("--placeholderColor", "pink");
