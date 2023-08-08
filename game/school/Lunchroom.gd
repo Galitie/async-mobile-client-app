@@ -15,7 +15,6 @@ func init():
 	Game.SendPromptToUsers(get_parent().world_prompt, false)
 
 func _ready():
-	Game.bgm_player.play()
 	connect("pushCrate", _pushCrate)
 	connect("eatFood", _eatFood)
 	set_process(false)
