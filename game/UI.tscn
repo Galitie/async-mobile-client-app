@@ -79,7 +79,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_icu63"]
 resource_name = "blink"
-length = 4.0
+length = 4.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,10 +87,10 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false, true, false, true]
+"values": [true, false, true, false, true, false, true, false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tt2pm"]
@@ -199,12 +199,12 @@ scroll_active = false
 script = ExtResource("3_vgjtm")
 
 [node name="Timer" type="Timer" parent="Screen/Notif"]
-wait_time = 4.0
+wait_time = 4.5
 one_shot = true
 
 [node name="SFX" type="AudioStreamPlayer" parent="Screen/Notif"]
 stream = ExtResource("5_o17gr")
-volume_db = -30.0
+volume_db = -15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen/Notif"]
 libraries = {
