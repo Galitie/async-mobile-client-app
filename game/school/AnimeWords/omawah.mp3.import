@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cn4sv5uxvlsaw"
-path="res://.godot/imported/omawah.mp3-8f71f72d04165624385c7680e93cba74.mp3str"
+path="res://.godot/imported/omawah.mp3-7ef8d6def71f34e4e73a668a611f3b9b.mp3str"
 
 [deps]
 
-source_file="res://school/animeSoundEffects/omawah.mp3"
-dest_files=["res://.godot/imported/omawah.mp3-8f71f72d04165624385c7680e93cba74.mp3str"]
+source_file="res://school/AnimeWords/omawah.mp3"
+dest_files=["res://.godot/imported/omawah.mp3-7ef8d6def71f34e4e73a668a611f3b9b.mp3str"]
 
 [params]
 

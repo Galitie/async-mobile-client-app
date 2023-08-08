@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://fr4eskl3njv8"
-path="res://.godot/imported/nani.mp3-d1b5ff2f57811811b2f76b9380845366.mp3str"
+path="res://.godot/imported/nani.mp3-ef631f4456a8ab99ee04310b367a8503.mp3str"
 
 [deps]
 
-source_file="res://school/animeSoundEffects/nani.mp3"
-dest_files=["res://.godot/imported/nani.mp3-d1b5ff2f57811811b2f76b9380845366.mp3str"]
+source_file="res://school/AnimeWords/nani.mp3"
+dest_files=["res://.godot/imported/nani.mp3-ef631f4456a8ab99ee04310b367a8503.mp3str"]
 
 [params]
 

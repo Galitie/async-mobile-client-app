@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://02y4iv6t06js"
-path="res://.godot/imported/wow.mp3-a12846ed7f2ff11ffa9fc8abfb9d38ac.mp3str"
+path="res://.godot/imported/wow.mp3-a4ee021cd0b6e92f47687164021132a2.mp3str"
 
 [deps]
 
-source_file="res://school/animeSoundEffects/wow.mp3"
-dest_files=["res://.godot/imported/wow.mp3-a12846ed7f2ff11ffa9fc8abfb9d38ac.mp3str"]
+source_file="res://school/AnimeWords/wow.mp3"
+dest_files=["res://.godot/imported/wow.mp3-a4ee021cd0b6e92f47687164021132a2.mp3str"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://brtn0ooufm56q"
-path="res://.godot/imported/giggle.mp3-22db6f2a5a81bb3ddec1c158dcfc1983.mp3str"
+path="res://.godot/imported/giggle.mp3-38eb3e8e9c8d05017e03755a1533d756.mp3str"
 
 [deps]
 
-source_file="res://school/animeSoundEffects/giggle.mp3"
-dest_files=["res://.godot/imported/giggle.mp3-22db6f2a5a81bb3ddec1c158dcfc1983.mp3str"]
+source_file="res://school/AnimeWords/giggle.mp3"
+dest_files=["res://.godot/imported/giggle.mp3-38eb3e8e9c8d05017e03755a1533d756.mp3str"]
 
 [params]
 
