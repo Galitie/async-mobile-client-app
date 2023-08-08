@@ -9,6 +9,20 @@ var love_note_prompt = Game.Prompt.new("OMG write Tyler a secret love note!!!", 
 const food_to_eat = 7
 var eaten_food = 0
 
+var anime_sounds = [
+	load("res://school/AnimeWords/ehtoooo.mp3"),
+	load("res://school/AnimeWords/ehhhh.mp3"),
+	load("res://school/AnimeWords/evilgirllaugh.mp3"),
+	load("res://school/AnimeWords/giggle.mp3"),
+	load("res://school/AnimeWords/evilwaaah.mp3"),
+	load("res://school/AnimeWords/kawaii.mp3"),
+	load("res://school/AnimeWords/magicgasp.mp3"),
+	load("res://school/AnimeWords/nani.mp3"),
+	load("res://school/AnimeWords/omawah.mp3"),
+	load("res://school/AnimeWords/sempai.mp3"),
+	load("res://school/AnimeWords/wow.mp3")
+]
+
 func init():
 	camera.SetTarget(get_parent().characters[Game.HOST_IP])
 	get_parent().ResumeWorld()
@@ -50,3 +64,7 @@ func _pushCrate(character, object):
 		if interactable.cell_position == destination:
 			return
 	object.SetCellPosition(destination, false)
+	
+	var sfx_player = object.get_node("SFX")
+	sfx_player.stream = anime_sounds.pick_random()
+	sfx_player.play()

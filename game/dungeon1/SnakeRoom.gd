@@ -19,7 +19,7 @@ var transition = false
 var above_ground = false
 
 var ambience = load("res://dungeon1/wind.ogg")
-
+var magic_sound = load("res://school/AnimeSounds/magic.mp3")
 var anime_text_box_texture = load("res://text_box_anime.png")
 
 @onready var door_timer = $Bathroom/DoorTimer
@@ -84,7 +84,8 @@ func _openDoor():
 	$Bathroom/BathroomDoor.visible = false
 	erase_cell(Game.collision_layer, Vector2i(0, -222))
 	sparkle_effect.emitting = true
-	
+	sfx.stream = magic_sound
+	sfx.play()
 
 func update(delta):
 	if !above_ground:
