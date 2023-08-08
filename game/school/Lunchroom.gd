@@ -12,7 +12,7 @@ var eaten_food = 0
 func init():
 	camera.SetTarget(get_parent().characters[Game.HOST_IP])
 	get_parent().ResumeWorld()
-	Game.SendPromptToUsers(Game.world_prompt, false)
+	Game.SendPromptToUsers(get_parent().world_prompt, false)
 
 func _ready():
 	Game.bgm_player.play()
