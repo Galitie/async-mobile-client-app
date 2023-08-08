@@ -28,7 +28,7 @@ Ride off into sunset
 End game
 
 
--- Dice roll effects -- 
+-- Dice roll effects -- This could be a soundboard instead?
 Reverse controls
 Speed up
 Slow down
@@ -65,6 +65,7 @@ Jury/court room ending, players get sent back to dungeon
 Real winner, who has most Tyler points is safe from jail
 Sephiroth ending animation and music
     - Space
+    - Pentagram thing
     - Equations
     - Galaxy
     - Pluto (not a planet)
@@ -79,11 +80,12 @@ Sephiroth ending animation and music
 
 Fake HP bar
 Characters speak outloud in japanese during anime section (words in english)
-Or fetch quest
 Students blocking the hallway will hang in the hallway after lunch and you can chat with them
 More attacks ideas:
     - Cleo scratch attack
     - Sonic fullscreen attack
+People in the hallway to talk to
+Adding cute filter to school portion, pink, shiny and lense flaire-y
 
 
 -- First Playtest Results --

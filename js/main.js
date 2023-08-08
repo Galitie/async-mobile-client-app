@@ -144,8 +144,8 @@ function onClickDice(diceNum) {
     message: "dice",
   };
   sendMessage(JSON.stringify(packet));
-  let dice = document.getElementById(`${diceNum}`);
-  dice.remove();
+  //let dice = document.getElementById(`${diceNum}`);
+  //dice.remove();
 }
 
 // this is only for the not connected screen
@@ -324,7 +324,7 @@ function addDiceTray(amount) {
   let diceMap = {};
 
   for (let i = 1; i <= amount; i++) {
-    diceMap[`dice${i}`] = "🎲";
+    diceMap[`dice${i}`] = "🔊";
   }
 
   let newSection = document.createElement("SECTION");
