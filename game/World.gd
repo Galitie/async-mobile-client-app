@@ -49,6 +49,8 @@ var next_map
 var spawn_position
 var battle = false
 
+var love_notes = []
+
 func _ready():
 	Game.state = self
 	
@@ -269,3 +271,4 @@ func _endState():
 	
 func _loveNoteSubmitted(packet):
 	Game.SendPromptToUser(world_prompt, packet["userIP"])
+	love_notes.append(packet["bigInputValue"])

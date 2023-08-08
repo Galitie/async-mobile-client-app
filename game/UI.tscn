@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c46pvmkujapqt"]
+[gd_scene load_steps=16 format=3 uid="uid://c46pvmkujapqt"]
 
 [ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="1_6jg07"]
 [ext_resource type="Script" path="res://UI.gd" id="1_rilyt"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://wtottilo3cxg" path="res://notif.mp3" id="5_o17gr"]
 [ext_resource type="Texture2D" uid="uid://co6ou5r6vocna" path="res://school/portraits/teacher.png" id="6_xfgv6"]
 [ext_resource type="Texture2D" uid="uid://bupq5ck4tg2la" path="res://school/classroom_bg.jpg" id="7_7ynyr"]
+[ext_resource type="Texture2D" uid="uid://dhvq8mh0t07h" path="res://school/loveLetterBackground.png" id="8_3b80l"]
 
 [sub_resource type="Animation" id="Animation_38kyq"]
 length = 0.001
@@ -210,3 +211,38 @@ volume_db = -15.0
 libraries = {
 "": SubResource("AnimationLibrary_tt2pm")
 }
+
+[node name="LoveNote" type="TextureRect" parent="Screen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -126.5
+offset_right = 105.0
+offset_bottom = 126.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_3b80l")
+expand_mode = 1
+
+[node name="Text" type="RichTextLabel" parent="Screen/LoveNote"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -47.5
+offset_right = 77.0
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+text = "Roses are red. violets are blue. I want to have se"
+scroll_active = false
