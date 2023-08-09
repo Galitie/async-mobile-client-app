@@ -3,11 +3,11 @@ extends Map
 signal startBattle
 signal pushCrate
 
-#var music = load("res://dungeon1/dungeon.mp3")
+var music = load("res://dungeon1/dungeon.mp3")
 
 func _ready():
-	#Game.bgm_player.stream = music
-	#Game.bgm_player.play()
+	Game.bgm_player.stream = music
+	Game.bgm_player.play()
 	connect("startBattle", _startBattle)
 	connect("pushCrate", _pushCrate)
 	set_process(false)

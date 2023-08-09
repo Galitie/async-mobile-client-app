@@ -70,7 +70,7 @@ next_map = "res://school/Classroom.tscn"
 next_map_cell_position = Vector2i(100, 100)
 
 [node name="npc1" type="Sprite2D" parent="."]
-position = Vector2(-16, -512)
+position = Vector2(-16, -521)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_rberj")
 offset = Vector2(19, -6)
@@ -92,7 +92,7 @@ cell_position = Vector2i(0, -32)
 interact_sprite = Rect2(44, 13, 55, 101)
 
 [node name="npc3" type="Sprite2D" parent="."]
-position = Vector2(16, -512)
+position = Vector2(16, -518)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_bdh35")
 offset = Vector2(19, 0)
@@ -114,7 +114,7 @@ cell_position = Vector2i(2, -32)
 interact_sprite = Rect2(39, 28, 62, 83)
 
 [node name="npc5" type="Sprite2D" parent="."]
-position = Vector2(48, -512)
+position = Vector2(49, -516)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("9_pb51q")
 offset = Vector2(20, -8)

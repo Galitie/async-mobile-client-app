@@ -14,7 +14,7 @@ var got_key = false
 
 var open_chest_region = Rect2(145, 96, 17, 16)
 
-var music = load("res://dungeon1/dungeon.mp3")
+var music = load("res://dungeon1/poem.mp3")
 
 func _ready():
 	Game.bgm_player.stream = music
