@@ -3,6 +3,12 @@ extends Map
 signal exit_class
 signal map_intro
 signal show_notes
+signal start_question_input
+signal map_question_submitted
+signal present_question
+signal question_answered
+signal all_questions_answered
+signal start_test
 
 @onready var camera = get_parent().get_node("Camera2D")
 
@@ -38,16 +44,52 @@ var note_reactions = [
 var reaction_index = 0
 
 var pre_quiz_messages = [
-	Message.new("test", "Ok class, time for a pop quiz!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("test", "Huh??", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait)
+	Message.new("test", "Ok class, time for a pop quiz!", "start_question_input", Message.SignalTiming.APPEAR, [], null, teacher_portrait),
+	Message.new("test", "Huh??", "start_test", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
 ]
 
-var question_prompt1 = Game.Prompt.new("What is Tyler's SSN?", "map_intro", "countdown", 60.0, false, {"big": "ああ、大好きだよ
-the Government"})
+var questions = [
+	"What is Tyler's favorite thing to do?",
+	"Where does Tyler live?",
+	"What bank does Tyler use?",
+	"What is Tyler's SSN?"
+]
+
+var question_prompts = [
+	Game.Prompt.new(questions[0], "map_question_submitted", "countdown", 60.0, false, {"small": "私たちきですfun fun!!"}),
+	Game.Prompt.new(questions[1], "map_question_submitted", "countdown", 60.0, false, {"small": "FULLHOUSEメです"}),
+	Game.Prompt.new(questions[2], "map_question_submitted", "countdown", 60.0, false, {"small": "そのしrouting number?さい"}),
+	Game.Prompt.new(questions[3], "map_question_submitted", "countdown", 60.0, false, {"small": "大好きだよthe Government"})
+]
+var question_index = 0
+var answers_submitted = 0
+
+class Answer:
+	var content
+	var ip
+	
+	func _init(_content, _ip):
+		content = _content
+		ip = _ip
+
+var question_answers = [
+	[],
+	[],
+	[],
+	[]
+]
+ 
+var question_message = [
+	Message.new("Sensei", "Question!", "present_question", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
+]
 
 func _ready():
 	connect("exit_class", _exit_class)
 	connect("show_notes", _show_notes)
+	connect("start_question_input", _start_question_input)
+	connect("map_question_submitted", _question_submitted)
+	connect("present_question", _present_question)
+	connect("start_test", _start_test)
 	Game.SendPromptToUsers(Game.wait_prompt, false)
 
 func init():
@@ -63,6 +105,40 @@ func _show_notes(args):
 
 func _exit_class(args):
 	get_parent().emit_signal("portal_entered", args[0], args[1])
+	
+func _start_question_input(args):
+	Game.SendPromptToUsers(question_prompts[question_index], true)
+	
+func _question_submitted(packet):
+	var answer = Answer.new(packet["smallInputValue"], packet["userIP"])
+	question_answers[question_index].append(answer)
+	answers_submitted += 1
+	if answers_submitted >= Game.users.size() - 1:
+		answers_submitted = 0
+		question_index += 1
+		if question_index > question_prompts.size() - 1:
+			Game.SendPromptToUsers(Game.wait_prompt, false)
+			emit_signal("all_questions_answered")
+			
+		else:
+			Game.SendPromptToUsers(question_prompts[question_index], true)
+
+func _start_test(args):
+	if question_index < question_prompts.size() - 1:
+		await all_questions_answered
+	question_index = 0
+	await get_tree().create_timer(1.0).timeout
+	get_parent().SetMessageQueue(question_message)
+
+func _present_question(args):
+	# Has to be called because of terrible World and MessageQueue logic
+	get_parent().PauseWorld()
+	UI.left_speaker.texture = null
+	UI.right_speaker.texture = teacher_portrait
+	UI.message_box.Show(questions[question_index], "Sensei", null, true)
+	print(questions[question_index])
+	# show drop box
+	await question_answered
 
 func update(delta):
 	if UI.love_note.visible && Input.is_action_just_pressed("interact"):
@@ -71,4 +147,7 @@ func update(delta):
 			get_parent().SetMessageQueue(pre_quiz_messages)
 		else:
 			get_parent().SetMessageQueue(note_reactions[reaction_index])
-		
+			
+	# if drop box visible
+		# if selected
+				# emit question_answered

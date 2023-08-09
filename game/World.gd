@@ -194,6 +194,7 @@ func _process(delta):
 			UI.message_box.Hide()
 			reading = false
 			if !battle:
+				# This is really bad. Needs to be reworked
 				ResumeWorld()
 		else:
 			UI.left_speaker.texture = current_message.left_speaker

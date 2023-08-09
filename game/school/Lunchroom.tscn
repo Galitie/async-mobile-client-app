@@ -161,10 +161,11 @@ next_map = "res://school/PopQuiz.tscn"
 next_map_cell_position = Vector2i(100, 100)
 
 [node name="RestartPortal" type="Sprite2D" parent="."]
-position = Vector2(-32, -448)
+position = Vector2(1600, 1600)
 script = ExtResource("4_bfl5d")
-cell_position = Vector2i(-2, -28)
-trigger_cell = Vector2i(-2, -28)
+locked = true
+cell_position = Vector2i(100, 100)
+trigger_cell = Vector2i(100, 100)
 next_map = "res://school/Lunchroom.tscn"
 next_map_cell_position = Vector2i(1, -27)
 

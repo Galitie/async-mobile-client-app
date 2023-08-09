@@ -9,6 +9,8 @@
 # TODO: Music needs be edited to loop properly
 # TODO: Victory music needs to transition back to previous BGM and BGM position
 # TODO: Battle damage text
+# BUG: Holding down a direction key at the end of Classroom teleports the player to a black void
+# in the next map
 extends Node2D
 
 class UserData:
@@ -87,7 +89,5 @@ func SendPromptToUsers(prompt, notify = true):
 func SendPromptToUser(prompt, ip):
 	if Game.users[ip].connection_status == Client.CONNECTION_STATUS.ONLINE:
 		var response = {"action": "respondToUser", "connectionID": Game.users[ip].connection_id}
-		if prompt.data["diceEnabled"]:
-			prompt.data["dice"] = Game.users[ip].dice
 		response.merge(prompt.data)
 		Client.SendPacket(response)

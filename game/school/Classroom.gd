@@ -44,6 +44,7 @@ var intro_prompt = Game.Prompt.new("Introduce yourself to the class:", "map_intr
 var transfer_students = []
 var transfer_student_index = 0
 var submitted_intros = 0
+var all_intros_submitted = false
 
 func _ready():
 	connect("exit_class", _exit_class)
@@ -63,9 +64,13 @@ func init():
 			transfer_students.append(Game.users[ip])
 
 func _wait_for_intro(args):
-	await intros_submitted
-	UI.background.visible = true
-	get_intro()
+	if all_intros_submitted:
+		UI.background.visible = true
+		get_intro()
+	else:
+		await intros_submitted
+		UI.background.visible = true
+		get_intro()
 
 func get_intro():
 	# A delay is needed to prevent the first message in queue being skipped when switching queues on the same frame
@@ -96,6 +101,7 @@ func _intro(packet):
 	submitted_intros += 1
 	if submitted_intros == Game.users.size() - 1:
 		emit_signal("intros_submitted")
+		all_intros_submitted = true
 
 func update(delta):
 	pass
