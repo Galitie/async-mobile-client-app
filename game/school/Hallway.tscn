@@ -70,7 +70,7 @@ next_map = "res://school/Classroom.tscn"
 next_map_cell_position = Vector2i(100, 100)
 
 [node name="npc1" type="Sprite2D" parent="."]
-position = Vector2(-16, -512)
+position = Vector2(-16, -521)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_rberj")
 offset = Vector2(19, -6)
@@ -92,7 +92,7 @@ cell_position = Vector2i(0, -32)
 interact_sprite = Rect2(44, 13, 55, 101)
 
 [node name="npc3" type="Sprite2D" parent="."]
-position = Vector2(16, -512)
+position = Vector2(16, -518)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_bdh35")
 offset = Vector2(19, 0)
@@ -114,7 +114,7 @@ cell_position = Vector2i(2, -32)
 interact_sprite = Rect2(39, 28, 62, 83)
 
 [node name="npc5" type="Sprite2D" parent="."]
-position = Vector2(48, -512)
+position = Vector2(49, -516)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("9_pb51q")
 offset = Vector2(20, -8)
@@ -122,4 +122,59 @@ region_enabled = true
 region_rect = Rect2(45, 12, 54, 97)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(3, -32)
+interact_sprite = Rect2(45, 12, 54, 97)
+
+[node name="npc6" type="Sprite2D" parent="."]
+position = Vector2(48, -352)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_rberj")
+offset = Vector2(19, -6)
+region_enabled = true
+region_rect = Rect2(40, 18, 61, 92)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(3, -22)
+interact_sprite = Rect2(40, 18, 61, 92)
+
+[node name="npc7" type="Sprite2D" parent="."]
+position = Vector2(-16, -128)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_me4l6")
+offset = Vector2(19, -7)
+region_enabled = true
+region_rect = Rect2(44, 13, 55, 101)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(-1, -8)
+interact_sprite = Rect2(44, 13, 55, 101)
+
+[node name="npc8" type="Sprite2D" parent="."]
+position = Vector2(-16, -272)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_bdh35")
+offset = Vector2(19, 0)
+region_enabled = true
+region_rect = Rect2(51, 26, 41, 89)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(-1, -17)
+interact_sprite = Rect2(51, 26, 41, 89)
+
+[node name="npc9" type="Sprite2D" parent="."]
+position = Vector2(48, -48)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_ck77i")
+offset = Vector2(18, 0)
+region_enabled = true
+region_rect = Rect2(39, 28, 62, 83)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(3, -3)
+interact_sprite = Rect2(39, 28, 62, 83)
+
+[node name="npc10" type="Sprite2D" parent="."]
+position = Vector2(48, -192)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("9_pb51q")
+offset = Vector2(20, -8)
+region_enabled = true
+region_rect = Rect2(45, 12, 54, 97)
+script = ExtResource("5_i7nw5")
+cell_position = Vector2i(3, -12)
 interact_sprite = Rect2(45, 12, 54, 97)
