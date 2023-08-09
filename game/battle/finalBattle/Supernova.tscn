@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://br8tbmxc2ndd7"]
+[gd_scene load_steps=29 format=3 uid="uid://br8tbmxc2ndd7"]
 
 [ext_resource type="Texture2D" uid="uid://gtmkc1ynv7h2" path="res://battle/finalBattle/cloudBackground.png" id="1_4or5k"]
 [ext_resource type="Texture2D" uid="uid://dvx7e051whepc" path="res://battle/finalBattle/spaceBackground.png" id="1_dgdvp"]
@@ -12,6 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://bd3cd25ca2p3v" path="res://battle/finalBattle/equation4.png" id="10_xf2sa"]
 [ext_resource type="Texture2D" uid="uid://b5bt83wsoemnv" path="res://battle/finalBattle/memeEquation.png" id="11_1rlfe"]
 [ext_resource type="Texture2D" uid="uid://d18f33oibcpnr" path="res://battle/finalBattle/circleArea.png" id="12_htfcg"]
+[ext_resource type="Texture2D" uid="uid://cnfjic07yyws2" path="res://battle/finalBattle/mathLady.png" id="13_j8je2"]
+[ext_resource type="Texture2D" uid="uid://d0slhkqihnpcj" path="res://battle/finalBattle/supernovaPart1.png" id="14_6nqqs"]
+[ext_resource type="Texture2D" uid="uid://dh2pvtc2ctnvv" path="res://battle/finalBattle/superNovaPart2Spritesheet.png" id="15_qv5ff"]
+[ext_resource type="Texture2D" uid="uid://dnwkqqfarp8e3" path="res://battle/finalBattle/galaxy.png" id="16_adiba"]
+[ext_resource type="Texture2D" uid="uid://c3mx3iqxe24t4" path="res://battle/finalBattle/supernovaPart3.png" id="17_u4cf8"]
+[ext_resource type="Texture2D" uid="uid://der1hu25brwdv" path="res://battle/finalBattle/pluto.png" id="17_xl817"]
+[ext_resource type="Texture2D" uid="uid://d2ad1uk0cd5ri" path="res://battle/finalBattle/plutoText.png" id="19_efuhp"]
+[ext_resource type="Texture2D" uid="uid://bkpext2qtqy5v" path="res://battle/finalBattle/PlutoExplode.png" id="20_vw0df"]
 
 [sub_resource type="Animation" id="Animation_7qm32"]
 resource_name = "Supernova"
@@ -110,10 +118,10 @@ tracks/7/path = NodePath("SpaceBackground:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(15.4, 17.8, 21.7, 25.7),
-"transitions": PackedFloat32Array(6.49802, 0.574351, 0.203063, 4.14106),
+"times": PackedFloat32Array(15.4, 17.8, 21.7, 25.7, 26.9, 30, 33.4, 37, 41.1, 44.2, 46.3),
+"transitions": PackedFloat32Array(6.49802, 0.574351, 0.203063, 4.14106, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-492, 13), Vector2(-95, 87), Vector2(349, -66), Vector2(-52, 336)]
+"values": [Vector2(-492, 13), Vector2(-95, 87), Vector2(349, -66), Vector2(-52, 336), Vector2(-52, 336), Vector2(264, 106), Vector2(494, -140), Vector2(494, -140), Vector2(400, -26), Vector2(400, -26), Vector2(631, 196)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -137,7 +145,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(16.1, 20.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(240, 228), Vector2(231, 0)]
+"values": [Vector2(255, 228), Vector2(255, 0)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -259,17 +267,324 @@ tracks/19/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("MathLady:modulate")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(22.1, 23.9, 25.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.223529), Color(1, 1, 1, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("SuperNova1:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(22.4, 27.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.0370834, 0.0370834), Vector2(0.820469, 0.820469)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("SuperNova1:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(24.4, 27.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(242, 238), Vector2(227, 152)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("SuperNova1:rotation")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(24.4, 27.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("SuperNova1:modulate")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(22.4, 24.4, 26.6, 27.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("SuperNova2:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(26.8, 30.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3.15, 3.15), Vector2(2, 2)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("SuperNova2:modulate")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(26.6, 27.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("SuperNova2:position")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(27, 29.8, 31),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(439, 0), Vector2(439, 0), Vector2(800, -100)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("SpaceBackground:rotation")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(31.3, 33.3),
+"transitions": PackedFloat32Array(0.366022, 0.277392),
+"update": 0,
+"values": [0.0, 0.174533]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Galaxy:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(32.2, 39.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1.638, 1.638)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Galaxy:modulate")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(31.8, 32.2, 39.6, 39.9),
+"transitions": PackedFloat32Array(1, 34.2967, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Galaxy:position")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(31.8, 39.6),
+"transitions": PackedFloat32Array(1, 22.6274),
+"update": 0,
+"values": [Vector2(236, 210), Vector2(207, 127)]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Whiteout:modulate")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(31.8, 39.1, 39.8, 42.4, 43.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("SuperNova3:scale")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(33.1, 39.5, 44.8, 47.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.0116667, 0.0132946), Vector2(0.923, 1), Vector2(0, 0)]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("SuperNova3:position")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(32, 32.3, 39.5, 42.1, 45.5, 47.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(710, 57), Vector2(710, 57), Vector2(300, 102), Vector2(300, 102), Vector2(-250, 110), Vector2(336, 165)]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("SuperNova3:modulate")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(39.1, 39.7, 45.2, 45.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/36/type = "value"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("Pluto:scale")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"times": PackedFloat32Array(44.3, 45.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.359375, 0.359375), Vector2(0.201172, 0.201172)]
+}
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("Pluto:position")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"times": PackedFloat32Array(44.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(168, 142)]
+}
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("Pluto:modulate")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(41.6, 42.6, 46.7, 47.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/39/type = "value"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("PlutoText:modulate")
+tracks/39/interp = 1
+tracks/39/loop_wrap = true
+tracks/39/keys = {
+"times": PackedFloat32Array(43.4, 43.6, 46.2, 46.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/40/type = "value"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("SuperNova3:flip_h")
+tracks/40/interp = 1
+tracks/40/loop_wrap = true
+tracks/40/keys = {
+"times": PackedFloat32Array(20.3, 44.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/41/type = "value"
+tracks/41/imported = false
+tracks/41/enabled = true
+tracks/41/path = NodePath("PlutoExplode:modulate")
+tracks/41/interp = 1
+tracks/41/loop_wrap = true
+tracks/41/keys = {
+"times": PackedFloat32Array(46.9, 47.1, 47.6, 48),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v3l7v"]
+length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppo0e"]
 _data = {
+"RESET": SubResource("Animation_v3l7v"),
 "Supernova": SubResource("Animation_7qm32")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7ixd"]
+atlas = ExtResource("15_qv5ff")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og2qa"]
+atlas = ExtResource("15_qv5ff")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weu8e"]
+atlas = ExtResource("15_qv5ff")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrgng"]
+atlas = ExtResource("15_qv5ff")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_30x86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7ixd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og2qa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_weu8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrgng")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Supernova" type="Node2D"]
 script = ExtResource("1_hb00k")
+metadata/_edit_horizontal_guides_ = []
+metadata/_edit_vertical_guides_ = []
 
 [node name="SpaceBackground" type="Sprite2D" parent="."]
-position = Vector2(-52, 336)
+position = Vector2(631, 196)
+rotation = 0.174533
 texture = ExtResource("1_dgdvp")
 
 [node name="CloudBackground" type="Sprite2D" parent="."]
@@ -299,10 +614,11 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -30.0
 
 [node name="Pentagram" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(231, 0)
+position = Vector2(255, 0)
 scale = Vector2(1.52535, 1.52535)
 texture = ExtResource("5_sboje")
 
@@ -332,13 +648,68 @@ texture = ExtResource("10_xf2sa")
 
 [node name="Equation5" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(370.019, 195.106)
-scale = Vector2(0.166157, 0.166157)
+position = Vector2(367.763, 196.106)
+scale = Vector2(0.193063, 0.193063)
 texture = ExtResource("11_1rlfe")
 
 [node name="Equation6" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(54.4827, 171.336)
+position = Vector2(94.4339, 194.663)
 rotation = 0.528482
-scale = Vector2(0.465813, 0.775225)
+scale = Vector2(0.730171, 0.775225)
 texture = ExtResource("12_htfcg")
+
+[node name="MathLady" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(363.556, 200)
+scale = Vector2(0.230556, 0.230556)
+texture = ExtResource("13_j8je2")
+
+[node name="SuperNova1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(227, 152)
+rotation = 6.28319
+scale = Vector2(0.820469, 0.820469)
+texture = ExtResource("14_6nqqs")
+
+[node name="SuperNova2" type="AnimatedSprite2D" parent="."]
+position = Vector2(800, -100)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_30x86")
+frame_progress = 0.818022
+
+[node name="Galaxy" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(207, 127)
+scale = Vector2(1.638, 1.638)
+texture = ExtResource("16_adiba")
+
+[node name="Pluto" type="Sprite2D" parent="."]
+position = Vector2(168, 142)
+scale = Vector2(0.201172, 0.201172)
+texture = ExtResource("17_xl817")
+
+[node name="Whiteout" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -44.0
+offset_top = -27.0
+offset_right = 546.0
+offset_bottom = 308.0
+
+[node name="SuperNova3" type="Sprite2D" parent="."]
+position = Vector2(-46.174, 129.13)
+scale = Vector2(0.4615, 0.5)
+texture = ExtResource("17_u4cf8")
+flip_h = true
+
+[node name="PlutoText" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.666671)
+position = Vector2(330, 204)
+scale = Vector2(0.243363, 0.243363)
+texture = ExtResource("19_efuhp")
+
+[node name="PlutoExplode" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(167, 130)
+scale = Vector2(0.316915, 0.316915)
+texture = ExtResource("20_vw0df")

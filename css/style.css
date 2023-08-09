@@ -12,6 +12,7 @@
     --gap: 2em;
     --textAreaTextColor: black;
     --paddingBottom: 2%;
+    --h1FontSizeAdjustment: x-large;
 }
 
   /******************************************
@@ -98,7 +99,7 @@ button:active {
 
 h1{
     margin: unset;
-    font-size: x-large;
+    font-size: var(--h1FontSizeAdjustment);
 }
 
 textarea {

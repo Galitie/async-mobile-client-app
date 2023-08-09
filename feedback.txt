@@ -17,9 +17,9 @@ Check yes on notes or not
 Tyler quiz
     - Foreshadow sephiroth attack
     - What's Tyler's favorite thing to do?
-    - What did Tyler buy recently?
     - Where does Tyler live?
-    - What is Tyler's bank and SS#?
+    - What is Tyler's bank 
+    - and SS#?
 Class ends
 Confession
 --
@@ -69,12 +69,9 @@ Sephiroth ending animation and music
     - Equations
     - Galaxy
     - Pluto (not a planet)
-    - Jupiter
-    - Saturn
+    - Space Chase
     - Earth
-    - Tyler's bank (Space Chase)
     - Tylers home
-    - Tyler TV (in the rubble)
     - Tyler's workplace (misses)
     - Japan, tokyo, highschool
 
