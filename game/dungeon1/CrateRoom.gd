@@ -6,6 +6,7 @@ signal getMoneyFromChest
 
 
 var music = load("res://dungeon1/dungeon.mp3")
+@onready var push_sound = $PushSound
 var money = UI.money_amount
 
 func _ready():
@@ -39,6 +40,7 @@ func _pushCrate(character, object):
 		if interactable.cell_position == destination:
 			return
 	object.SetCellPosition(destination, false)
+	push_sound.play()
 
 func _getMoneyFromChest(character, object):
 	money.text = "10000000000"

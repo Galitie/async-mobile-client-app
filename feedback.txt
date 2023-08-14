@@ -54,7 +54,6 @@ Take a nap, save game, yes, saves for long time
 
 -- Add --
 Flex Character
-Money on the screen
 Tyler gets money after battle
 Poem room more fun?
 Anime message, text box and pointer into game
