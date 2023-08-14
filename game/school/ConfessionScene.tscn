@@ -6,7 +6,7 @@
 [sub_resource type="Gradient" id="Gradient_1e2k7"]
 colors = PackedColorArray(1, 0.941176, 1, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ro4an"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cg2rt"]
 gradient = SubResource("Gradient_1e2k7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nribt"]
@@ -22,7 +22,7 @@ angle_max = 85.7
 scale_min = 0.03
 scale_max = 0.04
 color = Color(1, 0.784314, 1, 1)
-color_ramp = SubResource("GradientTexture1D_ro4an")
+color_ramp = SubResource("GradientTexture1D_cg2rt")
 hue_variation_max = 0.1
 turbulence_noise_strength = 9.93
 

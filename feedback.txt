@@ -71,8 +71,8 @@ Sephiroth ending animation and music
     x Pluto (not a planet)
     x Space Chase
     x Earth
-    - Tylers home
-    - Tyler's workplace (misses)
+    x Tylers home
+    x Tyler's workplace (misses)
     - Japan, tokyo, highschool
 
 Fake HP bar
