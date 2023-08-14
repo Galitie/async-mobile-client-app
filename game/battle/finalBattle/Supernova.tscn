@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://br8tbmxc2ndd7"]
+[gd_scene load_steps=33 format=3 uid="uid://br8tbmxc2ndd7"]
 
 [ext_resource type="Texture2D" uid="uid://gtmkc1ynv7h2" path="res://battle/finalBattle/cloudBackground.png" id="1_4or5k"]
 [ext_resource type="Texture2D" uid="uid://dvx7e051whepc" path="res://battle/finalBattle/spaceBackground.png" id="1_dgdvp"]
@@ -20,6 +20,13 @@
 [ext_resource type="Texture2D" uid="uid://der1hu25brwdv" path="res://battle/finalBattle/pluto.png" id="17_xl817"]
 [ext_resource type="Texture2D" uid="uid://d2ad1uk0cd5ri" path="res://battle/finalBattle/plutoText.png" id="19_efuhp"]
 [ext_resource type="Texture2D" uid="uid://bkpext2qtqy5v" path="res://battle/finalBattle/PlutoExplode.png" id="20_vw0df"]
+[ext_resource type="Texture2D" uid="uid://b67fnqi1p8q0e" path="res://battle/finalBattle/spaceBank.png" id="21_cnqls"]
+[ext_resource type="Texture2D" uid="uid://cgw60l516pjb5" path="res://battle/finalBattle/spaceChaseText.png" id="22_epcui"]
+[ext_resource type="Texture2D" uid="uid://diqmy0uxs7n1q" path="res://battle/finalBattle/earth.png" id="23_ch3pl"]
+[ext_resource type="Texture2D" uid="uid://cd5syfh61ty1w" path="res://battle/finalBattle/earthText.png" id="24_fsb54"]
+
+[sub_resource type="Animation" id="Animation_v3l7v"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_7qm32"]
 resource_name = "Supernova"
@@ -118,10 +125,10 @@ tracks/7/path = NodePath("SpaceBackground:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(15.4, 17.8, 21.7, 25.7, 26.9, 30, 33.4, 37, 41.1, 44.2, 46.3),
-"transitions": PackedFloat32Array(6.49802, 0.574351, 0.203063, 4.14106, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(15.4, 17.8, 21.7, 25.7, 26.9, 30, 33.4, 37, 41.1, 44.2, 46.3, 47.9, 52.9, 57),
+"transitions": PackedFloat32Array(6.49802, 0.574351, 0.203063, 4.14106, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-492, 13), Vector2(-95, 87), Vector2(349, -66), Vector2(-52, 336), Vector2(-52, 336), Vector2(264, 106), Vector2(494, -140), Vector2(494, -140), Vector2(400, -26), Vector2(400, -26), Vector2(631, 196)]
+"values": [Vector2(-492, 13), Vector2(-95, 87), Vector2(349, -66), Vector2(-52, 336), Vector2(-52, 336), Vector2(264, 106), Vector2(494, -140), Vector2(494, -140), Vector2(400, -26), Vector2(400, -26), Vector2(631, 196), Vector2(631, 196), Vector2(644, 481), Vector2(864, 481)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -334,10 +341,10 @@ tracks/25/path = NodePath("SuperNova2:scale")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
-"times": PackedFloat32Array(26.8, 30.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(26.8, 30.6, 52.9, 53.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(3.15, 3.15), Vector2(2, 2)]
+"values": [Vector2(3.15, 3.15), Vector2(2, 2), Vector2(2, 2), Vector2(5, 5)]
 }
 tracks/26/type = "value"
 tracks/26/imported = false
@@ -358,10 +365,10 @@ tracks/27/path = NodePath("SuperNova2:position")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
-"times": PackedFloat32Array(27, 29.8, 31),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(27, 29.8, 31, 53.4, 54, 57.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(439, 0), Vector2(439, 0), Vector2(800, -100)]
+"values": [Vector2(439, 0), Vector2(439, 0), Vector2(800, -100), Vector2(800, -100), Vector2(650, -100), Vector2(-600, 300)]
 }
 tracks/28/type = "value"
 tracks/28/imported = false
@@ -418,10 +425,10 @@ tracks/32/path = NodePath("Whiteout:modulate")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
-"times": PackedFloat32Array(31.8, 39.1, 39.8, 42.4, 43.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(31.8, 39.1, 39.8, 42.4, 43.2, 62.3, 63.8, 65.4, 66.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/33/type = "value"
 tracks/33/imported = false
@@ -430,10 +437,10 @@ tracks/33/path = NodePath("SuperNova3:scale")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = {
-"times": PackedFloat32Array(33.1, 39.5, 44.8, 47.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(33.1, 39.5, 44.8, 47.8, 56.8, 57.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.0116667, 0.0132946), Vector2(0.923, 1), Vector2(0, 0)]
+"values": [Vector2(1, 1), Vector2(0.0116667, 0.0132946), Vector2(0.923, 1), Vector2(0, 0), Vector2(0, 0), Vector2(0.5, 0.5)]
 }
 tracks/34/type = "value"
 tracks/34/imported = false
@@ -442,10 +449,10 @@ tracks/34/path = NodePath("SuperNova3:position")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = {
-"times": PackedFloat32Array(32, 32.3, 39.5, 42.1, 45.5, 47.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(32, 32.3, 39.5, 42.1, 45.5, 47.8, 57.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(710, 57), Vector2(710, 57), Vector2(300, 102), Vector2(300, 102), Vector2(-250, 110), Vector2(336, 165)]
+"values": [Vector2(710, 57), Vector2(710, 57), Vector2(300, 102), Vector2(300, 102), Vector2(-250, 110), Vector2(336, 165), Vector2(21, 205)]
 }
 tracks/35/type = "value"
 tracks/35/imported = false
@@ -454,10 +461,10 @@ tracks/35/path = NodePath("SuperNova3:modulate")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/keys = {
-"times": PackedFloat32Array(39.1, 39.7, 45.2, 45.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(39.1, 39.7, 45.2, 45.5, 62.2, 63.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/36/type = "value"
 tracks/36/imported = false
@@ -522,18 +529,111 @@ tracks/40/keys = {
 tracks/41/type = "value"
 tracks/41/imported = false
 tracks/41/enabled = true
-tracks/41/path = NodePath("PlutoExplode:modulate")
+tracks/41/path = NodePath("Explode:modulate")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/keys = {
-"times": PackedFloat32Array(46.9, 47.1, 47.6, 48),
+"times": PackedFloat32Array(46.9, 47.1, 47.6, 48, 53.9, 54.3, 55.5, 56.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/42/type = "value"
+tracks/42/imported = false
+tracks/42/enabled = true
+tracks/42/path = NodePath("SpaceChase:scale")
+tracks/42/interp = 1
+tracks/42/loop_wrap = true
+tracks/42/keys = {
+"times": PackedFloat32Array(48.6, 53.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.201667, 0.201667), Vector2(0.66875, 0.66875)]
+}
+tracks/43/type = "value"
+tracks/43/imported = false
+tracks/43/enabled = true
+tracks/43/path = NodePath("SpaceChase:modulate")
+tracks/43/interp = 1
+tracks/43/loop_wrap = true
+tracks/43/keys = {
+"times": PackedFloat32Array(47.9, 48.6, 53.7, 54.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_v3l7v"]
-length = 0.001
+tracks/44/type = "value"
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/path = NodePath("SpaceChaseText:modulate")
+tracks/44/interp = 1
+tracks/44/loop_wrap = true
+tracks/44/keys = {
+"times": PackedFloat32Array(47.9, 48.6, 51.1, 51.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/45/type = "value"
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/path = NodePath("Explode:position")
+tracks/45/interp = 1
+tracks/45/loop_wrap = true
+tracks/45/keys = {
+"times": PackedFloat32Array(52.6, 53.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(167, 130), Vector2(245, 130)]
+}
+tracks/46/type = "value"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("Earth:scale")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/keys = {
+"times": PackedFloat32Array(57.1, 63.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.107813, 0.107813), Vector2(2, 2)]
+}
+tracks/47/type = "value"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("Earth:modulate")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/keys = {
+"times": PackedFloat32Array(56.5, 57.1, 64.7, 65.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/48/type = "value"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("EarthText:modulate")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/keys = {
+"times": PackedFloat32Array(56.4, 57, 60.9, 61.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/49/type = "value"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("Earth:position")
+tracks/49/interp = 1
+tracks/49/loop_wrap = true
+tracks/49/keys = {
+"times": PackedFloat32Array(61.2, 63.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(241, 146), Vector2(213, 307)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppo0e"]
 _data = {
@@ -583,7 +683,7 @@ metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = []
 
 [node name="SpaceBackground" type="Sprite2D" parent="."]
-position = Vector2(631, 196)
+position = Vector2(864, 481)
 rotation = 0.174533
 texture = ExtResource("1_dgdvp")
 
@@ -673,8 +773,8 @@ scale = Vector2(0.820469, 0.820469)
 texture = ExtResource("14_6nqqs")
 
 [node name="SuperNova2" type="AnimatedSprite2D" parent="."]
-position = Vector2(800, -100)
-scale = Vector2(2, 2)
+position = Vector2(-600, 300)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_30x86")
 frame_progress = 0.818022
 
@@ -685,9 +785,16 @@ scale = Vector2(1.638, 1.638)
 texture = ExtResource("16_adiba")
 
 [node name="Pluto" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(168, 142)
 scale = Vector2(0.201172, 0.201172)
 texture = ExtResource("17_xl817")
+
+[node name="Earth" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(213, 307)
+scale = Vector2(2, 2)
+texture = ExtResource("23_ch3pl")
 
 [node name="Whiteout" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -697,19 +804,38 @@ offset_right = 546.0
 offset_bottom = 308.0
 
 [node name="SuperNova3" type="Sprite2D" parent="."]
-position = Vector2(-46.174, 129.13)
-scale = Vector2(0.4615, 0.5)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(21, 205)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("17_u4cf8")
 flip_h = true
 
 [node name="PlutoText" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.666671)
+modulate = Color(1, 1, 1, 0)
 position = Vector2(330, 204)
 scale = Vector2(0.243363, 0.243363)
 texture = ExtResource("19_efuhp")
 
-[node name="PlutoExplode" type="Sprite2D" parent="."]
+[node name="Explode" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(167, 130)
+position = Vector2(245, 130)
 scale = Vector2(0.316915, 0.316915)
 texture = ExtResource("20_vw0df")
+
+[node name="SpaceChase" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(228, 121)
+scale = Vector2(0.66875, 0.66875)
+texture = ExtResource("21_cnqls")
+
+[node name="SpaceChaseText" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(364, 243)
+scale = Vector2(0.232301, 0.232301)
+texture = ExtResource("22_epcui")
+
+[node name="EarthText" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(382, 235)
+scale = Vector2(0.262376, 0.262376)
+texture = ExtResource("24_fsb54")

@@ -64,13 +64,13 @@ Anime endings/replacements for messages, Kawaii-desu, Baka!, Sugoi! Nani?!, Tyle
 Jury/court room ending, players get sent back to dungeon
 Real winner, who has most Tyler points is safe from jail
 Sephiroth ending animation and music
-    - Space
-    - Pentagram thing
-    - Equations
-    - Galaxy
-    - Pluto (not a planet)
-    - Space Chase
-    - Earth
+    x Space
+    x Pentagram thing
+    x Equations
+    x Galaxy
+    x Pluto (not a planet)
+    x Space Chase
+    x Earth
     - Tylers home
     - Tyler's workplace (misses)
     - Japan, tokyo, highschool
