@@ -48,6 +48,11 @@ var pre_quiz_messages = [
 	Message.new("test", "Huh??", "start_test", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
 ]
 
+var post_quiz_messages = [
+	Message.new("test", "That's the bell!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("test", "It's time...I need to confront them...", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/Lunchroom.tscn", Vector2i(-1, -27)], tyler_portrait, null)
+]
+
 var questions = [
 	"What is Tyler's favorite thing to do?",
 	"Where does Tyler live?",
@@ -93,6 +98,7 @@ func _ready():
 	Game.SendPromptToUsers(Game.wait_prompt, false)
 
 func init():
+	UI.money.visible = false
 	camera.SetTarget(null)
 	camera.transform.origin = Vector2(90, 90)
 	var world = get_parent()
@@ -114,6 +120,7 @@ func _question_submitted(packet):
 	var answer = Answer.new(packet["smallInputValue"], packet["userIP"])
 	question_answers[question_index].append(answer)
 	answers_submitted += 1
+	Game.SendPromptToUser(Game.wait_prompt, packet["userIP"])
 	if answers_submitted >= Game.users.size() - 1:
 		answers_submitted = 0
 		question_index += 1
@@ -124,7 +131,7 @@ func _question_submitted(packet):
 			Game.SendPromptToUsers(question_prompts[question_index], true)
 
 func _start_test(args):
-	if question_index < question_prompts.size() - 1:
+	if question_index <= question_prompts.size() - 1:
 		await all_questions_answered
 	question_index = 0
 	await get_tree().create_timer(1.0).timeout
@@ -134,9 +141,10 @@ func _present_question(args):
 	UI.left_speaker.texture = null
 	UI.right_speaker.texture = teacher_portrait
 	UI.message_box.Show(questions[question_index], "Sensei", null, true)
-	print(questions[question_index])
-	# show drop box
-	await question_answered
+	UI.drop_box.SetOptions(question_answers[question_index])
+	UI.drop_box.visible = true
+	# To prevent the first question being skipped
+	Input.action_release("interact")
 
 func _process(delta):
 	if UI.love_note.visible && Input.is_action_just_pressed("interact"):
@@ -146,6 +154,17 @@ func _process(delta):
 		else:
 			get_parent().SetMessageQueue(note_reactions[reaction_index], false)
 			
-	# if drop box visible
-		# if selected
-				# emit question_answered
+	if UI.drop_box.visible:
+		if Input.is_action_just_pressed("move_down"):
+			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
+		elif Input.is_action_just_pressed("move_up"):
+			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
+		elif Input.is_action_just_pressed("interact"):
+				var answer = question_answers[question_index][UI.drop_box.SelectOption()]
+				question_index += 1
+				if question_index <= question_answers.size() - 1:
+					emit_signal("present_question", [])
+				else:
+					UI.message_box.Hide()
+					UI.drop_box.visible = false
+					get_parent().SetMessageQueue(post_quiz_messages, false)

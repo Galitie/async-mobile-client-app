@@ -24,6 +24,7 @@ var anime_sounds = [
 ]
 
 func init():
+	UI.money.visible = true
 	camera.SetTarget(get_parent().characters[Game.HOST_IP])
 	get_parent().ResumeWorld()
 	Game.SendPromptToUsers(get_parent().world_prompt, false)

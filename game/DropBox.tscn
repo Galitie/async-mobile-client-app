@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://6lh05vm6wb2i"]
+[gd_scene load_steps=5 format=3 uid="uid://6lh05vm6wb2i"]
 
 [ext_resource type="Texture2D" uid="uid://bsjtsip24x74p" path="res://drop_box.png" id="1_dr1wd"]
 [ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="2_dox2j"]
+[ext_resource type="Script" path="res://DropBox.gd" id="2_y7aab"]
+[ext_resource type="Texture2D" uid="uid://yc3l02gbhl7p" path="res://cursor.png" id="4_06ao0"]
 
 [node name="DropBox" type="TextureRect"]
 offset_top = 1.0
@@ -9,6 +11,7 @@ offset_right = 100.0
 offset_bottom = 85.0
 texture = ExtResource("1_dr1wd")
 stretch_mode = 2
+script = ExtResource("2_y7aab")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -86,3 +89,11 @@ theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "tyler's SSN"
 scroll_active = false
+
+[node name="Cursor" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 9.0
+offset_right = 24.0
+offset_bottom = 29.0
+texture = ExtResource("4_06ao0")
