@@ -50,7 +50,7 @@ var pre_quiz_messages = [
 
 var post_quiz_messages = [
 	Message.new("test", "That's the bell!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("test", "It's time...I need to confront them...", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/Lunchroom.tscn", Vector2i(-1, -27)], tyler_portrait, null)
+	Message.new("test", "It's time...I need to confront them...", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/ConfessionScene.tscn", Vector2i(100, 1000)], tyler_portrait, null)
 ]
 
 var questions = [
@@ -117,17 +117,20 @@ func _start_question_input(args):
 	Game.SendPromptToUsers(question_prompts[question_index], true)
 	
 func _question_submitted(packet):
+	print(packet["userIP"] + "submitted")
 	var answer = Answer.new(packet["smallInputValue"], packet["userIP"])
 	question_answers[question_index].append(answer)
 	answers_submitted += 1
 	Game.SendPromptToUser(Game.wait_prompt, packet["userIP"])
 	if answers_submitted >= Game.users.size() - 1:
+		print("everyone submitted")
 		answers_submitted = 0
 		question_index += 1
 		if question_index > question_prompts.size() - 1:
-			Game.SendPromptToUsers(Game.wait_prompt, false)
 			emit_signal("all_questions_answered")
+			print("done")
 		else:
+			print("next question")
 			Game.SendPromptToUsers(question_prompts[question_index], true)
 
 func _start_test(args):
