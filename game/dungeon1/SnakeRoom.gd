@@ -27,6 +27,7 @@ var anime_text_box_texture = load("res://text_box_anime.png")
 func _ready():
 	Game.bgm_player.stream = ambience
 	Game.bgm_player.play()
+	UI.money_amount.visible = false
 	connect("map_climb_ladder", _climbLadder)
 	connect("map_off_ladder", _offLadder)
 	connect("map_transition", _transition)

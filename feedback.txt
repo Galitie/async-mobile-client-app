@@ -22,6 +22,8 @@ Tyler quiz
     - and SS#?
 Class ends
 Confession
+    - After school
+    - 
 --
 Last battle
 Ride off into sunset
@@ -63,17 +65,6 @@ Footsteps
 Anime endings/replacements for messages, Kawaii-desu, Baka!, Sugoi! Nani?!, Tyler-kun
 Jury/court room ending, players get sent back to dungeon
 Real winner, who has most Tyler points is safe from jail
-Sephiroth ending animation and music
-    x Space
-    x Pentagram thing
-    x Equations
-    x Galaxy
-    x Pluto (not a planet)
-    x Space Chase
-    x Earth
-    x Tylers home
-    x Tyler's workplace (misses)
-    - Japan, tokyo, highschool
 
 Fake HP bar
 Characters speak outloud in japanese during anime section (words in english)
@@ -82,7 +73,6 @@ More attacks ideas:
     - Cleo scratch attack
     - Sonic fullscreen attack
 People in the hallway to talk to
-Adding cute filter to school portion, pink, shiny and lense flaire-y
 
 
 -- First Playtest Results --
@@ -115,7 +105,6 @@ Feature: Random response when putting in an empty prompt ....Maybe....
 Feature: Two random suggestions they could select.
 Feature: Thumbs up emoji.
 Feature: More cats.
-Feature: Battle animations
 Feature: Drawing widget?
 
 Idea: Fake bug for Tyler to troll him.

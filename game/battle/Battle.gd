@@ -15,7 +15,6 @@ signal user_disconnected
 @onready var enemy = $Enemy
 @onready var move_effects = $MoveEffects
 
-var quack_sound = load("res://battle/quack.mp3")
 var battle_music = load("res://battle/battle.mp3")
 var victory_music = load("res://battle/victory.mp3")
 

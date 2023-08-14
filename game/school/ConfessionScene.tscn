@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqkryy226dp68"]
+[gd_scene load_steps=8 format=3 uid="uid://dqkryy226dp68"]
 
 [ext_resource type="Texture2D" uid="uid://c5sotrltr17bs" path="res://school/Outside_sakura_tree.png" id="1_f4cdc"]
+[ext_resource type="Script" path="res://school/ConfessionScene.gd" id="1_quypv"]
 [ext_resource type="Texture2D" uid="uid://dmm8rscpko6pt" path="res://battle/flameTexture.png" id="2_kt844"]
+[ext_resource type="AudioStream" uid="uid://2basbk3cuk67" path="res://school/confessionMusic.mp3" id="3_10w40"]
 
 [sub_resource type="Gradient" id="Gradient_1e2k7"]
 colors = PackedColorArray(1, 0.941176, 1, 1, 1, 1, 1, 1)
@@ -27,14 +29,16 @@ hue_variation_max = 0.1
 turbulence_noise_strength = 9.93
 
 [node name="ConfessionScene" type="Node2D"]
+script = ExtResource("1_quypv")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_right = 526.0
-offset_bottom = 300.0
+offset_left = -34.0
+offset_top = -3.0
+offset_right = 489.0
+offset_bottom = 297.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_f4cdc")
@@ -42,8 +46,13 @@ expand_mode = 1
 
 [node name="SakuraPetals" type="GPUParticles2D" parent="."]
 position = Vector2(446, -22)
+emitting = false
 amount = 500
 process_material = SubResource("ParticleProcessMaterial_nribt")
 texture = ExtResource("2_kt844")
 lifetime = 9.0
 randomness = 0.3
+
+[node name="confessionMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_10w40")
+volume_db = -30.0

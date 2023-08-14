@@ -2,14 +2,18 @@ extends Map
 
 signal startBattle
 signal pushCrate
+signal getMoneyFromChest
+
 
 var music = load("res://dungeon1/dungeon.mp3")
+var money = UI.money_amount
 
 func _ready():
 	Game.bgm_player.stream = music
 	Game.bgm_player.play()
 	connect("startBattle", _startBattle)
 	connect("pushCrate", _pushCrate)
+	connect("getMoneyFromChest", _getMoneyFromChest)
 	set_process(false)
 	
 func update(delta):
@@ -36,6 +40,9 @@ func _pushCrate(character, object):
 			return
 	object.SetCellPosition(destination, false)
 
+func _getMoneyFromChest(character, object):
+	money.text = "10000000000"
+	
 func _startBattle(message_args):
 	$Enemy.queue_free()
 	get_parent().StartBattle(message_args)
