@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djai2tjej18xw"]
+[gd_scene load_steps=11 format=3 uid="uid://djai2tjej18xw"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_o081q"]
 [ext_resource type="Script" path="res://dungeon1/CrateRoom.gd" id="2_8d33a"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Message.gd" id="5_2ji5t"]
 [ext_resource type="Script" path="res://Portal.gd" id="6_ju8r3"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="7_cn8ht"]
+[ext_resource type="AudioStream" uid="uid://b1iu0wc03njiv" path="res://dungeon1/pushSound.mp3" id="8_o7h2f"]
 
 [sub_resource type="Resource" id="Resource_1qm8t"]
 script = ExtResource("5_2ji5t")
@@ -251,3 +252,7 @@ shadow_filter = 1
 shadow_filter_smooth = 25.2
 texture = ExtResource("7_cn8ht")
 texture_scale = 4.0
+
+[node name="PushSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_o7h2f")
+volume_db = -30.0

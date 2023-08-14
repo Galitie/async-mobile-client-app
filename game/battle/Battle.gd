@@ -79,6 +79,7 @@ func _process(delta):
 			moveSound.play()
 			move.emitting = true
 			$Enemy/AnimationPlayer.play("onhit")
+			get_node("RandomDamage").playAnimation()
 			battle_info.Hide()
 			await get_tree().create_timer(1.5).timeout
 			turn += 1

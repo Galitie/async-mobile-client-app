@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://fq76xsh17p00"]
+[gd_scene load_steps=21 format=3 uid="uid://fq76xsh17p00"]
 
 [ext_resource type="Script" path="res://battle/Battle.gd" id="1_fa0c3"]
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ucup7"]
 [ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="3_ycp2p"]
 [ext_resource type="PackedScene" uid="uid://6lh05vm6wb2i" path="res://DropBox.tscn" id="4_8luep"]
 [ext_resource type="Texture2D" uid="uid://yc3l02gbhl7p" path="res://cursor.png" id="5_j1nqu"]
+[ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="9_wbj2o"]
+[ext_resource type="Script" path="res://battle/RandomDamage.gd" id="10_lcmfu"]
 [ext_resource type="PackedScene" uid="uid://b3tvrwc41yiyl" path="res://battle/MoveEffects.tscn" id="11_qumop"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="12_h5hiv"]
 [ext_resource type="Texture2D" uid="uid://bucfrkhdl87xe" path="res://battle/party.png" id="13_hp70t"]
@@ -203,3 +205,22 @@ texture = SubResource("AtlasTexture_58xuu")
 [node name="Shadow" type="Sprite2D" parent="Party"]
 position = Vector2(167, 31)
 texture = SubResource("AtlasTexture_cvetb")
+
+[node name="RandomDamage" type="Label" parent="."]
+offset_left = -170.0
+offset_top = -79.0
+offset_right = -98.0
+offset_bottom = -59.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("9_wbj2o")
+text = "1234"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_lcmfu")
+
+[node name="Timer" type="Timer" parent="RandomDamage"]
+one_shot = true
+
+[connection signal="timeout" from="RandomDamage/Timer" to="RandomDamage" method="_on_timer_timeout"]
