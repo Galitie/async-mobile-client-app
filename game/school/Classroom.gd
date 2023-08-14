@@ -54,7 +54,6 @@ func _ready():
 	Game.SendPromptToUsers(intro_prompt)
 
 func init():
-	UI.visible = false
 	camera.SetTarget(null)
 	camera.transform.origin = Vector2(90, 90)
 	var world = get_parent()

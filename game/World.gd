@@ -48,7 +48,7 @@ var next_map
 var spawn_position
 var battle = false
 
-var love_notes = ["test"]
+var love_notes = []
 
 func _ready():
 	Game.state = self

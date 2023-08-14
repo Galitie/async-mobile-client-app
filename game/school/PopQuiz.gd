@@ -109,6 +109,7 @@ func _show_notes(args):
 	UI.love_note.get_node("Text").text = get_parent().love_notes[reaction_index]
 	UI.love_note.visible = true
 	reaction_index += 1
+	Input.action_release("interact")
 
 func _exit_class(args):
 	get_parent().emit_signal("portal_entered", args[0], args[1])
@@ -117,20 +118,17 @@ func _start_question_input(args):
 	Game.SendPromptToUsers(question_prompts[question_index], true)
 	
 func _question_submitted(packet):
-	print(packet["userIP"] + "submitted")
 	var answer = Answer.new(packet["smallInputValue"], packet["userIP"])
 	question_answers[question_index].append(answer)
 	answers_submitted += 1
 	Game.SendPromptToUser(Game.wait_prompt, packet["userIP"])
 	if answers_submitted >= Game.users.size() - 1:
-		print("everyone submitted")
 		answers_submitted = 0
 		question_index += 1
 		if question_index > question_prompts.size() - 1:
 			emit_signal("all_questions_answered")
-			print("done")
 		else:
-			print("next question")
+			await get_tree().create_timer(1.0).timeout
 			Game.SendPromptToUsers(question_prompts[question_index], true)
 
 func _start_test(args):
