@@ -441,10 +441,10 @@ tracks/33/path = NodePath("SuperNova3:scale")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = {
-"times": PackedFloat32Array(33.1, 39.5, 44.8, 47.8, 56.8, 57.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(33.1, 39.5, 44.8, 47.8, 56.8, 57.1, 66.1, 68.7, 73.4, 74.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.0116667, 0.0132946), Vector2(0.923, 1), Vector2(0, 0), Vector2(0, 0), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(0.0116667, 0.0132946), Vector2(0.923, 1), Vector2(0, 0), Vector2(0, 0), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.275825, 0.275825), Vector2(0.275825, 0.275825), Vector2(0.539579, 0.539579)]
 }
 tracks/34/type = "value"
 tracks/34/imported = false
@@ -453,10 +453,10 @@ tracks/34/path = NodePath("SuperNova3:position")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = {
-"times": PackedFloat32Array(32, 32.3, 39.5, 42.1, 45.5, 47.8, 57.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(32, 32.3, 39.5, 42.1, 45.5, 47.8, 57.3, 65.2, 68.7, 72.4, 74, 75.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.0717937, 0.0583145),
 "update": 0,
-"values": [Vector2(710, 57), Vector2(710, 57), Vector2(300, 102), Vector2(300, 102), Vector2(-250, 110), Vector2(336, 165), Vector2(21, 205)]
+"values": [Vector2(710, 57), Vector2(710, 57), Vector2(300, 102), Vector2(300, 102), Vector2(-250, 110), Vector2(336, 165), Vector2(21, 205), Vector2(21, 205), Vector2(171, 151), Vector2(171, 151), Vector2(-48, -47), Vector2(80, 49)]
 }
 tracks/35/type = "value"
 tracks/35/imported = false
@@ -465,10 +465,10 @@ tracks/35/path = NodePath("SuperNova3:modulate")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/keys = {
-"times": PackedFloat32Array(39.1, 39.7, 45.2, 45.5, 62.2, 63.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(39.1, 39.7, 45.2, 45.5, 62.2, 63.5, 65.2, 66, 71.1, 71.8, 73.9, 74.3, 75.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.014082),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/36/type = "value"
 tracks/36/imported = false
@@ -537,7 +537,7 @@ tracks/41/path = NodePath("Explode:modulate")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/keys = {
-"times": PackedFloat32Array(46.9, 47.1, 47.6, 48, 53.9, 54.3, 55.5, 56.1, 75.5, 76.1, 76.6, 77.4),
+"times": PackedFloat32Array(46.9, 47.1, 47.6, 48, 53.9, 54.3, 55.5, 56.1, 75.9, 76.5, 77.1, 77.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -729,7 +729,7 @@ tracks/57/path = NodePath("Explode:scale")
 tracks/57/interp = 1
 tracks/57/loop_wrap = true
 tracks/57/keys = {
-"times": PackedFloat32Array(75.6, 76.7, 77.6),
+"times": PackedFloat32Array(75.9, 77, 77.6),
 "transitions": PackedFloat32Array(0.0583146, 0.138696, 0.0669859),
 "update": 0,
 "values": [Vector2(0.316915, 0.316915), Vector2(1.08573, 1.08573), Vector2(0.0688894, 0.0688894)]
@@ -908,10 +908,33 @@ position = Vector2(213, 307)
 scale = Vector2(2, 2)
 texture = ExtResource("23_ch3pl")
 
+[node name="nyc" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(544, -15)
+scale = Vector2(0.777628, 0.777628)
+texture = ExtResource("25_os88m")
+
+[node name="ellery" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(230, 193)
+scale = Vector2(0.636536, 0.636537)
+texture = ExtResource("26_6g8og")
+
+[node name="ElleryZoom" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(133, 88)
+scale = Vector2(0.473417, 0.473417)
+texture = ExtResource("27_o5qo3")
+
+[node name="elleryFire" type="Sprite2D" parent="."]
+position = Vector2(133.023, 88.125)
+scale = Vector2(0.47043, 0.47043)
+texture = ExtResource("27_u1sms")
+
 [node name="SuperNova3" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(21, 205)
-scale = Vector2(0.5, 0.5)
+position = Vector2(80, 49)
+scale = Vector2(0.539579, 0.539579)
 texture = ExtResource("17_u4cf8")
 flip_h = true
 
@@ -939,33 +962,10 @@ position = Vector2(382, 235)
 scale = Vector2(0.262376, 0.262376)
 texture = ExtResource("24_fsb54")
 
-[node name="nyc" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(544, -15)
-scale = Vector2(0.777628, 0.777628)
-texture = ExtResource("25_os88m")
-
-[node name="ellery" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(230, 193)
-scale = Vector2(0.636536, 0.636537)
-texture = ExtResource("26_6g8og")
-
-[node name="ElleryZoom" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(133, 88)
-scale = Vector2(0.473417, 0.473417)
-texture = ExtResource("27_o5qo3")
-
-[node name="elleryFire" type="Sprite2D" parent="."]
-position = Vector2(133.023, 88.125)
-scale = Vector2(0.47043, 0.47043)
-texture = ExtResource("27_u1sms")
-
 [node name="Explode" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, 0.478387)
 position = Vector2(226, 136)
-scale = Vector2(0.0688894, 0.0688894)
+scale = Vector2(0.0691171, 0.0691171)
 texture = ExtResource("20_vw0df")
 
 [node name="Whiteout" type="ColorRect" parent="."]
