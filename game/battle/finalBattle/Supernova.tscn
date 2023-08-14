@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://br8tbmxc2ndd7"]
+[gd_scene load_steps=37 format=3 uid="uid://br8tbmxc2ndd7"]
 
 [ext_resource type="Texture2D" uid="uid://gtmkc1ynv7h2" path="res://battle/finalBattle/cloudBackground.png" id="1_4or5k"]
 [ext_resource type="Texture2D" uid="uid://dvx7e051whepc" path="res://battle/finalBattle/spaceBackground.png" id="1_dgdvp"]
@@ -24,6 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://cgw60l516pjb5" path="res://battle/finalBattle/spaceChaseText.png" id="22_epcui"]
 [ext_resource type="Texture2D" uid="uid://diqmy0uxs7n1q" path="res://battle/finalBattle/earth.png" id="23_ch3pl"]
 [ext_resource type="Texture2D" uid="uid://cd5syfh61ty1w" path="res://battle/finalBattle/earthText.png" id="24_fsb54"]
+[ext_resource type="Texture2D" uid="uid://c62eoiy7hvhk0" path="res://battle/finalBattle/nycAerial.png" id="25_os88m"]
+[ext_resource type="Texture2D" uid="uid://deavylh7hmrul" path="res://battle/finalBattle/ellery.png" id="26_6g8og"]
+[ext_resource type="Texture2D" uid="uid://i00nfdlfykyh" path="res://battle/finalBattle/elleryZoomedIn.png" id="27_o5qo3"]
+[ext_resource type="Texture2D" uid="uid://cn7l4ddxjh22e" path="res://battle/finalBattle/elleryFire.png" id="27_u1sms"]
 
 [sub_resource type="Animation" id="Animation_v3l7v"]
 length = 0.001
@@ -425,10 +429,10 @@ tracks/32/path = NodePath("Whiteout:modulate")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
-"times": PackedFloat32Array(31.8, 39.1, 39.8, 42.4, 43.2, 62.3, 63.8, 65.4, 66.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(31.8, 39.1, 39.8, 42.4, 43.2, 62.3, 63.8, 65.4, 66.5, 74.9, 75.4, 75.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/33/type = "value"
 tracks/33/imported = false
@@ -533,10 +537,10 @@ tracks/41/path = NodePath("Explode:modulate")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/keys = {
-"times": PackedFloat32Array(46.9, 47.1, 47.6, 48, 53.9, 54.3, 55.5, 56.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(46.9, 47.1, 47.6, 48, 53.9, 54.3, 55.5, 56.1, 75.5, 76.1, 76.6, 77.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/42/type = "value"
 tracks/42/imported = false
@@ -581,10 +585,10 @@ tracks/45/path = NodePath("Explode:position")
 tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/keys = {
-"times": PackedFloat32Array(52.6, 53.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(52.6, 53.2, 74.2, 75.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(167, 130), Vector2(245, 130)]
+"values": [Vector2(167, 130), Vector2(245, 130), Vector2(245, 130), Vector2(226, 136)]
 }
 tracks/46/type = "value"
 tracks/46/imported = false
@@ -633,6 +637,114 @@ tracks/49/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(241, 146), Vector2(213, 307)]
+}
+tracks/50/type = "value"
+tracks/50/imported = false
+tracks/50/enabled = true
+tracks/50/path = NodePath("nyc:modulate")
+tracks/50/interp = 1
+tracks/50/loop_wrap = true
+tracks/50/keys = {
+"times": PackedFloat32Array(65.2, 65.9, 68.9, 69.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/51/type = "value"
+tracks/51/imported = false
+tracks/51/enabled = true
+tracks/51/path = NodePath("nyc:scale")
+tracks/51/interp = 1
+tracks/51/loop_wrap = true
+tracks/51/keys = {
+"times": PackedFloat32Array(65.9, 69.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.415472, 0.415472), Vector2(0.777628, 0.777628)]
+}
+tracks/52/type = "value"
+tracks/52/imported = false
+tracks/52/enabled = true
+tracks/52/path = NodePath("nyc:position")
+tracks/52/interp = 1
+tracks/52/loop_wrap = true
+tracks/52/keys = {
+"times": PackedFloat32Array(65.8, 69.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(300, 149), Vector2(544, -15)]
+}
+tracks/53/type = "value"
+tracks/53/imported = false
+tracks/53/enabled = true
+tracks/53/path = NodePath("ellery:modulate")
+tracks/53/interp = 1
+tracks/53/loop_wrap = true
+tracks/53/keys = {
+"times": PackedFloat32Array(68.9, 69.5, 71.3, 71.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/54/type = "value"
+tracks/54/imported = false
+tracks/54/enabled = true
+tracks/54/path = NodePath("ellery:scale")
+tracks/54/interp = 1
+tracks/54/loop_wrap = true
+tracks/54/keys = {
+"times": PackedFloat32Array(68.8, 71.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.362156, 0.362157), Vector2(0.636536, 0.636537)]
+}
+tracks/55/type = "value"
+tracks/55/imported = false
+tracks/55/enabled = true
+tracks/55/path = NodePath("ElleryZoom:modulate")
+tracks/55/interp = 1
+tracks/55/loop_wrap = true
+tracks/55/keys = {
+"times": PackedFloat32Array(71.2, 71.8, 74.9, 75.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/56/type = "value"
+tracks/56/imported = false
+tracks/56/enabled = true
+tracks/56/path = NodePath("ElleryZoom:scale")
+tracks/56/interp = 1
+tracks/56/loop_wrap = true
+tracks/56/keys = {
+"times": PackedFloat32Array(71.5, 75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.4092, 0.4092), Vector2(0.473417, 0.473417)]
+}
+tracks/57/type = "value"
+tracks/57/imported = false
+tracks/57/enabled = true
+tracks/57/path = NodePath("Explode:scale")
+tracks/57/interp = 1
+tracks/57/loop_wrap = true
+tracks/57/keys = {
+"times": PackedFloat32Array(75.6, 76.7, 77.6),
+"transitions": PackedFloat32Array(0.0583146, 0.138696, 0.0669859),
+"update": 0,
+"values": [Vector2(0.316915, 0.316915), Vector2(1.08573, 1.08573), Vector2(0.0688894, 0.0688894)]
+}
+tracks/58/type = "value"
+tracks/58/imported = false
+tracks/58/enabled = true
+tracks/58/path = NodePath("elleryFire:modulate")
+tracks/58/interp = 1
+tracks/58/loop_wrap = true
+tracks/58/keys = {
+"times": PackedFloat32Array(75, 76),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppo0e"]
@@ -796,13 +908,6 @@ position = Vector2(213, 307)
 scale = Vector2(2, 2)
 texture = ExtResource("23_ch3pl")
 
-[node name="Whiteout" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0)
-offset_left = -44.0
-offset_top = -27.0
-offset_right = 546.0
-offset_bottom = 308.0
-
 [node name="SuperNova3" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(21, 205)
@@ -815,12 +920,6 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(330, 204)
 scale = Vector2(0.243363, 0.243363)
 texture = ExtResource("19_efuhp")
-
-[node name="Explode" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(245, 130)
-scale = Vector2(0.316915, 0.316915)
-texture = ExtResource("20_vw0df")
 
 [node name="SpaceChase" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -839,3 +938,39 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(382, 235)
 scale = Vector2(0.262376, 0.262376)
 texture = ExtResource("24_fsb54")
+
+[node name="nyc" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(544, -15)
+scale = Vector2(0.777628, 0.777628)
+texture = ExtResource("25_os88m")
+
+[node name="ellery" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(230, 193)
+scale = Vector2(0.636536, 0.636537)
+texture = ExtResource("26_6g8og")
+
+[node name="ElleryZoom" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(133, 88)
+scale = Vector2(0.473417, 0.473417)
+texture = ExtResource("27_o5qo3")
+
+[node name="elleryFire" type="Sprite2D" parent="."]
+position = Vector2(133.023, 88.125)
+scale = Vector2(0.47043, 0.47043)
+texture = ExtResource("27_u1sms")
+
+[node name="Explode" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(226, 136)
+scale = Vector2(0.0688894, 0.0688894)
+texture = ExtResource("20_vw0df")
+
+[node name="Whiteout" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -44.0
+offset_top = -27.0
+offset_right = 546.0
+offset_bottom = 308.0
