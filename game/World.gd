@@ -8,7 +8,6 @@ signal user_joined
 signal user_disconnected
 signal sent_text
 signal add_user
-signal dice
 signal love_note_submitted
 
 signal portal_entered
@@ -27,9 +26,9 @@ var current_map
 var paused = false
 var last_ip
 var current_message = null
-var reading = false
 var message_queue = []
 var tts_queue = []
+var paused_for_reading = false
 
 @onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "countdown", 0.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
 @onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
@@ -49,7 +48,7 @@ var next_map
 var spawn_position
 var battle = false
 
-var love_notes = []
+var love_notes = ["test"]
 
 func _ready():
 	Game.state = self
@@ -61,7 +60,6 @@ func _ready():
 	connect("user_disconnected", _userDisconnected)
 	connect("sent_text", _sentText)
 	connect("add_user", _addUser)
-	connect("dice", _dice)
 	connect("speak", _speak)
 	connect("portal_entered", _portalEntered)
 	connect("love_note_submitted", _loveNoteSubmitted)
@@ -165,12 +163,6 @@ func _addUser(packet):
 		var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
 		Client.SendPacket(response)
 	
-func _dice(packet):
-	if Game.users.has(packet["userIP"]):
-		print("dice!")
-		Game.users[packet["userIP"]].dice = max(Game.users[packet["userIP"]].dice - 1, 0)
-		print(Game.users[packet["userIP"]].dice)
-	
 func _process(delta):
 	if !paused:
 		# First party member is controllable
@@ -186,16 +178,15 @@ func _process(delta):
 				UI.message_box.Show(tts.content, tts.speaker_name, tts.icon_region, true)
 			elif UI.message_box.showing:
 				UI.message_box.Hide()
-	elif reading && Input.is_action_just_pressed("interact"):
+	elif current_message && Input.is_action_just_pressed("interact"):
 		if current_message.signal_timing == Message.SignalTiming.DISAPPEAR:
 			current_map.emit_signal(current_message.message_signal, current_message.message_args)
 		current_message = message_queue.pop_front()
 		if current_message == null:
 			UI.message_box.Hide()
-			reading = false
-			if !battle:
-				# This is really bad. Needs to be reworked
+			if paused_for_reading:
 				ResumeWorld()
+				paused_for_reading = false
 		else:
 			UI.left_speaker.texture = current_message.left_speaker
 			UI.right_speaker.texture = current_message.right_speaker
@@ -203,9 +194,10 @@ func _process(delta):
 			if current_message.signal_timing == Message.SignalTiming.APPEAR:
 				current_map.emit_signal(current_message.message_signal, current_message.message_args)
 
-func SetMessageQueue(messages):
-	PauseWorld()
-	reading = true
+func SetMessageQueue(messages, pause_on_set = true):
+	if pause_on_set:
+		paused_for_reading = true
+		PauseWorld()
 	message_queue = messages.duplicate()
 	current_message = message_queue.pop_front()
 	UI.left_speaker.texture = current_message.left_speaker

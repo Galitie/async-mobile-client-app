@@ -57,7 +57,8 @@ func init():
 	camera.SetTarget(null)
 	camera.transform.origin = Vector2(90, 90)
 	var world = get_parent()
-	world.SetMessageQueue(pre_intro_messages)
+	world.PauseWorld()
+	world.SetMessageQueue(pre_intro_messages, false)
 	
 	for ip in Game.users:
 		if ip != Game.HOST_IP:
@@ -73,10 +74,10 @@ func _wait_for_intro(args):
 		get_intro()
 
 func get_intro():
-	# A delay is needed to prevent the first message in queue being skipped when switching queues on the same frame
+	# A delay is needed when switching queues on a signal due to the World process
 	await get_tree().create_timer(1.0).timeout
 	var student = transfer_students[transfer_student_index]
-	get_parent().SetMessageQueue(intro_messages[student.character_data.name])
+	get_parent().SetMessageQueue(intro_messages[student.character_data.name], false)
 	transfer_student_index += 1
 
 func _intro_finished(args):
@@ -85,7 +86,7 @@ func _intro_finished(args):
 	else:
 		await get_tree().create_timer(1.0).timeout
 		UI.background.visible = false
-		get_parent().SetMessageQueue(post_intro_messages)
+		get_parent().SetMessageQueue(post_intro_messages, false)
 
 func _exit_class(args):
 	get_parent().emit_signal("portal_entered", args[0], args[1])

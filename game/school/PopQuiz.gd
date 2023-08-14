@@ -96,7 +96,8 @@ func init():
 	camera.SetTarget(null)
 	camera.transform.origin = Vector2(90, 90)
 	var world = get_parent()
-	world.SetMessageQueue(pre_note_messages)
+	world.PauseWorld()
+	world.SetMessageQueue(pre_note_messages, false)
 
 func _show_notes(args):
 	UI.love_note.get_node("Text").text = get_parent().love_notes[reaction_index]
@@ -119,7 +120,6 @@ func _question_submitted(packet):
 		if question_index > question_prompts.size() - 1:
 			Game.SendPromptToUsers(Game.wait_prompt, false)
 			emit_signal("all_questions_answered")
-			
 		else:
 			Game.SendPromptToUsers(question_prompts[question_index], true)
 
@@ -128,11 +128,9 @@ func _start_test(args):
 		await all_questions_answered
 	question_index = 0
 	await get_tree().create_timer(1.0).timeout
-	get_parent().SetMessageQueue(question_message)
+	get_parent().SetMessageQueue(question_message, false)
 
 func _present_question(args):
-	# Has to be called because of terrible World and MessageQueue logic
-	get_parent().PauseWorld()
 	UI.left_speaker.texture = null
 	UI.right_speaker.texture = teacher_portrait
 	UI.message_box.Show(questions[question_index], "Sensei", null, true)
@@ -140,13 +138,13 @@ func _present_question(args):
 	# show drop box
 	await question_answered
 
-func update(delta):
+func _process(delta):
 	if UI.love_note.visible && Input.is_action_just_pressed("interact"):
 		UI.love_note.visible = false
 		if reaction_index >= get_parent().love_notes.size():
-			get_parent().SetMessageQueue(pre_quiz_messages)
+			get_parent().SetMessageQueue(pre_quiz_messages, false)
 		else:
-			get_parent().SetMessageQueue(note_reactions[reaction_index])
+			get_parent().SetMessageQueue(note_reactions[reaction_index], false)
 			
 	# if drop box visible
 		# if selected
