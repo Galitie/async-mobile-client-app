@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://br8tbmxc2ndd7"]
+[gd_scene load_steps=39 format=3 uid="uid://br8tbmxc2ndd7"]
 
 [ext_resource type="Texture2D" uid="uid://gtmkc1ynv7h2" path="res://battle/finalBattle/cloudBackground.png" id="1_4or5k"]
 [ext_resource type="Texture2D" uid="uid://dvx7e051whepc" path="res://battle/finalBattle/spaceBackground.png" id="1_dgdvp"]
@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://deavylh7hmrul" path="res://battle/finalBattle/ellery.png" id="26_6g8og"]
 [ext_resource type="Texture2D" uid="uid://i00nfdlfykyh" path="res://battle/finalBattle/elleryZoomedIn.png" id="27_o5qo3"]
 [ext_resource type="Texture2D" uid="uid://cn7l4ddxjh22e" path="res://battle/finalBattle/elleryFire.png" id="27_u1sms"]
+[ext_resource type="Texture2D" uid="uid://dopm6ekrxuj3u" path="res://battle/finalBattle/nycText.png" id="29_pueg7"]
+[ext_resource type="Texture2D" uid="uid://327eeynf84xm" path="res://battle/finalBattle/tylersApartmentText.png" id="30_dgki7"]
 
 [sub_resource type="Animation" id="Animation_v3l7v"]
 length = 0.001
@@ -746,6 +748,30 @@ tracks/58/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/59/type = "value"
+tracks/59/imported = false
+tracks/59/enabled = true
+tracks/59/path = NodePath("nycText:modulate")
+tracks/59/interp = 1
+tracks/59/loop_wrap = true
+tracks/59/keys = {
+"times": PackedFloat32Array(66.4, 67.2, 68.3, 69),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/60/type = "value"
+tracks/60/imported = false
+tracks/60/enabled = true
+tracks/60/path = NodePath("apartmentText:modulate")
+tracks/60/interp = 1
+tracks/60/loop_wrap = true
+tracks/60/keys = {
+"times": PackedFloat32Array(71.8, 72.6, 74.8, 75.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppo0e"]
 _data = {
@@ -922,7 +948,7 @@ texture = ExtResource("26_6g8og")
 
 [node name="ElleryZoom" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(133, 88)
+position = Vector2(143, 105)
 scale = Vector2(0.473417, 0.473417)
 texture = ExtResource("27_o5qo3")
 
@@ -963,9 +989,9 @@ scale = Vector2(0.262376, 0.262376)
 texture = ExtResource("24_fsb54")
 
 [node name="Explode" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.478387)
+modulate = Color(1, 1, 1, 0)
 position = Vector2(226, 136)
-scale = Vector2(0.0691171, 0.0691171)
+scale = Vector2(0.0688894, 0.0688894)
 texture = ExtResource("20_vw0df")
 
 [node name="Whiteout" type="ColorRect" parent="."]
@@ -974,3 +1000,15 @@ offset_left = -44.0
 offset_top = -27.0
 offset_right = 546.0
 offset_bottom = 308.0
+
+[node name="nycText" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(401, 226)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("29_pueg7")
+
+[node name="apartmentText" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(349, 236)
+scale = Vector2(0.358407, 0.358407)
+texture = ExtResource("30_dgki7")
