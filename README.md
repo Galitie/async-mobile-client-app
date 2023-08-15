@@ -6,14 +6,17 @@
 
 **Tech used:** HTML, CSS, JavaScript, Godot, AWS
 
-I worked on a small team to code the mobile web-app portion of this game using HTML, CSS and Javascript. The mobile web-app is responsive to all mobile screens and uses a websocket to connect to a AWS server.
+I worked on a small team to code the mobile web-app portion of this game using HTML, CSS and Javascript. The mobile web-app is responsive to all mobile screens and uses a websocket to connect to a AWS server. I also had a hand in coding in the Godot game engine.
 
 
 ## Lessons Learned:
 
 - Working on a team while using GIT and GITHUB
 - How to connect to a server via websocket
-- Responsive layouts for different mobile browsers
+- Responsive layouts for different phones and mobile browsers
 
+## Optimizations:
+
+- Media query for desktop version
 
 
