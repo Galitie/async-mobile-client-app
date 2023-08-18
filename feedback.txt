@@ -30,6 +30,41 @@ Ride off into sunset
 End game
 
 
+-- Todos --
+- Make a list of bugs/fixes
+    - Double cursor
+    - Change battle background option
+    - Balance Music
+    - Loop Music
+    - Pink menus in school area and pink heart pointer
+- Add final battle
+- Finish final battle animations (beginning and end)
+- Dialogue for all school scenes
+
+-- Add --
+Make hallways puzzle tricker
+Enemy attack animations and sounds
+Make joystick work instead of d-pad (https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html)
+Tyler gets money after battle
+Poem room more fun?
+Anime message, text box and pointer into game
+Battle animations
+Battle sounds
+Menu sounds - clicking, choosing
+Footsteps
+Anime endings/replacements for messages, Kawaii-desu, Baka!, Sugoi! Nani?!, Tyler-kun
+Jury/court room ending, players get sent back to dungeon
+Real winner, who has most Tyler points is safe from jail
+
+Fake HP bar
+Characters speak outloud in japanese during anime section (words in english)
+Students blocking the hallway will hang in the hallway after lunch and you can chat with them
+More attacks ideas:
+    - Cleo scratch attack
+    - Sonic fullscreen attack
+People in the hallway to talk to
+
+
 -- Dice roll effects -- This could be a soundboard instead?
 Reverse controls
 Speed up
@@ -50,29 +85,6 @@ Random bonus battle
 Laugh track mode
 Jackpot
 Take a nap, save game, yes, saves for long time
-
-
--- Add --
-Flex Character
-Make joystick work instead of d-pad (https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html)
-Tyler gets money after battle
-Poem room more fun?
-Anime message, text box and pointer into game
-Battle animations
-Battle sounds
-Interactive sounds - clicking, choosing
-Footsteps
-Anime endings/replacements for messages, Kawaii-desu, Baka!, Sugoi! Nani?!, Tyler-kun
-Jury/court room ending, players get sent back to dungeon
-Real winner, who has most Tyler points is safe from jail
-
-Fake HP bar
-Characters speak outloud in japanese during anime section (words in english)
-Students blocking the hallway will hang in the hallway after lunch and you can chat with them
-More attacks ideas:
-    - Cleo scratch attack
-    - Sonic fullscreen attack
-People in the hallway to talk to
 
 
 -- First Playtest Results --

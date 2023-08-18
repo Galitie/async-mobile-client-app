@@ -30,14 +30,29 @@ var intro_messages = {
 		Message.new("Mario", "yahoo!", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, mario_portrait),
 	],
 	"Snake" : [
-		Message.new("Snake", "Kept you waiting huh?", "", Message.SignalTiming.NONE, [], null, snake_portrait),
+		Message.new("Snake", "Metal...gear...", "", Message.SignalTiming.NONE, [], null, snake_portrait),
 		Message.new("Snake", "INTRO", "", Message.SignalTiming.NONE, [], null, snake_portrait),
-		Message.new("Snake", "Metal...gear...", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, snake_portrait),
-	]
+		Message.new("Snake", "Kept you waiting, huh?", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, snake_portrait),
+	],
+	"Shrek" : [
+		Message.new("Shrek", "*farts*", "", Message.SignalTiming.NONE, [], null, shrek_portrait),
+		Message.new("Shrek", "INTRO", "", Message.SignalTiming.NONE, [], null, shrek_portrait),
+		Message.new("Shrek", "*farts again*", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, shrek_portrait),
+	],
+	"Kermit" : [
+		Message.new("Kermit", "Hi ho!", "", Message.SignalTiming.NONE, [], null, kermit_portrait),
+		Message.new("Kermit", "INTRO", "", Message.SignalTiming.NONE, [], null, kermit_portrait),
+		Message.new("Kermit", "Yaaaaaaaaaaay!", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, kermit_portrait),
+	],	
+	"Shadow" : [
+		Message.new("Shadow", "I am the ultimate life form!", "", Message.SignalTiming.NONE, [], null, shadow_portrait),
+		Message.new("Shadow", "INTRO", "", Message.SignalTiming.NONE, [], null, shadow_portrait),
+		Message.new("Shadow", "Chaos...emerald...", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, shadow_portrait),
+	],
 }
 
 var post_intro_messages = [
-	Message.new("test", "bye bye", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/Lunchroom.tscn", Vector2i(-1, -27)], null, teacher_portrait)
+	Message.new("test", "Oh! Was that the bell? See you after lunch!", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/Lunchroom.tscn", Vector2i(-1, -27)], null, teacher_portrait)
 ]
 
 var intro_prompt = Game.Prompt.new("Introduce yourself to the class:", "map_intro", "countdown", 60.0, false, {"big": "My name is...and I..."})
