@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqnbxknp4n8yf"]
+[gd_scene load_steps=8 format=3 uid="uid://dvcv7mliwbywu"]
 
 [ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_wjhej"]
 [ext_resource type="Script" path="res://school/PopQuiz.gd" id="2_t8vfa"]

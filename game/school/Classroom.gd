@@ -20,7 +20,7 @@ var pre_intro_messages = [
 	Message.new("test", "Welcome class~!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 	Message.new("test", "Tsch, I just made it!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
 	Message.new("test", "Looks like we have some new students!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
-	Message.new("test", "Please introduce yourself!", "wait_for_intro", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
+	Message.new("test", "Please introduce yourself to the class!", "wait_for_intro", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
 ]
 
 var intro_messages = {
