@@ -1,14 +1,103 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc7xbqpdknuxo"]
+[gd_scene load_steps=23 format=3 uid="uid://dc7xbqpdknuxo"]
 
 [ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_bfc1m"]
 [ext_resource type="Script" path="res://school/Hallway.gd" id="2_kvksm"]
 [ext_resource type="Script" path="res://Portal.gd" id="4_oge2i"]
 [ext_resource type="Texture2D" uid="uid://qiwvou2tbyd0" path="res://school/student1.png" id="4_rberj"]
 [ext_resource type="Script" path="res://Interactable.gd" id="5_i7nw5"]
+[ext_resource type="Script" path="res://Message.gd" id="6_dfm8x"]
 [ext_resource type="Texture2D" uid="uid://dxvdhvr57abs0" path="res://school/student2.png" id="6_me4l6"]
 [ext_resource type="Texture2D" uid="uid://p031wvxnf8y2" path="res://school/student3.png" id="7_bdh35"]
 [ext_resource type="Texture2D" uid="uid://vny3sww0r4hx" path="res://school/student4.png" id="8_ck77i"]
 [ext_resource type="Texture2D" uid="uid://cowg7ubqc6y7d" path="res://school/student5.png" id="9_pb51q"]
+[ext_resource type="Texture2D" uid="uid://c21kmku6pe51t" path="res://school/teacher.png" id="10_fjofq"]
+
+[sub_resource type="Resource" id="Resource_o6gvu"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "You're already late! Get to class!"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_310jh"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "*Sigh*"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_km3j6"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "Stop fucking around and get to class you turd"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_ylmay"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "Wrong way asshole"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_lceu0"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "Your class isn't this way..."
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_01epl"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "Tyler, what are you doing out of class?"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_e06uo"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "You're late!! Get to your classroom!"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_dfy58"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "Nani? Get to class!"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="Resource" id="Resource_rebv4"]
+script = ExtResource("6_dfm8x")
+speaker = "Teacher"
+content = "What are you doing? Get to class!"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6s7j"]
+atlas = ExtResource("10_fjofq")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3bv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6s7j")
+}],
+"loop": true,
+"name": &"walk_south",
+"speed": 5.0
+}]
 
 [node name="Hallway" type="TileMap"]
 y_sort_enabled = true
@@ -70,6 +159,7 @@ next_map = "res://school/Classroom.tscn"
 next_map_cell_position = Vector2i(100, 100)
 
 [node name="npc1" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-16, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_rberj")
@@ -79,8 +169,10 @@ region_rect = Rect2(40, 18, 61, 92)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(-1, -32)
 interact_sprite = Rect2(40, 18, 61, 92)
+messages = Array[Resource]([SubResource("Resource_o6gvu")])
 
 [node name="npc2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("6_me4l6")
@@ -90,8 +182,10 @@ region_rect = Rect2(44, 13, 55, 101)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(0, -32)
 interact_sprite = Rect2(44, 13, 55, 101)
+messages = Array[Resource]([SubResource("Resource_310jh")])
 
 [node name="npc3" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(16, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_bdh35")
@@ -101,8 +195,10 @@ region_rect = Rect2(51, 26, 41, 89)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(1, -32)
 interact_sprite = Rect2(51, 26, 41, 89)
+messages = Array[Resource]([SubResource("Resource_km3j6")])
 
 [node name="npc4" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(32, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_ck77i")
@@ -112,8 +208,10 @@ region_rect = Rect2(39, 28, 62, 83)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(2, -32)
 interact_sprite = Rect2(39, 28, 62, 83)
+messages = Array[Resource]([SubResource("Resource_ylmay")])
 
 [node name="npc5" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(48, -512)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("9_pb51q")
@@ -123,8 +221,10 @@ region_rect = Rect2(45, 12, 54, 97)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(3, -32)
 interact_sprite = Rect2(45, 12, 54, 97)
+messages = Array[Resource]([SubResource("Resource_lceu0")])
 
 [node name="npc6" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(48, -352)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_rberj")
@@ -134,8 +234,10 @@ region_rect = Rect2(40, 18, 61, 92)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(3, -22)
 interact_sprite = Rect2(40, 18, 61, 92)
+messages = Array[Resource]([SubResource("Resource_01epl")])
 
 [node name="npc7" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-16, -128)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("6_me4l6")
@@ -145,8 +247,10 @@ region_rect = Rect2(44, 13, 55, 101)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(-1, -8)
 interact_sprite = Rect2(44, 13, 55, 101)
+messages = Array[Resource]([SubResource("Resource_e06uo")])
 
 [node name="npc8" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-16, -272)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_bdh35")
@@ -156,8 +260,10 @@ region_rect = Rect2(51, 26, 41, 89)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(-1, -17)
 interact_sprite = Rect2(51, 26, 41, 89)
+messages = Array[Resource]([SubResource("Resource_dfy58")])
 
 [node name="npc9" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(48, -48)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_ck77i")
@@ -167,8 +273,80 @@ region_rect = Rect2(39, 28, 62, 83)
 script = ExtResource("5_i7nw5")
 cell_position = Vector2i(3, -3)
 interact_sprite = Rect2(39, 28, 62, 83)
+messages = Array[Resource]([SubResource("Resource_rebv4")])
+
+[node name="Teacher" type="AnimatedSprite2D" parent="."]
+position = Vector2(-15, -508)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher2" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -509)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher3" type="AnimatedSprite2D" parent="."]
+position = Vector2(18, -508)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher4" type="AnimatedSprite2D" parent="."]
+position = Vector2(34, -508)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher5" type="AnimatedSprite2D" parent="."]
+position = Vector2(50, -508)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher6" type="AnimatedSprite2D" parent="."]
+position = Vector2(51, -348)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher7" type="AnimatedSprite2D" parent="."]
+position = Vector2(-14, -268)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher8" type="AnimatedSprite2D" parent="."]
+position = Vector2(51, -189)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher9" type="AnimatedSprite2D" parent="."]
+position = Vector2(-15, -123)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
+
+[node name="Teacher10" type="AnimatedSprite2D" parent="."]
+position = Vector2(51, -48)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_p3bv4")
+animation = &"walk_south"
+offset = Vector2(7.5, -7)
 
 [node name="npc10" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(48, -192)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("9_pb51q")

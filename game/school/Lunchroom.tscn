@@ -208,6 +208,21 @@ interact_signal = "pushCrate"
 
 [node name="SFX" type="AudioStreamPlayer" parent="Crate2"]
 
+[node name="Crate17" type="Sprite2D" parent="."]
+position = Vector2(48, -272)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_jlcoo")
+centered = false
+offset = Vector2(-8, -64)
+region_enabled = true
+region_rect = Rect2(43.8212, 12.7048, 54.846, 100.676)
+script = ExtResource("6_ygqva")
+cell_position = Vector2i(3, -17)
+interact_sprite = Rect2(43.821, 12.705, 54.846, 100.676)
+interact_signal = "pushCrate"
+
+[node name="SFX" type="AudioStreamPlayer" parent="Crate17"]
+
 [node name="Crate3" type="Sprite2D" parent="."]
 position = Vector2(16, -464)
 scale = Vector2(0.4, 0.4)
@@ -252,6 +267,21 @@ interact_sprite = Rect2(45.324, 11.953, 54.095, 96.92)
 interact_signal = "pushCrate"
 
 [node name="SFX" type="AudioStreamPlayer" parent="Crate5"]
+
+[node name="Crate18" type="Sprite2D" parent="."]
+position = Vector2(0, -608)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_aer6a")
+centered = false
+offset = Vector2(-8, -60)
+region_enabled = true
+region_rect = Rect2(45.3239, 11.9535, 54.0947, 96.9196)
+script = ExtResource("6_ygqva")
+cell_position = Vector2i(0, -38)
+interact_sprite = Rect2(45.324, 11.953, 54.095, 96.92)
+interact_signal = "pushCrate"
+
+[node name="SFX" type="AudioStreamPlayer" parent="Crate18"]
 
 [node name="Crate6" type="Sprite2D" parent="."]
 position = Vector2(-16, -480)
@@ -343,6 +373,21 @@ interact_signal = "pushCrate"
 
 [node name="SFX" type="AudioStreamPlayer" parent="Crate11"]
 
+[node name="Crate16" type="Sprite2D" parent="."]
+position = Vector2(16, -944)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_an80f")
+centered = false
+offset = Vector2(-8, -55)
+region_enabled = true
+region_rect = Rect2(48.9159, 141.931, 53.3434, 81.8933)
+script = ExtResource("6_ygqva")
+cell_position = Vector2i(1, -59)
+interact_sprite = Rect2(48.916, 141.931, 53.343, 81.893)
+interact_signal = "pushCrate"
+
+[node name="SFX" type="AudioStreamPlayer" parent="Crate16"]
+
 [node name="Crate12" type="Sprite2D" parent="."]
 position = Vector2(16, -512)
 scale = Vector2(0.4, 0.4)
@@ -372,3 +417,33 @@ interact_sprite = Rect2(192.582, 17.213, 55.597, 90.909)
 interact_signal = "pushCrate"
 
 [node name="SFX" type="AudioStreamPlayer" parent="Crate13"]
+
+[node name="Crate15" type="Sprite2D" parent="."]
+position = Vector2(160, -896)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("9_3117m")
+centered = false
+offset = Vector2(-16, -42)
+region_enabled = true
+region_rect = Rect2(38.562, 143.434, 66.1157, 76.6341)
+script = ExtResource("6_ygqva")
+cell_position = Vector2i(10, -56)
+interact_sprite = Rect2(38.562, 143.434, 66.116, 76.634)
+interact_signal = "pushCrate"
+
+[node name="SFX" type="AudioStreamPlayer" parent="Crate15"]
+
+[node name="Crate14" type="Sprite2D" parent="."]
+position = Vector2(-16, -336)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_u86c0")
+centered = false
+offset = Vector2(-8, -60)
+region_enabled = true
+region_rect = Rect2(192.582, 17.2127, 55.5973, 90.9091)
+script = ExtResource("6_ygqva")
+cell_position = Vector2i(-1, -21)
+interact_sprite = Rect2(192.582, 17.213, 55.597, 90.909)
+interact_signal = "pushCrate"
+
+[node name="SFX" type="AudioStreamPlayer" parent="Crate14"]
