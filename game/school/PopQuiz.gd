@@ -56,8 +56,8 @@ var pre_quiz_messages = [
 	Message.new("Tyler", "Wow, that was kind of harsh Sensei...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "...what kind of highschool is this anyways?", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Sensei", "Sharpen your pencils, we will start the quiz soon!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
-	Message.new("Sensei", "...annnnny second now...", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
-	Message.new("Tyler", "Tsch! I'll have to do my best! I can't disappoint my family!", "start_test", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
+	Message.new("Sensei", "...annnnny second now...", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "Tsch! I'll have to do my best! I can't disappoint my family!", "start_test", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
 ]
 
 var post_quiz_messages = [
