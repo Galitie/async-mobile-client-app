@@ -103,6 +103,7 @@ _data = {
 }
 
 [node name="UI" type="CanvasLayer"]
+layer = 3
 script = ExtResource("1_rilyt")
 
 [node name="Screen" type="Control" parent="."]
@@ -123,6 +124,22 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_7ynyr")
 expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Screen"]
+layer = 5
+
+[node name="MessageBox" parent="Screen/CanvasLayer" instance=ExtResource("1_6jg07")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -119.5
+offset_top = -67.0
+offset_right = 119.5
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="LeftSpeaker" type="TextureRect" parent="Screen"]
 visible = false
@@ -153,20 +170,6 @@ texture = ExtResource("6_xfgv6")
 expand_mode = 1
 stretch_mode = 6
 flip_h = true
-
-[node name="MessageBox" parent="Screen" instance=ExtResource("1_6jg07")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -119.5
-offset_top = -67.0
-offset_right = 119.5
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
 
 [node name="Transition" type="ColorRect" parent="Screen"]
 modulate = Color(1, 1, 1, 0)

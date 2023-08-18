@@ -58,6 +58,8 @@ const collision_layer = 3
 
 var wait_prompt = Prompt.new("Please wait...", "wait", "none", 0.0, false, {"small": ""})
 
+var villain_ip = ""
+
 # TTS voices need to be installed from either the Windows speech package downloader in settings or from the
 # runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=27224
 # Open registry editor app from start menu

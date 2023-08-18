@@ -159,6 +159,8 @@ func _addUser(packet):
 		Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
 		
 		Game.SendPromptToUser(world_prompt, user_data.ip)
+		
+		Game.villain_ip = user_data.ip
 	else:
 		var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
 		Client.SendPacket(response)
@@ -233,15 +235,17 @@ func PauseWorld():
 func ResumeWorld():
 	paused = false
 
+# [enemy, music, final_battle : bool]
 func StartBattle(battle_args):
 	Game.SendPromptToUsers(Game.wait_prompt, false)
-	
 	battle = true
 	UI.transition.get_node("AnimationPlayer").play("fade_out")
 	await get_tree().create_timer(0.4).timeout
 	var battle_scene = load("res://battle/Battle.tscn") as PackedScene
 	var battle_instance = battle_scene.instantiate()
 	battle_instance.enemy_info = ResourceLoader.load(battle_args[0])
+	battle_instance.music = ResourceLoader.load(battle_args[1])
+	battle_instance.final_battle = battle_args[2]
 	get_tree().root.add_child(battle_instance)
 	Game.ChangeState(self, battle_instance)
 	UI.transition.get_node("AnimationPlayer").play("fade_in")

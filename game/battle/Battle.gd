@@ -14,8 +14,9 @@ signal user_disconnected
 @onready var enemy = $Enemy
 @onready var move_effects = $MoveEffects
 
-var battle_music = load("res://battle/battle.mp3")
+var music
 var victory_music = load("res://battle/victory.mp3")
+var final_battle = false
 
 class Move:
 	var ip
@@ -35,9 +36,22 @@ var party_turn = false
 var battle_over = false
 
 func _ready():
-	Game.bgm_player.stream = battle_music
-	Game.bgm_player.play()
-	enemy.texture = enemy_info.texture
+	if final_battle:
+		$Background.visible = true
+		$DirectionalLight2D.visible = false
+		$PointLight2D.visible = false
+		
+		var villain_sprite = $Party.get_node(Game.users[Game.villain_ip].character_data.name)
+		villain_sprite.visible = false
+		enemy.texture = villain_sprite.texture
+		enemy.flip_h = true
+	else:
+		$Background.visible = false
+		Game.bgm_player.stream = music
+		Game.bgm_player.play()
+		enemy.texture = enemy_info.texture
+		
+	UI.money.visible = false
 	
 	connect("start_state", _startState)
 	connect("end_state", _endState)
@@ -72,7 +86,6 @@ func _process(delta):
 			battle_info.Show("Tyler used " + moves[cursor_position].name + "!!!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
 			var move = move_effects.get_children().pick_random()
-			# var move = move_effects.get_node("Twomp")
 			var moveSound = move.get_child(0,true)
 			moveSound.play()
 			move.emitting = true

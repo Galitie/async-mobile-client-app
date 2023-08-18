@@ -31,7 +31,7 @@ format = 2
 script = ExtResource("1_quypv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = 4
 follow_viewport_enabled = true
 
 [node name="SakuraPetals" type="GPUParticles2D" parent="CanvasLayer"]
