@@ -27,11 +27,21 @@ var pre_note_messages = [
 ]
 
 var note_reactions = [
-	Message.new("Tyler", "Nani?! There's another love note?!", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null),
-	Message.new("Tyler", "...it's a pile of love notes...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null),
-	Message.new("Tyler", "Uh...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null),
-	Message.new("Tyler", "*blushes*", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null),
-	Message.new("Tyler", "I need to meet with them all after class...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+	[
+		Message.new("Tyler", "Nani?! There's another love note?!", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+	],
+	[
+		Message.new("Tyler", "...it's a pile of love notes...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+	],
+	[
+		Message.new("Tyler", "Uh...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+	],
+	[
+		Message.new("Tyler", "*blushes*", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+	],
+	[
+		Message.new("Tyler", "I need to meet with ALL of them after class...?", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+	]
 ]
 
 var reaction_index = 0

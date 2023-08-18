@@ -77,23 +77,23 @@ func _ready():
 func ChangeState(end_state, start_state):
 	end_state.emit_signal("end_state")
 	start_state.emit_signal("start_state")
-	Game.state = start_state
-	Game.previous_state = end_state
+	state = start_state
+	previous_state = end_state
 	
 func SendPromptToUsers(prompt, notify = true):
-	for user in Game.users:
-		if Game.users[user].ip == HOST_IP:
+	for user in users:
+		if users[user].ip == HOST_IP || users[user].ip == villain_ip:
 			continue
-		SendPromptToUser(prompt, Game.users[user].ip)
+		SendPromptToUser(prompt, users[user].ip)
 	if notify:
 		UI.notif.Appear()
 
 func SendPromptToUser(prompt, ip):
-	if Game.users[ip].connection_status == Client.CONNECTION_STATUS.ONLINE:
-		var response = {"action": "respondToUser", "connectionID": Game.users[ip].connection_id}
+	if users[ip].connection_status == Client.CONNECTION_STATUS.ONLINE:
+		var response = {"action": "respondToUser", "connectionID": users[ip].connection_id}
 		response.merge(prompt.data)
 		Client.SendPacket(response)
-	elif Game.users[ip].connection_status == Client.CONNECTION_STATUS.OFFLINE:
+	elif users[ip].connection_status == Client.CONNECTION_STATUS.OFFLINE:
 		if prompt.data["context"] != "wait" && prompt.data["context"] != "speak":
 			var response = {"userIP": ip, "smallInputValue": "*blushes*", "bigInputValue": "*blushes*"}
 			response.merge(prompt.data)

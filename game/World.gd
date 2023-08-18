@@ -159,8 +159,6 @@ func _addUser(packet):
 		Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
 		
 		Game.SendPromptToUser(world_prompt, user_data.ip)
-		
-		Game.villain_ip = user_data.ip
 	else:
 		var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
 		Client.SendPacket(response)

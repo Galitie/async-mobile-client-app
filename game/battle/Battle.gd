@@ -1,3 +1,4 @@
+class_name Battle
 extends Node2D
 
 signal start_state
@@ -6,6 +7,7 @@ signal sent_text
 signal battle_entry
 signal user_reconnected
 signal user_disconnected
+signal speak
 
 @onready var camera = $Camera2D
 @onready var battle_info = $Camera2D/CanvasLayer/Control/BattleInfo
@@ -35,6 +37,10 @@ var enemy_info = null
 var party_turn = false
 var battle_over = false
 
+@onready var villain_prompt = Game.Prompt.new("SHIT TALK THE MAN WHO BROKE YOUR HEART.", "speak", "none", 0.0, true, {"big": "Fuck you Tyler!"})
+
+var supernova = null
+
 func _ready():
 	if final_battle:
 		$Background.visible = true
@@ -45,6 +51,12 @@ func _ready():
 		villain_sprite.visible = false
 		enemy.texture = villain_sprite.texture
 		enemy.flip_h = true
+		Game.SendPromptToUser(villain_prompt, Game.villain_ip)
+		var supernova_scene = load("res://battle/finalBattle/Supernova.tscn")
+		supernova = supernova_scene.instantiate()
+		supernova.visible = false
+		supernova.global_transform.origin = Vector2(-250, -139)
+		add_child(supernova)
 	else:
 		$Background.visible = false
 		Game.bgm_player.stream = music
@@ -59,10 +71,14 @@ func _ready():
 	connect("battle_entry", _battleEntry)
 	connect("user_disconnected", _userDisconnected)
 	connect("user_reconnected", _userReconnected)
+	connect("speak", _speak)
 	
 	camera.make_current()
 	await get_tree().create_timer(0.8).timeout
-	battle_info.Show("It's a " + enemy_info.enemy_name + "!", "", null, true)
+	if final_battle:
+		battle_info.Show(Game.users[Game.villain_ip].character_data.name + " is heartbroken!", "", null, true)
+	else:
+		battle_info.Show("It's a " + enemy_info.enemy_name + "!", "", null, true)
 	await get_tree().create_timer(2.5).timeout
 	battle_info.Hide()
 	await get_tree().create_timer(0.8).timeout
@@ -113,11 +129,18 @@ func PartyTurn():
 	Game.SendPromptToUsers(battle_prompt)
 	
 func EnemyTurn():
-	battle_info.Show("The " + enemy_info.enemy_name + " attacks!", "", null, true)
-	await get_tree().create_timer(2.0).timeout
-	battle_info.Hide()
-	await get_tree().create_timer(1.0)
-	PartyTurn()
+	if final_battle:
+		battle_info.Show(Game.users[Game.villain_ip].character_data.name + " lashes out!", "", null, true)
+		await get_tree().create_timer(2.0).timeout
+		supernova.visible = true
+		supernova.play()
+		battle_info.Hide()
+	else:
+		battle_info.Show("The " + enemy_info.enemy_name + " attacks!", "", null, true)
+		await get_tree().create_timer(2.0).timeout
+		battle_info.Hide()
+		await get_tree().create_timer(1.0)
+		PartyTurn()
 	
 func _sentText(packet):
 	emit_signal(packet["context"], packet)
@@ -139,7 +162,10 @@ func _battleEntry(packet):
 	CheckAllMovesSubmitted()
 		
 func CheckAllMovesSubmitted():
-	if moves.size() == Game.users.size() - 1:
+	var max_submissions = Game.users.size() - 1
+	if final_battle:
+		max_submissions -= 1
+	if moves.size() == max_submissions:
 		battle_info.SetText(true, "Choose your favorite attack, Tyler!")
 		for option in drop_box.get_child(0).get_children():
 			option.text = ""
@@ -161,10 +187,14 @@ func EndBattle(delta):
 	Game.bgm_player.play()
 	battle_info.Show("Tyler and company are victorious!")
 	battle_over = true
-
+	
 func _startState():
 	pass
 
 func _endState():
 	queue_free()
 	get_parent().remove_child(self)
+	
+func _speak(packet):
+	UI.message_box.Show(packet["bigInputValue"], Game.users[packet["userIP"]].character_data.name, Game.users[packet["userIP"]].character_data.icon_region, true)
+	DisplayServer.tts_speak(packet["bigInputValue"], Game.users[packet["userIP"]].voice_id, 50, Game.users[packet["userIP"]].character_data.voice_pitch)

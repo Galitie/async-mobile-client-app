@@ -57,6 +57,11 @@ func _ready():
 	UI.background.texture = confessionBG
 	UI.background.visible = true
 	sakuraPetals.emitting = true
+	
+	for key in Game.users.keys():
+		if key != Game.HOST_IP:
+			Game.villain_ip = key
+			break
 
 func _startFinalBattle(args):
 	UI.background.visible = false
