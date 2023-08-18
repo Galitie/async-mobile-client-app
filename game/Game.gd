@@ -91,3 +91,8 @@ func SendPromptToUser(prompt, ip):
 		var response = {"action": "respondToUser", "connectionID": Game.users[ip].connection_id}
 		response.merge(prompt.data)
 		Client.SendPacket(response)
+	elif Game.users[ip].connection_status == Client.CONNECTION_STATUS.OFFLINE:
+		if prompt.data["context"] != "wait" && prompt.data["context"] != "speak":
+			var response = {"userIP": ip, "smallInputValue": "*blushes*", "bigInputValue": "*blushes*"}
+			response.merge(prompt.data)
+			state.emit_signal("sent_text", response)

@@ -2,7 +2,6 @@ extends Node2D
 
 signal start_state
 signal end_state
-signal emote
 signal sent_text
 signal battle_entry
 signal user_reconnected
@@ -42,7 +41,6 @@ func _ready():
 	
 	connect("start_state", _startState)
 	connect("end_state", _endState)
-	connect("emote", _emote)
 	connect("sent_text", _sentText)
 	connect("battle_entry", _battleEntry)
 	connect("user_disconnected", _userDisconnected)
@@ -101,11 +99,6 @@ func PartyTurn():
 	var battle_prompt = Game.Prompt.new("Think of a powerful move that will help Tyler in battle!", "battle_entry", "countdown", 30.0, false, {"small": "Megaflare"})
 	Game.SendPromptToUsers(battle_prompt)
 	
-	for user in Game.users:
-		if Game.users[user].connection_status == Client.CONNECTION_STATUS.OFFLINE:
-			moves.append(Move.new(Game.users[user].ip, "*blushes*"))
-			CheckAllMovesSubmitted()
-	
 func EnemyTurn():
 	battle_info.Show("The " + enemy_info.enemy_name + " attacks!", "", null, true)
 	await get_tree().create_timer(2.0).timeout
@@ -115,9 +108,6 @@ func EnemyTurn():
 	
 func _sentText(packet):
 	emit_signal(packet["context"], packet)
-	
-func _emote(packet):
-	pass
 	
 func _userReconnected(packet):
 	Game.SendPromptToUser(Game.wait_prompt, packet["userIP"])

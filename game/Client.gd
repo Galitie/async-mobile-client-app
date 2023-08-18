@@ -5,7 +5,6 @@ signal attemptJoin
 signal addPlayer
 signal disconnect
 signal sendText
-signal dice
 
 var websocket_url = "wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod/"
 var socket = WebSocketPeer.new()
@@ -25,7 +24,6 @@ func _ready():
 	connect("attemptJoin", _attemptJoin)
 	connect("disconnect", _disconnect)
 	connect("sendText", _sendText)
-	connect("dice", _dice)
 	
 func _process(delta):
 	socket.poll()
@@ -89,6 +87,3 @@ func _disconnect(packet):
 
 func _sendText(packet):
 	Game.state.emit_signal("sent_text", packet)
-
-func _dice(packet):
-	Game.state.emit_signal("dice", packet)
