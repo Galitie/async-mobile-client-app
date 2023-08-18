@@ -29,7 +29,7 @@ func _ready():
 func _chestOpened(character, object):
 	if got_key:
 		if !chests_opened:
-			var poem_prompt = Game.Prompt.new("Write something poetic.", "map_poem_entry", "countdown", 30.0, false, {"big": "Roses are red..."})
+			var poem_prompt = Game.Prompt.new("Write something poetic! It will be used later in the game!", "map_poem_entry", "countdown", 30.0, false, {"big": "Roses are red..."})
 			Game.SendPromptToUsers(poem_prompt)
 			
 		chests_opened += 1
@@ -39,7 +39,7 @@ func _chestOpened(character, object):
 		
 		match chests_opened:
 			1:
-				object.messages.append(Message.new("", "You found a[color=yellow] blank scrap of paper..."))
+				object.messages.append(Message.new("", "You found a[color=yellow] blank scrap of paper that can be written on..."))
 			2:
 				object.messages.append(Message.new("", "You found another[color=yellow] scrap of paper."))
 			3:
