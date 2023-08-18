@@ -21,45 +21,40 @@ var shadow_portrait = load("res://school/portraits/shadow.png")
 var shrek_portrait = load("res://school/portraits/shrek.png")
 
 var pre_note_messages = [
-	[
-		Message.new("Sensei", "Welcome back class! Today we're going to study how...", "", Message.SignalTiming.DISAPPEAR, [], teacher_portrait, null)
-	],
-	[
-		Message.new("Tyler", "Huh? What's this...?", "", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
-	],
-	[
+		Message.new("Sensei", "Welcome back class! Today we're going to study how...", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+		Message.new("Tyler", "Huh? What's this...?", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 		Message.new("Tyler", "Oh wow a love note on my desk haha...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
-	]
 ]
 
 var note_reactions = [
-	[
-		Message.new("test", "Nani?! There's another love note?!", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
-	],
-	[
-		Message.new("test", "...it's a pile of love notes...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
-	],
-	[
-		Message.new("test", "Uh...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
-	],
-	[
-		Message.new("test", "*blushes*", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
-	],
-	[
-		Message.new("test", "I need to meet with them all after class...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
-	]
+	Message.new("Tyler", "Nani?! There's another love note?!", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null),
+	Message.new("Tyler", "...it's a pile of love notes...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null),
+	Message.new("Tyler", "Uh...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null),
+	Message.new("Tyler", "*blushes*", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null),
+	Message.new("Tyler", "I need to meet with them all after class...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
 ]
+
 var reaction_index = 0
 
 var pre_quiz_messages = [
-	Message.new("test", "Ok class, time for a pop quiz! Yatta!", "start_question_input", Message.SignalTiming.APPEAR, [], null, teacher_portrait),
-	Message.new("test", "Huh?? Pop quiz?? No!! I didn't study!!", "start_test", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
+	Message.new("Sensei", "...and sonic the hedgehog...and that's what you need to know!", "", Message.SignalTiming.APPEAR, [], null, teacher_portrait),
+	Message.new("Sensei", "Ok class, now that you know the material, time for a pop quiz! Yatta!", "start_question_input", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "Huh?? Pop quiz?? No!! I wasn't paying attention!!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Sensei", "This is a really important quiz that will count for 99% of your grade!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "NOOOOOOOOO!!!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Sensei", "Failing this means you're a fucking LOSER!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "Wow, that was kind of harsh Sensei...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Tyler", "...what kind of highschool is this anyways?", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Sensei", "Sharpen your pencils, we will start the quiz soon!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Sensei", "...annnnny second now...", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "Tsch! I'll have to do my best! I can't disappoint my family!", "start_test", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
 ]
 
 var post_quiz_messages = [
-	Message.new("test", "That was a weirdly personal quiz...", "", Message.SignalTiming.NONE, [], null, tyler_portrait),
-	Message.new("test", "Wow! Is that the bell...already?! Have a great weekend, class!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("test", "Sigh...time to confront all these love notes...", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/ConfessionScene.tscn", Vector2i(100, 1000)], tyler_portrait, null)
+	Message.new("Tyler", "That was a weirdly personal quiz...", "", Message.SignalTiming.NONE, [], null, tyler_portrait),
+	Message.new("test", "RRRRRIIIIIIIIIINNNGGGGG!", "", Message.SignalTiming.NONE, [], null, null),
+	Message.new("Tyler", "Wow! Was that the bell already?! Have a great weekend, class!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "Sigh...time to confront all these love notes...", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/ConfessionScene.tscn", Vector2i(100, 1000)], tyler_portrait, null)
 ]
 
 var questions = [
