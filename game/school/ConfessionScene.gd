@@ -29,7 +29,7 @@ var messages = [
 	Message.new("VILLIAN", "T-Tyler-sama...you came...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
 	Message.new("VILLIAN", "I...I have felt this way for so long...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
 	Message.new("Tyler", "Wattup, saw ur note.", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLIAN", "Do u love me Tyler-sama?", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
+	Message.new("VILLIAN", "Do u love me Tyler-san-sama?", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
 	Message.new("Tyler", "...", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
 	Message.new("Tyler", "......", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
 	Message.new("Tyler", ".........", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
