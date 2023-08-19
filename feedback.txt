@@ -1,10 +1,34 @@
-Tyler - Main player
-Talia
-Ryan
-Carson
-Sabrina
-Taylor
-(Sarah??)
+
+-- Todos --
+- Make a list of bugs/fixes
+    - Double cursor
+    - Balance Music
+    - Loop Music
+    - Pink menus in school area and pink heart pointer
+- Add final battle transitions
+- Final battle textbox remove portraits and make it disappear after a while
+- Finish final supernova animations (beginning and end)
+- Ending of game
+- Anime message, text box and pointer into game
+- Characters speak outloud in japanese during anime section (words in english)
+- Enemy attack animations!
+- Anime bell sound added in bathroom, classroom and popquiz room
+
+-- Add for fun--
+Anime intro, gazing up and down each character
+Make hallways puzzle tricker
+Enemy attack animations and sounds
+Make joystick work instead of d-pad (https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html)
+Tyler gets money after battle
+Poem room more fun?
+Menu sounds - clicking, choosing
+Footsteps
+Jury/court room ending, players get sent back to dungeon
+Real winner, who has most Tyler points is safe from jail
+Fake HP bar
+More attacks ideas:
+    - Cleo scratch attack
+    - Sonic fullscreen attack
 
 -- Order of Events --
 Bathroom
@@ -15,53 +39,11 @@ Lunch - write love notes
 Back to classroom
 Check yes on notes or not
 Tyler quiz
-    - Foreshadow sephiroth attack
-    - What's Tyler's favorite thing to do?
-    - Where does Tyler live?
-    - What is Tyler's bank 
-    - and SS#?
 Class ends
 Confession
-    - After school
-    - 
---
 Last battle
 Ride off into sunset
 End game
-
-
--- Todos --
-- Make a list of bugs/fixes
-    - Double cursor
-    - Balance Music
-    - Loop Music
-    - Pink menus in school area and pink heart pointer
-- Add final battle
-- Finish final battle animations (beginning and end)
-
--- Add --
-Make hallways puzzle tricker
-Enemy attack animations and sounds
-Make joystick work instead of d-pad (https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html)
-Tyler gets money after battle
-Poem room more fun?
-Anime message, text box and pointer into game
-Battle animations
-Battle sounds
-Menu sounds - clicking, choosing
-Footsteps
-Anime endings/replacements for messages, Kawaii-desu, Baka!, Sugoi! Nani?!, Tyler-kun
-Jury/court room ending, players get sent back to dungeon
-Real winner, who has most Tyler points is safe from jail
-
-Fake HP bar
-Characters speak outloud in japanese during anime section (words in english)
-Students blocking the hallway will hang in the hallway after lunch and you can chat with them
-More attacks ideas:
-    - Cleo scratch attack
-    - Sonic fullscreen attack
-People in the hallway to talk to
-
 
 -- Dice roll effects -- This could be a soundboard instead?
 Reverse controls
