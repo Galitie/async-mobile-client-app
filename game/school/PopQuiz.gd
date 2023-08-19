@@ -75,10 +75,10 @@ var questions = [
 ]
 
 var question_prompts = [
-	Game.Prompt.new(questions[0], "map_question_submitted", "countdown", 60.0, false, {"small": "私たちきですfun fun!!"}),
-	Game.Prompt.new(questions[1], "map_question_submitted", "countdown", 60.0, false, {"small": "FULLHOUSEメです"}),
-	Game.Prompt.new(questions[2], "map_question_submitted", "countdown", 60.0, false, {"small": "そのしrouting number?さい"}),
-	Game.Prompt.new(questions[3], "map_question_submitted", "countdown", 60.0, false, {"small": "大好きだよthe Government"})
+	Game.Prompt.new(questions[0], "map_question_submitted", "countdown", 30.0, false, {"small": "私たちきですfun fun!!"}),
+	Game.Prompt.new(questions[1], "map_question_submitted", "countdown", 30.0, false, {"small": "FULLHOUSEメです"}),
+	Game.Prompt.new(questions[2], "map_question_submitted", "countdown", 30.0, false, {"small": "そのしrouting number?さい"}),
+	Game.Prompt.new(questions[3], "map_question_submitted", "countdown", 30.0, false, {"small": "大好きだよthe Government"})
 ]
 var question_index = 0
 var answers_submitted = 0
@@ -99,7 +99,7 @@ var question_answers = [
 ]
  
 var question_message = [
-	Message.new("Sensei", "Pop Quiz Question!", "present_question", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
+	Message.new("Sensei", "Pop Quiz Question!", "present_question", Message.SignalTiming.DISAPPEAR, [], null, teacher_portrait)
 ]
 
 func _ready():
