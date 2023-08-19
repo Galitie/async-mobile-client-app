@@ -176,6 +176,7 @@ func _process(delta):
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
 		elif Input.is_action_just_pressed("interact"):
 				var answer = question_answers[question_index][UI.drop_box.SelectOption()]
+				Game.users[answer.ip].tyler_points += 1
 				question_index += 1
 				if question_index <= question_answers.size() - 1:
 					emit_signal("present_question", [])

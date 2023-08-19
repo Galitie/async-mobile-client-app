@@ -23,6 +23,7 @@ class UserData:
 	var voice_id
 	var character_data
 	var dice = 3
+	var tyler_points = 0
 
 class Prompt:
 	var data = {

@@ -95,15 +95,17 @@ func _process(delta):
 				cursor_position = moves.size() - 1
 		cursor.position.y = 10 + (19 * cursor_position)
 		if Input.is_action_just_pressed("interact"):
+			var move = moves[cursor_position]
+			Game.users[move.ip].tyler_points += 1
 			drop_box.visible = false
 			battle_info.hide()
 			await get_tree().create_timer(0.8).timeout
-			battle_info.Show("Tyler used " + moves[cursor_position].name + "!!!", "", null, true)
+			battle_info.Show("Tyler used " + move.name + "!!!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
-			var move = move_effects.get_children().pick_random()
+			var move_effect = move_effects.get_children().pick_random()
 			var moveSound = move.get_child(0,true)
 			moveSound.play()
-			move.emitting = true
+			move_effect.emitting = true
 			$Enemy/AnimationPlayer.play("onhit")
 			get_node("RandomDamage").playAnimation()
 			battle_info.Hide()
