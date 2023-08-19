@@ -17,10 +17,20 @@ var shadow_portrait = load("res://school/portraits/shadow.png")
 var shrek_portrait = load("res://school/portraits/shrek.png")
 
 var pre_intro_messages = [
-	Message.new("test", "Welcome class~!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("test", "Tsch, I just made it!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
-	Message.new("test", "Looks like we have some new students!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
-	Message.new("test", "Please introduce yourself to the class!", "wait_for_intro", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, teacher_portrait)
+	Message.new("Sensei", "Welcome class~~~!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "Tsch, I just made it!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
+	Message.new("Sensei", "Looks like we have some new transfer students!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Sensei", "Everyone, please quickly introduce yourself to the class!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "Hmm...what should I say? First impressions are extremely important...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Tyler", "Maybe something like 'Hi! I'm Tyler and I'm like, really cool'.", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Tyler", "...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Tyler", "No...that's too lame...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Tyler", "Maybe I can start wi-", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Sensei", "Time is almost up!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
+	Message.new("Sensei", "Also, Tyler, we can hear you talking to yourself, it's weird.", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Sensei", "Stop that.", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "NANI?!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Tyler", "BAKA!! I spent all my time monologuing!!", "wait_for_intro", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
 ]
 
 var intro_messages = {
@@ -52,10 +62,14 @@ var intro_messages = {
 }
 
 var post_intro_messages = [
-	Message.new("test", "Oh! Was that the bell? See you after lunch!", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/Lunchroom.tscn", Vector2i(-1, -27)], null, teacher_portrait)
+	Message.new("test", "RRRRRRRRRRINNNNNGGGGGGG!!", "", Message.SignalTiming.NONE, [], null, null),
+	Message.new("Tyler", "Huh...that was a really short class...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Tyler", "I didn't even get to introduce myself...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+	Message.new("Sensei", "Oh! Was that the bell already? See you all after lunch!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Tyler", "I'm starved! Can't wait to eat all the food in the cafeteria!", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/Lunchroom.tscn", Vector2i(-1, -27)], tyler_portrait, null)
 ]
 
-var intro_prompt = Game.Prompt.new("Introduce yourself to the class:", "map_intro", "countdown", 60.0, false, {"big": "My name is...and I..."})
+var intro_prompt = Game.Prompt.new("Introduce yourself to the class:", "map_intro", "countdown", 45.0, false, {"big": "My name is...and I..."})
 var transfer_students = []
 var transfer_student_index = 0
 var submitted_intros = 0
