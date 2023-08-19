@@ -1,11 +1,10 @@
-[gd_scene load_steps=47 format=3 uid="uid://br8tbmxc2ndd7"]
+[gd_scene load_steps=46 format=3 uid="uid://br8tbmxc2ndd7"]
 
 [ext_resource type="Texture2D" uid="uid://gtmkc1ynv7h2" path="res://battle/finalBattle/cloudBackground.png" id="1_4or5k"]
 [ext_resource type="Texture2D" uid="uid://dvx7e051whepc" path="res://battle/finalBattle/spaceBackground.png" id="1_dgdvp"]
 [ext_resource type="Script" path="res://battle/finalBattle/Supernova.gd" id="1_hb00k"]
 [ext_resource type="Texture2D" uid="uid://dvvwwviojapay" path="res://battle/finalBattle/clouds.png" id="2_7u2qv"]
 [ext_resource type="AudioStream" uid="uid://dbrlk8t72hu5a" path="res://battle/finalBattle/Sephiroth's Super Nova.mp3" id="4_cg5qu"]
-[ext_resource type="Texture2D" uid="uid://ibkhd4kuebt6" path="res://school/portraits/nakedsnake.png" id="5_5rcr6"]
 [ext_resource type="Texture2D" uid="uid://bi6w6mo46pmvg" path="res://battle/Supernova.png" id="5_sboje"]
 [ext_resource type="Texture2D" uid="uid://stog5t2snpvi" path="res://battle/finalBattle/equation2.png" id="7_2t4vm"]
 [ext_resource type="Texture2D" uid="uid://1s1j37ykh7tx" path="res://battle/finalBattle/equation1.png" id="8_r6h5u"]
@@ -855,82 +854,46 @@ tracks/66/keys = {
 tracks/67/type = "value"
 tracks/67/imported = false
 tracks/67/enabled = true
-tracks/67/path = NodePath("PlaceholderForEnemy:modulate")
+tracks/67/path = NodePath("japanAerial:modulate")
 tracks/67/interp = 1
 tracks/67/loop_wrap = true
 tracks/67/keys = {
-"times": PackedFloat32Array(0.4, 8.5, 9.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/68/type = "value"
-tracks/68/imported = false
-tracks/68/enabled = true
-tracks/68/path = NodePath("PlaceholderForEnemy:scale")
-tracks/68/interp = 1
-tracks/68/loop_wrap = true
-tracks/68/keys = {
-"times": PackedFloat32Array(0.4, 4.1, 4.9, 8, 8.6),
-"transitions": PackedFloat32Array(1, 1, 0.225313, 1, 1),
-"update": 0,
-"values": [Vector2(0.237778, 0.237778), Vector2(0.237778, 0.237778), Vector2(0.741111, 0.741111), Vector2(0.741111, 0.741111), Vector2(0.366111, 0.366111)]
-}
-tracks/69/type = "value"
-tracks/69/imported = false
-tracks/69/enabled = true
-tracks/69/path = NodePath("PlaceholderForEnemy:position")
-tracks/69/interp = 1
-tracks/69/loop_wrap = true
-tracks/69/keys = {
-"times": PackedFloat32Array(0.2, 4.1, 4.8, 7, 8.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(276, 179), Vector2(276, 179), Vector2(304, 345), Vector2(304, 335), Vector2(283, 188)]
-}
-tracks/70/type = "value"
-tracks/70/imported = false
-tracks/70/enabled = true
-tracks/70/path = NodePath("japanAerial:modulate")
-tracks/70/interp = 1
-tracks/70/loop_wrap = true
-tracks/70/keys = {
 "times": PackedFloat32Array(94, 94.5, 100.2, 100.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/71/type = "value"
-tracks/71/imported = false
-tracks/71/enabled = true
-tracks/71/path = NodePath("japanText:modulate")
-tracks/71/interp = 1
-tracks/71/loop_wrap = true
-tracks/71/keys = {
+tracks/68/type = "value"
+tracks/68/imported = false
+tracks/68/enabled = true
+tracks/68/path = NodePath("japanText:modulate")
+tracks/68/interp = 1
+tracks/68/loop_wrap = true
+tracks/68/keys = {
 "times": PackedFloat32Array(95.1, 95.8, 97.5, 98.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/72/type = "value"
-tracks/72/imported = false
-tracks/72/enabled = true
-tracks/72/path = NodePath("japanAerial:scale")
-tracks/72/interp = 1
-tracks/72/loop_wrap = true
-tracks/72/keys = {
+tracks/69/type = "value"
+tracks/69/imported = false
+tracks/69/enabled = true
+tracks/69/path = NodePath("japanAerial:scale")
+tracks/69/interp = 1
+tracks/69/loop_wrap = true
+tracks/69/keys = {
 "times": PackedFloat32Array(99, 99.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.527308, 0.527308), Vector2(0.6975, 0.6975)]
 }
-tracks/73/type = "value"
-tracks/73/imported = false
-tracks/73/enabled = true
-tracks/73/path = NodePath("Confession:modulate")
-tracks/73/interp = 1
-tracks/73/loop_wrap = true
-tracks/73/keys = {
+tracks/70/type = "value"
+tracks/70/imported = false
+tracks/70/enabled = true
+tracks/70/path = NodePath("Confession:modulate")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = {
 "times": PackedFloat32Array(99.7, 100.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -985,35 +948,30 @@ metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = []
 
 [node name="SpaceBackground" type="Sprite2D" parent="."]
-position = Vector2(-492, 13)
+position = Vector2(864, 481)
+rotation = 0.174533
 texture = ExtResource("1_dgdvp")
 
 [node name="CloudBackground" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.166209)
+modulate = Color(1, 1, 1, 0)
 position = Vector2(239, 125)
 rotation = 3.14159
 scale = Vector2(0.567012, 0.567013)
 texture = ExtResource("1_4or5k")
 
 [node name="Clouds" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.137529)
+modulate = Color(1, 1, 1, 0)
 position = Vector2(245, 127)
 rotation = 6.28319
 scale = Vector2(0.34375, 0.34375)
 texture = ExtResource("2_7u2qv")
 
 [node name="Clouds2" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.134404)
+modulate = Color(1, 1, 1, 0)
 position = Vector2(259.942, 125.226)
 rotation = 3.57094
 scale = Vector2(0.347825, 0.397563)
 texture = ExtResource("2_7u2qv")
-
-[node name="PlaceholderForEnemy" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(283, 188)
-scale = Vector2(0.366111, 0.366111)
-texture = ExtResource("5_5rcr6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1025,27 +983,31 @@ volume_db = -30.0
 
 [node name="Pentagram" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(255, 228)
+position = Vector2(255, 0)
 scale = Vector2(1.52535, 1.52535)
 texture = ExtResource("5_sboje")
 
 [node name="Equation1" type="Sprite2D" parent="."]
-position = Vector2(-127, 27)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(122, 30)
 scale = Vector2(0.191941, 0.191941)
 texture = ExtResource("7_2t4vm")
 
 [node name="Equation2" type="Sprite2D" parent="."]
-position = Vector2(-70, 68)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(74, 68)
 scale = Vector2(0.614826, 0.614826)
 texture = ExtResource("8_r6h5u")
 
 [node name="Equation3" type="Sprite2D" parent="."]
-position = Vector2(-156, 102)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(158, 102)
 scale = Vector2(0.614826, 0.614826)
 texture = ExtResource("9_5f5ci")
 
 [node name="Equation4" type="Sprite2D" parent="."]
-position = Vector2(-153, 128)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(154, 128)
 scale = Vector2(0.614826, 0.614826)
 texture = ExtResource("10_xf2sa")
 
@@ -1070,57 +1032,57 @@ texture = ExtResource("13_j8je2")
 
 [node name="SuperNova1" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(242, 238)
-scale = Vector2(0.0370834, 0.0370834)
+position = Vector2(227, 152)
+rotation = 6.28319
+scale = Vector2(0.820469, 0.820469)
 texture = ExtResource("14_6nqqs")
 
 [node name="SuperNova2" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(439, 0)
-scale = Vector2(3.15, 3.15)
+position = Vector2(-600, 300)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_30x86")
 frame_progress = 0.818022
 
 [node name="Galaxy" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(236, 210)
-scale = Vector2(0.1, 0.1)
+position = Vector2(207, 127)
+scale = Vector2(1.638, 1.638)
 texture = ExtResource("16_adiba")
 
 [node name="Pluto" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(168, 142)
-scale = Vector2(0.359375, 0.359375)
+scale = Vector2(0.201172, 0.201172)
 texture = ExtResource("17_xl817")
 
 [node name="Earth" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(241, 146)
-scale = Vector2(0.107813, 0.107813)
+position = Vector2(213, 307)
+scale = Vector2(2, 2)
 texture = ExtResource("23_ch3pl")
 
 [node name="nyc" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(300, 149)
-scale = Vector2(0.415472, 0.415472)
+position = Vector2(544, -15)
+scale = Vector2(0.777628, 0.777628)
 texture = ExtResource("25_os88m")
 
 [node name="ellery" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(230, 193)
-scale = Vector2(0.362156, 0.362157)
+scale = Vector2(0.636536, 0.636537)
 texture = ExtResource("26_6g8og")
 
 [node name="ElleryZoom" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(143, 105)
-scale = Vector2(0.4092, 0.4092)
+scale = Vector2(0.473417, 0.473417)
 texture = ExtResource("27_o5qo3")
 
 [node name="elleryFire" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(227.613, 135)
-scale = Vector2(0.47043, 0.47043)
+scale = Vector2(0.358423, 0.358423)
 texture = ExtResource("27_u1sms")
 
 [node name="PlutoText" type="Sprite2D" parent="."]
@@ -1132,7 +1094,7 @@ texture = ExtResource("19_efuhp")
 [node name="SpaceChase" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(228, 121)
-scale = Vector2(0.201667, 0.201667)
+scale = Vector2(0.66875, 0.66875)
 texture = ExtResource("21_cnqls")
 
 [node name="SpaceChaseText" type="Sprite2D" parent="."]
@@ -1149,8 +1111,8 @@ texture = ExtResource("24_fsb54")
 
 [node name="Explode" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(167, 130)
-scale = Vector2(0.316915, 0.316915)
+position = Vector2(226, 136)
+scale = Vector2(0.0688894, 0.0688894)
 texture = ExtResource("20_vw0df")
 
 [node name="nycText" type="Sprite2D" parent="."]
@@ -1191,7 +1153,7 @@ texture = ExtResource("34_a8to3")
 [node name="japanAerial" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(239, 133)
-scale = Vector2(0.527308, 0.527308)
+scale = Vector2(0.6975, 0.6975)
 texture = ExtResource("36_i6qyq")
 
 [node name="japanText" type="Sprite2D" parent="."]
@@ -1201,11 +1163,13 @@ scale = Vector2(0.623077, 0.623077)
 texture = ExtResource("37_3037x")
 
 [node name="SuperNova3" type="Sprite2D" parent="."]
-position = Vector2(710, 57)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(248, 164)
+rotation = -0.0775723
+scale = Vector2(0.0381738, 0.0381738)
 texture = ExtResource("17_u4cf8")
 
 [node name="Confession" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(243, 132)
 scale = Vector2(0.254879, 0.254879)
 texture = ExtResource("38_mbwcx")

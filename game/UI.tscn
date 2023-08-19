@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c46pvmkujapqt"]
+[gd_scene load_steps=19 format=3 uid="uid://c46pvmkujapqt"]
 
 [ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="1_6jg07"]
 [ext_resource type="Script" path="res://UI.gd" id="1_rilyt"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dhvq8mh0t07h" path="res://school/loveLetterBackground.png" id="8_3b80l"]
 [ext_resource type="Texture2D" uid="uid://bj7k4bwclnnu1" path="res://school/coin.png" id="9_018il"]
 [ext_resource type="PackedScene" uid="uid://6lh05vm6wb2i" path="res://DropBox.tscn" id="10_k7qkb"]
+[ext_resource type="PackedScene" uid="uid://cjm8d6r0wsahe" path="res://epilogue/epilogue.tscn" id="11_is0bn"]
 
 [sub_resource type="Animation" id="Animation_38kyq"]
 length = 0.001
@@ -284,3 +285,7 @@ offset_right = 50.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Epilogue" parent="Screen" instance=ExtResource("11_is0bn")]
+visible = false
+layout_mode = 1

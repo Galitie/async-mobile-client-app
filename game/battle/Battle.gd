@@ -38,14 +38,14 @@ var party_turn = false
 var battle_over = false
 
 @onready var villain_prompt = Game.Prompt.new("SHIT TALK THE MAN WHO BROKE YOUR HEART.", "speak", "none", 0.0, true, {"big": "Fuck you Tyler!"})
-
-var supernova = null
+@onready var supernova = $Supernova
 
 func _ready():
 	if final_battle:
 		$Background.visible = true
 		$DirectionalLight2D.visible = false
 		$PointLight2D.visible = false
+		$AnimationPlayer.animation_finished.connect(_startEpilogue)
 		
 		var villain_sprite = $Party.get_node(Game.users[Game.villain_ip].character_data.name)
 		villain_sprite.visible = false
@@ -53,10 +53,9 @@ func _ready():
 		enemy.flip_h = true
 		Game.SendPromptToUser(villain_prompt, Game.villain_ip)
 		var supernova_scene = load("res://battle/finalBattle/Supernova.tscn")
-		supernova = supernova_scene.instantiate()
+		var supernova_instance = supernova_scene.instantiate()
+		supernova.add_child(supernova_instance)
 		supernova.visible = false
-		supernova.global_transform.origin = Vector2(-250, -139)
-		add_child(supernova)
 	else:
 		$Background.visible = false
 		Game.bgm_player.stream = music
@@ -130,11 +129,23 @@ func PartyTurn():
 	
 func EnemyTurn():
 	if final_battle:
-		battle_info.Show(Game.users[Game.villain_ip].character_data.name + " lashes out!", "", null, true)
-		await get_tree().create_timer(2.0).timeout
-		supernova.visible = true
-		supernova.play()
-		battle_info.Hide()
+		if turn == max_turns - 1:
+			Game.SendPromptToUsers(Game.wait_prompt, false, false)
+			get_tree().root.get_node("/root/World/ConfessionScene/CanvasLayer/SakuraPetals").emitting = false
+			var bgm_tween = get_tree().create_tween()
+			bgm_tween.tween_property(Game.bgm_player, "volume_db", -200, 24)
+			battle_info.Show("Super Nova", "", null, true)
+			get_node("AnimationPlayer").play("supernova")
+			supernova.visible = true
+			supernova.get_child(0).play()
+			await get_tree().create_timer(3.0).timeout
+			battle_info.Hide()
+		else:
+			battle_info.Show(Game.users[Game.villain_ip].character_data.name + " lashes out!", "", null, true)
+			await get_tree().create_timer(2.0).timeout
+			battle_info.Hide()
+			await get_tree().create_timer(1.0)
+			PartyTurn()
 	else:
 		battle_info.Show("The " + enemy_info.enemy_name + " attacks!", "", null, true)
 		await get_tree().create_timer(2.0).timeout
@@ -198,3 +209,8 @@ func _endState():
 func _speak(packet):
 	UI.message_box.Show(packet["bigInputValue"], Game.users[packet["userIP"]].character_data.name, Game.users[packet["userIP"]].character_data.icon_region, true)
 	DisplayServer.tts_speak(packet["bigInputValue"], Game.users[packet["userIP"]].voice_id, 50, Game.users[packet["userIP"]].character_data.voice_pitch)
+
+func _startEpilogue(anim):
+	var supernova_bgm = supernova.get_child(0).get_node("AudioStreamPlayer2D")
+	UI.epilogue.visible = true
+	UI.epilogue.start(supernova_bgm)

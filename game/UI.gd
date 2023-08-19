@@ -10,3 +10,4 @@ extends CanvasLayer
 @onready var money = $Screen/Money
 @onready var money_amount = $Screen/Money/Number
 @onready var drop_box = $Screen/DropBox
+@onready var epilogue = $Screen/Epilogue

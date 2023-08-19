@@ -80,9 +80,11 @@ func ChangeState(end_state, start_state):
 	state = start_state
 	previous_state = end_state
 	
-func SendPromptToUsers(prompt, notify = true):
+func SendPromptToUsers(prompt, notify = true, exclude_villain = true):
 	for user in users:
-		if users[user].ip == HOST_IP || users[user].ip == villain_ip:
+		if users[user].ip == HOST_IP:
+			continue
+		if exclude_villain && users[user].ip == villain_ip:
 			continue
 		SendPromptToUser(prompt, users[user].ip)
 	if notify:
