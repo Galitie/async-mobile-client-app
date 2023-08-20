@@ -172,7 +172,7 @@ func _process(delta):
 			
 	if UI.drop_box.visible:
 		if Input.is_action_just_pressed("move_down"):
-			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
+			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.DOWN)
 		elif Input.is_action_just_pressed("move_up"):
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
 		elif Input.is_action_just_pressed("interact"):
