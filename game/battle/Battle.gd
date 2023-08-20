@@ -11,8 +11,6 @@ signal speak
 
 @onready var camera = $Camera2D
 @onready var battle_info = $Camera2D/CanvasLayer/Control/BattleInfo
-@onready var drop_box = $Camera2D/CanvasLayer/Control/DropBox
-@onready var cursor = $Camera2D/CanvasLayer/Control/DropBox/Cursor
 @onready var enemy = $Enemy
 @onready var move_effects = $MoveEffects
 
@@ -22,11 +20,11 @@ var final_battle = false
 
 class Move:
 	var ip
-	var name
+	var content
 	
-	func _init(_ip, _name):
+	func _init(_ip, _content):
 		ip = _ip
-		name = _name
+		content = _content
 
 var moves = []
 var cursor_position = 0
@@ -87,23 +85,18 @@ func _process(delta):
 	if !DisplayServer.tts_is_speaking():
 		UI.message_box.Hide()
 	
-	if drop_box.visible:
+	if UI.drop_box.visible:
 		if Input.is_action_just_pressed("move_down"):
-			cursor_position += 1
-			if cursor_position > moves.size() - 1:
-				cursor_position = 0
+			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.DOWN)
 		elif Input.is_action_just_pressed("move_up"):
-			cursor_position -= 1
-			if cursor_position < 0:
-				cursor_position = moves.size() - 1
-		cursor.position.y = 10 + (19 * cursor_position)
+			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
 		if Input.is_action_just_pressed("interact"):
-			var move = moves[cursor_position]
+			var move = moves[UI.drop_box.SelectOption()]
 			Game.users[move.ip].tyler_points += 1
-			drop_box.visible = false
+			UI.drop_box.visible = false
 			battle_info.hide()
 			await get_tree().create_timer(0.8).timeout
-			battle_info.Show("Tyler used " + move.name + "!!!", "", null, true)
+			battle_info.Show("Tyler used " + move.content + "!!!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
 			var move_effect = move_effects.get_children().pick_random()
 			var moveSound = move_effect.get_child(0, true)
@@ -184,11 +177,8 @@ func CheckAllMovesSubmitted():
 		max_submissions -= 1
 	if moves.size() == max_submissions:
 		battle_info.SetText(true, "Choose your favorite attack, Tyler!")
-		for option in drop_box.get_child(0).get_children():
-			option.text = ""
-		for i in range(0, moves.size(), 1):
-			drop_box.get_child(0).get_child(i).text = moves[i].name
-		drop_box.visible = true
+		UI.drop_box.SetOptions(moves)
+		UI.drop_box.visible = true
 		party_turn = false
 		
 func EndBattle(delta):
