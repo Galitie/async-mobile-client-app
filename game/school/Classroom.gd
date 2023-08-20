@@ -38,27 +38,27 @@ var intro_messages = {
 	"Mario" : [
 		Message.new("Mario", "Itsame ", "", Message.SignalTiming.NONE, [], null , mario_portrait),
 		Message.new("Mario", "INTRO", "", Message.SignalTiming.NONE, [], null, mario_portrait),
-		Message.new("Mario", "yahoo!", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, mario_portrait),
+		Message.new("Mario", "[CATCHPHRASE]", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, mario_portrait),
 	],
 	"Snake" : [
 		Message.new("Snake", "Metal...gear...", "", Message.SignalTiming.NONE, [], null, snake_portrait),
 		Message.new("Snake", "INTRO", "", Message.SignalTiming.NONE, [], null, snake_portrait),
-		Message.new("Snake", "Kept you waiting, huh?", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, snake_portrait),
+		Message.new("Snake", "[CATCHPHRASE]", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, snake_portrait),
 	],
 	"Shrek" : [
 		Message.new("Shrek", "*farts*", "", Message.SignalTiming.NONE, [], null, shrek_portrait),
 		Message.new("Shrek", "INTRO", "", Message.SignalTiming.NONE, [], null, shrek_portrait),
-		Message.new("Shrek", "*farts again*", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, shrek_portrait),
+		Message.new("Shrek", "[CATCHPHRASE]", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, shrek_portrait),
 	],
 	"Kermit" : [
 		Message.new("Kermit", "Hi ho!", "", Message.SignalTiming.NONE, [], null, kermit_portrait),
 		Message.new("Kermit", "INTRO", "", Message.SignalTiming.NONE, [], null, kermit_portrait),
-		Message.new("Kermit", "Yaaaaaaaaaaay!", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, kermit_portrait),
+		Message.new("Kermit", "[CATCHPHRASE]", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, kermit_portrait),
 	],	
 	"Shadow" : [
 		Message.new("Shadow", "I am the ultimate life form!", "", Message.SignalTiming.NONE, [], null, shadow_portrait),
 		Message.new("Shadow", "INTRO", "", Message.SignalTiming.NONE, [], null, shadow_portrait),
-		Message.new("Shadow", "Chaos...emerald...", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, shadow_portrait),
+		Message.new("Shadow", "[CATCHPHRASE]", "intro_finished", Message.SignalTiming.DISAPPEAR, [], null, shadow_portrait),
 	],
 }
 
@@ -82,6 +82,7 @@ func _ready():
 	connect("map_intro", _intro)
 	connect("intro_finished", _intro_finished)
 	Game.SendPromptToUsers(intro_prompt)
+	
 
 func init():
 	camera.SetTarget(null)
@@ -107,6 +108,8 @@ func get_intro():
 	# A delay is needed when switching queues on a signal due to the World process
 	await get_tree().create_timer(1.0).timeout
 	var student = transfer_students[transfer_student_index]
+	for message in intro_messages[student.character_data.name]:
+		message.content = message.content.replace("[CATCHPHRASE]", student.catchphrase)
 	get_parent().SetMessageQueue(intro_messages[student.character_data.name], false)
 	transfer_student_index += 1
 
