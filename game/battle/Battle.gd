@@ -138,8 +138,9 @@ func EnemyTurn():
 			Game.SendPromptToUsers(Game.wait_prompt, false, false)
 			get_tree().root.get_node("/root/World/ConfessionScene/CanvasLayer/SakuraPetals").emitting = false
 			var bgm_tween = get_tree().create_tween()
+			await get_tree().create_timer(2.0).timeout
 			bgm_tween.tween_property(Game.bgm_player, "volume_db", -200, 24)
-			battle_info.Show("Super Nova", "", null, true)
+			battle_info.Show(Game.users[Game.villain_ip].character_data.name + ": \"Enough! Super Nova!\"", "", null, true)
 			get_node("AnimationPlayer").play("supernova")
 			supernova.visible = true
 			supernova.get_child(0).play()

@@ -66,9 +66,6 @@ func _ready():
 	UI.background.visible = true
 	sakuraPetals.emitting = true
 	
-	var rkey = Game.users.keys().pick_random()
-	Game.users[rkey].tyler_points += 1
-	print(Game.users[rkey].character_data.name)
 	for key in Game.users.keys():
 		if key != Game.HOST_IP:
 			if Game.winner_ip == "":
@@ -83,7 +80,6 @@ func _ready():
 			if Game.villain_ip == "":
 				Game.villain_ip = key
 			elif Game.users[key].tyler_points < Game.users[Game.villain_ip].tyler_points:
-				print("yep")
 				Game.villain_ip = key
 	villain_portrait = portraits[Game.users[Game.villain_ip].character_data.name]
 	
