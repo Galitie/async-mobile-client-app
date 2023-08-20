@@ -5,18 +5,13 @@ signal start_battle_music
 signal cut_music
 
 var tyler_portrait = load("res://school/portraits/tyler.png")
-var mario_portrait = load("res://school/portraits/mario.png")
-var kermit_portrait = load("res://school/portraits/kermit.png")
-var snake_portrait = load("res://school/portraits/snake.png")
-var shadow_portrait = load("res://school/portraits/shadow.png")
-var shrek_portrait = load("res://school/portraits/shrek.png")
 
 var portraits = {
-	"Mario" : mario_portrait,
-	"Kermit" : kermit_portrait,
-	"Snake" : snake_portrait,
-	"Shadow" : shadow_portrait,
-	"Shrek" : shrek_portrait
+	"Mario" : load("res://school/portraits/mario.png"),
+	"Kermit" : load("res://school/portraits/kermit.png"),
+	"Snake" : load("res://school/portraits/snake.png"),
+	"Shadow" : load("res://school/portraits/shadow.png"),
+	"Shrek" : load("res://school/portraits/shrek.png")
 }
 
 var confessionBG = load("res://school/Outside_sakura_tree.png")
@@ -33,24 +28,24 @@ var messages = [
 	Message.new("Tyler", "I'm so nervous, sugoi!!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "It's time to talk to *this* person...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "I bet this will go really well!!!!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
-	Message.new("VILLIAN", "T-Tyler-sama...you actually came...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLIAN", "I...I have felt this way for s-so long...and...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLIAN", "I just had to tell you how I really feel!!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("VILLAIN", "T-Tyler-sama...you actually came...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("VILLAIN", "I...I have felt this way for s-so long...and...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("VILLAIN", "I just had to tell you how I really feel!!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
 	Message.new("Tyler", "Wattup, saw ur note lol.", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLIAN", "After all we have been through...I wanted to ask you...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLIAN", "Do u love-love doki-doki me, Tyler-sempai?", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("VILLAIN", "After all we have been through...I wanted to ask you...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("VILLAIN", "Do u love-love doki-doki me, Tyler-sempai?", "", Message.SignalTiming.NONE, [], null, villain_portrait),
 	Message.new("Tyler", "...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "......", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", ".........", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "**** no!", "cut_music", Message.SignalTiming.APPEAR, [], tyler_portrait, null),
-	Message.new("VILLIAN", "...h-huh?", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLIAN", "Th-this is impossible!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLIAN", "I thought I was THE ONE for you!!!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("VILLAIN", "...h-huh?", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
+	Message.new("VILLAIN", "Th-this is impossible!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("VILLAIN", "I thought I was THE ONE for you!!!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
 	Message.new("Tyler", "...there's someone else...", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLIAN", "If I can't have you...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLIAN", "NO ONE CAN!!!", "start_battle_music", Message.SignalTiming.APPEAR, [], null, villain_portrait),
+	Message.new("VILLAIN", "If I can't have you...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("VILLAIN", "NO ONE CAN!!!", "start_battle_music", Message.SignalTiming.APPEAR, [], null, villain_portrait),
 	Message.new("Tyler", "!!!NANI?!!!", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLIAN", "Prepare to DIE!!", "final_battle", Message.SignalTiming.DISAPPEAR, [], null, villain_portrait),
+	Message.new("VILLAIN", "Prepare to DIE!!", "final_battle", Message.SignalTiming.DISAPPEAR, [], null, villain_portrait),
 ]
 
 func init():
@@ -81,6 +76,7 @@ func _ready():
 	for message in messages:
 		if message.speaker == "VILLAIN":
 			message.speaker = Game.users[Game.villain_ip].character_data.name
+			message.right_speaker = villain_portrait
 
 func _startFinalBattle(args):
 	UI.background.visible = false
