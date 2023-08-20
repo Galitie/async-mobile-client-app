@@ -130,8 +130,8 @@ func EnemyTurn():
 		if turn == max_turns - 1:
 			Game.SendPromptToUsers(Game.wait_prompt, false, false)
 			get_tree().root.get_node("/root/World/ConfessionScene/CanvasLayer/SakuraPetals").emitting = false
-			var bgm_tween = get_tree().create_tween()
 			await get_tree().create_timer(2.0).timeout
+			var bgm_tween = get_tree().create_tween()
 			bgm_tween.tween_property(Game.bgm_player, "volume_db", -200, 24)
 			battle_info.Show(Game.users[Game.villain_ip].character_data.name + ": \"Enough! Super Nova!\"", "", null, true)
 			get_node("AnimationPlayer").play("supernova")
@@ -199,6 +199,7 @@ func _startState():
 	pass
 
 func _endState():
+	UI.money.visible = true
 	queue_free()
 	get_parent().remove_child(self)
 	
