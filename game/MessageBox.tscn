@@ -173,6 +173,30 @@ bbcode_enabled = true
 text = "[center]You find something old and worthless..."
 scroll_active = false
 
+[node name="Name" type="RichTextLabel" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -20.5
+offset_right = -69.0
+offset_bottom = -3.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/normal_font = ExtResource("2_r4gmc")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[center]Mario"
+scroll_active = false
+
 [node name="Icon" type="TextureRect" parent="."]
 visible = false
 texture_filter = 1
@@ -187,29 +211,6 @@ offset_bottom = 14.5
 grow_vertical = 2
 texture = SubResource("AtlasTexture_2430s")
 stretch_mode = 4
-
-[node name="Name" type="RichTextLabel" parent="Icon"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -22.5
-offset_top = -4.0
-offset_right = 22.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/normal_font = ExtResource("2_r4gmc")
-theme_override_font_sizes/normal_font_size = 14
-bbcode_enabled = true
-text = "[center]Mario"
-scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

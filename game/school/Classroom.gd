@@ -63,7 +63,7 @@ var intro_messages = {
 }
 
 var post_intro_messages = [
-	Message.new("test", "RRRRRRRRRRINNNNNGGGGGGG!!", "", Message.SignalTiming.NONE, [], null, null),
+	Message.new("", "RRRRRRRRRRINNNNNGGGGGGG!!", "", Message.SignalTiming.NONE, [], null, null),
 	Message.new("Tyler", "Huh...that was a really short class...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "I didn't even get to introduce myself...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Sensei", "Oh! Was that the bell already? See you all after lunch!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),

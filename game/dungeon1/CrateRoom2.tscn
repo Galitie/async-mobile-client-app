@@ -11,7 +11,7 @@
 
 [sub_resource type="Resource" id="Resource_1qm8t"]
 script = ExtResource("5_2ji5t")
-speaker = "Foe"
+speaker = "Moe"
 content = "I don't know about that other guy, but you're definitely not getting past me!"
 message_signal = ""
 message_args = []
@@ -19,7 +19,7 @@ signal_timing = 0
 
 [sub_resource type="Resource" id="Resource_av76i"]
 script = ExtResource("5_2ji5t")
-speaker = "Foe"
+speaker = "Moe"
 content = "I'm different!"
 message_signal = "startBattle"
 message_args = ["res://battle/Gatekeeper2.tres", "res://battle/battle.mp3", false]
