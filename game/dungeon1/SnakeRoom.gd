@@ -12,6 +12,7 @@ signal map_above_ground
 @onready var light = $PointLight
 @onready var light_color = light.color
 @onready var sparkle_effect = $Bathroom/Sparkle
+@onready var school_bell = $Bathroom/schoolBell
 
 var climbing_ladder = false
 var just_entered = true
@@ -86,6 +87,7 @@ func _openDoor():
 	sparkle_effect.emitting = true
 	sfx.stream = magic_sound
 	sfx.play()
+	school_bell.play()
 
 func update(delta):
 	if !above_ground:

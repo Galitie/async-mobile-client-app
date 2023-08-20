@@ -1,4 +1,3 @@
-
 -- Todos --
 - Make a list of bugs/fixes
     - Double cursor
@@ -8,13 +7,12 @@
 - Add final battle transitions
 - Final battle textbox remove portraits and make it disappear after a while
 - Finish final supernova animations (beginning and end)
-- Ending of game
 - Anime message, text box and pointer into game
 - Characters speak outloud in japanese during anime section (words in english)
 - Enemy attack animations!
 - Anime bell sound added in bathroom, classroom and popquiz room
 
--- Add for fun--
+-- Add for fun --
 Anime intro, gazing up and down each character
 Make hallways puzzle tricker
 Enemy attack animations and sounds

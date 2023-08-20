@@ -7,6 +7,7 @@ signal wait_for_intro
 signal map_intro
 
 @onready var camera = get_parent().get_node("Camera2D")
+@onready var school_bell = $SchoolBell
 
 var teacher_portrait = load("res://school/portraits/teacher.png")
 var tyler_portrait = load("res://school/portraits/tyler.png")
@@ -115,6 +116,7 @@ func _intro_finished(args):
 	else:
 		await get_tree().create_timer(1.0).timeout
 		UI.background.visible = false
+		school_bell.play()
 		get_parent().SetMessageQueue(post_intro_messages, false)
 
 func _exit_class(args):

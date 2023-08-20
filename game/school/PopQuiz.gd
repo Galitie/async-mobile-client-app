@@ -11,6 +11,7 @@ signal all_questions_answered
 signal start_test
 
 @onready var camera = get_parent().get_node("Camera2D")
+@onready var school_bell = $SchoolBell
 
 var teacher_portrait = load("res://school/portraits/teacher.png")
 var tyler_portrait = load("res://school/portraits/tyler.png")
@@ -183,4 +184,5 @@ func _process(delta):
 				else:
 					UI.message_box.Hide()
 					UI.drop_box.visible = false
+					school_bell.play()
 					get_parent().SetMessageQueue(post_quiz_messages, false)
