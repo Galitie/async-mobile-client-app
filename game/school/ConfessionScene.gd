@@ -28,24 +28,25 @@ var messages = [
 	Message.new("Tyler", "I'm so nervous, sugoi!!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "It's time to talk to *this* person...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "I bet this will go really well!!!!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
-	Message.new("VILLAIN", "T-Tyler-sama...you actually came...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLAIN", "I...I have felt this way for s-so long...and...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLAIN", "I just had to tell you how I really feel!!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "T-Tyler-sama...you actually came...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "I...I have felt this way for s-so long...and...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "I just had to tell you how I really feel!!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
 	Message.new("Tyler", "Wattup, saw ur note lol.", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLAIN", "After all we have been through...I wanted to ask you...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLAIN", "Do u love-love doki-doki me, Tyler-sempai?", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "After all we have been through...I wanted to ask you...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "Do u love-love doki-doki me, Tyler-sempai?", "", Message.SignalTiming.NONE, [], null, villain_portrait),
 	Message.new("Tyler", "...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "......", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", ".........", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "**** no!", "cut_music", Message.SignalTiming.APPEAR, [], tyler_portrait, null),
-	Message.new("VILLAIN", "...h-huh?", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLAIN", "Th-this is impossible!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLAIN", "I thought I was THE ONE for you!!!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "...h-huh?", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
+	Message.new("[VILLAIN]", "Th-this is impossible!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "I thought I was THE ONE for you!!!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
 	Message.new("Tyler", "...there's someone else...", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLAIN", "If I can't have you...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
-	Message.new("VILLAIN", "NO ONE CAN!!!", "start_battle_music", Message.SignalTiming.APPEAR, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "It's [WINNER], isn't it?!", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "If I can't have you...", "", Message.SignalTiming.NONE, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "NO ONE CAN!!!", "start_battle_music", Message.SignalTiming.APPEAR, [], null, villain_portrait),
 	Message.new("Tyler", "!!!NANI?!!!", "", Message.SignalTiming.NONE, [], tyler_portrait, villain_portrait),
-	Message.new("VILLAIN", "Prepare to DIE!!", "final_battle", Message.SignalTiming.DISAPPEAR, [], null, villain_portrait),
+	Message.new("[VILLAIN]", "Prepare to DIE!!", "final_battle", Message.SignalTiming.DISAPPEAR, [], null, villain_portrait),
 ]
 
 func init():
@@ -65,16 +66,29 @@ func _ready():
 	UI.background.visible = true
 	sakuraPetals.emitting = true
 	
+	var rkey = Game.users.keys().pick_random()
+	Game.users[rkey].tyler_points += 1
+	print(Game.users[rkey].character_data.name)
+	for key in Game.users.keys():
+		if key != Game.HOST_IP:
+			if Game.winner_ip == "":
+				Game.winner_ip = key
+			elif Game.users[key].tyler_points > Game.users[Game.winner_ip].tyler_points:
+				Game.winner_ip = key
+	for message in messages:
+		message.content = message.content.replace("[WINNER]", Game.users[Game.winner_ip].character_data.name)
+	
 	for key in Game.users.keys():
 		if key != Game.HOST_IP:
 			if Game.villain_ip == "":
 				Game.villain_ip = key
 			elif Game.users[key].tyler_points < Game.users[Game.villain_ip].tyler_points:
+				print("yep")
 				Game.villain_ip = key
 	villain_portrait = portraits[Game.users[Game.villain_ip].character_data.name]
 	
 	for message in messages:
-		if message.speaker == "VILLAIN":
+		if message.speaker == "[VILLAIN]":
 			message.speaker = Game.users[Game.villain_ip].character_data.name
 			message.right_speaker = villain_portrait
 

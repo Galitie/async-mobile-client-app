@@ -76,6 +76,12 @@ func start(supernova_music):
 	for key in epilogues.keys():
 		if villain_name == key:
 			dialogues.erase(epilogues[villain_name])
+			
+	var winner_name = Game.users[Game.winner_ip].character_data.name
+	dialogues[dialogues.size() - 1][0] = dialogues[dialogues.size() - 1][0].replace("[WINNER]", winner_name)
+	for key in epilogues.keys():
+		if winner_name == key:
+			dialogues.erase(epilogues[winner_name])
 	
 	var bgm_tween = get_tree().create_tween()
 	bgm_tween.tween_property(supernova_music, "volume_db", -200, 24)
