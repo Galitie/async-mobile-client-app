@@ -2,15 +2,15 @@
 - Make a list of bugs/fixes
     - Double cursor
     - Balance Music
-    - Loop Music
     - Pink menus in school area and pink heart pointer
 - Add final battle transitions
-- Final battle textbox remove portraits and make it disappear after a while
+- Final battle textbox remove portraits
 - Finish final supernova animations (beginning and end)
 - Anime message, text box and pointer into game
 - Characters speak outloud in japanese during anime section (words in english)
 - Enemy attack animations!
-- Anime bell sound added in bathroom, classroom and popquiz room
+- Shadow walking cycle
+- Final battle announce final attack - like "VILLIAN USES SUPER NOVA" 
 
 -- Add for fun --
 Anime intro, gazing up and down each character
