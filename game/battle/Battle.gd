@@ -84,6 +84,9 @@ func _ready():
 	PartyTurn()
 	
 func _process(delta):
+	if !DisplayServer.tts_is_speaking():
+		UI.message_box.Hide()
+	
 	if drop_box.visible:
 		if Input.is_action_just_pressed("move_down"):
 			cursor_position += 1
@@ -103,7 +106,7 @@ func _process(delta):
 			battle_info.Show("Tyler used " + move.name + "!!!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
 			var move_effect = move_effects.get_children().pick_random()
-			var moveSound = move.get_child(0,true)
+			var moveSound = move_effect.get_child(0, true)
 			moveSound.play()
 			move_effect.emitting = true
 			$Enemy/AnimationPlayer.play("onhit")

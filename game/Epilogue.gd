@@ -73,6 +73,7 @@ func progress():
 func _ready():
 	label.visible = false
 	dialogues = [villain_ep, snake_ep, mario_ep, shrek_ep, shadow_ep, kermit_ep, tyler_ep]
+	#dialogues[0][0] = dialogues[0][0].replacen("[VILLAIN]", Game.users[Game.villain_ip].character_data.name)
 	
 func start(supernova_music):
 	var bgm_tween = get_tree().create_tween()

@@ -39,7 +39,8 @@ func _chestOpened(character, object):
 		
 		match chests_opened:
 			1:
-				object.messages.append(Message.new("", "You found a[color=yellow] blank scrap of paper that can be written on..."))
+				object.messages.append(Message.new("", "You found a[color=yellow] blank scrap of paper."))
+				object.messages.append(Message.new("", "Looks like you can write on it."))
 			2:
 				object.messages.append(Message.new("", "You found another[color=yellow] scrap of paper."))
 			3:

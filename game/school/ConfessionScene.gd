@@ -4,13 +4,20 @@ signal final_battle
 signal start_battle_music
 signal cut_music
 
-var teacher_portrait = load("res://school/portraits/teacher.png")
 var tyler_portrait = load("res://school/portraits/tyler.png")
 var mario_portrait = load("res://school/portraits/mario.png")
 var kermit_portrait = load("res://school/portraits/kermit.png")
 var snake_portrait = load("res://school/portraits/snake.png")
 var shadow_portrait = load("res://school/portraits/shadow.png")
 var shrek_portrait = load("res://school/portraits/shrek.png")
+
+var portraits = {
+	"Mario" : mario_portrait,
+	"Kermit" : kermit_portrait,
+	"Snake" : snake_portrait,
+	"Shadow" : shadow_portrait,
+	"Shrek" : shrek_portrait
+}
 
 var confessionBG = load("res://school/Outside_sakura_tree.png")
 var confessionMusic = load("res://school/confessionMusic.mp3")
@@ -19,7 +26,7 @@ var final_battle_music = load("res://battle/finalBattle/final_battle.mp3")
 @onready var camera = get_parent().get_node("Camera2D")
 
 # placeholder
-var villain_portrait = snake_portrait
+var villain_portrait = null
 
 var messages = [
 	Message.new("Tyler", "Ok... I can do this!", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
@@ -65,8 +72,15 @@ func _ready():
 	
 	for key in Game.users.keys():
 		if key != Game.HOST_IP:
-			Game.villain_ip = key
-			break
+			if Game.villain_ip == "":
+				Game.villain_ip = key
+			elif Game.users[key].tyler_points < Game.users[Game.villain_ip].tyler_points:
+				Game.villain_ip = key
+	villain_portrait = portraits[Game.users[Game.villain_ip].character_data.name]
+	
+	for message in messages:
+		if message.speaker == "VILLAIN":
+			message.speaker = Game.users[Game.villain_ip].character_data.name
 
 func _startFinalBattle(args):
 	UI.background.visible = false
