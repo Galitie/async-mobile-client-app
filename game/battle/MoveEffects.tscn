@@ -304,3 +304,4 @@ speed_scale = 1.5
 [node name="Twomp" type="AudioStreamPlayer2D" parent="Twomp"]
 position = Vector2(0, 9)
 stream = ExtResource("13_g6yvp")
+volume_db = -30.0

@@ -19,7 +19,7 @@ var character_manifest = [
 	"res://characters/snake.tres",
 	"res://characters/shrek.tres",
 	"res://characters/kermit.tres",
-	"res://characters/shadow.tres"
+	"res://characters/shadow.tres",
 ]
 
 var current_map
