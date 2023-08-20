@@ -290,10 +290,10 @@ tracks/6/path = NodePath("Camera2D:zoom")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(100, 100.1, 113.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1.5, 3, 4.8, 100, 100.1, 113.1),
+"transitions": PackedFloat32Array(-2, 1, -2, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.4, 0.4), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(2, 2), Vector2(1, 1), Vector2(1, 1), Vector2(0.4, 0.4), Vector2(1, 1)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -302,10 +302,10 @@ tracks/7/path = NodePath("Camera2D:offset")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(100, 100.1, 113.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1.5, 3, 4.8, 100, 100.1, 113.1),
+"transitions": PackedFloat32Array(-2, 1, -2, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -240), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-100, 0), Vector2(-100, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, -240), Vector2(0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
