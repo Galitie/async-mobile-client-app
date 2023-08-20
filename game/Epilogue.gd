@@ -1,43 +1,39 @@
 extends Control
 
-var villain_ep = [
+var epilogues = {
+	"Villain" : [
 	"At 3:52 PM JST, [VILLAIN] succumbed to their injuries at Kawaii Hospital, Tokyo.",
 	"Apparently, dropping a comet on yourself does that."
-]
-
-var tyler_ep = [
+],
+	"Mario" : [
+	"\"Super Mario: Underage High School Brawl-out\" becomes a smash hit.",
+	"Shigeru Miyamoto resigns due to immediate, unforseen controversy."
+],
+	"Snake" : [
+	"Snake blamed the entire incident on the Patriots.",
+	"He was last seen trekking through Alaska.",
+	"[center]\"...Alaska?\""
+],
+	"Shadow" : [
+	"Shadow continues on his quest to find out who he is.",
+	"[center]...Whatever that means."
+],
+	"Kermit" : [
+	"Kermit kills Ms. Piggy and marries Animal or something.",
+	"[center]I don't know or care about the Muppets.",
+	"[center]Sorry."
+],
+	"Shrek" : [
+	"[center]As for Shrek, somebody once told him...",
+	"[center]The world was gonna roll him.",
+	"[center]He ain't the sharpest tool in the shed."
+],
+	"End" : [
 	"Without much deliberation, Tyler eloped with [WINNER].",
 	"The two plan to spend the rest of their days in a cabin along Japanese waters.",
 	"[center]The End"
 ]
-
-var snake_ep = [
-	"Snake blamed the entire incident on the Patriots.",
-	"He was last seen trekking through Alaska.",
-	"[center]\"...Alaska?\""
-]
-
-var mario_ep = [
-	"\"Super Mario: Underage High School Brawl-out\" becomes a smash hit.",
-	"Shigeru Miyamoto resigns due to immediate, unforseen controversy."
-]
-
-var shrek_ep = [
-	"[center]As for Shrek, somebody once told him...",
-	"[center]The world was gonna roll him.",
-	"[center]He ain't the sharpest tool in the shed."
-]
-
-var shadow_ep = [
-	"Shadow continues on his quest to find out who he is.",
-	"[center]...Whatever that means."
-]
-
-var kermit_ep = [
-	"Kermit kills Ms. Piggy and marries Animal or something.",
-	"[center]I don't know or care about the Muppets.",
-	"[center]Sorry."
-]
+}
 
 @onready var label = $Background/Label
 var dialogues = []
@@ -72,10 +68,15 @@ func progress():
 
 func _ready():
 	label.visible = false
-	dialogues = [villain_ep, snake_ep, mario_ep, shrek_ep, shadow_ep, kermit_ep, tyler_ep]
-	#dialogues[0][0] = dialogues[0][0].replacen("[VILLAIN]", Game.users[Game.villain_ip].character_data.name)
+	dialogues = [epilogues["Villain"], epilogues["Snake"], epilogues["Mario"], epilogues["Shrek"], epilogues["Shadow"], epilogues["Kermit"], epilogues["End"]]
 	
 func start(supernova_music):
+	var villain_name = Game.users[Game.villain_ip].character_data.name
+	dialogues[0][0] = dialogues[0][0].replace("[VILLAIN]", villain_name)
+	for key in epilogues.keys():
+		if villain_name == key:
+			dialogues.erase(epilogues[villain_name])
+	
 	var bgm_tween = get_tree().create_tween()
 	bgm_tween.tween_property(supernova_music, "volume_db", -200, 24)
 	
