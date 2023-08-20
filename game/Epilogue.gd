@@ -85,7 +85,8 @@ func start(supernova_music):
 	
 	var bgm_tween = get_tree().create_tween()
 	bgm_tween.tween_property(supernova_music, "volume_db", -200, 24)
-	
+	$AnimationPlayer.play("fade_in")
+	await get_tree().create_timer(4.0).timeout
 	label.text = dialogues[0][0]
 	label.visible = true
 	await get_tree().create_timer(reading_time).timeout
