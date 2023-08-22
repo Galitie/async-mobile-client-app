@@ -1,0 +1,18 @@
+[] Identify users by name because user IP address can change mid-session
+[] Reconnecting in certain instances and getting back important prompts (Ex: Julia missed her villain prompt because she disconnected)
+[] Reduce battle length
+[] Make "check your phone" tip larger and more noticeable with countdown timer included
+[] Add soundboard during wait prompt to alleviate boredom
+[] Sound balance the entire game (music too quiet)
+[] Grant Tyler the ability to say yes or no to love notes. Award or remove Tyler Points based on answer.
+[] Fix classroom bell visual glitch (either by adding a speaker again or actually fixing speaker-to-info transition)
+[] Loop Poem Room music
+[] Add mirror dialogue in school bathroom
+[] Shorten speak cooldown
+[] Add enemy attacks
+[] Credit users who get their attacks chosen
+[] Make Lunch Room longer to allow users to finish their love note prompt
+[] Add serial killer font to love notes
+[] Add profile portraits to Gatekeeper and the two enemies
+[] Fix bug where speakers are still shown in message boxes
+[] Fake health bar for enemies
