@@ -1,3 +1,24 @@
+-- sorted feedback --
+Sound doesn’t loop in poem room
+Love note time too short
+Didn’t notice the check your phone notification
+Battles were the least interesting/waiting because of the repetition
+Pop quiz character limit wasn’t the same as what you can see in the game
+Shorten battles?
+In battle, show “Tyler used “” as suggested by “” “ to give players more credit - Character used attack
+Possibly shorten the cool down timer to 5 seconds?
+Make notification to pay attention to your phone bigger or more noticeable, people missed it
+“Please wait” add “for other players to submit their answers”
+Love notes have serial killer font
+Raam is interested in fixing:
+    - IP address issue
+    - Boring from waiting
+Letting people talk after they put in their answer?
+Check your phone has a countdown timer
+Talking during battle or emojis or soundboard
+Love letter was cut off due to Moshe getting back too early
+
+
 -- Todos --
 - Make a list of bugs/fixes
     - Double cursor
@@ -24,6 +45,10 @@ Fake HP bar
 More attacks ideas:
     - Cleo scratch attack
     - Sonic fullscreen attack
+
+
+
+
 
 -- Order of Events --
 Bathroom
