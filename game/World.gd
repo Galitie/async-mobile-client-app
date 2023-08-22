@@ -30,8 +30,8 @@ var message_queue = []
 var tts_queue = []
 var paused_for_reading = false
 
-@onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "countdown", 0.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
-@onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
+@onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "countdown", 0.0, false, {"big": "Enter a cool signature catchphrase.", "small": "Enter your real name."})
+@onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 2.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
 @onready var party = $Party
 

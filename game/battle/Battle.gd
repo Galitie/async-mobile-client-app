@@ -13,6 +13,7 @@ signal speak
 @onready var battle_info = $Camera2D/CanvasLayer/Control/BattleInfo
 @onready var enemy = $Enemy
 @onready var move_effects = $MoveEffects
+@onready var enemy_move_effects = $MoveEffects2
 
 var music
 var victory_music = load("res://battle/victory.mp3")
@@ -29,7 +30,7 @@ class Move:
 var moves = []
 var cursor_position = 0
 var turn = 0
-var max_turns = Game.users.size() - 1
+var max_turns = 3
 
 var enemy_info = null
 var party_turn = false
@@ -96,7 +97,7 @@ func _process(delta):
 			UI.drop_box.visible = false
 			battle_info.hide()
 			await get_tree().create_timer(0.8).timeout
-			battle_info.Show("Tyler used " + move.content + "!!!", "", null, true)
+			battle_info.Show(Game.users[move.ip].character_data.name + " used " + move.content + "!!!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
 			var move_effect = move_effects.get_children().pick_random()
 			var moveSound = move_effect.get_child(0, true)
@@ -133,7 +134,8 @@ func EnemyTurn():
 			await get_tree().create_timer(2.0).timeout
 			var bgm_tween = get_tree().create_tween()
 			bgm_tween.tween_property(Game.bgm_player, "volume_db", -200, 24)
-			battle_info.Show(Game.users[Game.villain_ip].character_data.name + ": \"Enough! Super Nova!\"", "", null, true)
+			battle_info.Show(Game.users[Game.villain_ip].character_data.name + ": \"Enough! Time to end this! Super Nova!!!\"", "", null, true)
+			await get_tree().create_timer(2.0).timeout
 			get_node("AnimationPlayer").play("supernova")
 			supernova.visible = true
 			supernova.get_child(0).play()
@@ -142,14 +144,26 @@ func EnemyTurn():
 		else:
 			battle_info.Show(Game.users[Game.villain_ip].character_data.name + " lashes out!", "", null, true)
 			await get_tree().create_timer(2.0).timeout
+			var move_effect = enemy_move_effects.get_children().pick_random()
+			var moveSound = move_effect.get_child(0, true)
+			moveSound.play()
+			move_effect.emitting = true
+			await get_tree().create_timer(1.0).timeout
+			get_node("RandomDamage2").playAnimation()
+			await get_tree().create_timer(2.0).timeout
 			battle_info.Hide()
-			await get_tree().create_timer(1.0)
 			PartyTurn()
 	else:
 		battle_info.Show("The " + enemy_info.enemy_name + " attacks!", "", null, true)
 		await get_tree().create_timer(2.0).timeout
+		var move_effect = enemy_move_effects.get_children().pick_random()
+		var moveSound = move_effect.get_child(0, true)
+		moveSound.play()
+		move_effect.emitting = true
+		await get_tree().create_timer(1.0).timeout
+		get_node("RandomDamage2").playAnimation()
+		await get_tree().create_timer(2.0).timeout
 		battle_info.Hide()
-		await get_tree().create_timer(1.0)
 		PartyTurn()
 	
 func _sentText(packet):

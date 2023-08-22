@@ -11,3 +11,4 @@ tts_name = "MSTTS_V110_enCA_RichardM"
 voice_pitch = 0.0
 icon_region = Rect2(224, 128, 32, 32)
 name = "Kermit"
+school_offset = Vector2(0, 0)

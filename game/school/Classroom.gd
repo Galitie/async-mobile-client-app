@@ -17,6 +17,7 @@ var snake_portrait = load("res://school/portraits/snake.png")
 var shadow_portrait = load("res://school/portraits/shadow.png")
 var shrek_portrait = load("res://school/portraits/shrek.png")
 
+
 var pre_intro_messages = [
 	Message.new("Sensei", "Welcome class~~~!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 	Message.new("Tyler", "Tsch, I just made it!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
@@ -63,7 +64,7 @@ var intro_messages = {
 }
 
 var post_intro_messages = [
-	Message.new("", "RRRRRRRRRRINNNNNGGGGGGG!!", "", Message.SignalTiming.NONE, [], null, null),
+	Message.new("Bell", "RRRRRRRRRRINNNNNGGGGGGG!!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 	Message.new("Tyler", "Huh...that was a really short class...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "I didn't even get to introduce myself...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Sensei", "Oh! Was that the bell already? See you all after lunch!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),

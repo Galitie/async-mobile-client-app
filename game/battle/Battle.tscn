@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://fq76xsh17p00"]
+[gd_scene load_steps=25 format=3 uid="uid://fq76xsh17p00"]
 
 [ext_resource type="Script" path="res://battle/Battle.gd" id="1_fa0c3"]
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ucup7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c5sotrltr17bs" path="res://school/Outside_sakura_tree.png" id="3_yleix"]
 [ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="9_wbj2o"]
 [ext_resource type="Script" path="res://battle/RandomDamage.gd" id="10_lcmfu"]
+[ext_resource type="Script" path="res://battle/RandomDamage2.gd" id="10_vhicu"]
 [ext_resource type="PackedScene" uid="uid://b3tvrwc41yiyl" path="res://battle/MoveEffects.tscn" id="11_qumop"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="12_h5hiv"]
 [ext_resource type="Texture2D" uid="uid://c3mx3iqxe24t4" path="res://battle/finalBattle/supernovaPart3.png" id="12_qrd2u"]
@@ -499,6 +500,7 @@ atlas = ExtResource("13_hp70t")
 region = Rect2(76, 10, 35, 44)
 
 [node name="Battle" type="Node2D"]
+position = Vector2(0, -1)
 script = ExtResource("1_fa0c3")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -615,6 +617,23 @@ script = ExtResource("10_lcmfu")
 [node name="Timer" type="Timer" parent="RandomDamage"]
 one_shot = true
 
+[node name="RandomDamage2" type="Label" parent="."]
+offset_left = 94.0
+offset_top = -80.0
+offset_right = 166.0
+offset_bottom = -60.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("9_wbj2o")
+text = "1234"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_vhicu")
+
+[node name="Timer" type="Timer" parent="RandomDamage2"]
+one_shot = true
+
 [node name="Comet" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(-429.5, -474.5)
@@ -630,4 +649,8 @@ offset_top = -1037.0
 offset_right = 1212.0
 offset_bottom = 721.0
 
+[node name="MoveEffects2" parent="." instance=ExtResource("11_qumop")]
+position = Vector2(131, 20)
+
 [connection signal="timeout" from="RandomDamage/Timer" to="RandomDamage" method="_on_timer_timeout"]
+[connection signal="timeout" from="RandomDamage2/Timer" to="RandomDamage2" method="_on_timer_timeout"]

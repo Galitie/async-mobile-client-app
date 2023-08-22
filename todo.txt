@@ -1,18 +1,19 @@
-[] Identify users by name because user IP address can change mid-session
-[] Reconnecting in certain instances and getting back important prompts (Ex: Julia missed her villain prompt because she disconnected)
-[] Reduce battle length
-[] Make "check your phone" tip larger and more noticeable with countdown timer included
+R[] Identify users by name because user IP address can change mid-session
+R[] Reconnecting in certain instances and getting back important prompts (Ex: Julia missed her villain prompt because she disconnected)
 [] Add soundboard during wait prompt to alleviate boredom
 [] Sound balance the entire game (music too quiet)
 [] Grant Tyler the ability to say yes or no to love notes. Award or remove Tyler Points based on answer.
-[] Fix classroom bell visual glitch (either by adding a speaker again or actually fixing speaker-to-info transition)
-[] Loop Poem Room music
-[] Add mirror dialogue in school bathroom
-[] Shorten speak cooldown
-[] Add enemy attacks
-[] Credit users who get their attacks chosen
-[] Make Lunch Room longer to allow users to finish their love note prompt
-[] Add serial killer font to love notes
-[] Add profile portraits to Gatekeeper and the two enemies
+R[] Add mirror dialogue in school bathroom
+[] Add profile portraits to Gatekeeper and the two enemies (added portraits for enemies in party.png, don't know how to get them to show up tho)
 [] Fix bug where speakers are still shown in message boxes
 [] Fake health bar for enemies
+
+[x] Make Lunch Room longer to allow users to finish their love note prompt
+[x] Add serial killer font to love notes
+[x] Add enemy attacks
+[x] Fix classroom bell visual glitch (either by adding a speaker again or actually fixing speaker-to-info transition)
+[x] Loop Poem Room music
+[x] Make "check your phone" tip larger and more noticeable with countdown timer included
+[x] Credit users who get their attacks chosen
+[x] Shorten speak cooldown
+[x] Reduce battle length
