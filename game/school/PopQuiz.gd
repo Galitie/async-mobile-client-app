@@ -35,7 +35,7 @@ var note_reactions = [
 		Message.new("Tyler", "...it's a pile of love notes...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
 	],
 	[
-		Message.new("Tyler", "Uh...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+		Message.new("Tyler", "Uh...wow there are so many!", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
 	],
 	[
 		Message.new("Tyler", "*blushes*", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
@@ -65,21 +65,19 @@ var post_quiz_messages = [
 	Message.new("Tyler", "That was a weirdly personal quiz...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Bell", "RRRRRIIIIIIIIIINNNGGGGG!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 	Message.new("Tyler", "Wow! Was that the bell already?! Have a great weekend, class!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("Tyler", "Sigh...time to confront all these love notes...", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/ConfessionScene.tscn", Vector2i(100, 1000)], tyler_portrait, null)
+	Message.new("Tyler", "Sigh...time to confront all these secret admirers...", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/ConfessionScene.tscn", Vector2i(100, 1000)], tyler_portrait, null)
 ]
 
 var questions = [
 	"What is Tyler's favorite thing to do?",
 	"Where does Tyler live?",
-	"What bank does Tyler use?",
 	"What is Tyler's SSN?"
 ]
 
 var question_prompts = [
 	Game.Prompt.new(questions[0], "map_question_submitted", "countdown", 30.0, false, {"small": "私たちきですfun fun!!"}),
 	Game.Prompt.new(questions[1], "map_question_submitted", "countdown", 30.0, false, {"small": "FULLHOUSEメです"}),
-	Game.Prompt.new(questions[2], "map_question_submitted", "countdown", 30.0, false, {"small": "そのしrouting number?さい"}),
-	Game.Prompt.new(questions[3], "map_question_submitted", "countdown", 30.0, false, {"small": "大好きだよthe Government"})
+	Game.Prompt.new(questions[2], "map_question_submitted", "countdown", 30.0, false, {"small": "大好きだよthe Government"})
 ]
 var question_index = 0
 var answers_submitted = 0
@@ -95,12 +93,11 @@ class Answer:
 var question_answers = [
 	[],
 	[],
-	[],
 	[]
 ]
  
 var question_message = [
-	Message.new("Sensei", "Pop Quiz Question!", "present_question", Message.SignalTiming.DISAPPEAR, [], null, teacher_portrait)
+	Message.new("Sensei", "Pop Quiz Question:", "present_question", Message.SignalTiming.DISAPPEAR, [], null, teacher_portrait)
 ]
 
 func _ready():
@@ -154,6 +151,7 @@ func _start_test(args):
 	get_parent().SetMessageQueue(question_message, false)
 
 func _present_question(args):
+	$TylerNotif.play()
 	UI.left_speaker.texture = null
 	UI.right_speaker.texture = teacher_portrait
 	UI.message_box.Show(questions[question_index], "Sensei", null, true)
@@ -164,6 +162,7 @@ func _present_question(args):
 
 func _process(delta):
 	if UI.love_note.visible && Input.is_action_just_pressed("interact"):
+		$SelectedSound.play()
 		UI.love_note.visible = false
 		if reaction_index >= get_parent().love_notes.size():
 			get_parent().SetMessageQueue(pre_quiz_messages, false)
@@ -172,10 +171,13 @@ func _process(delta):
 			
 	if UI.drop_box.visible:
 		if Input.is_action_just_pressed("move_down"):
+			$CursorSound.play()
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.DOWN)
 		elif Input.is_action_just_pressed("move_up"):
+			$CursorSound.play()
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
 		elif Input.is_action_just_pressed("interact"):
+				$SelectedSound.play()
 				var answer = question_answers[question_index][UI.drop_box.SelectOption()]
 				Game.users[answer.ip].tyler_points += 1
 				question_index += 1

@@ -31,6 +31,7 @@ var moves = []
 var cursor_position = 0
 var turn = 0
 var max_turns = 3
+var enemy_health = 3
 
 var enemy_info = null
 var party_turn = false
@@ -45,10 +46,12 @@ func _ready():
 		$DirectionalLight2D.visible = false
 		$PointLight2D.visible = false
 		$AnimationPlayer.animation_finished.connect(_startEpilogue)
+		$EnemyHealthBar.visible = true
 		
 		var villain_sprite = $Party.get_node(Game.users[Game.villain_ip].character_data.name)
 		villain_sprite.visible = false
 		enemy.texture = villain_sprite.texture
+		set_enemy_health_bar()
 		enemy.flip_h = true
 		Game.SendPromptToUser(villain_prompt, Game.villain_ip)
 		var supernova_scene = load("res://battle/finalBattle/Supernova.tscn")
@@ -56,10 +59,12 @@ func _ready():
 		supernova.add_child(supernova_instance)
 		supernova.visible = false
 	else:
+		$EnemyHealthBar.visible = true
 		$Background.visible = false
 		Game.bgm_player.stream = music
 		Game.bgm_player.play()
 		enemy.texture = enemy_info.texture
+		set_enemy_health_bar()
 		
 	UI.money.visible = false
 	
@@ -88,10 +93,13 @@ func _process(delta):
 	
 	if UI.drop_box.visible:
 		if Input.is_action_just_pressed("move_down"):
+			$CursorSound.play()
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.DOWN)
 		elif Input.is_action_just_pressed("move_up"):
+			$CursorSound.play()
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
 		if Input.is_action_just_pressed("interact"):
+			$SelectedSound.play()
 			var move = moves[UI.drop_box.SelectOption()]
 			Game.users[move.ip].tyler_points += 1
 			UI.drop_box.visible = false
@@ -105,6 +113,7 @@ func _process(delta):
 			move_effect.emitting = true
 			$Enemy/AnimationPlayer.play("onhit")
 			get_node("RandomDamage").playAnimation()
+			update_enemy_health_bar()
 			battle_info.Hide()
 			await get_tree().create_timer(1.5).timeout
 			turn += 1
@@ -114,11 +123,18 @@ func _process(delta):
 				EnemyTurn()
 	elif battle_over:
 		if Input.is_action_just_pressed("interact"):
+			$SelectedSound.play()
 			UI.transition.get_node("AnimationPlayer").play("fade_out")
 			await get_tree().create_timer(0.4).timeout
 			Game.ChangeState(self, Game.previous_state)
 			UI.transition.get_node("AnimationPlayer").play("fade_in")
 
+func set_enemy_health_bar():
+	$EnemyHealthBar.value = max_turns
+
+func update_enemy_health_bar():
+	$EnemyHealthBar.value = $EnemyHealthBar.value - 1
+	
 func PartyTurn():
 	party_turn = true
 	moves.clear()
@@ -192,11 +208,13 @@ func CheckAllMovesSubmitted():
 	if moves.size() == max_submissions:
 		battle_info.SetText(true, "Choose your favorite attack, Tyler!")
 		UI.drop_box.SetOptions(moves)
+		$TylerNotif.play()
 		UI.drop_box.visible = true
 		party_turn = false
 		
 func EndBattle(delta):
 	enemy.get_node("AnimationPlayer").play("dead")
+	$EnemyHealthBar.visible = false
 	await get_tree().create_timer(1.4).timeout
 	Game.bgm_player.stop()
 	var final_blow_user = Game.users[moves[cursor_position].ip]

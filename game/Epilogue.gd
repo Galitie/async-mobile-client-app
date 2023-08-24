@@ -3,16 +3,18 @@ extends Control
 var epilogues = {
 	"Villain" : [
 	"At 3:52 PM JST, [VILLAIN] succumbed to their injuries at Kawaii Hospital, Tokyo.",
-	"Apparently, dropping a comet on yourself does that."
+	"Apparently, missing your attack and dropping a comet on yourself does that.",
+	"There must have been an error in their space calculations..."
 ],
 	"Mario" : [
-	"\"Super Mario: Underage High School Brawl-out\" becomes a smash hit.",
-	"Shigeru Miyamoto resigns due to immediate, unforseen controversy."
+	"Mario, heartbroken, is still looking for a princess to share his plumber dreams with.",
+	"Some say he's still looking to this day.",
+	"She's probably in some other castle..."
 ],
 	"Snake" : [
 	"Snake blamed the entire incident on the Patriots.",
-	"He was last seen trekking through Alaska.",
-	"[center]\"...Alaska?\""
+	"He was last seen trekking through Alaska with his team of doggos.",
+	"[center]\"...Alaska? Metal...gear...?\""
 ],
 	"Shadow" : [
 	"Shadow continues on his quest to find out who he is.",
@@ -30,8 +32,9 @@ var epilogues = {
 ],
 	"End" : [
 	"Without much deliberation, Tyler eloped with [WINNER].",
-	"The two plan to spend the rest of their days in a cabin along Japanese waters.",
-	"[center]The End"
+	"The two plan to happily spend the rest of their days in a cozy cabin along the Japanese coast.",
+	"[center]The End...",
+	"[center]Happy Birthday Tyler! <3, Galit & Raam"
 ]
 }
 

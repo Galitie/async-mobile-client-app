@@ -1,13 +1,13 @@
 R[] Identify users by name because user IP address can change mid-session
 R[] Reconnecting in certain instances and getting back important prompts (Ex: Julia missed her villain prompt because she disconnected)
-[] Add soundboard during wait prompt to alleviate boredom
 [] Sound balance the entire game (music too quiet)
 [] Grant Tyler the ability to say yes or no to love notes. Award or remove Tyler Points based on answer.
-R[] Add mirror dialogue in school bathroom
-[] Add profile portraits to Gatekeeper and the two enemies (added portraits for enemies in party.png, don't know how to get them to show up tho)
-[] Fix bug where speakers are still shown in message boxes
-[] Fake health bar for enemies
+[] Add sound effects for love note menu
+R&G?[] Add soundboard during wait prompt to alleviate boredom
+[] Add profile portraits to Gatekeeper and the two enemies (added portraits for npcs in party.png, don't know how to get them to show up tho...do they need to be resources?)
+[] Fix bug where speakers are still shown in message boxes (when?)
 
+[x] Add mirror dialogue in school bathroom
 [x] Make Lunch Room longer to allow users to finish their love note prompt
 [x] Add serial killer font to love notes
 [x] Add enemy attacks
@@ -17,3 +17,6 @@ R[] Add mirror dialogue in school bathroom
 [x] Credit users who get their attacks chosen
 [x] Shorten speak cooldown
 [x] Reduce battle length
+[x] Fake health bar for enemies
+[x] Anime effects in final scene
+[x] Added battle menu and popquiz menu sound effects

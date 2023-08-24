@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b4dpmr2px742d"]
+[gd_scene load_steps=24 format=3 uid="uid://b4dpmr2px742d"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ebpfi"]
 [ext_resource type="Script" path="res://dungeon1/SnakeRoom.gd" id="2_mu7jb"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://Portal.gd" id="8_kh1ov"]
 [ext_resource type="Texture2D" uid="uid://cn87nb6cjoh07" path="res://school/sparkle_tileset.png" id="8_mln3m"]
 [ext_resource type="AudioStream" uid="uid://cn20nfq38ctyn" path="res://dungeon1/school_bell.mp3" id="9_gbroy"]
+[ext_resource type="Texture2D" uid="uid://qiwvou2tbyd0" path="res://school/student1.png" id="10_7qkqj"]
+[ext_resource type="Script" path="res://Interactable.gd" id="11_75s5j"]
+[ext_resource type="Script" path="res://Message.gd" id="12_agcqw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vi5j1"]
 texture = ExtResource("7_0j38i")
@@ -502,6 +505,14 @@ hue_variation_curve = SubResource("CurveTexture_6ccp4")
 anim_speed_min = 2.76
 anim_speed_max = 5.0
 
+[sub_resource type="Resource" id="Resource_t65ul"]
+script = ExtResource("12_agcqw")
+speaker = "Self"
+content = "Lookin' good!"
+message_signal = ""
+message_args = []
+signal_timing = 0
+
 [node name="SnakeRoom" type="TileMap"]
 y_sort_enabled = true
 tile_set = ExtResource("1_ebpfi")
@@ -653,6 +664,19 @@ one_shot = true
 [node name="schoolBell" type="AudioStreamPlayer" parent="Bathroom"]
 stream = ExtResource("9_gbroy")
 volume_db = -40.0
+
+[node name="npc1" type="Sprite2D" parent="Bathroom"]
+visible = false
+position = Vector2(208, -3568)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_7qkqj")
+offset = Vector2(19, -6)
+region_enabled = true
+region_rect = Rect2(40, 18, 61, 92)
+script = ExtResource("11_75s5j")
+cell_position = Vector2i(13, -223)
+interact_sprite = Rect2(40, 18, 61, 92)
+messages = Array[Resource]([SubResource("Resource_t65ul")])
 
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(256, -3520)

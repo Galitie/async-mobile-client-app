@@ -20,3 +20,4 @@ func _init(_speaker = "", _content = "", _signal = "", _timing = SignalTiming.NO
 	message_args = _message_args
 	left_speaker = _left_speaker
 	right_speaker = _right_speaker
+	

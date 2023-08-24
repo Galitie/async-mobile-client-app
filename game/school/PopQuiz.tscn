@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvcv7mliwbywu"]
+[gd_scene load_steps=12 format=3 uid="uid://dvcv7mliwbywu"]
 
 [ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_wjhej"]
 [ext_resource type="Script" path="res://school/PopQuiz.gd" id="2_t8vfa"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c21kmku6pe51t" path="res://school/teacher.png" id="4_wb284"]
 [ext_resource type="Script" path="res://Portal.gd" id="5_hjqik"]
 [ext_resource type="AudioStream" uid="uid://cn20nfq38ctyn" path="res://dungeon1/school_bell.mp3" id="6_eg8c7"]
+[ext_resource type="AudioStream" uid="uid://0n2wdjdnt2fc" path="res://battle/cursor_sound.mp3" id="7_c6jwv"]
+[ext_resource type="AudioStream" uid="uid://beij643hn1ns3" path="res://battle/selected_sound.mp3" id="8_amfc2"]
+[ext_resource type="AudioStream" uid="uid://dea1omoo11go2" path="res://battle/Tyler_notif.mp3" id="9_nscjo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6s7j"]
 atlas = ExtResource("4_wb284")
@@ -83,3 +86,14 @@ next_map_cell_position = Vector2i(-2, -27)
 [node name="SchoolBell" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_eg8c7")
 volume_db = -40.0
+
+[node name="CursorSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_c6jwv")
+volume_db = -15.0
+
+[node name="SelectedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_amfc2")
+volume_db = -15.0
+
+[node name="TylerNotif" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_nscjo")

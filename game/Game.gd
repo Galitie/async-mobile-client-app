@@ -57,7 +57,7 @@ const MAX_PLAYERS = 6
 const map_cell_size = 16
 const collision_layer = 3
 
-var wait_prompt = Prompt.new("Please wait for other players to submit their response!", "wait", "none", 0.0, false, {"small": ""})
+var wait_prompt = Prompt.new("Please wait my dude, stuff is happening even if you can't see it.", "wait", "none", 0.0, false, {"small": ""})
 
 var winner_ip = ""
 var villain_ip = ""

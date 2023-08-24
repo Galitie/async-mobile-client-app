@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b21oqqinrh0bf"]
+[gd_scene load_steps=24 format=3 uid="uid://b21oqqinrh0bf"]
 
 [ext_resource type="Script" path="res://school/ConfessionScene.gd" id="1_quypv"]
 [ext_resource type="Texture2D" uid="uid://dmm8rscpko6pt" path="res://battle/flameTexture.png" id="2_kt844"]
+[ext_resource type="Texture2D" uid="uid://cc1h8guo61c34" path="res://school/heart_tileset.png" id="3_jhb4k"]
+[ext_resource type="Texture2D" uid="uid://3fth7coe4biy" path="res://school/angry_symbol.png" id="4_jw3ck"]
+[ext_resource type="Texture2D" uid="uid://cn87nb6cjoh07" path="res://school/sparkle_tileset.png" id="5_uy4n1"]
 
 [sub_resource type="Gradient" id="Gradient_1e2k7"]
 colors = PackedColorArray(1, 0.941176, 1, 1, 1, 1, 1, 1)
@@ -26,6 +29,107 @@ color_ramp = SubResource("GradientTexture1D_3wrqo")
 hue_variation_max = 0.1
 turbulence_noise_strength = 9.93
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2ej4o"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_uueme"]
+offsets = PackedFloat32Array(0.00332226, 0.291339, 0.448505, 0.604651)
+colors = PackedColorArray(1, 1, 1, 0.168627, 1, 0.341176, 1, 1, 1, 1, 1, 0.439216, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ipj5"]
+gradient = SubResource("Gradient_uueme")
+
+[sub_resource type="Curve" id="Curve_mw5it"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_n5ehi"]
+curve = SubResource("Curve_mw5it")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_14r34"]
+emission_shape = 2
+emission_sphere_radius = 70.68
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 89.29
+flatness = 0.2
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 31.41
+initial_velocity_max = 31.41
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.15
+color = Color(1, 0.905882, 1, 1)
+color_ramp = SubResource("GradientTexture1D_5ipj5")
+hue_variation_min = 0.11
+hue_variation_max = 0.11
+hue_variation_curve = SubResource("CurveTexture_n5ehi")
+anim_speed_min = 1.0
+anim_speed_max = 2.93
+
+[sub_resource type="Curve" id="Curve_4ow6f"]
+_data = [Vector2(0, 0.595092), 0.0, 0.0, 0, 0, Vector2(0.180723, 1), 0.0, 0.0, 0, 0, Vector2(0.993976, 0.576687), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6f0hn"]
+curve = SubResource("Curve_4ow6f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ouerk"]
+emission_shape = 1
+emission_sphere_radius = 35.48
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_6f0hn")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_55ra1"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_6pu2s"]
+offsets = PackedFloat32Array(0.00332226, 0.312292, 0.463415, 0.604651)
+colors = PackedColorArray(1, 1, 1, 0.168627, 1, 1, 0.392157, 1, 1, 1, 1, 0.713726, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g4d2e"]
+gradient = SubResource("Gradient_6pu2s")
+
+[sub_resource type="Curve" id="Curve_qsk2c"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7yoqk"]
+curve = SubResource("Curve_qsk2c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6sdco"]
+emission_shape = 2
+emission_sphere_radius = 70.68
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 89.29
+flatness = 0.2
+gravity = Vector3(0, -1, 0)
+initial_velocity_min = 31.41
+initial_velocity_max = 31.41
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.15
+color_ramp = SubResource("GradientTexture1D_g4d2e")
+hue_variation_min = -1.0
+hue_variation_max = -1.0
+hue_variation_curve = SubResource("CurveTexture_7yoqk")
+anim_speed_min = 1.0
+anim_speed_max = 2.93
+
 [node name="ConfessionScene" type="TileMap"]
 format = 2
 script = ExtResource("1_quypv")
@@ -42,3 +146,40 @@ process_material = SubResource("ParticleProcessMaterial_nribt")
 texture = ExtResource("2_kt844")
 lifetime = 9.0
 randomness = 0.3
+
+[node name="Hearts" type="GPUParticles2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.8)
+material = SubResource("CanvasItemMaterial_2ej4o")
+position = Vector2(181, 0)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_14r34")
+texture = ExtResource("3_jhb4k")
+lifetime = 2.0
+one_shot = true
+
+[node name="Angry" type="GPUParticles2D" parent="CanvasLayer"]
+position = Vector2(181, 0)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_ouerk")
+texture = ExtResource("4_jw3ck")
+lifetime = 5.0
+one_shot = true
+speed_scale = 3.37
+explosiveness = 1.0
+
+[node name="Sparkle" type="GPUParticles2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.701961)
+material = SubResource("CanvasItemMaterial_55ra1")
+position = Vector2(-112, -2)
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_6sdco")
+texture = ExtResource("5_uy4n1")
+lifetime = 4.0
+one_shot = true
+speed_scale = 1.25

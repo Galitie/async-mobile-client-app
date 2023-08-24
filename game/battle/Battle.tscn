@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://fq76xsh17p00"]
+[gd_scene load_steps=30 format=3 uid="uid://fq76xsh17p00"]
 
 [ext_resource type="Script" path="res://battle/Battle.gd" id="1_fa0c3"]
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_ucup7"]
@@ -9,8 +9,11 @@
 [ext_resource type="Script" path="res://battle/RandomDamage2.gd" id="10_vhicu"]
 [ext_resource type="PackedScene" uid="uid://b3tvrwc41yiyl" path="res://battle/MoveEffects.tscn" id="11_qumop"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="12_h5hiv"]
+[ext_resource type="AudioStream" uid="uid://dea1omoo11go2" path="res://battle/Tyler_notif.mp3" id="12_mej54"]
 [ext_resource type="Texture2D" uid="uid://c3mx3iqxe24t4" path="res://battle/finalBattle/supernovaPart3.png" id="12_qrd2u"]
 [ext_resource type="Texture2D" uid="uid://bucfrkhdl87xe" path="res://battle/party.png" id="13_hp70t"]
+[ext_resource type="AudioStream" uid="uid://0n2wdjdnt2fc" path="res://battle/cursor_sound.mp3" id="13_nhrf1"]
+[ext_resource type="AudioStream" uid="uid://beij643hn1ns3" path="res://battle/selected_sound.mp3" id="14_fjkbs"]
 
 [sub_resource type="Animation" id="Animation_hp6br"]
 length = 0.001
@@ -499,6 +502,21 @@ region = Rect2(3, 5, 30, 42)
 atlas = ExtResource("13_hp70t")
 region = Rect2(76, 10, 35, 44)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utcq5"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h61md"]
+bg_color = Color(0, 1, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
 [node name="Battle" type="Node2D"]
 position = Vector2(0, -1)
 script = ExtResource("1_fa0c3")
@@ -651,6 +669,29 @@ offset_bottom = 721.0
 
 [node name="MoveEffects2" parent="." instance=ExtResource("11_qumop")]
 position = Vector2(131, 20)
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="."]
+offset_left = -169.0
+offset_top = 60.0
+offset_right = -94.0
+offset_bottom = 69.0
+theme_override_styles/background = SubResource("StyleBoxFlat_utcq5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h61md")
+max_value = 3.0
+step = 1.0
+value = 3.0
+show_percentage = false
+
+[node name="TylerNotif" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_mej54")
+
+[node name="CursorSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_nhrf1")
+volume_db = -15.0
+
+[node name="SelectedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_fjkbs")
+volume_db = -15.0
 
 [connection signal="timeout" from="RandomDamage/Timer" to="RandomDamage" method="_on_timer_timeout"]
 [connection signal="timeout" from="RandomDamage2/Timer" to="RandomDamage2" method="_on_timer_timeout"]
