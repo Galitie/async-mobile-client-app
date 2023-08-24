@@ -35,6 +35,7 @@ var paused_for_reading = false
 
 @onready var party = $Party
 
+
 class TTSMessage:
 	var content
 	var voice_id
@@ -179,6 +180,7 @@ func _process(delta):
 			elif UI.message_box.showing:
 				UI.message_box.Hide()
 	elif current_message && Input.is_action_just_pressed("interact"):
+		
 		if current_message.signal_timing == Message.SignalTiming.DISAPPEAR:
 			current_map.emit_signal(current_message.message_signal, current_message.message_args)
 		current_message = message_queue.pop_front()

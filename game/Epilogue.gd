@@ -32,7 +32,7 @@ var epilogues = {
 ],
 	"End" : [
 	"Without much deliberation, Tyler eloped with [WINNER].",
-	"The two plan to happily spend the rest of their days in a cozy cabin along the Japanese coast.",
+	"The two plan to happily spend the rest of their days in a cozy cabin along the coast.",
 	"[center]The End...",
 	"[center]Happy Birthday Tyler! <3, Galit & Raam"
 ]
@@ -45,7 +45,7 @@ var line = 0
 var finished = false
 var next_epilogue = false
 
-var reading_time = 3.0
+var reading_time = 4.0
 
 func progress():
 	line += 1
@@ -61,7 +61,7 @@ func progress():
 		
 		if next_epilogue:
 			next_epilogue = false
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(3.0).timeout
 			
 		label.text = dialogues[dialogue][line]
 		await get_tree().create_timer(0.2).timeout

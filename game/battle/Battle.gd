@@ -151,6 +151,7 @@ func EnemyTurn():
 			var bgm_tween = get_tree().create_tween()
 			bgm_tween.tween_property(Game.bgm_player, "volume_db", -200, 24)
 			battle_info.Show(Game.users[Game.villain_ip].character_data.name + ": \"Enough! Time to end this! Super Nova!!!\"", "", null, true)
+			$EnemyHealthBar.visible = false
 			await get_tree().create_timer(2.0).timeout
 			get_node("AnimationPlayer").play("supernova")
 			supernova.visible = true

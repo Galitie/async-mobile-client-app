@@ -5,7 +5,8 @@ R[] Reconnecting in certain instances and getting back important prompts (Ex: Ju
 [] Add sound effects for love note menu
 R&G?[] Add soundboard during wait prompt to alleviate boredom
 [] Add profile portraits to Gatekeeper and the two enemies (added portraits for npcs in party.png, don't know how to get them to show up tho...do they need to be resources?)
-[] Fix bug where speakers are still shown in message boxes (when?)
+[] Fix bug where speakers are still shown in message boxes (when? final battle?)
+
 
 [x] Add mirror dialogue in school bathroom
 [x] Make Lunch Room longer to allow users to finish their love note prompt
@@ -20,3 +21,5 @@ R&G?[] Add soundboard during wait prompt to alleviate boredom
 [x] Fake health bar for enemies
 [x] Anime effects in final scene
 [x] Added battle menu and popquiz menu sound effects
+[x] Slow down epilouge
+[x] Remove healthbar before supernova
