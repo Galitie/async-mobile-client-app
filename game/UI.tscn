@@ -257,6 +257,7 @@ libraries = {
 }
 
 [node name="LoveNote" type="TextureRect" parent="Screen"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -320,7 +321,7 @@ offset_left = 70.0
 offset_top = 186.5
 offset_right = 136.0
 offset_bottom = 252.5
-scale = Vector2(0.492932, 0.492932)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("11_8jdfm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen/LoveNote"]
