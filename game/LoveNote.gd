@@ -8,6 +8,7 @@ enum CursorPosition {LEFT, RIGHT}
 
 func _ready():
 	set_process(false)
+	$AnimationPlayer.play("CheckMarkPulse")
 
 func SetOptions(options):
 	for i in range(0, $GridContainer.get_children().size(), 1):
