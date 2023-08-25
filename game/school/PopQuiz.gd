@@ -64,7 +64,7 @@ var pre_quiz_messages = [
 var post_quiz_messages = [
 	Message.new("Tyler", "That was a weirdly personal quiz...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Bell", "RRRRRIIIIIIIIIINNNGGGGG!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("Tyler", "Wow! Was that the bell already?! Have a great weekend, class!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Sensei", "Wow! Was that the bell already?! Have a great weekend, class!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 	Message.new("Tyler", "Sigh...time to confront all these secret admirers...", "exit_class", Message.SignalTiming.DISAPPEAR, ["res://school/ConfessionScene.tscn", Vector2i(100, 1000)], tyler_portrait, null)
 ]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cmjljqfcx4gg4"]
+[gd_scene load_steps=18 format=3 uid="uid://cmjljqfcx4gg4"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_5qi4a"]
 [ext_resource type="Script" path="res://dungeon1/PoemRoom.gd" id="2_11itm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Interactable.gd" id="4_5avbr"]
 [ext_resource type="Script" path="res://Message.gd" id="6_b4r4n"]
 [ext_resource type="Script" path="res://Portal.gd" id="7_teu2r"]
+[ext_resource type="AudioStream" uid="uid://se06sgxnrc6d" path="res://chestCreak.mp3" id="8_tdvpx"]
 
 [sub_resource type="Resource" id="Resource_alkoi"]
 script = ExtResource("6_b4r4n")
@@ -222,3 +223,7 @@ next_map = "res://dungeon1/SnakeRoom.tscn"
 next_map_cell_position = Vector2i(0, 4)
 unlocked_sprite_region = Rect2(176, 208, 16, 16)
 locked_sprite_region = Rect2(208, 208, 16, 16)
+
+[node name="CrateSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_tdvpx")
+volume_db = -20.0

@@ -16,6 +16,8 @@ var step_index = 0
 var follower = null
 var character_data
 
+@onready var walkingSound = $WalkingSound
+
 func Init(_world, _character_data):
 	world = _world
 	character_data = _character_data
@@ -117,8 +119,10 @@ func _onStep():
 	step_index += 1
 	if step_index < 2:
 		$StepTimer.start()
+		walkingSound.play()
 	else:
 		step_index = 0
+		walkingSound.stop()
 
 func _finishedMoving(in_world):
 	can_move = true

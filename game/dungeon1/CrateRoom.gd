@@ -7,6 +7,7 @@ signal getMoneyFromChest
 
 var music = load("res://dungeon1/dungeon.mp3")
 @onready var push_sound = $PushSound
+@onready var coin_sound = $CoinSound
 var money = UI.money_amount
 
 func _ready():
@@ -43,6 +44,9 @@ func _pushCrate(character, object):
 	push_sound.play()
 
 func _getMoneyFromChest(character, object):
+	$Chest/CreakSound.play()
+	await get_tree().create_timer(0.8).timeout
+	coin_sound.play()
 	money.text = "10000000000"
 	
 func _startBattle(message_args):

@@ -27,9 +27,10 @@ func _ready():
 	set_process(false)
 
 func _chestOpened(character, object):
+	$CrateSound.play()
 	if got_key:
 		if !chests_opened:
-			var poem_prompt = Game.Prompt.new("Write something poetic! It will be used later in the game!", "map_poem_entry", "countdown", 30.0, false, {"big": "Roses are red..."})
+			var poem_prompt = Game.Prompt.new("Write something short and poetic on the scrap of paper!", "map_poem_entry", "countdown", 45.0, false, {"big": "Roses are red..."})
 			Game.SendPromptToUsers(poem_prompt)
 			
 		chests_opened += 1

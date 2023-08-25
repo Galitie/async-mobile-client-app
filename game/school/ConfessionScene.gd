@@ -20,6 +20,7 @@ var portraits = {
 var confessionBG = load("res://school/Outside_sakura_tree.png")
 var confessionMusic = load("res://school/confessionMusic.mp3")
 var final_battle_music = load("res://battle/finalBattle/final_battle.mp3")
+
 @onready var sakuraPetals = $CanvasLayer/SakuraPetals
 @onready var hearts = $CanvasLayer/Hearts
 @onready var angry = $CanvasLayer/Angry

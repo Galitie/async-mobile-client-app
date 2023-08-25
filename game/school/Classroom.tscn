@@ -82,4 +82,4 @@ next_map_cell_position = Vector2i(-2, -27)
 
 [node name="SchoolBell" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_vwt03")
-volume_db = -15.0
+volume_db = -35.0

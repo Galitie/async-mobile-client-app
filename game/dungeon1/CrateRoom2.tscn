@@ -255,4 +255,4 @@ texture_scale = 4.0
 
 [node name="PushSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_o7h2f")
-volume_db = -30.0
+volume_db = -20.0

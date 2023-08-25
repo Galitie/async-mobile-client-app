@@ -1,13 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3cgsqmkh4751"]
+[gd_scene load_steps=15 format=3 uid="uid://b3cgsqmkh4751"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6jcbo"]
 [ext_resource type="Script" path="res://dungeon1/CrateRoom.gd" id="2_147kc"]
 [ext_resource type="Texture2D" uid="uid://cvruot8ljkbm0" path="res://dungeon1/dungeon_tile.png" id="4_i8gl6"]
 [ext_resource type="Script" path="res://Message.gd" id="5_euear"]
 [ext_resource type="Script" path="res://Interactable.gd" id="5_x2n26"]
+[ext_resource type="AudioStream" uid="uid://se06sgxnrc6d" path="res://chestCreak.mp3" id="6_28rst"]
 [ext_resource type="Script" path="res://Portal.gd" id="7_13qr2"]
 [ext_resource type="Texture2D" uid="uid://cxiuuki8craf" path="res://dungeon1/light_mask.png" id="7_ok6r6"]
 [ext_resource type="AudioStream" uid="uid://b1iu0wc03njiv" path="res://dungeon1/pushSound.mp3" id="8_0rh5x"]
+[ext_resource type="AudioStream" uid="uid://cmy1rw8c6y231" path="res://coin_sound.mp3" id="9_qmud6"]
 
 [sub_resource type="Resource" id="Resource_3qvcn"]
 script = ExtResource("5_euear")
@@ -125,6 +127,10 @@ interact_sprite = Rect2(145, 96, 17, 16)
 interact_signal = "getMoneyFromChest"
 messages = Array[Resource]([SubResource("Resource_3qvcn"), SubResource("Resource_r7csr"), SubResource("Resource_b6qcd")])
 
+[node name="CreakSound" type="AudioStreamPlayer" parent="Chest"]
+stream = ExtResource("6_28rst")
+volume_db = -20.0
+
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(0, -256)
 texture = ExtResource("4_i8gl6")
@@ -217,4 +223,8 @@ texture_scale = 4.0
 
 [node name="PushSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_0rh5x")
-volume_db = -30.0
+volume_db = -25.0
+
+[node name="CoinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_qmud6")
+volume_db = -20.0

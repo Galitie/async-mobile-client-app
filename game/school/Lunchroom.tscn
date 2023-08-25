@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqqtn0o016c1s"]
+[gd_scene load_steps=14 format=3 uid="uid://bqqtn0o016c1s"]
 
 [ext_resource type="TileSet" uid="uid://cwytr32fq5a8d" path="res://school/school_tileset.tres" id="1_nwgg6"]
 [ext_resource type="Script" path="res://school/Lunchroom.gd" id="2_4gtnr"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cowg7ubqc6y7d" path="res://school/student5.png" id="10_aer6a"]
 [ext_resource type="Texture2D" uid="uid://c8osr24w457qa" path="res://school/student7.png" id="11_3vy2r"]
 [ext_resource type="Texture2D" uid="uid://bnvcmen3bdr45" path="res://school/student6.png" id="12_an80f"]
+[ext_resource type="AudioStream" uid="uid://bubpfsealjpyw" path="res://eatSound.mp3" id="13_oldn8"]
 
 [node name="Lunchroom" type="TileMap"]
 y_sort_enabled = true
@@ -477,3 +478,7 @@ interact_sprite = Rect2(192.582, 17.213, 55.597, 90.909)
 interact_signal = "pushCrate"
 
 [node name="SFX" type="AudioStreamPlayer" parent="Crate14"]
+
+[node name="eatSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_oldn8")
+volume_db = -20.0

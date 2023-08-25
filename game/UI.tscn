@@ -226,7 +226,7 @@ one_shot = true
 
 [node name="SFX" type="AudioStreamPlayer" parent="Screen/Notif"]
 stream = ExtResource("5_o17gr")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Screen/Notif"]
 libraries = {

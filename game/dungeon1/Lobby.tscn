@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc7xbqpdknuxo"]
+[gd_scene load_steps=12 format=3 uid="uid://dc7xbqpdknuxo"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6v0yu"]
 [ext_resource type="Script" path="res://dungeon1/Lobby.gd" id="2_daw8g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Interactable.gd" id="4_bgr3q"]
 [ext_resource type="Script" path="res://Portal.gd" id="6_cwvc8"]
 [ext_resource type="Script" path="res://Message.gd" id="6_svky4"]
+[ext_resource type="AudioStream" uid="uid://se06sgxnrc6d" path="res://chestCreak.mp3" id="7_oi03d"]
 
 [sub_resource type="Resource" id="Resource_aigs6"]
 script = ExtResource("6_svky4")
@@ -91,7 +92,13 @@ script = ExtResource("4_bgr3q")
 one_shot = true
 cell_position = Vector2i(4, -2)
 interact_sprite = Rect2(145, 96, 17, 16)
+interact_signal = "chest_sound"
 messages = Array[Resource]([SubResource("Resource_aigs6"), SubResource("Resource_qka3c"), SubResource("Resource_hkmet")])
+
+[node name="ChestSound" type="AudioStreamPlayer2D" parent="Chest"]
+position = Vector2(-64, 32)
+stream = ExtResource("7_oi03d")
+volume_db = -20.0
 
 [node name="OutsideDoor" type="Sprite2D" parent="."]
 position = Vector2(-16, -96)

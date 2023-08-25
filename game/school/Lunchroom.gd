@@ -39,6 +39,7 @@ func update(delta):
 		get_parent().emit_signal("portal_entered", $RestartPortal.next_map, $RestartPortal.next_map_cell_position)
 		
 func _eatFood(character, object):
+	$eatSound.play()
 	if !eaten_food:
 		Game.SendPromptToUsers(love_note_prompt, true)
 	eaten_food += 1
@@ -68,4 +69,5 @@ func _pushCrate(character, object):
 	
 	var sfx_player = object.get_node("SFX")
 	sfx_player.stream = anime_sounds.pick_random()
+	sfx_player.volume_db = -10
 	sfx_player.play()

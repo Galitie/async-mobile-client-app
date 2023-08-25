@@ -507,7 +507,7 @@ anim_speed_max = 5.0
 
 [sub_resource type="Resource" id="Resource_t65ul"]
 script = ExtResource("12_agcqw")
-speaker = "Self"
+speaker = "Tyler"
 content = "Lookin' good!"
 message_signal = ""
 message_args = []

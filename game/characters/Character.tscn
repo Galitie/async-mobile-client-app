@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://j4arlkmxuayy"]
+[gd_scene load_steps=7 format=3 uid="uid://j4arlkmxuayy"]
 
 [ext_resource type="SpriteFrames" uid="uid://c81t0hygr6kml" path="res://characters/tyler_frames.tres" id="1_6goj8"]
 [ext_resource type="Script" path="res://characters/Character.gd" id="2_n136m"]
 [ext_resource type="PackedScene" uid="uid://cfx0rhlafo6nr" path="res://Emoji.tscn" id="3_fjby6"]
 [ext_resource type="Texture2D" uid="uid://b0jyvrgdegiuy" path="res://characters/emoji.png" id="4_wj73h"]
+[ext_resource type="AudioStream" uid="uid://c4g4lxknoyx6a" path="res://walkingLoop.mp3" id="5_osjqe"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qyyan"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx8lg"]
 resource_local_to_scene = true
 atlas = ExtResource("4_wj73h")
 region = Rect2(0, 0, 32, 32)
@@ -21,4 +22,8 @@ one_shot = true
 
 [node name="Emoji" parent="." instance=ExtResource("3_fjby6")]
 position = Vector2(9, -10)
-texture = SubResource("AtlasTexture_qyyan")
+texture = SubResource("AtlasTexture_rx8lg")
+
+[node name="WalkingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_osjqe")
+volume_db = -20.0
