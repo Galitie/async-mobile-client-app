@@ -119,6 +119,7 @@ func init():
 
 func _show_notes(args):
 	UI.love_note.get_node("Text").text = get_parent().love_notes[reaction_index]
+	UI.love_note.SetOptions(["YES", "NO"])
 	UI.love_note.visible = true
 	reaction_index += 1
 	Input.action_release("interact")
@@ -161,13 +162,26 @@ func _present_question(args):
 	Input.action_release("interact")
 
 func _process(delta):
-	if UI.love_note.visible && Input.is_action_just_pressed("interact"):
-		$SelectedSound.play()
-		UI.love_note.visible = false
-		if reaction_index >= get_parent().love_notes.size():
-			get_parent().SetMessageQueue(pre_quiz_messages, false)
-		else:
-			get_parent().SetMessageQueue(note_reactions[reaction_index], false)
+	if UI.love_note.visible:
+		if Input.is_action_just_pressed("move_left"):
+			$CursorSound.play()
+			UI.love_note.MoveCursor(UI.love_note.CursorPosition.LEFT)
+		elif Input.is_action_just_pressed("move_right"):
+			$CursorSound.play()
+			UI.love_note.MoveCursor(UI.love_note.CursorPosition.RIGHT)
+		elif Input.is_action_just_pressed("interact"):
+			$SelectedSound.play()
+			UI.love_note.visible = false
+			# something like this to add Tyler points...
+			var checked = UI.love_note.SelectOption()
+			# if checked == 0:
+				# Game.users[###something###.ip].tyler_points += 1
+			# else:
+				# Game.users[###something###.ip].tyler_points -= 1
+			if reaction_index >= get_parent().love_notes.size():
+				get_parent().SetMessageQueue(pre_quiz_messages, false)
+			else:
+				get_parent().SetMessageQueue(note_reactions[reaction_index], false)
 			
 	if UI.drop_box.visible:
 		if Input.is_action_just_pressed("move_down"):
@@ -175,7 +189,7 @@ func _process(delta):
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.DOWN)
 		elif Input.is_action_just_pressed("move_up"):
 			$CursorSound.play()
-			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
+			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)		
 		elif Input.is_action_just_pressed("interact"):
 				$SelectedSound.play()
 				var answer = question_answers[question_index][UI.drop_box.SelectOption()]

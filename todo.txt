@@ -1,10 +1,9 @@
 R[] Identify users by name because user IP address can change mid-session
 R[] Reconnecting in certain instances and getting back important prompts (Ex: Julia missed her villain prompt because she disconnected)
-[] Grant Tyler the ability to say yes or no to love notes. Award or remove Tyler Points based on answer.
-[] Add sound effects for love note menu
-R&G?[] Add soundboard during wait prompt to alleviate boredom
+[] Award or remove Tyler Points based on answer to Love note (I don't know how to get the IP of the love note writer...)
 [] Add profile portraits to Gatekeeper and the two enemies (added portraits for npcs in party.png, don't know how to get them to show up tho...do they need to be resources?)
 [] Fix bug where speakers are still shown in message boxes (when? final battle?)
+R&G?[] Add soundboard during wait prompt to alleviate boredom
 
 
 [x] Sound balance the entire game (music too quiet)
@@ -28,3 +27,5 @@ R&G?[] Add soundboard during wait prompt to alleviate boredom
 [x] Add food sound
 [x] Add chest open sound
 [x] How to make the player's voices quieter?
+[x] Add checkmark to love note, left to right movement
+[x] Add sound effects for love note menu

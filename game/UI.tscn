@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c46pvmkujapqt"]
+[gd_scene load_steps=22 format=3 uid="uid://c46pvmkujapqt"]
 
 [ext_resource type="PackedScene" uid="uid://bnh3kpg5lhlny" path="res://MessageBox.tscn" id="1_6jg07"]
 [ext_resource type="Script" path="res://UI.gd" id="1_rilyt"]
@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://bupq5ck4tg2la" path="res://school/classroom_bg.jpg" id="7_7ynyr"]
 [ext_resource type="Texture2D" uid="uid://dhvq8mh0t07h" path="res://school/loveLetterBackground.png" id="8_3b80l"]
 [ext_resource type="Texture2D" uid="uid://bj7k4bwclnnu1" path="res://school/coin.png" id="9_018il"]
+[ext_resource type="Script" path="res://LoveNote.gd" id="9_73n8o"]
 [ext_resource type="FontFile" uid="uid://c7dau426yp2uo" path="res://dungeon1/Pauls Ransom Note.ttf" id="9_ifmck"]
 [ext_resource type="PackedScene" uid="uid://6lh05vm6wb2i" path="res://DropBox.tscn" id="10_k7qkb"]
+[ext_resource type="Texture2D" uid="uid://dgpj84yiaws5v" path="res://school/checkmark.png" id="11_8jdfm"]
 [ext_resource type="PackedScene" uid="uid://cjm8d6r0wsahe" path="res://epilogue/epilogue.tscn" id="11_is0bn"]
 
 [sub_resource type="Animation" id="Animation_38kyq"]
@@ -249,6 +251,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_3b80l")
 expand_mode = 1
+script = ExtResource("9_73n8o")
 
 [node name="Text" type="RichTextLabel" parent="Screen/LoveNote"]
 layout_mode = 1
@@ -268,6 +271,37 @@ theme_override_fonts/normal_font = ExtResource("9_ifmck")
 theme_override_font_sizes/normal_font_size = 22
 text = "Roses are red. violets are blue. I want to have se"
 scroll_active = false
+
+[node name="GridContainer" type="GridContainer" parent="Screen/LoveNote"]
+layout_direction = 2
+layout_mode = 0
+offset_left = 60.0
+offset_top = 196.5
+offset_right = 168.0
+offset_bottom = 223.5
+theme_override_constants/h_separation = 40
+columns = 2
+
+[node name="Yes" type="Label" parent="Screen/LoveNote/GridContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "YES"
+
+[node name="No" type="Label" parent="Screen/LoveNote/GridContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "NO"
+
+[node name="CheckMark" type="TextureRect" parent="Screen/LoveNote"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 186.5
+offset_right = 136.0
+offset_bottom = 252.5
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("11_8jdfm")
 
 [node name="Money" type="TextureRect" parent="Screen"]
 layout_mode = 1
