@@ -21,15 +21,17 @@ var snake_portrait = load("res://school/portraits/snake.png")
 var shadow_portrait = load("res://school/portraits/shadow.png")
 var shrek_portrait = load("res://school/portraits/shrek.png")
 
+
 var pre_note_messages = [
 		Message.new("Sensei", "Welcome back class! Today we're going to study how...", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 		Message.new("Tyler", "Huh? What's this...?", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
-		Message.new("Tyler", "Oh wow a love note on my desk haha...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+		Message.new("Tyler", "Oh wow a love note on my desk haha...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
+		Message.new("Tyler", "YES or NO? I should check off my answer for them...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
 ]
 
 var note_reactions = [
 	[
-		Message.new("Tyler", "Nani?! There's another love note?!", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
+		Message.new("Tyler", "Nani?! There's another love note to reply to?!", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
 	],
 	[
 		Message.new("Tyler", "...it's a pile of love notes...", "show_notes", Message.SignalTiming.DISAPPEAR, [], tyler_portrait, null)
@@ -89,6 +91,7 @@ class Answer:
 	func _init(_content, _ip):
 		content = _content
 		ip = _ip
+
 
 var question_answers = [
 	[],
@@ -173,11 +176,11 @@ func _process(delta):
 			$SelectedSound.play()
 			UI.love_note.visible = false
 			# something like this to add Tyler points...
-			var checked = UI.love_note.SelectOption()
+			# var checked = UI.love_note.SelectOption()
 			# if checked == 0:
-				# Game.users[###something###.ip].tyler_points += 1
+				# Game.users[UI.love_note.ip].tyler_points += 1
 			# else:
-				# Game.users[###something###.ip].tyler_points -= 1
+				# Game.users[UI.love_note.ip].tyler_points -= 1
 			if reaction_index >= get_parent().love_notes.size():
 				get_parent().SetMessageQueue(pre_quiz_messages, false)
 			else:

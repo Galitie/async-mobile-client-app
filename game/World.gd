@@ -51,6 +51,8 @@ var battle = false
 
 var love_notes = []
 
+
+
 func _ready():
 	Game.state = self
 	
@@ -265,7 +267,18 @@ func _startState():
 func _endState():
 	PauseWorld()
 	visible = false
-	
+
+
+#class LoveNote:
+#	var ip
+#	var content
+#
+#	func _init(_ip, _content):
+#		ip = _ip
+#		content = _content
+		
 func _loveNoteSubmitted(packet):
 	Game.SendPromptToUser(world_prompt, packet["userIP"])
 	love_notes.append(packet["bigInputValue"])
+	# love_notes.append(LoveNote.new(packet["userIP"], packet["bigInputValue"]))
+	# so I can get IP address for love notes in pop quiz?

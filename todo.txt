@@ -5,7 +5,6 @@ R[] Reconnecting in certain instances and getting back important prompts (Ex: Ju
 [] Fix bug where speakers are still shown in message boxes (when? final battle?)
 R&G?[] Add soundboard during wait prompt to alleviate boredom
 
-
 [x] Sound balance the entire game (music too quiet)
 [x] Add mirror dialogue in school bathroom
 [x] Make Lunch Room longer to allow users to finish their love note prompt
