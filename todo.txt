@@ -5,7 +5,6 @@ R[] Reconnecting in certain instances and getting back important prompts (Ex: Ju
 R&G?[] Add soundboard during wait prompt to alleviate boredom
 [] Add profile portraits to Gatekeeper and the two enemies (added portraits for npcs in party.png, don't know how to get them to show up tho...do they need to be resources?)
 [] Fix bug where speakers are still shown in message boxes (when? final battle?)
-[] How to make the player's voices quieter?
 
 
 [x] Sound balance the entire game (music too quiet)
@@ -28,3 +27,4 @@ R&G?[] Add soundboard during wait prompt to alleviate boredom
 [x] Add money sound
 [x] Add food sound
 [x] Add chest open sound
+[x] How to make the player's voices quieter?
