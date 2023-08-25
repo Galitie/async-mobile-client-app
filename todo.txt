@@ -1,6 +1,6 @@
 R[] Identify users by name because user IP address can change mid-session
 R[] Reconnecting in certain instances and getting back important prompts (Ex: Julia missed her villain prompt because she disconnected)
-[] Award or remove Tyler Points based on answer to Love note (I don't know how to get the IP of the love note writer...)
+[] Award or remove Tyler Points based on answer to Love note (I don't know how to get the IP of the love note writer... also this may change?)
 [] Add profile portraits to Gatekeeper and the two enemies (added portraits for npcs in party.png, don't know how to get them to show up tho...do they need to be resources?)
 [] Fix bug where speakers are still shown in message boxes (when? final battle?)
 R&G?[] Add soundboard during wait prompt to alleviate boredom

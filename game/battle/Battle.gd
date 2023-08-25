@@ -37,7 +37,7 @@ var enemy_info = null
 var party_turn = false
 var battle_over = false
 
-@onready var villain_prompt = Game.Prompt.new("SHIT TALK THE MAN WHO BROKE YOUR HEART.", "speak", "none", 0.0, true, {"big": "Fuck you Tyler!"})
+@onready var villain_prompt = Game.Prompt.new("NON-STOP SHIT TALK THE MAN WHO BROKE YOUR HEART.", "speak", "none", 0.0, true, {"big": "Fuck you Tyler!"})
 @onready var supernova = $Supernova
 
 func _ready():
