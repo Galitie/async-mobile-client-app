@@ -20,7 +20,8 @@ I worked on a small team to code the game's mobile web app portion using HTML, C
 ## Optimizations:
 
 - Media query for the desktop version
-- Look into different login options (currently IP address, but testing indicated that sometimes IP addresses can change)
+- Look into different login auth options (currently IP address, but testing indicated that sometimes IP addresses can change)
 - Building a better foundation for my next project so it's more modular and flexible
+- Before a new project with a team, agreeing on a basic structure to the code and naming conventions
 
 
