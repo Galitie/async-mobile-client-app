@@ -160,7 +160,6 @@ cell_position = Vector2i(-8, -14)
 interact_sprite = Rect2(145, 112, 17, 16)
 interact_signal = "chestOpened"
 messages = Array[Resource]([SubResource("Resource_alkoi")])
-icon_region = null
 
 [node name="Chest2" type="Sprite2D" parent="."]
 position = Vector2(64, -64)
@@ -173,7 +172,6 @@ cell_position = Vector2i(4, -4)
 interact_sprite = Rect2(145, 112, 17, 16)
 interact_signal = "chestOpened"
 messages = Array[Resource]([SubResource("Resource_qaemf")])
-icon_region = null
 
 [node name="Chest3" type="Sprite2D" parent="."]
 position = Vector2(-48, -128)
@@ -186,7 +184,6 @@ cell_position = Vector2i(-3, -8)
 interact_sprite = Rect2(145, 112, 17, 16)
 interact_signal = "chestOpened"
 messages = Array[Resource]([SubResource("Resource_fp0of")])
-icon_region = null
 
 [node name="Chest4" type="Sprite2D" parent="."]
 position = Vector2(-224, -112)
@@ -199,7 +196,6 @@ cell_position = Vector2i(-14, -7)
 interact_sprite = Rect2(145, 112, 17, 16)
 interact_signal = "chestOpened"
 messages = Array[Resource]([SubResource("Resource_ax7pr")])
-icon_region = null
 
 [node name="Gatekeeper" type="Sprite2D" parent="."]
 position = Vector2(-16, -64)
