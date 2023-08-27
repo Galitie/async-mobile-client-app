@@ -31,5 +31,4 @@ func MoveCursor(cursorPos):
 	cursor.position.x = 70 + ( 72 * cursor_position)
 	
 func SelectOption():
-	print(cursor_position)
 	return cursor_position

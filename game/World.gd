@@ -194,11 +194,11 @@ func _process(delta):
 		else:
 			UI.left_speaker.texture = current_message.left_speaker
 			UI.right_speaker.texture = current_message.right_speaker
-			UI.message_box.SetText(true, current_message.content, current_message.speaker)
+			UI.message_box.SetText(true, current_message.content, current_message.speaker, current_message.icon_region)
 			if current_message.signal_timing == Message.SignalTiming.APPEAR:
 				current_map.emit_signal(current_message.message_signal, current_message.message_args)
 
-func SetMessageQueue(messages, pause_on_set = true):
+func SetMessageQueue(messages, pause_on_set = true, icon_region = null):
 	if pause_on_set:
 		paused_for_reading = true
 		PauseWorld()
@@ -206,7 +206,7 @@ func SetMessageQueue(messages, pause_on_set = true):
 	current_message = message_queue.pop_front()
 	UI.left_speaker.texture = current_message.left_speaker
 	UI.right_speaker.texture = current_message.right_speaker
-	UI.message_box.Show(current_message.content, current_message.speaker)
+	UI.message_box.Show(current_message.content, current_message.speaker, icon_region)
 	if current_message.signal_timing == Message.SignalTiming.APPEAR:
 		current_map.emit_signal(current_message.message_signal, current_message.message_args)
 	
@@ -269,16 +269,16 @@ func _endState():
 	visible = false
 
 
-#class LoveNote:
-#	var ip
-#	var content
-#
-#	func _init(_ip, _content):
-#		ip = _ip
-#		content = _content
+class LoveNote:
+	var ip
+	var content
+
+	func _init(_ip, _content):
+		ip = _ip
+		content = _content
 		
 func _loveNoteSubmitted(packet):
 	Game.SendPromptToUser(world_prompt, packet["userIP"])
-	love_notes.append(packet["bigInputValue"])
-	# love_notes.append(LoveNote.new(packet["userIP"], packet["bigInputValue"]))
+	# love_notes.append(packet["bigInputValue"])
+	love_notes.append(LoveNote.new(packet["userIP"], packet["bigInputValue"]))
 	# so I can get IP address for love notes in pop quiz?

@@ -112,7 +112,7 @@ func Interact():
 				if interactable.interact_signal:
 					world.current_map.emit_signal(interactable.interact_signal, self, interactable)
 				if interactable.messages:
-					world.SetMessageQueue(interactable.messages)
+					world.SetMessageQueue(interactable.messages, true, interactable.icon_region)
 
 func _onStep():
 	frame = fmod(frame + 1, 4)

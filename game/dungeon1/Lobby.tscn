@@ -94,6 +94,7 @@ cell_position = Vector2i(4, -2)
 interact_sprite = Rect2(145, 96, 17, 16)
 interact_signal = "chest_sound"
 messages = Array[Resource]([SubResource("Resource_aigs6"), SubResource("Resource_qka3c"), SubResource("Resource_hkmet")])
+icon_region = null
 
 [node name="ChestSound" type="AudioStreamPlayer2D" parent="Chest"]
 position = Vector2(-64, 32)
@@ -109,7 +110,7 @@ region_rect = Rect2(176, 208, 16, 16)
 script = ExtResource("6_cwvc8")
 cell_position = Vector2i(-1, -6)
 trigger_cell = Vector2i(-1, -6)
-next_map = "res://school/ConfessionScene.tscn"
+next_map = "res://dungeon1/PoemRoom.tscn"
 next_map_cell_position = Vector2i(0, 3)
 unlocked_sprite_region = Rect2(176, 208, 16, 16)
 locked_sprite_region = Rect2(208, 208, 16, 16)

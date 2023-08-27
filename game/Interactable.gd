@@ -11,6 +11,7 @@ extends Sprite2D
 @export var interact_sprite : Rect2
 @export var interact_signal : String
 @export var messages : Array[Resource]
+@export var icon_region : Rect2
 
 const speed = 0.2
 var interacted_with = false

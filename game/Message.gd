@@ -11,8 +11,9 @@ enum SignalTiming { NONE, APPEAR, DISAPPEAR }
 
 var left_speaker
 var right_speaker
+var icon_region
 
-func _init(_speaker = "", _content = "", _signal = "", _timing = SignalTiming.NONE, _message_args = [], _left_speaker = null, _right_speaker = null):
+func _init(_speaker = "", _content = "", _signal = "", _timing = SignalTiming.NONE, _message_args = [], _left_speaker = null, _right_speaker = null, _icon_region = null):
 	speaker = _speaker
 	content = _content
 	message_signal = _signal
@@ -20,4 +21,5 @@ func _init(_speaker = "", _content = "", _signal = "", _timing = SignalTiming.NO
 	message_args = _message_args
 	left_speaker = _left_speaker
 	right_speaker = _right_speaker
+	icon_region = _icon_region
 	

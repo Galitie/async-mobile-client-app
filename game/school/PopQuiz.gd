@@ -121,10 +121,9 @@ func init():
 	world.SetMessageQueue(pre_note_messages, false)
 
 func _show_notes(args):
-	UI.love_note.get_node("Text").text = get_parent().love_notes[reaction_index]
+	UI.love_note.get_node("Text").text = get_parent().love_notes[reaction_index].content
 	UI.love_note.SetOptions(["YES", "NO"])
 	UI.love_note.visible = true
-	reaction_index += 1
 	Input.action_release("interact")
 
 func _exit_class(args):
@@ -175,12 +174,13 @@ func _process(delta):
 		elif Input.is_action_just_pressed("interact"):
 			$SelectedSound.play()
 			UI.love_note.visible = false
-			# something like this to add Tyler points...
-			# var checked = UI.love_note.SelectOption()
-			# if checked == 0:
-				# Game.users[UI.love_note.ip].tyler_points += 1
-			# else:
-				# Game.users[UI.love_note.ip].tyler_points -= 1
+			var checked = UI.love_note.SelectOption()
+			var love_note_author = get_parent().love_notes[reaction_index].ip
+			if checked == 0:
+				Game.users[love_note_author].tyler_points += 1
+			else:
+				Game.users[love_note_author].tyler_points -= 1
+			reaction_index += 1
 			if reaction_index >= get_parent().love_notes.size():
 				get_parent().SetMessageQueue(pre_quiz_messages, false)
 			else:
