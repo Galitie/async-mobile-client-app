@@ -248,8 +248,8 @@ func _endState():
 	get_parent().remove_child(self)
 	
 func _speak(packet):
-	UI.message_box.left_speaker = null
-	UI.message_box.right_speaker = null
+	UI.message_box.left_speaker.visible = false
+	UI.message_box.right_speaker.visible = false
 	UI.message_box.Show(packet["bigInputValue"], Game.users[packet["userIP"]].character_data.name, Game.users[packet["userIP"]].character_data.icon_region, true)
 	DisplayServer.tts_speak(packet["bigInputValue"], Game.users[packet["userIP"]].voice_id, 50, Game.users[packet["userIP"]].character_data.voice_pitch)
 
