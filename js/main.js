@@ -3,7 +3,6 @@ let timerRunning = true;
 let timerCooldown = false;
 let timerCooldownAmount = 0;
 let isDatingSimTime = false;
-let name = "";
 
 function setStyleDatingSim() {
   isDatingSimTime = true;
@@ -92,12 +91,10 @@ function promptScreen(
 // ****************** Button Functionality ******************** //
 function onClickSubmit() {
   let textboxes;
-  
   let packet = {
     action: "messageHost",
     message: "sendText",
     context: `${packageContext}`,
-	userIP: `${name}`
   };
 
   if (
@@ -111,10 +108,6 @@ function onClickSubmit() {
     if (validateInputs(textboxes) == false) {
       return;
     }
-	
-	if (packageContext == "user_joined") {
-		name = smallInputValue;
-	}
 
     packet.smallInputValue = smallInputValue;
     packet.bigInputValue = bigInputValue;

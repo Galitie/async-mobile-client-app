@@ -7,6 +7,7 @@ signal user_reconnected
 signal user_joined
 signal user_disconnected
 signal sent_text
+signal add_user
 signal love_note_submitted
 
 signal portal_entered
@@ -29,10 +30,11 @@ var message_queue = []
 var tts_queue = []
 var paused_for_reading = false
 
-@onready var create_character_prompt = Game.Prompt.new("Login:", "user_joined", "countdown", 0.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
-@onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 10.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
+@onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "countdown", 0.0, false, {"big": "Enter a cool signature catchphrase.", "small": "Enter your real name."})
+@onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 2.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
 @onready var party = $Party
+
 
 class TTSMessage:
 	var content
@@ -49,6 +51,8 @@ var battle = false
 
 var love_notes = []
 
+
+
 func _ready():
 	Game.state = self
 	
@@ -58,6 +62,7 @@ func _ready():
 	connect("user_joined", _userJoined)
 	connect("user_disconnected", _userDisconnected)
 	connect("sent_text", _sentText)
+	connect("add_user", _addUser)
 	connect("speak", _speak)
 	connect("portal_entered", _portalEntered)
 	connect("love_note_submitted", _loveNoteSubmitted)
@@ -102,43 +107,7 @@ func CreateCharacter(character_index):
 	party.add_child(character)
 	character.Init(self, character_data)
 	return character
-
-func _userJoined(packet):
-	# Reconnect on login if name matches
-	var user_name = packet["smallInputValue"].to_lower()
-	packet["userIP"] = user_name
-	if Game.users.has(user_name):
-		# Need to update connectionID if it's a user logging in again
-		Client.SendPacket({"action": "updateUser", "role": "user", "userIP": user_name, "connectionID": packet["connectionID"]})
-	else:
-		if Game.ready_for_players && Game.users.size() < Game.MAX_PLAYERS:
-			var user_data = Game.UserData.new()
-			# ------------ CHANGED USER_IP VALUE TO USER INPUTTED NAME ---------------
-			user_data.ip = user_name
-			# ------------------------------------------------------------------------
-			user_data.name = packet["smallInputValue"]
-			user_data.role = "user"
-			user_data.connection_id = packet["connectionID"]
-			user_data.catchphrase = packet["bigInputValue"]
-			user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
-			
-			characters[user_data.ip] = CreateCharacter(characters.size())
-			user_data.character_data = characters[user_data.ip].character_data
-			user_data.voice_id = GetVoiceID(characters[user_data.ip])
-			Game.users[user_data.ip] = user_data
-			
-			characters[last_ip].follower = characters[user_data.ip]
-			SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
-			last_ip = user_data.ip
-			
-			print(user_data.name + " has joined the game")
-			Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
-			
-			Game.SendPromptToUser(world_prompt, user_data.ip)
-		else:
-			var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
-			Client.SendPacket(response)
-
+		
 func _userReconnected(packet):
 	if characters.has(packet["userIP"]):
 		characters[packet["userIP"]].modulate = Color.WHITE
@@ -164,6 +133,39 @@ func _speak(packet):
 	tts_msg.icon_region = Game.users[packet["userIP"]].character_data.icon_region
 	tts_queue.append(tts_msg)
 	
+func _userJoined(packet):
+	# Packet is returned merged with the character creation prompt because no user has been
+	# established yet.
+	packet.merge(create_character_prompt.data)
+	Client.SendPacket(packet)
+	
+func _addUser(packet):
+	if Game.ready_for_players && Game.users.size() < Game.MAX_PLAYERS:
+		var user_data = Game.UserData.new()
+		user_data.ip = packet["userIP"]
+		user_data.name = packet["smallInputValue"]
+		user_data.role = "user"
+		user_data.connection_id = packet["connectionID"]
+		user_data.catchphrase = packet["bigInputValue"]
+		user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
+		
+		characters[user_data.ip] = CreateCharacter(characters.size())
+		user_data.character_data = characters[user_data.ip].character_data
+		user_data.voice_id = GetVoiceID(characters[user_data.ip])
+		Game.users[user_data.ip] = user_data
+		
+		characters[last_ip].follower = characters[user_data.ip]
+		SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
+		last_ip = user_data.ip
+		
+		print(user_data.name + " has joined the game")
+		Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
+		
+		Game.SendPromptToUser(world_prompt, user_data.ip)
+	else:
+		var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
+		Client.SendPacket(response)
+	
 func _process(delta):
 	if !paused:
 		# First party member is controllable
@@ -173,13 +175,14 @@ func _process(delta):
 		if !DisplayServer.tts_is_speaking():
 			if tts_queue.size():
 				var tts = tts_queue.pop_front()
-				DisplayServer.tts_speak(tts.content, tts.voice_id, 50, tts.pitch)
+				DisplayServer.tts_speak(tts.content, tts.voice_id, 40, tts.pitch)
 				UI.left_speaker.texture = null
 				UI.right_speaker.texture = null
 				UI.message_box.Show(tts.content, tts.speaker_name, tts.icon_region, true)
 			elif UI.message_box.showing:
 				UI.message_box.Hide()
 	elif current_message && Input.is_action_just_pressed("interact"):
+		
 		if current_message.signal_timing == Message.SignalTiming.DISAPPEAR:
 			current_map.emit_signal(current_message.message_signal, current_message.message_args)
 		current_message = message_queue.pop_front()
@@ -191,11 +194,11 @@ func _process(delta):
 		else:
 			UI.left_speaker.texture = current_message.left_speaker
 			UI.right_speaker.texture = current_message.right_speaker
-			UI.message_box.SetText(true, current_message.content, current_message.speaker)
+			UI.message_box.SetText(true, current_message.content, current_message.speaker, current_message.icon_region)
 			if current_message.signal_timing == Message.SignalTiming.APPEAR:
 				current_map.emit_signal(current_message.message_signal, current_message.message_args)
 
-func SetMessageQueue(messages, pause_on_set = true):
+func SetMessageQueue(messages, pause_on_set = true, icon_region = null):
 	if pause_on_set:
 		paused_for_reading = true
 		PauseWorld()
@@ -203,7 +206,7 @@ func SetMessageQueue(messages, pause_on_set = true):
 	current_message = message_queue.pop_front()
 	UI.left_speaker.texture = current_message.left_speaker
 	UI.right_speaker.texture = current_message.right_speaker
-	UI.message_box.Show(current_message.content, current_message.speaker)
+	UI.message_box.Show(current_message.content, current_message.speaker, icon_region)
 	if current_message.signal_timing == Message.SignalTiming.APPEAR:
 		current_map.emit_signal(current_message.message_signal, current_message.message_args)
 	
@@ -264,7 +267,18 @@ func _startState():
 func _endState():
 	PauseWorld()
 	visible = false
-	
+
+
+class LoveNote:
+	var ip
+	var content
+
+	func _init(_ip, _content):
+		ip = _ip
+		content = _content
+		
 func _loveNoteSubmitted(packet):
 	Game.SendPromptToUser(world_prompt, packet["userIP"])
-	love_notes.append(packet["bigInputValue"])
+	# love_notes.append(packet["bigInputValue"])
+	love_notes.append(LoveNote.new(packet["userIP"], packet["bigInputValue"]))
+	# so I can get IP address for love notes in pop quiz?

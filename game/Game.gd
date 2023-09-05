@@ -57,8 +57,7 @@ const MAX_PLAYERS = 6
 const map_cell_size = 16
 const collision_layer = 3
 
-var create_character_prompt = Prompt.new("Login:", "user_joined", "countdown", 0.0, false, {"big": "Enter a signature catchphrase.", "small": "Enter your name."})
-var wait_prompt = Prompt.new("Please wait...", "wait", "none", 0.0, false, {"small": ""})
+var wait_prompt = Prompt.new("Please wait my dude! Waiting for other players!", "wait", "none", 0.0, false, {"small": ""})
 
 var winner_ip = ""
 var villain_ip = ""
