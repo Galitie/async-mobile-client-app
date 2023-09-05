@@ -112,7 +112,7 @@ function onClickSubmit() {
     }
 	
 	if (packageContext == "user_joined") {
-		name = smallInputValue;
+		name = smallInputValue.toLowerCase();
 	}
 
     packet.smallInputValue = smallInputValue;
