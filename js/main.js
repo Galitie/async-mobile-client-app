@@ -96,7 +96,7 @@ function onClickSubmit() {
     action: "messageHost",
     message: "sendText",
     context: `${packageContext}`,
-	name: `${name}`
+	userIP: `${name}`
   };
 
   if (
