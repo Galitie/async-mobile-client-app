@@ -5,6 +5,7 @@ signal attemptJoin
 signal addPlayer
 signal disconnect
 signal sendText
+signal userUpdated
 
 var websocket_url = "wss://13z2e6ro4l.execute-api.us-west-2.amazonaws.com/prod/"
 var socket = WebSocketPeer.new()
@@ -24,6 +25,7 @@ func _ready():
 	connect("attemptJoin", _attemptJoin)
 	connect("disconnect", _disconnect)
 	connect("sendText", _sendText)
+	connect("userUpdated", _userUpdated)
 	
 func _process(delta):
 	socket.poll()
@@ -58,6 +60,9 @@ func ProcessPacket(packet):
 
 ################### Signals ###################
 
+func _userUpdated(packet):
+	pass
+
 func _addedToDB(packet):
 	Game.ready_for_players = true
 
@@ -73,6 +78,7 @@ func _addPlayer(packet):
 	Game.state.emit_signal("character_created", packet)
 	
 func _disconnect(packet):
+	print("loooook")
 	if Game.users.has(packet["userIP"]):
 		Game.users[packet["userIP"]].connection_status = CONNECTION_STATUS.OFFLINE
 	Game.state.emit_signal("user_disconnected", packet)
