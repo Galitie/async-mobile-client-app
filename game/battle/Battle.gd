@@ -5,7 +5,7 @@ signal start_state
 signal end_state
 signal sent_text
 signal battle_entry
-signal user_reconnected
+signal user_joined
 signal user_disconnected
 signal speak
 
@@ -73,7 +73,7 @@ func _ready():
 	connect("sent_text", _sentText)
 	connect("battle_entry", _battleEntry)
 	connect("user_disconnected", _userDisconnected)
-	connect("user_reconnected", _userReconnected)
+	connect("user_joined", _userJoined)
 	connect("speak", _speak)
 	
 	camera.make_current()
@@ -186,8 +186,19 @@ func EnemyTurn():
 func _sentText(packet):
 	emit_signal(packet["context"], packet)
 	
-func _userReconnected(packet):
-	Game.SendPromptToUser(Game.wait_prompt, packet["userIP"])
+func _userJoined(packet):
+	# Reconnect on login if name matches
+	var user_name = packet["smallInputValue"].to_lower()
+	packet["userIP"] = user_name
+	if Game.users.has(user_name) && Game.users[user_name].connection_status == Client.CONNECTION_STATUS.OFFLINE:
+		Game.users[user_name].connection_status = Client.CONNECTION_STATUS.ONLINE
+		Game.users[user_name].connection_id = packet["connectionID"]
+		Client.SendPacket({"action": "updateUser", "role": "user", "userIP": user_name, "connectionID": packet["connectionID"]})
+		await Client.userUpdated
+		if user_name == Game.villain_ip:
+			Game.SendPromptToUser(villain_prompt, user_name)
+		else:
+			Game.SendPromptToUser(Game.wait_prompt, user_name)
 	
 func _userDisconnected(packet):
 	if party_turn:

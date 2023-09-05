@@ -3,7 +3,6 @@ extends Node2D
 signal start_state
 signal end_state
 
-signal user_reconnected
 signal user_joined
 signal user_disconnected
 signal sent_text
@@ -54,7 +53,6 @@ func _ready():
 	
 	connect("start_state", _startState)
 	connect("end_state", _endState)
-	connect("user_reconnected", _userReconnected)
 	connect("user_joined", _userJoined)
 	connect("user_disconnected", _userDisconnected)
 	connect("sent_text", _sentText)
@@ -102,12 +100,6 @@ func CreateCharacter(character_index):
 	party.add_child(character)
 	character.Init(self, character_data)
 	return character
-		
-func _userReconnected(packet):
-	if characters.has(packet["userIP"]):
-		characters[packet["userIP"]].modulate = Color.WHITE
-		
-		Game.SendPromptToUser(world_prompt, packet["userIP"])
 	
 func _userDisconnected(packet):
 	if characters.has(packet["userIP"]):

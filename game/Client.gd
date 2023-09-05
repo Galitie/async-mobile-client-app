@@ -68,17 +68,13 @@ func _addedToDB(packet):
 
 func _attemptJoin(packet):
 	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
-	if Game.ready_for_players:
-		response.merge(Game.create_character_prompt.data)
-	else:
-		response["message"] = "refuseJoin"
+	response.merge(Game.create_character_prompt.data)
 	SendPacket(response)
 
 func _addPlayer(packet):
 	Game.state.emit_signal("character_created", packet)
 	
 func _disconnect(packet):
-	print("loooook")
 	if Game.users.has(packet["userIP"]):
 		Game.users[packet["userIP"]].connection_status = CONNECTION_STATUS.OFFLINE
 	Game.state.emit_signal("user_disconnected", packet)
