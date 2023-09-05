@@ -195,7 +195,7 @@ func _userJoined(packet):
 		Game.users[user_name].connection_id = packet["connectionID"]
 		Client.SendPacket({"action": "updateUser", "role": "user", "userIP": user_name, "connectionID": packet["connectionID"]})
 		await Client.userUpdated
-		if user_name == Game.villain_ip:
+		if user_name == Game.villain_ip && turn < max_turns - 1:
 			Game.SendPromptToUser(villain_prompt, user_name)
 		else:
 			Game.SendPromptToUser(Game.wait_prompt, user_name)
