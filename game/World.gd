@@ -7,7 +7,6 @@ signal user_reconnected
 signal user_joined
 signal user_disconnected
 signal sent_text
-signal add_user
 signal love_note_submitted
 
 signal portal_entered
@@ -30,11 +29,10 @@ var message_queue = []
 var tts_queue = []
 var paused_for_reading = false
 
-@onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "countdown", 0.0, false, {"big": "Enter a cool signature catchphrase.", "small": "Enter your real name."})
+#@onready var create_character_prompt = Game.Prompt.new("Add player to game:", "add_user", "countdown", 0.0, false, {"big": "Enter a cool signature catchphrase.", "small": "Enter your real name."})
 @onready var world_prompt = Game.Prompt.new("Say something to Tyler!", "speak", "cooldown", 2.0, true, {"big": "Say something EXTREMELY helpful to Tyler."})
 
 @onready var party = $Party
-
 
 class TTSMessage:
 	var content
@@ -51,8 +49,6 @@ var battle = false
 
 var love_notes = []
 
-
-
 func _ready():
 	Game.state = self
 	
@@ -62,7 +58,6 @@ func _ready():
 	connect("user_joined", _userJoined)
 	connect("user_disconnected", _userDisconnected)
 	connect("sent_text", _sentText)
-	connect("add_user", _addUser)
 	connect("speak", _speak)
 	connect("portal_entered", _portalEntered)
 	connect("love_note_submitted", _loveNoteSubmitted)
@@ -134,37 +129,40 @@ func _speak(packet):
 	tts_queue.append(tts_msg)
 	
 func _userJoined(packet):
-	# Packet is returned merged with the character creation prompt because no user has been
-	# established yet.
-	packet.merge(create_character_prompt.data)
-	Client.SendPacket(packet)
-	
-func _addUser(packet):
-	if Game.ready_for_players && Game.users.size() < Game.MAX_PLAYERS:
-		var user_data = Game.UserData.new()
-		user_data.ip = packet["userIP"]
-		user_data.name = packet["smallInputValue"]
-		user_data.role = "user"
-		user_data.connection_id = packet["connectionID"]
-		user_data.catchphrase = packet["bigInputValue"]
-		user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
-		
-		characters[user_data.ip] = CreateCharacter(characters.size())
-		user_data.character_data = characters[user_data.ip].character_data
-		user_data.voice_id = GetVoiceID(characters[user_data.ip])
-		Game.users[user_data.ip] = user_data
-		
-		characters[last_ip].follower = characters[user_data.ip]
-		SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
-		last_ip = user_data.ip
-		
-		print(user_data.name + " has joined the game")
-		Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
-		
-		Game.SendPromptToUser(world_prompt, user_data.ip)
+	# Reconnect on login if name matches
+	var user_name = packet["smallInputValue"].to_lower()
+	packet["userIP"] = user_name
+	if Game.users.has(user_name):
+		# Need to update connectionID if it's a user logging in again
+		Client.SendPacket({"action": "updateUser", "role": "user", "userIP": user_name, "connectionID": packet["connectionID"]})
 	else:
-		var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
-		Client.SendPacket(response)
+		if Game.ready_for_players && Game.users.size() < Game.MAX_PLAYERS:
+			var user_data = Game.UserData.new()
+			# ------------ CHANGED USER_IP VALUE TO USER INPUTTED NAME ---------------
+			user_data.ip = user_name
+			# ------------------------------------------------------------------------
+			user_data.name = packet["smallInputValue"]
+			user_data.role = "user"
+			user_data.connection_id = packet["connectionID"]
+			user_data.catchphrase = packet["bigInputValue"]
+			user_data.connection_status = Client.CONNECTION_STATUS.ONLINE
+			
+			characters[user_data.ip] = CreateCharacter(characters.size())
+			user_data.character_data = characters[user_data.ip].character_data
+			user_data.voice_id = GetVoiceID(characters[user_data.ip])
+			Game.users[user_data.ip] = user_data
+			
+			characters[last_ip].follower = characters[user_data.ip]
+			SpawnCharacter(characters[user_data.ip], characters[last_ip].cell_position)
+			last_ip = user_data.ip
+			
+			print(user_data.name + " has joined the game")
+			Client.SendPacket({"action": "addUserToDB", "role": user_data.role, "userIP": user_data.ip, "connectionID": user_data.connection_id})
+			
+			Game.SendPromptToUser(world_prompt, user_data.ip)
+		else:
+			var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
+			Client.SendPacket(response)
 	
 func _process(delta):
 	if !paused:

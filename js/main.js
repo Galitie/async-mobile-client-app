@@ -3,6 +3,7 @@ let timerRunning = true;
 let timerCooldown = false;
 let timerCooldownAmount = 0;
 let isDatingSimTime = false;
+let name = "";
 
 function setStyleDatingSim() {
   isDatingSimTime = true;
@@ -95,6 +96,7 @@ function onClickSubmit() {
     action: "messageHost",
     message: "sendText",
     context: `${packageContext}`,
+	name: `${name}`
   };
 
   if (
@@ -108,6 +110,10 @@ function onClickSubmit() {
     if (validateInputs(textboxes) == false) {
       return;
     }
+	
+	if (packageContext == "user_joined") {
+		name = smallInputValue;
+	}
 
     packet.smallInputValue = smallInputValue;
     packet.bigInputValue = bigInputValue;
