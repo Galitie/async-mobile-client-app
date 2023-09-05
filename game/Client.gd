@@ -63,20 +63,12 @@ func _addedToDB(packet):
 
 func _attemptJoin(packet):
 	var response = {"action": "respondToUser", "connectionID": packet["connectionID"]}
-	if Game.users.has(packet["userIP"]):
-		var user = Game.users[packet["userIP"]]
-		user.connection_id = packet["connectionID"]
-		user.connection_status = CONNECTION_STATUS.ONLINE
-		response["message"] = "reconnect"
-		print(user.name + " has reconnected")
-		Game.state.emit_signal("user_reconnected", packet)
+	if Game.ready_for_players:
+		response.merge(Game.create_character_prompt.data)
 	else:
-		if Game.ready_for_players:
-			Game.state.emit_signal("user_joined", response)
-		else:
-			response["message"] = "refuseJoin"
-			SendPacket(response)
-
+		response["message"] = "refuseJoin"
+	SendPacket(response)
+	
 func _addPlayer(packet):
 	Game.state.emit_signal("character_created", packet)
 	
