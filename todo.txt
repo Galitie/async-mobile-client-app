@@ -1,5 +1,5 @@
-R[] Identify users by name because user IP address can change mid-session
-R[] Reconnecting in certain instances and getting back important prompts (Ex: Julia missed her villain prompt because she disconnected)
+R[X] Identify users by name because user IP address can change mid-session
+R[X] Reconnecting in certain instances and getting back important prompts (Ex: Julia missed her villain prompt because she disconnected)
 R[] Add profile portraits to Gatekeeper and the two enemies (added portraits for npcs in party.png, don't know how to get them to show up tho...do they need to be resources?)
 R[] Snakeeater tile in middle of ladder rather than a timer
 R&G[] Ready button for Tyler to start game (start button)
