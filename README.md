@@ -1,5 +1,6 @@
 # Async Multiplayer Jackbox-like game
-![test](https://github.com/Galitie/async-mobile-client-app/assets/105133862/fd37e584-51b6-4d03-8cb9-b0f026f374d0)
+![TYLERPG Example](https://github.com/Galitie/async-mobile-client-app/assets/105133862/f9fda7ab-785f-42a9-bfa7-1f96a9d03eeb)
+
 
 
 ## How It's Made:
