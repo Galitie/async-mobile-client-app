@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dc7xbqpdknuxo"]
+[gd_scene load_steps=13 format=3 uid="uid://dc7xbqpdknuxo"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6v0yu"]
 [ext_resource type="Script" path="res://dungeon1/Lobby.gd" id="2_daw8g"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Portal.gd" id="6_cwvc8"]
 [ext_resource type="Script" path="res://Message.gd" id="6_svky4"]
 [ext_resource type="AudioStream" uid="uid://se06sgxnrc6d" path="res://chestCreak.mp3" id="7_oi03d"]
+[ext_resource type="Script" path="res://Trigger.gd" id="9_50nwi"]
 
 [sub_resource type="Resource" id="Resource_aigs6"]
 script = ExtResource("6_svky4")
@@ -113,3 +114,9 @@ next_map = "res://dungeon1/CrateRoom.tscn"
 next_map_cell_position = Vector2i(0, 3)
 unlocked_sprite_region = Rect2(176, 208, 16, 16)
 locked_sprite_region = Rect2(208, 208, 16, 16)
+
+[node name="Trigger" type="Node2D" parent="."]
+script = ExtResource("9_50nwi")
+cell_position = Vector2i(-1, -5)
+active = true
+signal_string = "map_confirm_all_players_in_game"
