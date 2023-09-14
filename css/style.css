@@ -57,6 +57,12 @@ h3, h4 {
     padding: .25em 0;
 }
 
+span {
+    font-size: smaller;
+    padding: 1px;
+    margin: 0;
+}
+
 .game {
     display:flex;
     flex-direction: column;
@@ -177,4 +183,20 @@ textarea::placeholder {
 
 .missedInput{
     border: 5px solid red;
+}
+
+#character-counter-1 {
+    text-align: right;
+}
+
+#character-counter-2 {
+    text-align: right;
+}
+
+.text-warning {
+    color: #fb8500;
+}
+
+.text-danger {
+    color: #d90429;
 }

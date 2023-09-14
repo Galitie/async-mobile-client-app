@@ -6,9 +6,7 @@
 # TODO: Create proper states for the world (reading, battling, etc)
 # BUG: Sending a TTS message with only punctuation leads to an empty message that shows up for
 # a split second. Possibly add a minimum time limit to display the message?
-# TODO: Music needs be edited to loop properly
 # TODO: Victory music needs to transition back to previous BGM and BGM position
-# TODO: Battle damage text
 # BUG: Holding down a direction key at the end of Classroom teleports the player to a black void
 # in the next map
 extends Node2D

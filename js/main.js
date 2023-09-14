@@ -96,7 +96,7 @@ function onClickSubmit() {
     action: "messageHost",
     message: "sendText",
     context: `${packageContext}`,
-	userIP: `${name}`
+    userIP: `${name}`,
   };
 
   if (
@@ -110,10 +110,10 @@ function onClickSubmit() {
     if (validateInputs(textboxes) == false) {
       return;
     }
-	
-	if (packageContext == "user_joined") {
-		name = smallInputValue.toLowerCase();
-	}
+
+    if (packageContext == "user_joined") {
+      name = smallInputValue.toLowerCase();
+    }
 
     packet.smallInputValue = smallInputValue;
     packet.bigInputValue = bigInputValue;
@@ -266,20 +266,79 @@ function addDescription(str) {
 }
 
 function addInput(inputClasses) {
+  const smallInputAmount = 15;
+  const bigInputAmount = 50;
+  let gameSection = document.querySelector(".game");
   inputClasses.forEach((input) => {
     let newInput = document.createElement("TEXTAREA");
     newInput.classList.add(`${input}`);
     if (input === "bigInput") {
       newInput.setAttribute("rows", "3");
       newInput.setAttribute("placeholder", "Type something and press submit!");
-      newInput.setAttribute("maxlength", "50");
+      newInput.setAttribute("maxlength", `${bigInputAmount}`);
+      gameSection.appendChild(newInput);
+      addCharCounter(gameSection, bigInputAmount, 2);
+      let textAreaElement = document.querySelector(`.${input}`);
+      let characterCounterElement =
+        document.querySelector(`#character-counter-2`);
+      let typedCharactersElement = document.querySelector(
+        "#typed-characters-2"
+      );
+      textAreaElement.addEventListener("keyup", (event) => {
+        const typedCharacters = textAreaElement.value.length;
+        if (typedCharacters > bigInputAmount) {
+          return false;
+        }
+        typedCharactersElement.textContent = typedCharacters;
+        if (typedCharacters >= 40 && typedCharacters < 45) {
+          characterCounterElement.classList = "text-warning";
+        } else if (typedCharacters >= 45) {
+          characterCounterElement.classList = "text-danger";
+        }
+      });
     } else if (input === "smallInput") {
       newInput.setAttribute("placeholder", "Type something!");
-      newInput.setAttribute("maxlength", "15");
+      newInput.setAttribute("maxlength", `${smallInputAmount}`);
+      gameSection.appendChild(newInput);
+      addCharCounter(gameSection, smallInputAmount, 1);
+      let textAreaElement = document.querySelector(`.${input}`);
+      let characterCounterElement = document.querySelector(
+        "#character-counter-1"
+      );
+      let typedCharactersElement = document.querySelector(
+        "#typed-characters-1"
+      );
+      textAreaElement.addEventListener("keyup", (event) => {
+        const typedCharacters = textAreaElement.value.length;
+        if (typedCharacters > smallInputAmount) {
+          return false;
+        }
+        typedCharactersElement.textContent = typedCharacters;
+        if (typedCharacters >= 10 && typedCharacters < 13) {
+          characterCounterElement.classList = "text-warning";
+        } else if (typedCharacters >= 14) {
+          characterCounterElement.classList = "text-danger";
+        }
+      });
     }
-    let gameSection = document.querySelector(".game");
-    gameSection.appendChild(newInput);
   });
+}
+
+function addCharCounter(parentClass, maxChars, id) {
+  let div = document.createElement("DIV");
+  let spanTyped = document.createElement("SPAN");
+  let seperator = document.createElement("SPAN");
+  let spanMax = document.createElement("SPAN");
+  div.setAttribute("id", `character-counter-${id}`);
+  spanTyped.setAttribute("id", `typed-characters-${id}`);
+  spanMax.setAttribute("id", `maximum-characters-${id}`);
+  seperator.innerText = "/";
+  spanMax.innerText = maxChars;
+  spanTyped.innerText = "0";
+  div.appendChild(spanTyped);
+  div.appendChild(seperator);
+  div.appendChild(spanMax);
+  parentClass.appendChild(div);
 }
 
 function addButtons(buttonClasses) {
