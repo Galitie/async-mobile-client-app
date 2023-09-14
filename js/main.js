@@ -20,10 +20,12 @@ function setStyleDatingSim() {
   rootTheme.style.setProperty("--textAreaTextColor", "Purple");
   rootTheme.style.setProperty("--paddingBottom", "5%");
   rootTheme.style.setProperty("--h1FontSizeAdjustment", "xx-large");
+  rootTheme.style.setProperty("--spanFontSizeAdjustment", "smaller");
 }
 
 // ************************* Screens *************************** //
 
+setStyleDatingSim();
 // If player is not connected
 function notConnectedScreen() {
   console.log("Host or Server not connected");
@@ -290,9 +292,12 @@ function addInput(inputClasses) {
           return false;
         }
         typedCharactersElement.textContent = typedCharacters;
-        if (typedCharacters >= 40 && typedCharacters < 45) {
+        if (typedCharacters < 45) {
+          characterCounterElement.classList = "text-normal";
+        }
+        if (typedCharacters >= 45 && typedCharacters < 50) {
           characterCounterElement.classList = "text-warning";
-        } else if (typedCharacters >= 45) {
+        } else if (typedCharacters == 50) {
           characterCounterElement.classList = "text-danger";
         }
       });
@@ -314,9 +319,12 @@ function addInput(inputClasses) {
           return false;
         }
         typedCharactersElement.textContent = typedCharacters;
-        if (typedCharacters >= 10 && typedCharacters < 13) {
+        if (typedCharacters < 10) {
+          characterCounterElement.classList = "text-normal";
+        }
+        if (typedCharacters >= 10 && typedCharacters < 15) {
           characterCounterElement.classList = "text-warning";
-        } else if (typedCharacters >= 14) {
+        } else if (typedCharacters == 15) {
           characterCounterElement.classList = "text-danger";
         }
       });

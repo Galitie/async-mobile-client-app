@@ -13,6 +13,7 @@
     --textAreaTextColor: black;
     --paddingBottom: 2%;
     --h1FontSizeAdjustment: x-large;
+    --spanFontSizeAdjustment: smaller;
 }
 
   /******************************************
@@ -25,7 +26,6 @@
     font-family: var(--fontFamily);
     margin: 0% 10%;
     font-size: var(--fontSize);
-    color: var(--textColor);
     text-shadow: var(--textShadowColor);
     border-radius: var(--borderRadius);
 
@@ -45,20 +45,22 @@ body{
     background-color: var(--backgroundColor);
 }
 
-.stats{
+/* .stats{
     margin: 0;
     padding: 1em 0;
     width:100%;
     min-height: 1em;
     flex-shrink: 0;
-}
+} */
+
 
 h3, h4 {
+    color: var(--textColor);
     padding: .25em 0;
 }
 
 span {
-    font-size: smaller;
+    font-size: var(--spanFontSizeAdjustment);
     padding: 1px;
     margin: 0;
 }
@@ -70,6 +72,7 @@ span {
     min-height: 75vh;
     gap: var(--gap);
     justify-content: center;
+    color: var(--textColor)
 }
 
 .diceContainer {
@@ -84,6 +87,7 @@ span {
 
 button {
     width:100%;
+    color: var(--textColor);
     font-size: 5vw;
     text-align: center;
     min-height: 3em;
@@ -187,10 +191,14 @@ textarea::placeholder {
 
 #character-counter-1 {
     text-align: right;
+    margin: 0 0;
+    padding: 0 0;
 }
 
 #character-counter-2 {
     text-align: right;
+    margin: 0 0;
+    padding: 0 0;
 }
 
 .text-warning {
@@ -199,4 +207,8 @@ textarea::placeholder {
 
 .text-danger {
     color: #d90429;
+}
+
+.text-normal {
+    color:white;
 }
