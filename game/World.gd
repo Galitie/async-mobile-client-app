@@ -169,7 +169,7 @@ func _process(delta):
 		if !DisplayServer.tts_is_speaking():
 			if tts_queue.size():
 				var tts = tts_queue.pop_front()
-				DisplayServer.tts_speak(tts.content, tts.voice_id, 40, tts.pitch)
+				DisplayServer.tts_speak(tts.content, tts.voice_id, 25, tts.pitch)
 				UI.left_speaker.texture = null
 				UI.right_speaker.texture = null
 				UI.message_box.Show(tts.content, tts.speaker_name, tts.icon_region, true)
