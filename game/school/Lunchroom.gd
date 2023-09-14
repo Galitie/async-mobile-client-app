@@ -4,9 +4,9 @@ signal pushCrate
 signal eatFood
 
 @onready var camera = get_parent().get_node("Camera2D")
-var love_note_prompt = Game.Prompt.new("OMG write Tyler a SECRET love note to leave on his desk later!", "love_note_submitted", "countdown", 30.0, false, {"big": "私の心を動かしてくださいdokidoki"})
+var love_note_prompt = Game.Prompt.new("OMG write Tyler a SECRET love note to leave on his desk later!", "love_note_submitted", "countdown", 45.0, false, {"big": "私の心を動かしてくださいdokidoki"})
 
-const food_to_eat = 7
+const food_to_eat = 8
 var eaten_food = 0
 
 var anime_sounds = [

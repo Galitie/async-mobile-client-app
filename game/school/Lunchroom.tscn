@@ -65,6 +65,20 @@ one_shot = true
 cell_position = Vector2i(4, -63)
 interact_signal = "eatFood"
 
+[node name="sushi2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-16, -896)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_0gh5j")
+centered = false
+offset = Vector2(5, -11)
+region_enabled = true
+region_rect = Rect2(234, 69, 32, 16)
+script = ExtResource("6_ygqva")
+one_shot = true
+cell_position = Vector2i(-1, -56)
+interact_signal = "eatFood"
+
 [node name="fries1" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(-48, -1008)
@@ -168,7 +182,7 @@ locked = true
 cell_position = Vector2i(100, 100)
 trigger_cell = Vector2i(100, 100)
 next_map = "res://school/Lunchroom.tscn"
-next_map_cell_position = Vector2i(1, -27)
+next_map_cell_position = Vector2i(0, -27)
 
 [node name="Portal2" type="Sprite2D" parent="."]
 position = Vector2(-32, -448)
@@ -478,6 +492,21 @@ interact_sprite = Rect2(192.582, 17.213, 55.597, 90.909)
 interact_signal = "pushCrate"
 
 [node name="SFX" type="AudioStreamPlayer" parent="Crate14"]
+
+[node name="Crate21" type="Sprite2D" parent="."]
+position = Vector2(-96, -912)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_u86c0")
+centered = false
+offset = Vector2(-8, -60)
+region_enabled = true
+region_rect = Rect2(192.582, 17.2127, 55.5973, 90.9091)
+script = ExtResource("6_ygqva")
+cell_position = Vector2i(-6, -57)
+interact_sprite = Rect2(192.582, 17.213, 55.597, 90.909)
+interact_signal = "pushCrate"
+
+[node name="SFX" type="AudioStreamPlayer" parent="Crate21"]
 
 [node name="eatSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_oldn8")
