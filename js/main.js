@@ -25,7 +25,7 @@ function setStyleDatingSim() {
 
 // ************************* Screens *************************** //
 
-//setStyleDatingSim();
+// setStyleDatingSim();
 // If player is not connected
 function notConnectedScreen() {
   console.log("Host or Server not connected");
