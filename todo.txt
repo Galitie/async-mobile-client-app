@@ -1,8 +1,15 @@
-R[] Bug where two people with the same name break the game? Or doesn't matter?
 R[] Snakeeater tile in middle of ladder rather than a timer
 R[] Fake loading screen and start menu
 G[] Add door opening sound to lobby
 G[] Anime animations in introductions?
+[] Wider dropbox
+R[] Reject users trying to login as a currently active user
+[] Change "gatekeep" to "gatekeeper"
+[] Investigate SnakeRoom
+[] Teacher and gatekeeper icon
+[] Coin counter visible in Classroom
+R[] Speaker shenanigans in FinalBattle
+[] Character limit needs to be reset after submission
 
 
 G[x] Add profile portraits to Gatekeeper and the two enemies (added portraits for npcs in party.png, don't know how to get them to show up tho...do they need to be resources?)
