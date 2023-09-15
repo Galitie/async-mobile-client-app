@@ -7,8 +7,8 @@
 
 [node name="DropBox" type="TextureRect"]
 offset_top = 1.0
-offset_right = 130.0
-offset_bottom = 106.0
+offset_right = 151.0
+offset_bottom = 111.0
 texture = ExtResource("1_dr1wd")
 script = ExtResource("2_y7aab")
 
