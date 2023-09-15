@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dc7xbqpdknuxo"]
+[gd_scene load_steps=18 format=3 uid="uid://dc7xbqpdknuxo"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6v0yu"]
 [ext_resource type="Script" path="res://dungeon1/Lobby.gd" id="2_daw8g"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://beij643hn1ns3" path="res://battle/selected_sound.mp3" id="11_gh6mf"]
 [ext_resource type="AudioStream" uid="uid://0n2wdjdnt2fc" path="res://battle/cursor_sound.mp3" id="12_61u7l"]
 [ext_resource type="AudioStream" uid="uid://dea1omoo11go2" path="res://battle/Tyler_notif.mp3" id="13_imhbo"]
+[ext_resource type="AudioStream" uid="uid://doocptpew8miw" path="res://dungeon1/gate-heavy-openclose-wav-103288.mp3" id="14_icc84"]
 
 [sub_resource type="Resource" id="Resource_aigs6"]
 script = ExtResource("6_svky4")
@@ -151,3 +152,7 @@ volume_db = -15.0
 
 [node name="TylerNotif" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_imhbo")
+
+[node name="GateOpening" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_icc84")
+volume_db = -30.0

@@ -28,6 +28,9 @@ func _process(delta):
 			if !selected_option:
 				pass
 			elif selected_option:
+				UI.drop_box.visible = false
+				$GateOpening.play()
+				await $GateOpening.finished
 				$OutsideDoor.locked = false
 				$Trigger.active = false
 			UI.drop_box.visible = false
