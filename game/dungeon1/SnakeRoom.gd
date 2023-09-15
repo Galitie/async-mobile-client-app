@@ -4,9 +4,9 @@ signal map_climb_ladder
 signal map_off_ladder
 signal map_transition
 signal map_above_ground
+signal map_start_song
 
 @onready var bathroom = $Bathroom
-@onready var timer = $SongTimer
 @onready var stream_player = $Song
 @onready var sfx = $SFX
 @onready var light = $PointLight
@@ -33,18 +33,15 @@ func _ready():
 	connect("map_off_ladder", _offLadder)
 	connect("map_transition", _transition)
 	connect("map_above_ground", _aboveGround)
-	timer.connect("timeout", _startSong)
+	connect("map_start_song", _startSong)
 	
 	door_timer.connect("timeout", _openDoor)
 	
-func _startSong():
+func _startSong(packet):
 	stream_player.play()
 	
 func _climbLadder(packet):
 	climbing_ladder = true
-	if just_entered:	
-		just_entered = false
-		timer.start()
 		
 func _offLadder(packet):
 	climbing_ladder = false
