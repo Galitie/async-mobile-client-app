@@ -119,6 +119,10 @@ function onClickSubmit() {
 
     packet.smallInputValue = smallInputValue;
     packet.bigInputValue = bigInputValue;
+    let typedChar2 = document.querySelector("#typed-characters-2");
+    let typedChar1 = document.querySelector("#typed-characters-1");
+    typedChar1.innerText = 0;
+    typedChar2.innerText = 0;
   } else if (document.querySelector(".bigInput")) {
     let [bigInput, bigInputValue] = getInputAndValue("bigInput");
     textboxes = [bigInput];
@@ -126,7 +130,8 @@ function onClickSubmit() {
     if (validateInputs(textboxes) == false) {
       return;
     }
-
+    let typedChar2 = document.querySelector("#typed-characters-2");
+    typedChar2.innerText = 0;
     packet.bigInputValue = bigInputValue;
   } else {
     let [smallInput, smallInputValue] = getInputAndValue("smallInput");
@@ -135,7 +140,8 @@ function onClickSubmit() {
     if (validateInputs(textboxes) == false) {
       return;
     }
-
+    let typedChar1 = document.querySelector("#typed-characters-1");
+    typedChar1.innerText = 0;
     packet.smallInputValue = smallInputValue;
   }
 
