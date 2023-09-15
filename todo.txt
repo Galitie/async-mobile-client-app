@@ -1,15 +1,15 @@
 R[] Snakeeater tile in middle of ladder rather than a timer
 R[] Fake loading screen and start menu
-G[] Add door opening sound to lobby
+G[x] Add door opening sound to lobby
 G[] Anime animations in introductions?
-G[] Wider dropbox
-R[X] Reject users trying to login as a currently active user
+G[x] Wider dropbox
+R[] Reject users trying to login as a currently active user
 G[x] Change "gatekeep" to "gatekeeper"
-[] Investigate SnakeRoom
-G[] Teacher and gatekeeper icon
+[x] Investigate SnakeRoom
+G[x] Teacher and gatekeeper icon
 [] Turn Coin counter invisible in Classroom
-R[X] Speaker shenanigans in FinalBattle
-G[] Character limit needs to be reset after submission
+R[x] Speaker shenanigans in FinalBattle
+G[x] Character limit needs to be reset after submission
 
 
 G[x] Add profile portraits to Gatekeeper and the two enemies (added portraits for npcs in party.png, don't know how to get them to show up tho...do they need to be resources?)
