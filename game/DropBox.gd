@@ -32,4 +32,5 @@ func MoveCursor(cursorPos):
 func SelectOption():
 	var current_position = cursor_position
 	cursor_position = 0
+	cursor.position.y = 9 + (19 * cursor_position)
 	return current_position
