@@ -3,12 +3,12 @@ R[] Fake loading screen and start menu
 G[] Add door opening sound to lobby
 G[] Anime animations in introductions?
 G[] Wider dropbox
-R[] Reject users trying to login as a currently active user
+R[X] Reject users trying to login as a currently active user
 G[x] Change "gatekeep" to "gatekeeper"
 [] Investigate SnakeRoom
 G[] Teacher and gatekeeper icon
 [] Turn Coin counter invisible in Classroom
-R[] Speaker shenanigans in FinalBattle
+R[X] Speaker shenanigans in FinalBattle
 G[] Character limit needs to be reset after submission
 
 

@@ -124,13 +124,17 @@ func _userJoined(packet):
 	# Reconnect on login if name matches
 	var user_name = packet["smallInputValue"].to_lower()
 	packet["userIP"] = user_name
-	if Game.users.has(user_name) && Game.users[user_name].connection_status == Client.CONNECTION_STATUS.OFFLINE:
-		Game.users[user_name].connection_status = Client.CONNECTION_STATUS.ONLINE
-		characters[user_name].modulate = Color.WHITE
-		Game.users[user_name].connection_id = packet["connectionID"]
-		Client.SendPacket({"action": "updateUser", "role": "user", "userIP": user_name, "connectionID": packet["connectionID"]})
-		await Client.userUpdated
-		Game.SendPromptToUser(world_prompt, user_name)
+	if Game.users.has(user_name):
+		if Game.users[user_name].connection_status == Client.CONNECTION_STATUS.OFFLINE:
+			Game.users[user_name].connection_status = Client.CONNECTION_STATUS.ONLINE
+			characters[user_name].modulate = Color.WHITE
+			Game.users[user_name].connection_id = packet["connectionID"]
+			Client.SendPacket({"action": "updateUser", "role": "user", "userIP": user_name, "connectionID": packet["connectionID"]})
+			await Client.userUpdated
+			Game.SendPromptToUser(world_prompt, user_name)
+		else:
+			var response = {"action": "respondToUser", "message": "refuseJoin", "connectionID": packet["connectionID"]}
+			Client.SendPacket(response)
 	else:
 		if Game.ready_for_players && Game.users.size() < Game.MAX_PLAYERS:
 			var user_data = Game.UserData.new()
