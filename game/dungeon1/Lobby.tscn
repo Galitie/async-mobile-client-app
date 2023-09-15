@@ -127,16 +127,15 @@ active = true
 signal_string = "map_confirm_all_players_in_game"
 
 [node name="Crate1" type="Sprite2D" parent="."]
-position = Vector2(0, 32)
+position = Vector2(-80, 16)
 texture = ExtResource("3_jvo88")
 centered = false
 offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(175, 104, 19, 24)
 script = ExtResource("4_bgr3q")
-cell_position = Vector2i(0, 2)
+cell_position = Vector2i(-5, 1)
 interact_sprite = Rect2(175, 104, 19, 24)
-interact_signal = "pushCrate"
 
 [node name="PushSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_fjsnw")
