@@ -44,8 +44,10 @@ func SetText(explicit, content, _speaker_name = "", _icon_region = null):
 			$Icon.visible = true
 			if _speaker_name == "Foe" or _speaker_name == "Moe":
 				$MoeTexture.visible = true
-			if _speaker_name == "GateKeeper":
+			if _speaker_name == "GateKeep":
 				$gateKeeperTexture.visible = true
+			if _speaker_name == "Teacher" || "Sensei":
+				pass
 			$Name.text = "[center]" + speaker_name
 			$Name.visible = true
 			$Dialogue.visible = true
