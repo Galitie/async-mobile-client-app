@@ -28,7 +28,7 @@ class Move:
 		content = _content
 
 var moves = []
-var cursor_position = 0
+var last_cursor_position = 0
 var turn = 0
 var max_turns = 3
 var enemy_health = 3
@@ -100,7 +100,8 @@ func _process(delta):
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
 		if Input.is_action_just_pressed("interact"):
 			$SelectedSound.play()
-			var move = moves[UI.drop_box.SelectOption()]
+			last_cursor_position = UI.drop_box.SelectOption()
+			var move = moves[last_cursor_position]
 			Game.users[move.ip].tyler_points += 1
 			UI.drop_box.visible = false
 			battle_info.hide()
@@ -236,7 +237,7 @@ func EndBattle(delta):
 	$EnemyHealthBar.visible = false
 	await get_tree().create_timer(1.4).timeout
 	Game.bgm_player.stop()
-	var final_blow_user = Game.users[moves[cursor_position].ip]
+	var final_blow_user = Game.users[moves[last_cursor_position].ip]
 	DisplayServer.tts_speak(final_blow_user.catchphrase, final_blow_user.voice_id, 50.0, final_blow_user.character_data.voice_pitch)
 	UI.message_box.Show(final_blow_user.catchphrase, final_blow_user.character_data.name, final_blow_user.character_data.icon_region, true)
 	await get_tree().create_timer(3.0).timeout
