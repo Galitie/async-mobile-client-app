@@ -91,6 +91,7 @@ func init():
 	var world = get_parent()
 	world.PauseWorld()
 	world.SetMessageQueue(pre_intro_messages, false)
+	UI.money.visible = false
 	
 	for ip in Game.users:
 		if ip != Game.HOST_IP:

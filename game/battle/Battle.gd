@@ -261,6 +261,6 @@ func _speak(packet):
 	DisplayServer.tts_speak(packet["bigInputValue"], Game.users[packet["userIP"]].voice_id, 50, Game.users[packet["userIP"]].character_data.voice_pitch)
 
 func _startEpilogue(anim):
-	var supernova_bgm = supernova.get_child(0).get_node("AudioStreamPlayer2D")
+	var supernova_bgm = supernova.get_child(0).get_node("AttackMusic")
 	UI.epilogue.visible = true
 	UI.epilogue.start(supernova_bgm)

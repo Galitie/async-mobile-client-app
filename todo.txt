@@ -1,14 +1,14 @@
-R[] Snakeeater tile in middle of ladder rather than a timer
+R[x] Snakeeater tile in middle of ladder rather than a timer
 R[] Fake loading screen and start menu
 G[x] Add door opening sound to lobby
 G[] Anime animations in introductions?
-G[x] Wider dropbox
-R[] Reject users trying to login as a currently active user
+G[] Wider dropbox
+R[X] Reject users trying to login as a currently active user
 G[x] Change "gatekeep" to "gatekeeper"
 [x] Investigate SnakeRoom
-G[x] Teacher and gatekeeper icon
-[] Turn Coin counter invisible in Classroom
-R[x] Speaker shenanigans in FinalBattle
+G[] Teacher and gatekeeper icon
+[x] Turn Coin counter invisible in Classroom
+R[X] Speaker shenanigans in FinalBattle
 G[x] Character limit needs to be reset after submission
 
 
