@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dc7xbqpdknuxo"]
+[gd_scene load_steps=17 format=3 uid="uid://dc7xbqpdknuxo"]
 
 [ext_resource type="TileSet" uid="uid://g8i3wwwqvc50" path="res://dungeon1/intro_tileset.tres" id="1_6v0yu"]
 [ext_resource type="Script" path="res://dungeon1/Lobby.gd" id="2_daw8g"]
@@ -10,6 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://se06sgxnrc6d" path="res://chestCreak.mp3" id="7_oi03d"]
 [ext_resource type="Script" path="res://Trigger.gd" id="9_50nwi"]
 [ext_resource type="AudioStream" uid="uid://b1iu0wc03njiv" path="res://dungeon1/pushSound.mp3" id="10_fjsnw"]
+[ext_resource type="AudioStream" uid="uid://beij643hn1ns3" path="res://battle/selected_sound.mp3" id="11_gh6mf"]
+[ext_resource type="AudioStream" uid="uid://0n2wdjdnt2fc" path="res://battle/cursor_sound.mp3" id="12_61u7l"]
+[ext_resource type="AudioStream" uid="uid://dea1omoo11go2" path="res://battle/Tyler_notif.mp3" id="13_imhbo"]
 
 [sub_resource type="Resource" id="Resource_aigs6"]
 script = ExtResource("6_svky4")
@@ -91,7 +94,6 @@ centered = false
 region_enabled = true
 region_rect = Rect2(145, 112, 17, 16)
 script = ExtResource("4_bgr3q")
-enemyName = null
 one_shot = true
 cell_position = Vector2i(4, -2)
 interact_sprite = Rect2(145, 96, 17, 16)
@@ -131,7 +133,6 @@ offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(175, 104, 19, 24)
 script = ExtResource("4_bgr3q")
-enemyName = null
 cell_position = Vector2i(0, 2)
 interact_sprite = Rect2(175, 104, 19, 24)
 interact_signal = "pushCrate"
@@ -139,3 +140,14 @@ interact_signal = "pushCrate"
 [node name="PushSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_fjsnw")
 volume_db = -25.0
+
+[node name="SelectedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_gh6mf")
+volume_db = -5.0
+
+[node name="CursorSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_61u7l")
+volume_db = -15.0
+
+[node name="TylerNotif" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_imhbo")

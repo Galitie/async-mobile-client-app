@@ -18,9 +18,12 @@ func _process(delta):
 	if UI.drop_box.visible:
 		if Input.is_action_just_pressed("move_down"):
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.DOWN)
+			$CursorSound.play()
 		elif Input.is_action_just_pressed("move_up"):
 			UI.drop_box.MoveCursor(UI.drop_box.CursorPosition.UP)
+			$CursorSound.play()
 		if Input.is_action_just_pressed("interact"):
+			$SelectedSound.play()
 			var selected_option = UI.drop_box.SelectOption()
 			if !selected_option:
 				pass
@@ -45,6 +48,7 @@ class ReadyOption:
 func _confirm_all_players_in_game(packet):
 	UI.drop_box.SetOptions([ReadyOption.new("Not ready!"), ReadyOption.new("All players in!")])
 	get_parent().PauseWorld()
+	$TylerNotif.play()
 	UI.drop_box.visible = true
 	
 func _pushCrate(character, object):
