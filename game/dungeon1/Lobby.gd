@@ -3,7 +3,7 @@ extends Map
 signal all_players_joined
 signal chest_sound
 signal map_confirm_all_players_in_game
-signal pushCrate
+#signal pushCrate
 
 @onready var push_sound = $PushSound
 
@@ -12,7 +12,7 @@ func _ready():
 	connect("chest_sound", _chest_sound)
 	connect("all_players_joined", _allPlayersJoined)
 	connect("map_confirm_all_players_in_game", _confirm_all_players_in_game)
-	connect("pushCrate", _pushCrate)
+#	connect("pushCrate", _pushCrate)
 
 func _process(delta):
 	if UI.drop_box.visible:
@@ -51,24 +51,24 @@ func _confirm_all_players_in_game(packet):
 	$TylerNotif.play()
 	UI.drop_box.visible = true
 	
-func _pushCrate(character, object):
-	var direction = Vector2i(0, 0)
-	match character.direction:
-		"north":
-			direction = Vector2i(0, -1)
-		"south":
-			direction = Vector2i(0, 1)
-		"east":
-			direction = Vector2i(1, 0)
-		"west":
-			direction = Vector2i(-1, 0)
-	var destination = object.cell_position + direction
-	var tile_data = get_cell_tile_data(Game.collision_layer, destination)
-	if tile_data:
-		return
-	for interactable in get_tree().get_nodes_in_group("interactables"):
-		if interactable.cell_position == destination:
-			return
-	object.SetCellPosition(destination, false)
-	push_sound.play()
+#func _pushCrate(character, object):
+#	var direction = Vector2i(0, 0)
+#	match character.direction:
+#		"north":
+#			direction = Vector2i(0, -1)
+#		"south":
+#			direction = Vector2i(0, 1)
+#		"east":
+#			direction = Vector2i(1, 0)
+#		"west":
+#			direction = Vector2i(-1, 0)
+#	var destination = object.cell_position + direction
+#	var tile_data = get_cell_tile_data(Game.collision_layer, destination)
+#	if tile_data:
+#		return
+#	for interactable in get_tree().get_nodes_in_group("interactables"):
+#		if interactable.cell_position == destination:
+#			return
+#	object.SetCellPosition(destination, false)
+#	push_sound.play()
 
