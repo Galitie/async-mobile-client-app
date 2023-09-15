@@ -201,7 +201,7 @@ func _userJoined(packet):
 			Game.SendPromptToUser(Game.wait_prompt, user_name)
 	
 func _userDisconnected(packet):
-	if party_turn:
+	if party_turn && packet["userIP"] != Game.villain_ip:
 		for move in moves:
 			if move.ip == packet["userIP"]:
 				return
