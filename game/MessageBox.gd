@@ -26,6 +26,7 @@ func Hide():
 		$Icon.visible = false
 		$MoeTexture.visible = false
 		$gateKeeperTexture.visible = false
+		$TeacherTexture.visible = false
 		$Dialogue.visible = false
 		$Name.visible = false
 		$AnimationPlayer.play("disappear")
@@ -44,10 +45,13 @@ func SetText(explicit, content, _speaker_name = "", _icon_region = null):
 			$Icon.visible = true
 			if _speaker_name == "Foe" or _speaker_name == "Moe":
 				$MoeTexture.visible = true
-			if _speaker_name == "GateKeep":
+			if _speaker_name == "Gatekeeper":
 				$gateKeeperTexture.visible = true
-			if _speaker_name == "Teacher" || "Sensei":
-				pass
+			if _speaker_name == "Teacher" or _speaker_name == "Sensei":
+				if UI.left_speaker.visible == false or UI.right_speaker.visible == false:
+					$TeacherTexture.visible = true
+			if _speaker_name == "Tyler":
+				$TeacherTexture.visible = false
 			$Name.text = "[center]" + speaker_name
 			$Name.visible = true
 			$Dialogue.visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bnh3kpg5lhlny"]
+[gd_scene load_steps=15 format=3 uid="uid://bnh3kpg5lhlny"]
 
 [ext_resource type="Texture2D" uid="uid://quxtfkgsj1wg" path="res://text_box.png" id="1_tej0g"]
 [ext_resource type="Script" path="res://MessageBox.gd" id="2_5mtgl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://h52h7kgm1x34" path="res://next_marker.png" id="5_wyeen"]
 [ext_resource type="Texture2D" uid="uid://c1dc8bcahxwmd" path="res://characters/foemoe_icon.png" id="6_uga3x"]
 [ext_resource type="Texture2D" uid="uid://yorowft0tyl4" path="res://characters/gatekeeper_icon.png" id="7_y2c47"]
+[ext_resource type="Texture2D" uid="uid://c0ks2325g6ee" path="res://characters/teacher_icon.png" id="8_yf2po"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2430s"]
 atlas = ExtResource("3_6wvxd")
@@ -247,3 +248,9 @@ visible = false
 position = Vector2(29, 27)
 scale = Vector2(1.4375, 1.4375)
 texture = ExtResource("7_y2c47")
+
+[node name="TeacherTexture" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(29, 27)
+scale = Vector2(1.4375, 1.4375)
+texture = ExtResource("8_yf2po")
