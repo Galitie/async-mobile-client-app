@@ -1,7 +1,6 @@
 R[] Fake loading screen and start menu
-G[] Anime animations in introductions?
-G[] Teacher and gatekeeper icon
 
+G[x] Teacher and gatekeeper icon
 G[x] Wider dropbox
 R[x] Snakeeater tile in middle of ladder rather than a timer
 G[x] Add door opening sound to lobby
