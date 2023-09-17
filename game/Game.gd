@@ -72,7 +72,7 @@ var villain_ip = ""
 @onready var bgm_player = AudioStreamPlayer.new()
 
 func _ready():
-	bgm_player.volume_db = -30.0
+	bgm_player.volume_db = -35.0
 	add_child(bgm_player)
 
 func ChangeState(end_state, start_state):

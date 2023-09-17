@@ -109,7 +109,7 @@ signal_timing = 0
 
 [node name="Hallway" type="TileMap"]
 y_sort_enabled = true
-position = Vector2(207, 89)
+position = Vector2(-25, 17)
 tile_set = ExtResource("1_bfc1m")
 format = 2
 layer_0/name = "background"
