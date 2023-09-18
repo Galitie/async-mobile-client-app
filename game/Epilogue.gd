@@ -7,7 +7,7 @@ var epilogues = {
 	"There must have been an error in their space calculations..."
 ],
 	"Mario" : [
-	"Mario, heartbroken, is still looking for a princess to share his plumber dreams with.",
+	"Mario is still looking for a princess to share his plumber dreams with.",
 	"Some say he's still looking to this day.",
 	"She's probably in some other castle..."
 ],
