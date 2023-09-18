@@ -1,4 +1,7 @@
 R[] Fake loading screen and start menu
+[] Epilouge mario doesn't fit, shorten it
+[] Check food amount trigger, thought the trigger went off on second food item
+[] Classroom introduction didn't have a "Check your phone!" notif and it should have
 
 G[x] Teacher and gatekeeper icon
 G[x] Wider dropbox
