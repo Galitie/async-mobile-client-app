@@ -5,6 +5,7 @@ signal intros_submitted
 signal intro_finished
 signal wait_for_intro
 signal map_intro
+signal send_intro_prompt
 
 @onready var camera = get_parent().get_node("Camera2D")
 @onready var school_bell = $SchoolBell
@@ -22,7 +23,7 @@ var pre_intro_messages = [
 	Message.new("Sensei", "Welcome class~~~!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 	Message.new("Tyler", "Tsch, I just made it!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
 	Message.new("Sensei", "Looks like we have some new transfer students!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
-	Message.new("Sensei", "Everyone, please quickly introduce yourself to the class!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
+	Message.new("Sensei", "Everyone, please quickly introduce yourself to the class!", "send_intro_prompt", Message.SignalTiming.APPEAR, [], null, teacher_portrait),
 	Message.new("Tyler", "Hmm...what should I say? First impressions are extremely important...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "Maybe something like 'Hi! I'm Tyler and I'm like, really cool'.", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
@@ -82,8 +83,8 @@ func _ready():
 	connect("wait_for_intro", _wait_for_intro)
 	connect("map_intro", _intro)
 	connect("intro_finished", _intro_finished)
-	Game.SendPromptToUsers(intro_prompt)
-	
+	connect("send_intro_prompt", _send_intro_prompt)
+
 
 func init():
 	camera.SetTarget(null)
@@ -96,6 +97,7 @@ func init():
 	for ip in Game.users:
 		if ip != Game.HOST_IP:
 			transfer_students.append(Game.users[ip])
+
 
 func _wait_for_intro(args):
 	if all_intros_submitted:
@@ -139,6 +141,10 @@ func _intro(packet):
 	if submitted_intros == Game.users.size() - 1:
 		emit_signal("intros_submitted")
 		all_intros_submitted = true
+
+func _send_intro_prompt(args):
+	print("hey")
+	Game.SendPromptToUsers(intro_prompt)
 
 func update(delta):
 	pass

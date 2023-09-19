@@ -1,8 +1,8 @@
 R[] Fake loading screen and start menu
 [?] Check food amount trigger, thought the trigger went off on second food item
-[] Classroom introduction didn't have a "Check your phone!" notif and it should have
-- signal sent on _ready func, but should be sent after the teacher says "quick, introduce yourself..." etc. in the "pre_intro_messages".
 
+
+[x] Classroom introduction didn't have a "Check your phone!" notif and it should have
 [x] Epilouge 4 mario doesn't fit, shorten it
 G[x] Teacher and gatekeeper icon
 G[x] Wider dropbox
