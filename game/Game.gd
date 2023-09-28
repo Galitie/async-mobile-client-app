@@ -70,10 +70,13 @@ var villain_ip = ""
 @onready var voices = DisplayServer.tts_get_voices()
 
 @onready var bgm_player = AudioStreamPlayer.new()
+@onready var sfx_player = AudioStreamPlayer.new()
 
 func _ready():
 	bgm_player.volume_db = -35.0
+	sfx_player.volume_db = -35.0
 	add_child(bgm_player)
+	add_child(sfx_player)
 
 func ChangeState(end_state, start_state):
 	end_state.emit_signal("end_state")
