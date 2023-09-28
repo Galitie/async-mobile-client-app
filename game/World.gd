@@ -49,6 +49,7 @@ var battle = false
 var love_notes = []
 
 func _ready():
+	UI.money.visible = true
 	Game.state = self
 	
 	connect("start_state", _startState)
