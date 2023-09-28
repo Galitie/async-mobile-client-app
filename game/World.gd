@@ -49,6 +49,7 @@ var battle = false
 var love_notes = []
 
 func _ready():
+	UI.transition.get_node("AnimationPlayer").play("fade_in")
 	UI.money.visible = true
 	Game.state = self
 	
