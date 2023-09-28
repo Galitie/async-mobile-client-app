@@ -55,7 +55,7 @@ var pre_quiz_messages = [
 	Message.new("Tyler", "Huh?? Pop quiz?? No!! I wasn't paying attention!!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
 	Message.new("Sensei", "This is a really important quiz that will count for 99% of your grade!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 	Message.new("Tyler", "NOOOOOOOOO!!!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
-	Message.new("Sensei", "Failing this means you're a fucking LOSER!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
+	Message.new("Sensei", "Failing this means you're a fucking LOSER!", "", Message.SignalTiming.NONE, [], null, teacher_portrait),
 	Message.new("Tyler", "Wow, that was kind of harsh Sensei...", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Tyler", "...what kind of highschool is this anyways?", "", Message.SignalTiming.NONE, [], tyler_portrait, null),
 	Message.new("Sensei", "Sharpen your pencils, we will start the quiz soon!", "", Message.SignalTiming.NONE, [], tyler_portrait, teacher_portrait),
