@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmhl5p7cmnlx7"]
+
+[ext_resource type="Script" path="res://title_screen.gd" id="1_22iv1"]
+[ext_resource type="Texture2D" uid="uid://c87tfaysik2l3" path="res://titleScreenImg.png" id="1_63cvy"]
+[ext_resource type="FontFile" uid="uid://climooyaqxkxv" path="res://AtlantisInternational-jen0.ttf" id="2_jdaun"]
+[ext_resource type="Texture2D" uid="uid://yc3l02gbhl7p" path="res://cursor.png" id="3_t8la3"]
+[ext_resource type="Texture2D" uid="uid://ci1p6g6e4qi8x" path="res://blank.png" id="4_pm7bp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w3355"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hsrxf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_t8la3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pm7bp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_22iv1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_63cvy")
+expand_mode = 1
+
+[node name="Button" type="Label" parent="."]
+layout_mode = 0
+offset_left = 230.5
+offset_top = 198.0
+offset_right = 283.5
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.12549)
+theme_override_fonts/font = ExtResource("2_jdaun")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_w3355")
+text = "New Game"
+
+[node name="copyright" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.5
+offset_top = -18.0
+offset_right = 142.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_jdaun")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_w3355")
+text = "2022, 2023 TYLER GAMES CO., LTD. All Rights Reserved."
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+position = Vector2(216.5, 210)
+sprite_frames = SubResource("SpriteFrames_hsrxf")
+frame_progress = 0.675603

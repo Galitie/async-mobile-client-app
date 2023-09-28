@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0jyvrgdegiuy" path="res://characters/emoji.png" id="4_wj73h"]
 [ext_resource type="AudioStream" uid="uid://c4g4lxknoyx6a" path="res://walkingLoop.mp3" id="5_osjqe"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rx8lg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mqhl"]
 resource_local_to_scene = true
 atlas = ExtResource("4_wj73h")
 region = Rect2(0, 0, 32, 32)
@@ -22,7 +22,7 @@ one_shot = true
 
 [node name="Emoji" parent="." instance=ExtResource("3_fjby6")]
 position = Vector2(9, -10)
-texture = SubResource("AtlasTexture_rx8lg")
+texture = SubResource("AtlasTexture_2mqhl")
 
 [node name="WalkingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_osjqe")
