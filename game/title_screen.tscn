@@ -43,11 +43,18 @@ texture = ExtResource("1_63cvy")
 expand_mode = 1
 
 [node name="Button" type="Label" parent="."]
-layout_mode = 0
-offset_left = 230.5
-offset_top = 198.0
-offset_right = 283.5
-offset_bottom = 216.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -26.5
+offset_top = -67.0
+offset_right = 26.5
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.12549)
 theme_override_fonts/font = ExtResource("2_jdaun")
@@ -74,6 +81,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_w3355")
 text = "2022, 2023 TYLER GAMES CO., LTD. All Rights Reserved."
 
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
-position = Vector2(216.5, 210)
+position = Vector2(201.5, 214)
 sprite_frames = SubResource("SpriteFrames_hsrxf")
 frame_progress = 0.675603

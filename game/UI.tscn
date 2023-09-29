@@ -208,6 +208,31 @@ expand_mode = 1
 stretch_mode = 6
 flip_h = true
 
+[node name="Money" type="TextureRect" parent="Screen"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -16.0
+offset_right = -77.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("9_018il")
+expand_mode = 1
+
+[node name="Number" type="RichTextLabel" parent="Screen/Money"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -4.0
+offset_right = 91.0
+offset_bottom = 14.0
+theme_override_fonts/normal_font = ExtResource("2_lah2c")
+text = "1"
+
 [node name="Transition" type="ColorRect" parent="Screen"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -328,31 +353,6 @@ texture = ExtResource("11_8jdfm")
 libraries = {
 "": SubResource("AnimationLibrary_pttko")
 }
-
-[node name="Money" type="TextureRect" parent="Screen"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -89.0
-offset_top = -16.0
-offset_right = -77.0
-offset_bottom = -3.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("9_018il")
-expand_mode = 1
-
-[node name="Number" type="RichTextLabel" parent="Screen/Money"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = -4.0
-offset_right = 91.0
-offset_bottom = 14.0
-theme_override_fonts/normal_font = ExtResource("2_lah2c")
-text = "1"
 
 [node name="DropBox" parent="Screen" instance=ExtResource("10_k7qkb")]
 visible = false
