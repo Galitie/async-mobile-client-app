@@ -84,7 +84,7 @@ func _ready():
 	connect("map_intro", _intro)
 	connect("intro_finished", _intro_finished)
 	connect("send_intro_prompt", _send_intro_prompt)
-
+	Game.SendPromptToUsers(Game.wait_prompt)
 
 func init():
 	camera.SetTarget(null)
