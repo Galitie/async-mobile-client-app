@@ -189,7 +189,7 @@ func _sentText(packet):
 	
 func _userJoined(packet):
 	# Reconnect on login if name matches
-	var user_name = packet["smallInputValue"].to_lower()
+	var user_name = packet["smallInputValue"].to_lower().strip_edges(true, true)
 	packet["userIP"] = user_name
 	if Game.users.has(user_name):
 		if Game.users[user_name].connection_status == Client.CONNECTION_STATUS.OFFLINE:
