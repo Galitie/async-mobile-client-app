@@ -84,7 +84,7 @@ func _ready():
 	connect("map_intro", _intro)
 	connect("intro_finished", _intro_finished)
 	connect("send_intro_prompt", _send_intro_prompt)
-	Game.SendPromptToUsers(Game.wait_prompt)
+	Game.SendPromptToUsers(Game.wait_prompt, false)
 
 func init():
 	camera.SetTarget(null)
@@ -143,7 +143,6 @@ func _intro(packet):
 		all_intros_submitted = true
 
 func _send_intro_prompt(args):
-	print("hey")
 	Game.SendPromptToUsers(intro_prompt)
 
 func update(delta):
