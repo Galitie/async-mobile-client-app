@@ -1,6 +1,7 @@
 extends Control
 
 var skip = false
+var start = false
 
 func _ready():
 	UI.money.visible = false
@@ -17,3 +18,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("interact") && !skip:
 		UI.transition.get_node("AnimationPlayer").play("fade_out")
 		skip = true
+	if Input.is_action_just_pressed("restart") && !start:
+		$VideoStreamPlayer.play()
+		$Label.visible = false
+		start = true
