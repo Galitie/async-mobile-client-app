@@ -14,7 +14,7 @@ var teacher_portrait = load("res://school/portraits/teacher.png")
 var tyler_portrait = load("res://school/portraits/tyler.png")
 var mario_portrait = load("res://school/portraits/mario.png")
 var kermit_portrait = load("res://school/portraits/kermit.png")
-var snake_portrait = load("res://school/portraits/snake.png")
+var snake_portrait = load("res://school/portraits/nakedsnake.png")
 var shadow_portrait = load("res://school/portraits/shadow.png")
 var shrek_portrait = load("res://school/portraits/shrek.png")
 

@@ -12,7 +12,7 @@ var tyler_portrait = load("res://school/portraits/tyler.png")
 var portraits = {
 	"Mario" : load("res://school/portraits/mario.png"),
 	"Kermit" : load("res://school/portraits/kermit.png"),
-	"Snake" : load("res://school/portraits/snake.png"),
+	"Snake" : load("res://school/portraits/nakedsnake.png"),
 	"Shadow" : load("res://school/portraits/shadow.png"),
 	"Shrek" : load("res://school/portraits/shrek.png")
 }
